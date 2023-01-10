@@ -1,0 +1,29 @@
+shell:
+  program: /usr/bin/tmux
+  #  program: /usr/bin/zsh
+  #  args:
+  #    - -l
+  #    - -c
+  #    - "tmux"
+
+# https://gist.github.com/andersevenrud/015e61af2fd264371032763d4ed965b6
+env:
+  TERM: xterm-256color
+
+key_bindings:
+  # send raw characters to tmux
+  # https://github.com/alacritty/alacritty/issues/4451#issuecomment-1235088018
+  - {key: Tab, mods: Control, chars: "\x1b[27;5;9~"}
+  - {key: Tab, mods: Control|Shift, chars: "\x1b[27;6;9~"}
+  # bind Ctrl+1-0 to something tmux supports
+  # https://unix.stackexchange.com/a/96936
+  - {key: Key1, mods: Control, chars: "\x1b[27;5;49~"}
+  - {key: Key2, mods: Control, chars: "\x1b[27;5;50~"}
+  - {key: Key3, mods: Control, chars: "\x1b[27;5;51~"}
+  - {key: Key4, mods: Control, chars: "\x1b[27;5;52~"}
+  - {key: Key5, mods: Control, chars: "\x1b[27;5;53~"}
+  - {key: Key6, mods: Control, chars: "\x1b[27;5;54~"}
+  - {key: Key7, mods: Control, chars: "\x1b[27;5;55~"}
+  - {key: Key8, mods: Control, chars: "\x1b[27;5;56~"}
+  - {key: Key9, mods: Control, chars: "\x1b[27;5;57~"}
+  - {key: Key0, mods: Control, chars: "\x1b[27;5;48~"}
