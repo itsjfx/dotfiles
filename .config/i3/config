@@ -88,8 +88,8 @@ bindsym $alt+F4 kill
 #bindsym $mod+d exec --no-startup-id dmenu_run
 
 #bindsym $mod+d exec rofi -show run
-bindsym $mod+d exec rofi -show drun -no-default-config -config "$HOME"/.config/rofi/main.rasi
-bindsym $mod+Shift+d exec rofi -show run -no-default-config -config "$HOME"/.config/rofi/main.rasi
+bindsym $mod+d exec rofi -show drun
+bindsym $mod+Shift+d exec rofi -show run
 
 # vim keys
 bindsym $mod+h focus left
