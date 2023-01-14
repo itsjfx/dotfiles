@@ -1,0 +1,52 @@
+/* fork of ponies theme
+ * no longer used, use dunst instead
+ * but keeping around cause I like this one
+*/
+
+#XfceNotifyWindow {
+    background-color: #ff69b4;
+/*  border-radius: 10px;
+    border: 6px solid #ffff00;
+*/
+}
+
+#XfceNotifyWindow label,
+#XfceNotifyWindow image {
+    font-family: Noto Sans;
+    font-size: 15px;
+    color: black;
+}
+
+#XfceNotifyWindow label#summary {
+    font-weight: Bold;
+}
+
+#XfceNotifyWindow button {
+    border-style: none;
+    background-image: none;
+    background-color: orange;
+}
+
+#XfceNotifyWindow button:hover {
+    border-style: none;
+    background-image: none;
+    background-color : orange;
+}
+
+#XfceNotifyWindow progressbar {
+    border-radius: 3px;
+}
+
+#XfceNotifyWindow progressbar progress {
+    min-height: 16px;
+    background-image: none;
+    background-color: shade(#ffff00, 1.2);
+}
+
+#XfceNotifyWindow progressbar trough {
+    min-height: 16px;
+    background-image: none;
+    background-color: #5e0086;
+    border: 1px solid shade(#5e0086, 0.6);
+    border-radius: 3px;
+}
