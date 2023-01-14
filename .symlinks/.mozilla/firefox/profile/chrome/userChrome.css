@@ -1,0 +1,183 @@
+@namespace url("http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul");
+@namespace html url("http://www.w3.org/1999/xhtml");
+
+/* Based from https://gist.github.com/Zren/37bed9ed257347d97233273f32287707 */
+
+/*
+* In order for userChrome.css to work, you need to open `about:config` and change
+* `toolkit.legacyUserProfileCustomizations.stylesheets` to `true`.
+*/
+
+/* Hide ContextMenu Items */
+/* https://www.reddit.com/r/firefox/comments/7dvtw0/guide_how_to_edit_your_context_menu/ */
+/* https://searchfox.org/mozilla-release/source/browser/base/content/browser-context.inc */
+#contentAreaContextMenu #context-bookmarklink,
+#contentAreaContextMenu #context-selectall,
+#contentAreaContextMenu #context-sendlinktodevice,
+#contentAreaContextMenu #context-sendpagetodevice, 
+#contentAreaContextMenu #context-sep-sendlinktodevice,
+#contentAreaContextMenu #context-sep-sendpagetodevice,
+#contentAreaContextMenu #context-sendimage,
+#contentAreaContextMenu #context-setDesktopBackground,
+#contentAreaContextMenu #context-inspect-a11y,
+#contentAreaContextMenu #context-viewpartialsource-selection {
+	display: none !important;
+}
+
+/* Remove left tabbar padding when not maximized. */
+.titlebar-spacer[type="pre-tabs"] {
+	width: 0 !important;
+}
+
+/* 
+* Remove tiny space next to the X button and the last tabs
+* Useful if using a tiling window manager
+* 
+* If not using a tiling window manager you will find the blank/grab room useful
+*/
+.titlebar-spacer[type="post-tabs"] {
+	width: 0 !important;
+}
+
+/* Remove colour line at top of tab */
+.tab-context-line {
+	display: none;
+}
+.tab-background {
+	/* Add colour line at bottom for container tabs */
+	border-bottom: 3px solid var(--identity-icon-color) !important;
+	
+	/* Remove spacing at bottom of tabs */
+	margin-bottom: 0;
+
+	/* Remove rounded edges from tabs to make them a true rectangle */
+	border-radius: 0 !important;
+
+	/* Remove spacing above and below tabs */
+	margin-block: 0 !important;
+}
+
+.tab-label {
+	font-size: 15px; /* ~13-14 is the default, its probably 1em or something */
+	/*font-weight: bold;*/
+}
+
+.tab-throbber:not([pinned]), .tab-icon-pending:not([pinned]), .tab-icon-image:not([pinned]), .tab-sharing-icon-overlay:not([pinned]), .tab-icon-overlay:not([pinned]) {
+	margin-inline-end: 2.5px !important; /* 5.5 */
+}
+
+.tabbrowser-tab {
+	/* Removes spacing/padding around the tabs */
+	padding-inline: 0 !important;
+}
+
+html|*:root#main-window[privatebrowsingmode] tab .tab-content::before {
+    /* different colour for private window */
+    background-color: #8800ff !important;
+    color: white;
+}
+
+/* Some border stuff so the highlighting looks nice */
+#urlbar-input-container {
+	/* border-top: 0 !important;
+	border-bottom: 0 !important;
+	border-left: 0 !important;
+	
+	padding-left: 0 !important;
+	padding-top: 0 !important;
+	padding-bottom: 0 !important; */
+
+	border: 0 !important;
+	/* padding: 0 !important; */
+}
+
+/* Change the background colour of the tracking protection icon based on its status */
+#tracking-protection-icon-container {
+	border-radius: 0 !important;
+	background-color: green;
+}
+#tracking-protection-icon-container[aria-label="Enhanced Tracking Protection is OFF for this site."] {
+	background-color: rosybrown;
+}
+
+#identity-icon-box {
+	border-radius: 0 !important;
+}
+
+/* Change the background colour of the lock icon based on its status */
+#identity-box.notSecure #identity-icon-box {
+	background-color: rosybrown;
+}
+#identity-box.verifiedDomain #identity-icon-box {
+	background-color: green;
+}
+#identity-box.mixedDisplayContent #identity-icon-box {
+	background-color: powderblue; /* steelblue */
+}
+
+/* Make URLs bigger */
+#urlbar {
+	/* Maintain old size, not sure if display specific */
+	--urlbar-height: 32.00px !important;
+	--urlbar-toolbar-height: 40px !important;
+
+	/* default: font-size: 1.15em; */
+	font-size: 1.2em !important; 
+}
+
+/* some spacing idk to remove */
+#urlbar-container, #search-container {
+	margin-inline: 0px !important;
+}
+
+
+/* Bookmarks spacing */
+#personal-toolbar-empty-description, #PersonalToolbar .toolbarbutton-1, toolbarbutton.bookmark-item:not(.subviewbutton) {
+	margin: 0 !important;
+	/*padding: 0 !important;*/
+}
+
+.bookmark-item {
+	border-radius: 0 !important; /* 4px */
+}
+
+
+/* Only works when applying to the box */
+.urlbar-input-box {
+	font-weight: bold !important;
+	color: pink;
+}
+
+/* Add numbers to tabs */
+tabs {
+	counter-reset: tab_count;
+}
+tab .tab-content {
+	padding-left: 2px;
+}
+tab .tab-content::before {
+	display: -moz-box;
+	padding-left: 2px; /* box */
+	padding-right: 2px; /* box */
+	margin-bottom: 17px; /* hit top */
+	margin-left: -8px; /* hit left */
+	/*margin-right: 1px;  give favico space */
+
+	counter-increment: tab_count;
+	content: counter(tab_count);
+	
+	font-weight: bold;
+	color: black;
+	background-color: orange;
+	font-size: 14px;
+}
+html|*:root#main-window[privatebrowsingmode] tab .tab-content::before {
+    /* different colour for private window */
+    background-color: #8800ff !important;
+    color: white;
+}
+
+vbox .tab-background[selected="true"] {
+	background-color: rosybrown !important;
+	background-image: none !important;
+}
