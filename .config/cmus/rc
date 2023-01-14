@@ -1,0 +1,3 @@
+bind -f common + vol +5%
+bind -f common = vol +5%
+bind -f common - vol -5%
