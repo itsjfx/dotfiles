@@ -50,10 +50,14 @@ pacman -S --noconfirm \
     cmus \
     qbittorrent \
     vlc \
-    wine-staging \
-    winetricks \
-    wine-mono \
     signal-desktop
+
+# wine
+# needs multilib enabled
+#pacman -S --noconfirm \
+#    wine-staging \
+#    winetricks \
+#    wine-mono
 
 # icons
 pacman -S --noconfirm \
@@ -148,21 +152,18 @@ pacman -S --noconfirm \
     valgrind \
     python-pylint \
     python \
-    python-pip \
-    python2
+    python-pip
+
+# for python2
+# install via AUR
 
 # proxychains
 # install from https://github.com/rofl0r/proxychains-ng
 # or from pacman
 # or aur
 
-# point python to python 2.7 instead of python 3
-#rm /usr/bin/python
-#ln -s /usr/bin/python2.7 /usr/bin/python
 
-# https://docs.docker.com/engine/install/fedora/
-
-
+# TODO: podman
 #pacman -S --noconfirm \
 #    docker
 

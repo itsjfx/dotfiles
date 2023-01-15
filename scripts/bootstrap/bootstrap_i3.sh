@@ -226,7 +226,10 @@ pacman -S --noconfirm \
     gst-plugins-good
 
 
+pacman -S --noconfirm \
+    wireplumber
 
+# TODO: seem to always have an issue with wireplumber
 # missing a bunch of pulseaudio
 pacman -S --noconfirm \
     pipewire \
@@ -236,7 +239,6 @@ pacman -S --noconfirm \
     pipewire-pulse \
     pavucontrol \
     pulseaudio-alsa \
-    wireplumber \
     gst-plugin-pipewire
 
 # if wanting to use zram instead of a swapfile

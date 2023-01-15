@@ -7,6 +7,5 @@ export VDPAU_NVIDIA_SYNC_DISPLAY_DEVICE=DP-2
 
 /usr/lib/polkit-kde-authentication-agent-1 &
 x11vnc -display :0 -usepw -forever -bg
-~/stuff/streamdeck/basic_heh.py &
 xset r on
 xset r rate 200 35
