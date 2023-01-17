@@ -7,6 +7,8 @@ using bare dotfiles approach documented in: <https://wiki.archlinux.org/title/Do
 ```bash
 git init --bare ~/.dotfiles
 alias config='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
+config remote add origin https://github.com/itsjfx/dotfiles.git
+config remote add origin git@github.com:itsjfx/dotfiles.git
 config config status.showUntrackedFiles no
 config pull origin master
 ```
