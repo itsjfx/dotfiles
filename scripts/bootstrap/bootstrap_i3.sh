@@ -75,10 +75,8 @@ pacman -S --noconfirm \
     intel-media-driver \
     iw \
     wpa_supplicant \
-    powerdevil \
     bluez \
     bluez-utils \
-    bluedevil
 
 # picom
 pacman -S --noconfirm \

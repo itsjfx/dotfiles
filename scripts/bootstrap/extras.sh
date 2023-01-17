@@ -73,13 +73,13 @@ pacman -S --noconfirm \
 # GUI installed cos
 pacman -S --noconfirm \
     yubikey-manager \
-    yubikey-personalization \
-    yubikey-manager-qt \
-    yubikey-personalization-gui
+    yubikey-personalization
+# yubikey-manager-qt \
+# yubikey-personalization-gui
 
 # VNC Server
-pacman -S --noconfirm \
-    x11vnc
+#pacman -S --noconfirm \
+#    x11vnc
 
 # Early OOM daemon that runs in userspace
 pacman -S --noconfirm earlyoom
