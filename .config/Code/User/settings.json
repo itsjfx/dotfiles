@@ -1,0 +1,33 @@
+{
+	"diffEditor.ignoreTrimWhitespace": false,
+	"cSpell.enabledLanguageIds": [
+		"git-commit",
+		"latex",
+		"markdown",
+		"plaintext",
+		"restructuredtext",
+		"scss",
+		"text"
+	],
+	"cSpell.userWords": [
+		"behaviour"
+	],
+	"cSpell.language": "en-GB",
+	"workbench.editorAssociations": {
+		"*.ipynb": "jupyter-notebook"
+	},
+	"extensions.ignoreRecommendations": true,
+	"workbench.colorCustomizations": {
+		"tab.activeBackground": "#bf6a8a"
+	},
+	"python.showStartPage": false,
+	"notebook.cellToolbarLocation": {
+		"default": "right",
+		"jupyter-notebook": "left"
+	},
+	"editor.minimap.enabled": false,
+	"security.workspace.trust.untrustedFiles": "open",
+	"files.insertFinalNewline": true,
+	"editor.guides.bracketPairs": true,
+	"telemetry.telemetryLevel": "off"
+}
