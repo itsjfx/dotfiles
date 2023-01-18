@@ -1,0 +1,2 @@
+# https://github.com/newAM/monitorcontrol/blob/main/docs/linux_setup.rst
+KERNEL=="i2c-[0-9]*", GROUP="i2c"
