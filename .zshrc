@@ -134,6 +134,10 @@ bindkey -M emacs '^[[1;5C' forward-word
 # [Ctrl-LeftArrow] - move backward one word    
 bindkey -M emacs '^[[1;5D' backward-word    
 
+# Delete key
+# thanks https://github.com/chrisduerr/dotfiles/blob/master/files/zsh/keys.zsh
+bindkey "${terminfo[kdch1]}" delete-char
+
 ## History file configuration    
 [ -z "$HISTFILE" ] && HISTFILE="$HOME/.zsh_history"    
     
@@ -146,6 +150,8 @@ setopt hist_verify            # show command with history expansion to user befo
 setopt share_history          # share command history data
 
 alias history="history 0"
+# https://wiki.archlinux.org/title/Sudo#Passing_aliases
+alias sudo="sudo "
 
 # https://github.com/ohmyzsh/ohmyzsh/blob/master/themes/robbyrussell.zsh-theme
 # but no git_prompt_info
