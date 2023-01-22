@@ -1,5 +1,8 @@
 # i3 config file (v4)
 
+# bright blue selector
+client.focused #4C7899 #09A7E3 #FFFFFF #F41B7C #770404
+
 set $mod Mod4
 set $alt Mod1
 set $TERMINAL alacritty 
