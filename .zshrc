@@ -17,8 +17,10 @@ fpath=("$HOME"/source/zsh-completions/src $fpath)
 export HISTSIZE=500000
 export SAVEHIST=500000
 
+setopt no_case_glob
 setopt auto_cd
 setopt promptsubst
+setopt interactivecomments
 
 autoload -U colors && colors
 autoload -U +X compinit && compinit
