@@ -76,6 +76,7 @@ export PYTHONPATH=~/.aws/cli/plugins/:"$PYTHONPATH"
 
 export PATH="/home/jfx/.fnm/:$PATH"
 eval "$(fnm env)"
+alias nvm=fnm
 
 # basic file preview for ls (you can replace with something more sophisticated than head)
 zstyle ':completion::*:ls::*' fzf-completion-opts --preview='eval head {1}'
@@ -164,3 +165,28 @@ PROMPT+=' %{$fg[cyan]%}%c%{$reset_color%} '
 source "$HOME/repos/me/notes/notes.sh"
 source "$HOME/source/zsh-tmux-smart-status-bar/zsh-tmux-smart-status-bar.sh"
 alias config='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
+
+alias sizeof='du -hs'
+
+# control e == go to end of line
+# control u == delete everything till start of line
+# control m == press enter
+#bindkey -s '\eg' '\C-e\C-u git status\C-m'
+_git_status() {
+    # errrrrrrr is this how you do this, i want the command in the shell
+    echo 'git status' >&2
+    git status
+    zle reset-prompt
+}
+zle -N _git_status
+bindkey '^[g' _git_status
+
+open() {
+    (nohup dolphin "${1:-.}" &) >/dev/null 2>&1
+}
+alias pwgensafe="pwgen --secure -1 60"
+export SAM_CLI_TELEMETRY=0
+
+# use bat
+#export MANPAGER="sh -c 'col -bx | bat -l man -p'"
+#export MANROFFOPT="-c"
