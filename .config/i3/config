@@ -41,6 +41,7 @@ exec --no-startup-id exec "$HOME/.fehbg"
 exec --no-startup-id exec "$HOME/stuff/streamdeck/basic_heh.py"
 # https://github.com/lincheney/i3-automark
 exec --no-startup-id exec "$HOME/repos/github/i3-automark/i3-automark.py"
+exec --no-startup-id exec alttab -fg "#d58681" -bg "#4a4a4a" -frame "#eb564d" -t 128x150 -i 127x64 
 
 for_window [title="KCalc"] floating enable
 
