@@ -9,7 +9,5 @@ done
 
 chsh -s "$(which zsh)"
 
-# Joplin for notes
-# TO-DO: move to AUR
-# https://github.com/laurent22/joplin#desktop-applications
-#wget -O - https://raw.githubusercontent.com/laurent22/joplin/dev/Joplin_install_and_update.sh | bash
+kwriteconfig5 --file "$HOME"/.config/dolphinrc --group 'General' --key 'RememberOpenedTabs' false
+kwriteconfig5 --file "$HOME"/.config/dolphinrc --group 'General' --key 'BrowseThroughArchives' true
