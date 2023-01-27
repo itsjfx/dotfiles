@@ -23,10 +23,14 @@ bindkey "${terminfo[kdch1]}" delete-char
 # control m == press enter
 #bindkey -s '\eg' '\C-e\C-u git status\C-m'
 _git_status() {
-    # errrrrrrr is this how you do this, i want the command in the shell
-    echo 'git status' >&2
-    git status
+    # using magic from https://github.com/junegunn/fzf/blob/0f4af384571aaf6bcf9146c345feb5c6916c6790/shell/key-bindings.zsh#L83-L89
+    zle push-line # clear buffer
+    BUFFER=" git status"
+    zle accept-line
+    local ret=$?
     zle reset-prompt
+    # i'm not sure this $ret stuff is needed
+    return $ret
 }
 zle -N _git_status
 bindkey '^[g' _git_status

@@ -9,6 +9,7 @@ bindkey '^I' fzf_completion
 complete -C '/usr/local/bin/aws_completer' aws
 
 source /usr/share/fzf/key-bindings.zsh
+bindkey -M emacs '^F' fzf-file-widget
 
 export PATH="$PATH:$HOME/.fnm"
 eval "$(fnm env)"
