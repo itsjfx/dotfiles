@@ -9,6 +9,10 @@ if [[ "$(hostname)" == "jfx-arch-tmp" ]]; then
     export __GL_SYNC_DISPLAY_DEVICE=DP-2
     export VDPAU_NVIDIA_SYNC_DISPLAY_DEVICE=DP-2
     x11vnc -display :0 -usepw -forever -bg
+else
+    # TODO
+    # not very portable
+    export LIBVA_DRIVER_NAME=iHD
 fi
 
 /usr/lib/polkit-kde-authentication-agent-1 &
