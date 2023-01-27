@@ -64,7 +64,8 @@ pacman -S --noconfirm \
 # desktop
 # pacman -S --noconfirm \
 #    nvidia \
-#    x11vnc
+#    x11vnc \
+#    vdpauinfo
 
 # laptop
 # POSSIBLY need xf86-input-synaptics
@@ -77,6 +78,7 @@ pacman -S --noconfirm \
     wpa_supplicant \
     bluez \
     bluez-utils \
+    libva-utils
 
 # picom
 pacman -S --noconfirm \
