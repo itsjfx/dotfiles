@@ -26,8 +26,16 @@ call plug#end()
 
 " https://gist.github.com/andersevenrud/015e61af2fd264371032763d4ed965b6
 set termguicolors
+
+lua << EOF
+require("tokyonight").setup({
+    transparent = false
+})
+EOF
+
 colorscheme tokyonight
 colorscheme tokyonight-storm
+
 
 lua << EOF
 require'nvim-treesitter.configs'.setup {
