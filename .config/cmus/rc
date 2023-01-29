@@ -1,3 +1,6 @@
 bind -f common + vol +5%
 bind -f common = vol +5%
 bind -f common - vol -5%
+
+set set_term_title=false
+set tree_width_percent=30
