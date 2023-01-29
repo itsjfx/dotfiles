@@ -8,11 +8,12 @@ format_player() {
         spotify) echo -n "%{F#1db954} " ;;
         cmus) echo -n "%{F#06bdff}🎶 " ;;
     esac
+    playerctl --player="$1" metadata --format="{{ artist }} - {{ title }}"
 }
 
 for player in cmus spotify; do
     if [[ "$(playerctl status --player="$player")" == "Playing" ]]; then
-        echo "$(format_player "$player")$(playerctl --player="$player" metadata --format="{{ artist }} - {{ title }}")"
+        format_player "$player"
         exit
     fi
 done
