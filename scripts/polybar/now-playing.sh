@@ -12,7 +12,7 @@ format_player() {
 }
 
 for player in cmus spotify; do
-    if [[ "$(playerctl status --player="$player")" == "Playing" ]]; then
+    if [[ "$(playerctl status --player="$player" 2>/dev/null)" == "Playing" ]]; then
         format_player "$player"
         exit
     fi
