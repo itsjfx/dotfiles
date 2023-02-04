@@ -1,6 +1,21 @@
 #!/usr/bin/env bash
 set -eu -o pipefail
 
+LAPTOP=0
+DESKTOP=0
+case "${1:-}" in
+    desktop)
+        echo 'Using desktop packages' >&2
+        DESKTOP=1 ;;
+    laptop)
+        echo 'Using laptop packages' >&2
+        LAPTOP=1
+        ;;
+    *)
+        echo "Unknown: ${1:-}" >&2
+        exit 1
+        ;;
+esac
 
 # https://wiki.archlinux.org/title/installation_guide
 # https://itsfoss.com/install-arch-linux/
@@ -49,6 +64,7 @@ set -eu -o pipefail
 # sudo swapon /swapfile -p '-2'
 # in /etc/fstab
 
+
 # Only root can run this script
 [ $UID -eq 0 ] || exit 1
 
@@ -61,16 +77,18 @@ pacman -Syy
 pacman -S --noconfirm \
     intel-ucode
 
-# desktop
-# pacman -S --noconfirm \
-#    nvidia \
-#    x11vnc \
-#    vdpauinfo
+# Remove kms from the HOOKS array in /etc/mkinitcpio.conf
+# mkinitcpio -P
+# reboot
+(( DESKTOP )) && pacman -S --noconfirm \
+    nvidia \
+    x11vnc \
+    vdpauinfo
 
 # laptop
 # POSSIBLY need xf86-input-synaptics
 # powerdevil, look at xfce alternative instead https://wiki.archlinux.org/title/Power_management#Userspace_tools
-pacman -S --noconfirm \
+(( LAPTOP )) && pacman -S --noconfirm \
     mesa \
     vulkan-intel \
     intel-media-driver \
@@ -80,7 +98,6 @@ pacman -S --noconfirm \
     bluez-utils \
     libva-utils
 
-# picom
 pacman -S --noconfirm \
     base-devel \
     sudo \
@@ -93,7 +110,8 @@ pacman -S --noconfirm \
     xorg-xinput \
     xorg-xkill \
     linux-firmware \
-    openssh
+    openssh \
+    picom
 
 
 # xfce4-notifyd
