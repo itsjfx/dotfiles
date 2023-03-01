@@ -7,6 +7,9 @@ set tabstop=4
 set shiftwidth=4
 " dodgy?
 set mouse=c
+set ignorecase smartcase
+
+vnoremap <C-C> "+y
 
 " Mappings
 map <F2> :tabp <CR>
@@ -22,6 +25,7 @@ Plug 'junegunn/fzf.vim'
 Plug 'folke/tokyonight.nvim', { 'branch': 'main' }
 Plug 'preservim/nerdcommenter'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+Plug 'rhysd/committia.vim'
 call plug#end()
 
 " https://gist.github.com/andersevenrud/015e61af2fd264371032763d4ed965b6
