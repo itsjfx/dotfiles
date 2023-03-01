@@ -51,7 +51,8 @@ pacman -S --noconfirm \
     qbittorrent \
     vlc \
     signal-desktop \
-    obsidian
+    obsidian \
+    kolourpaint
 
 # wine
 # needs multilib enabled
