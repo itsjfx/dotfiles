@@ -50,7 +50,8 @@ pacman -S --noconfirm \
     cmus \
     qbittorrent \
     vlc \
-    signal-desktop
+    signal-desktop \
+    obsidian
 
 # wine
 # needs multilib enabled
