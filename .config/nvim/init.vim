@@ -9,23 +9,50 @@ set shiftwidth=4
 set mouse=c
 set ignorecase smartcase
 
+" visual mode: Ctrl + c = copy to system clipboard
 vnoremap <C-C> "+y
 
+" BUFFERS
+" keep current buffer open with unsafe changes
+set hidden
+" Alt + Left = previous buffer
+nnoremap <silent><A-LEFT> :bprev<CR>
+" Alt + Right = next buffer
+nnoremap <silent><A-RIGHT> :bnext<CR>
+" Ctrl + w = close buffer
+nnoremap <silent><C-w> :bd<CR>
+
 " Mappings
-map <F2> :tabp <CR>
-map <F3> :tabn <CR>
-map <F1> :Files <CR>
+" can't use CTRL + F
 map <A-f> :Files <CR>
 
 " cmap w!! w !sudo tee > /dev/null %
 
 call plug#begin()
+
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'folke/tokyonight.nvim', { 'branch': 'main' }
 Plug 'preservim/nerdcommenter'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'rhysd/committia.vim'
+Plug 'ap/vim-buftabline'
+Plug 'sheerun/vim-polyglot'
+Plug 'unblevable/quick-scope'
+" TODO figure out how the heck to use this
+Plug 'mbbill/undotree'
+
+function! UpdateRemotePlugins(...)
+    " Needed to refresh runtime files
+    let &rtp=&rtp
+    UpdateRemotePlugins
+endfunction
+Plug 'gelguy/wilder.nvim', { 'do': function('UpdateRemotePlugins') }
+
+" TODO switch to ddc.vim ?
+Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+let g:deoplete#enable_at_startup = 1
+
 call plug#end()
 
 " https://gist.github.com/andersevenrud/015e61af2fd264371032763d4ed965b6
