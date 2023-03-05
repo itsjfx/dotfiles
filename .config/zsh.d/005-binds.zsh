@@ -25,15 +25,20 @@ bindkey "${terminfo[kdch1]}" delete-char
 _git_status() {
     # using magic from https://github.com/junegunn/fzf/blob/0f4af384571aaf6bcf9146c345feb5c6916c6790/shell/key-bindings.zsh#L83-L89
     zle push-line # clear buffer
-    BUFFER=" git status"
+    BUFFER=" $@ status"
     zle accept-line
     local ret=$?
     zle reset-prompt
     # i'm not sure this $ret stuff is needed
     return $ret
 }
-zle -N _git_status
-bindkey '^[g' _git_status
+_git_status_git() { _git_status git }
+_git_status_config() { _git_status config }
+# TODO surely this can be done better?
+zle -N _git_status_git
+zle -N _git_status_config
+bindkey '^[g' '_git_status_git'
+bindkey '^[^g' '_git_status_config'
 
 # TODO: probably not going to use with rofi
 fzf_search() {
