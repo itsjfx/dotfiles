@@ -10,7 +10,7 @@ alias netcat=nc
 
 alias l='ls --color=tty'
 alias ls='ls --color=tty'
-alias rg='rg -i'
+alias rg='rg --smart-case'
 
 alias nvm=fnm
 
