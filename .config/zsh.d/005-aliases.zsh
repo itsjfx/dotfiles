@@ -48,3 +48,4 @@ open() {
     (nohup dolphin "${1:-.}" &) >/dev/null 2>&1
 }
 alias pwgensafe="pwgen --secure -1 60"
+alias proxychains='proxychains4'
