@@ -29,5 +29,8 @@
 	"security.workspace.trust.untrustedFiles": "open",
 	"files.insertFinalNewline": true,
 	"editor.guides.bracketPairs": true,
-	"telemetry.telemetryLevel": "off"
+	"telemetry.telemetryLevel": "off",
+	"extensions.experimental.affinity": {
+		"vscodevim.vim": 1,
+	},
 }
