@@ -40,8 +40,12 @@ Plug 'rhysd/committia.vim'
 Plug 'ap/vim-buftabline'
 Plug 'sheerun/vim-polyglot'
 Plug 'unblevable/quick-scope'
+Plug 'junegunn/vim-easy-align'
 " TODO figure out how the heck to use this
 Plug 'mbbill/undotree'
+
+" Visual Mode + ga = EasyAlign
+xmap ga <Plug>(EasyAlign)
 
 function! UpdateRemotePlugins(...)
     " Needed to refresh runtime files
