@@ -71,6 +71,10 @@ pacman -S --noconfirm \
     libusb \
     hidapi
 
+# protobuf dev
+pacman -S --noconfirm \
+    protobuf
+
 # yubikey
 # GUI installed cos
 pacman -S --noconfirm \

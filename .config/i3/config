@@ -35,14 +35,18 @@ bindsym Control+Print exec flameshot gui
 
 # TODO: does this stuff _actually_ belong here
 exec --no-startup-id exec dunst
+# Melbourne, AU
 exec --no-startup-id exec redshift -l '-37.8103409:144.9728712' -t '6500:3300'
 exec --no-startup-id exec "$HOME/scripts/polybar/launch.sh"
 exec --no-startup-id exec "$HOME/.fehbg"
 exec --no-startup-id exec "$HOME/stuff/streamdeck/basic_heh.py"
 # https://github.com/lincheney/i3-automark
-exec --no-startup-id exec "$HOME/repos/github/i3-automark/i3-automark.py --focused-only"
+exec --no-startup-id exec "$HOME/repos/github/i3-automark/i3-automark.py" --focused-only
 # #1b1b25 or #4a4a4a
 exec --no-startup-id exec alttab -fg "#d58681" -bg "#1b1b25" -frame "#eb564d" -t 132x150 -i 127x64 -d 0 -bw 0 -inact "#1b1b25" -font xft:sans-12 -fg white
+
+bindsym XF86MonBrightnessUp exec --no-startup-id light -A 10
+bindsym XF86MonBrightnessDown exec --no-startup-id light -U 10
 
 for_window [title="KCalc"] floating enable
 

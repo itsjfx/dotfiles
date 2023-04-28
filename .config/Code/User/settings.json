@@ -33,4 +33,11 @@
 	"extensions.experimental.affinity": {
 		"vscodevim.vim": 1,
 	},
+	"javascript.updateImportsOnFileMove.enabled": "always",
+	// ty https://mike.bailey.net.au/notes/vscode/#file-watchers
+	"files.watcherExclude": {
+		"**/.git/objects/**": true,
+		"**/.git/subtree-cache/**": true,
+		"**/node_modules/*/**": true
+	}
 }

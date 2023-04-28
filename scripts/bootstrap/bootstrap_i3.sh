@@ -96,7 +96,10 @@ pacman -S --noconfirm \
     wpa_supplicant \
     bluez \
     bluez-utils \
-    libva-utils
+    libva-utils \
+    light \
+    blueman \
+    acpi
 
 pacman -S --noconfirm \
     base-devel \
@@ -158,7 +161,6 @@ pacman -S --noconfirm \
     psmisc \
     words \
     ranger \
-    smem \
     tar \
     wget \
     curl \
