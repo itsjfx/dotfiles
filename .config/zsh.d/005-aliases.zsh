@@ -49,3 +49,5 @@ open() {
 }
 alias pwgensafe="pwgen --secure -1 60"
 alias proxychains='proxychains4'
+
+alias code='LD_PRELOAD= code'

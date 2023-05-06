@@ -8,10 +8,13 @@ export PATH="$PATH:$HOME/.local/bin"
 # my scripts
 export PATH="$PATH:$HOME/bin"
 # bma
-export PATH="$PATH:$HOME/.bash-my-aws/bin"
+[ -d "$HOME/.bash-my-aws/bin" ] && export PATH="$PATH:$HOME/.bash-my-aws/bin"
 
 export AWS_DEFAULT_REGION=ap-southeast-2
 export SAM_CLI_TELEMETRY=0
+export AWS_PAGER=''
+
+export FZF_DEFAULT_OPTS='--multi'
 
 export PUPPETEER_EXECUTABLE_PATH="$(which chromium-browser)"
 
@@ -38,3 +41,8 @@ fi
 ## History file configuration
 [ -z "$HISTFILE" ] && HISTFILE="$HOME/.zsh_history"
 export HISTFILE
+
+if type bat &>/dev/null; then
+	export MANPAGER="sh -c 'col -bx | bat -l man -p'"
+	export MANROFFOPT="-c"
+fi
