@@ -12,6 +12,10 @@ user_pref("middlemouse.contentLoadURL", false);
 user_pref("middlemouse.paste", false);
 user_pref("browser.sessionstore.resume_from_crash", false);
 
+// downloads
+user_pref("browser.download.useDownloadDir", false);
+user_pref("browser.download.lastDir", "/tmp");
+
 // set to refresh rate
 user_pref("layout.frame_rate", 240);
 // fixes framerate issues on NVIDIA
