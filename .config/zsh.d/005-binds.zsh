@@ -22,23 +22,38 @@ bindkey "${terminfo[kdch1]}" delete-char
 # control u == delete everything till start of line
 # control m == press enter
 #bindkey -s '\eg' '\C-e\C-u git status\C-m'
-_git_status() {
+_no_history_eval() {
     # using magic from https://github.com/junegunn/fzf/blob/0f4af384571aaf6bcf9146c345feb5c6916c6790/shell/key-bindings.zsh#L83-L89
     zle push-line # clear buffer
-    BUFFER=" $@ status"
+    BUFFER=" $@"
     zle accept-line
     local ret=$?
     zle reset-prompt
     # i'm not sure this $ret stuff is needed
     return $ret
 }
-_git_status_git() { _git_status git }
-_git_status_config() { _git_status config }
+_bind_git_status_git() { _no_history_eval 'git status' }
+_bind_git_status_config() { _no_history_eval 'config status' }
+_bind_git_diff() { git rev-parse --is-inside-work-tree &>/dev/null && git diff }
 # TODO surely this can be done better?
-zle -N _git_status_git
-zle -N _git_status_config
-bindkey '^[g' '_git_status_git'
-bindkey '^[^g' '_git_status_config'
+zle -N _bind_git_status_git
+zle -N _bind_git_status_config
+zle -N _bind_git_diff
+# Alt + g
+bindkey '^[g' '_bind_git_status_git'
+# ALt + Shift + g
+bindkey '^[^g' '_bind_git_status_config'
+# Alt + d
+bindkey '^[d' '_bind_git_diff'
+
+# TODO show prompt afterward
+_bind_full_clear_buffer() {
+    clear && printf '\e[3J'
+}
+zle -N _bind_full_clear_buffer
+# Alt + l
+# TODO would love CTRL + Shift + L, not sure if possible
+bindkey '^[l' '_bind_full_clear_buffer'
 
 # TODO: probably not going to use with rofi
 fzf_search() {
