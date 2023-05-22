@@ -17,6 +17,8 @@ case "${1:-}" in
         ;;
 esac
 
+get() { pacman -S --noconfirm --needed "$@"; }
+
 # https://wiki.archlinux.org/title/installation_guide
 # https://itsfoss.com/install-arch-linux/
 
@@ -69,18 +71,18 @@ esac
 [ $UID -eq 0 ] || exit 1
 
 # Ensure the system is up to date
-pacman -Syu
 pacman -Syy
+pacman -Syu
 
 
 # intel cpu
-pacman -S --noconfirm \
+get \
     intel-ucode
 
 # Remove kms from the HOOKS array in /etc/mkinitcpio.conf
 # mkinitcpio -P
 # reboot
-(( DESKTOP )) && pacman -S --noconfirm \
+(( DESKTOP )) && get \
     nvidia \
     x11vnc \
     vdpauinfo
@@ -88,7 +90,7 @@ pacman -S --noconfirm \
 # laptop
 # POSSIBLY need xf86-input-synaptics
 # powerdevil, look at xfce alternative instead https://wiki.archlinux.org/title/Power_management#Userspace_tools
-(( LAPTOP )) && pacman -S --noconfirm \
+(( LAPTOP )) && get \
     mesa \
     vulkan-intel \
     intel-media-driver \
@@ -101,7 +103,7 @@ pacman -S --noconfirm \
     blueman \
     acpi
 
-pacman -S --noconfirm \
+get \
     base-devel \
     sudo \
     man-db \
@@ -118,13 +120,13 @@ pacman -S --noconfirm \
 
 
 # xfce4-notifyd
-pacman -S --noconfirm \
+get \
     dunst \
     firefox
 
 #pesign
 #spectacle -> flameshot
-pacman -S --noconfirm \
+get \
     arandr \
     hdparm \
     dos2unix \
@@ -168,7 +170,7 @@ pacman -S --noconfirm \
     btrfs-progs
 
 
-pacman -S --noconfirm \
+get \
     redshift
 
 #systemd-kcm on AUR
@@ -185,7 +187,7 @@ pacman -S --noconfirm \
 # plasma-desktop \
 # plasma-nm \
 # plasma-workspace \
-pacman -S --noconfirm \
+get \
     breeze \
     breeze-gtk \
     breeze-icons \
@@ -212,7 +214,7 @@ pacman -S --noconfirm \
 # i3
 
 #i3status now polybar
-pacman -S --noconfirm \
+get \
     i3-wm \
     i3lock \
     polybar \
@@ -221,7 +223,7 @@ pacman -S --noconfirm \
     rofi
 
 # missing @Fonts
-pacman -S --noconfirm \
+get \
     fontconfig \
     ttf-dejavu \
     ttf-liberation \
@@ -229,7 +231,7 @@ pacman -S --noconfirm \
 
 
 
-pacman -S --noconfirm \
+get \
     adobe-source-han-sans-cn-fonts \
     adobe-source-han-serif-cn-fonts \
     noto-fonts \
@@ -239,19 +241,19 @@ pacman -S --noconfirm \
 
 
 
-pacman -S --noconfirm \
+get \
     gstreamer \
     gst-plugins-bad \
     gst-plugins-base \
     gst-plugins-good
 
 
-pacman -S --noconfirm \
+get \
     wireplumber
 
 # TODO: seem to always have an issue with wireplumber
 # missing a bunch of pulseaudio
-pacman -S --noconfirm \
+get \
     pipewire \
     pipewire-alsa \
     alsa-utils \
@@ -262,14 +264,13 @@ pacman -S --noconfirm \
     gst-plugin-pipewire
 
 # if wanting to use zram instead of a swapfile
-#pacman -S --noconfirm \
+#get \
 #    zram-generator
 
-pacman -S --noconfirm \
+get \
     firewalld
 
 # Disable sshd since the system is not yet hardened
-# shellcheck disable=SC2216
 systemctl disable sshd || true
 
 systemctl enable NetworkManager.service
