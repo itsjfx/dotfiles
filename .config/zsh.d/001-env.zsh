@@ -8,7 +8,11 @@ export PATH="$PATH:$HOME/.local/bin"
 # my scripts
 export PATH="$PATH:$HOME/bin"
 # bma
-[ -d "$HOME/.bash-my-aws/bin" ] && export PATH="$PATH:$HOME/.bash-my-aws/bin"
+
+if [ -d "$HOME"/source/bash-my-aws ]; then
+	export BMA_HOME="$HOME"/source/bash-my-aws
+	export PATH="$PATH:$BMA_HOME/bin"
+fi
 
 export AWS_DEFAULT_REGION=ap-southeast-2
 export SAM_CLI_TELEMETRY=0

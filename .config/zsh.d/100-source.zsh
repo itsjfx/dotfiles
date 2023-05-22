@@ -5,7 +5,7 @@ fpath=("$HOME"/source/zsh-completions/src $fpath)
 
 source "$HOME"/source/fzf-tab-completion/zsh/fzf-zsh-completion.sh
 bindkey '^I' fzf_completion
-[ -d "$HOME/.bash-my-aws" ] && source "$HOME"/.bash-my-aws/bash_completion.sh
+[ -d "$HOME/source/bash-my-aws" ] && source "$HOME"/source/bash-my-aws/bash_completion.sh
 
 #complete -C '/usr/local/bin/aws_completer' aws
 
