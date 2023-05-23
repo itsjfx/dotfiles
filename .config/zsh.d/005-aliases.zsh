@@ -51,3 +51,5 @@ alias pwgensafe="pwgen --secure -1 60"
 alias proxychains='proxychains4'
 
 alias code='LD_PRELOAD= code'
+
+alias unzipd='unzip $1 -d "${"$(basename "$1")"%.zip}"'
