@@ -10,7 +10,7 @@ for plugin in "zsh-users/zsh-autosuggestions" "zsh-users/zsh-completions" "linch
 
     if cd "$plugin_path" 2>/dev/null; then
         echo "Fetching $plugin_name" >&2
-        git fetch
+        git pull --ff-only
     else
         echo "Cloning $plugin_name" >&2
         git clone https://github.com/"$plugin" "$HOME"/source/"${plugin##*/}"
