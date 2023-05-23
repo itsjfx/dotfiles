@@ -30,6 +30,7 @@
 	"files.insertFinalNewline": true,
 	"editor.guides.bracketPairs": true,
 	"telemetry.telemetryLevel": "off",
+	// run in own thread
 	"extensions.experimental.affinity": {
 		"vscodevim.vim": 1,
 	},
@@ -44,4 +45,5 @@
     "[markdown]": {
         "files.trimTrailingWhitespace": false
     },
+	"workbench.colorTheme": "Default Dark+"
 }
