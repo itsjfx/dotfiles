@@ -4,6 +4,7 @@ set -eu -o pipefail
 #curl -fsSL https://fnm.vercel.app/install | bash -s -- --skip-shell
 
 # bash-my-aws TODO
+# TODO, lincheney readline
 for plugin in "zsh-users/zsh-autosuggestions" "zsh-users/zsh-completions" "lincheney/fzf-tab-completion" "itsjfx/zsh-tmux-smart-status-bar" "bash-my-aws/bash-my-aws"; do
     plugin_name="${plugin##*/}"
     plugin_path="$HOME/source/$plugin_name"

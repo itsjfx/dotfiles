@@ -158,7 +158,8 @@ pacman -S --noconfirm \
     valgrind \
     python-pylint \
     python \
-    python-pip
+    python-pip \
+    rustup
 
 # for python2
 # install via AUR
@@ -188,6 +189,9 @@ pacman -S --noconfirm \
 pacman -S --noconfirm \
     discord
 
+
+rustup toolchain install
+rustup default stable
 
 # steam
 # https://wiki.archlinux.org/title/steam#Installation
