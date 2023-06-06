@@ -69,7 +69,8 @@ pacman -S --noconfirm \
 # streamdeck thing and yubikey
 pacman -S --noconfirm \
     libusb \
-    hidapi
+    hidapi \
+    xf86-input-wacom
 
 # protobuf dev
 pacman -S --noconfirm \
