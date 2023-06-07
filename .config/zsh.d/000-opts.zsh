@@ -9,7 +9,7 @@ setopt interactivecomments
 
 autoload -U colors && colors
 # BEFORE compinit
-fpath=("$HOME"/completions $fpath)
+fpath=("$HOME"/.completions $fpath)
 autoload -U +X compinit && compinit
 autoload -U +X bashcompinit && bashcompinit
 
