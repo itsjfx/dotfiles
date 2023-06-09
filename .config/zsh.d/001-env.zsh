@@ -17,6 +17,7 @@ fi
 export AWS_DEFAULT_REGION=ap-southeast-2
 export SAM_CLI_TELEMETRY=0
 export AWS_PAGER=''
+export SLS_TELEMETRY_DISABLED=1
 
 export FZF_DEFAULT_OPTS='--multi'
 
