@@ -51,8 +51,8 @@ bindsym XF86MonBrightnessDown exec --no-startup-id light -U 10
 for_window [title="KCalc"] floating enable
 
 # https://github.com/ValveSoftware/steam-for-linux/issues/1040
-for_window [class="^Steam$"] floating enable
-for_window [class="^Steam$" title="^Steam$"] floating disable
+for_window [class="^steam$"] floating enable
+for_window [class="^steam$" title="^Steam$"] floating disable
 
 # TODO: does this actually do anything
 # The combination of xss-lock, nm-applet and pactl is a popular choice, so
