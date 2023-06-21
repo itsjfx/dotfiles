@@ -111,6 +111,7 @@ get \
     xf86-input-libinput \
     xsel \
     xclip \
+    xdotool \
     xorg-xinit \
     xorg-xinput \
     xorg-xkill \
