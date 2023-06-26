@@ -1,5 +1,6 @@
 {
 	"diffEditor.ignoreTrimWhitespace": false,
+	"editor.renderWhitespace": "trailing",
 	"cSpell.enabledLanguageIds": [
 		"git-commit",
 		"latex",
