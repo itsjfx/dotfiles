@@ -7,6 +7,7 @@ export BROWSER=firefox
 export PATH="$PATH:$HOME/.local/bin"
 # my scripts
 export PATH="$PATH:$HOME/bin"
+[ -d "$HOME/.meteor" ] && export PATH="$PATH:$HOME/.meteor"
 # bma
 
 if [ -d "$HOME"/source/bash-my-aws ]; then
