@@ -52,7 +52,8 @@ pacman -S --noconfirm \
     vlc \
     signal-desktop \
     obsidian \
-    kolourpaint
+    kolourpaint \
+    pngquant
 
 # wine
 # needs multilib enabled
