@@ -5,7 +5,7 @@ set -eu -o pipefail
 
 # bash-my-aws TODO
 # TODO, lincheney readline
-for plugin in "zsh-users/zsh-autosuggestions" "zsh-users/zsh-completions" "lincheney/fzf-tab-completion" "itsjfx/zsh-tmux-smart-status-bar" "bash-my-aws/bash-my-aws"; do
+for plugin in "zsh-users/zsh-autosuggestions" "zsh-users/zsh-completions" "lincheney/fzf-tab-completion" "itsjfx/zsh-tmux-smart-status-bar" "bash-my-aws/bash-my-aws" "lincheney/snr"; do
     plugin_name="${plugin##*/}"
     plugin_path="$HOME/source/$plugin_name"
 
