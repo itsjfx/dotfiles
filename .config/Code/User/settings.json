@@ -34,6 +34,7 @@
     // run in own thread
     "extensions.experimental.affinity": {
         "vscodevim.vim": 1,
+        "asvetliakov.vscode-neovim": 1
     },
     "javascript.updateImportsOnFileMove.enabled": "always",
     // ty https://mike.bailey.net.au/notes/vscode/#file-watchers
@@ -46,5 +47,10 @@
     "[markdown]": {
         "files.trimTrailingWhitespace": false
     },
-    "workbench.colorTheme": "Default Dark+"
+    "workbench.colorTheme": "Default Dark+",
+    "workbench.startupEditor": "none",
+    // "typescript.updateImportsOnFileMove.enabled": "always",
+    "zenMode.hideLineNumbers": false,
+    "zenMode.fullScreen": false
+
 }
