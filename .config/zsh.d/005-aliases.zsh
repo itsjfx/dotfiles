@@ -53,7 +53,10 @@ alias proxychains='proxychains4'
 alias code='LD_PRELOAD= code'
 
 alias unzipd='unzip $1 -d "${"$(basename "$1")"%.zip}"'
-alias node='node -r $HOME/source/fzf-tab-completion/node/fzf-node-completion.js'
+alias node="node -r $HOME/source/fzf-tab-completion/node/fzf-node-completion.js"
+
+alias nvimdiff="nvim -d"
+alias vimdiff="nvim -d"
 
 url-query() {
     python3 -c "import urllib.parse, json; print(json.dumps(dict(urllib.parse.parse_qsl(urllib.parse.urlsplit('$1').query))))" | jq -r .
