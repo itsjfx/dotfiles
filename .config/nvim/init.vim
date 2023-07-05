@@ -15,6 +15,9 @@ vnoremap <C-C> "+y
 " BUFFERS
 " keep current buffer open with unsafe changes
 set hidden
+
+if !exists('g:vscode')
+
 " Alt + Left = previous buffer
 nnoremap <silent><A-LEFT> :bprev<CR>
 " Alt + Right = next buffer
@@ -153,3 +156,4 @@ require'treesitter-context'.setup{
     zindex = 20, -- The Z-index of the context window
 }
 EOF
+endif

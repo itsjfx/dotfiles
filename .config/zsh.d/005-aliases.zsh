@@ -58,3 +58,5 @@ alias node='node -r $HOME/source/fzf-tab-completion/node/fzf-node-completion.js'
 url-query() {
     python3 -c "import urllib.parse, json; print(json.dumps(dict(urllib.parse.parse_qsl(urllib.parse.urlsplit('$1').query))))" | jq -r .
 }
+
+mkcd() { mkdir -p -- "$@" && cd -- "$@" }
