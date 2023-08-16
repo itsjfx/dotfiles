@@ -51,6 +51,27 @@
     "workbench.startupEditor": "none",
     // "typescript.updateImportsOnFileMove.enabled": "always",
     "zenMode.hideLineNumbers": false,
-    "zenMode.fullScreen": false
-
+    "zenMode.fullScreen": false,
+    // Custom tags for the parser to use
+    "yaml.customTags": [
+        "!And",
+        "!If",
+        "!Not",
+        "!Equals",
+        "!Or",
+        "!FindInMap sequence",
+        "!Base64",
+        "!Cidr",
+        "!Ref",
+        "!Sub",
+        "!GetAtt",
+        "!GetAZs",
+        "!ImportValue",
+        "!Select",
+        "!Select sequence",
+        "!Split",
+        "!Join sequence"
+    ],
+    // Enable/disable default YAML formatter (requires restart)
+    "yaml.format.enable": true
 }
