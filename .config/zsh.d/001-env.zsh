@@ -8,17 +8,19 @@ export PATH="$PATH:$HOME/.local/bin"
 # my scripts
 export PATH="$PATH:$HOME/bin"
 [ -d "$HOME/.meteor" ] && export PATH="$PATH:$HOME/.meteor"
-# bma
 
+# bma
 if [ -d "$HOME"/source/bash-my-aws ]; then
 	export BMA_HOME="$HOME"/source/bash-my-aws
 	export PATH="$PATH:$BMA_HOME/bin"
+	export BMA_COLUMNISE_ONLY_WHEN_TERMINAL_PRESENT=true
 fi
 
 export AWS_DEFAULT_REGION=ap-southeast-2
 export SAM_CLI_TELEMETRY=0
 export AWS_PAGER=''
 export SLS_TELEMETRY_DISABLED=1
+export AWS_EC2_METADATA_DISABLED=true
 
 export FZF_DEFAULT_OPTS='--multi'
 
