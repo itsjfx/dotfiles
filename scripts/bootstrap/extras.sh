@@ -53,7 +53,8 @@ pacman -S --noconfirm \
     signal-desktop \
     obsidian \
     kolourpaint \
-    pngquant
+    pngquant \
+    progress
 
 # wine
 # needs multilib enabled
