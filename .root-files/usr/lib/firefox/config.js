@@ -76,37 +76,29 @@ function applyCustomScriptToWindow(window) {
         });
     }
 
-    window.console.log('3');
     keyChanges.forEach((details) => {
         if (details.keepExistingHotKey) {
             delete details.keepExistingHotKey;
         } else {
             removeExistingHotKeys(window, details);
         }
-        window.console.log('5');
         let el = createElement(document, "key", details);
-        window.console.log('6');
         
         el.addEventListener("command", (ev) => {
-            window.console.log('hey');
             window.focus();
             //func(ev.target.ownerGlobal, eToO(ev))
         });
-        window.console.log('7');
         let keyset = document.getElementById("mainKeyset") || document.body.appendChild(createElement(document, "keyset", {id: "ucKeys"}));
-        window.console.log('8');
         keyset.insertBefore(el, keyset.firstChild);
-        window.console.log('9');
     });
 
-    window.console.log('4');
 }
 /* Single function userChrome.js loader to run the above init function (no external scripts)
     derived from https://www.reddit.com/r/firefox/comments/kilmm2/
 */
 // see also https://www.reddit.com/r/FirefoxCSS/comments/mica0g/how_to_add_bookmarks_to_my_about_autoconfig_script/gt4dhfc/
 try {
-    const { Services } = Components.utils.import('resource://gre/modules/Services.jsm');
+    //const { Services } = Components.utils.import('resource://gre/modules/Services.jsm');
 
     const ConfigJS = {
         observe: function (subject) {
@@ -135,4 +127,4 @@ try {
     if (!Services.appinfo.inSafeMode) {
         Services.obs.addObserver(ConfigJS, 'chrome-document-global-created', false);
     }
-} catch(ex) {};
+} catch(ex) { Cu.reportError(ex); };
