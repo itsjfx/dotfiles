@@ -23,7 +23,7 @@ export SLS_TELEMETRY_DISABLED=1
 export AWS_EC2_METADATA_DISABLED=true
 
 # monokai without backgrounding
-export FZF_DEFAULT_OPTS='--color=spinner:#E6DB74,hl:#7E8E91,fg:#F8F8F2,header:#7E8E91,info:#A6E22E,pointer:#A6E22E,marker:#F92672,fg+:#F8F8F2,prompt:#F92672,hl+:#F92672 --multi'
+export FZF_DEFAULT_OPTS='--color=spinner:#E6DB74,hl:#F92672,fg:#F8F8F2,header:#7E8E91,info:#A6E22E,pointer:#A6E22E,marker:#F92672,fg+:#F8F8F2,prompt:#F92672,hl+:#F92672 --multi'
 
 export PUPPETEER_EXECUTABLE_PATH="$(which chromium-browser)"
 
