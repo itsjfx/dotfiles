@@ -65,3 +65,4 @@ url-query() {
 mkcd() { mkdir -p -- "$@" && cd -- "$@" }
 
 alias mktargz="tar -czvf"
+alias count='sort | uniq -c | sort -rn'
