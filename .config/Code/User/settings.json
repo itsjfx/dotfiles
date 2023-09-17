@@ -73,5 +73,13 @@
         "!Join sequence"
     ],
     // Enable/disable default YAML formatter (requires restart)
-    "yaml.format.enable": true
+    "yaml.format.enable": true,
+    "vim.handleKeys": {
+        "<C-a>": false,
+        "<C-w>": false
+    },
+    "vim.enableNeovim": true,
+    // "vim.neovimUseConfigFile": true,
+    "editor.stickyScroll.enabled": true,
+    "notebook.stickyScroll.enabled": true,
 }
