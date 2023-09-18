@@ -76,7 +76,8 @@
     "yaml.format.enable": true,
     "vim.handleKeys": {
         "<C-a>": false,
-        "<C-w>": false
+        "<C-w>": false,
+        "<C-p>": false
     },
     "vim.enableNeovim": true,
     // "vim.neovimUseConfigFile": true,
