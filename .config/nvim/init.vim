@@ -9,6 +9,9 @@ set shiftwidth=4
 set mouse=c
 set ignorecase smartcase
 
+" keep a buffer of 10 lines on scrolling
+set scrolloff=10
+
 " visual mode: Ctrl + c = copy to system clipboard
 vnoremap <C-C> "+y
 
