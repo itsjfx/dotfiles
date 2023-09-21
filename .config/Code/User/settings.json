@@ -83,4 +83,5 @@
     // "vim.neovimUseConfigFile": true,
     "editor.stickyScroll.enabled": true,
     "notebook.stickyScroll.enabled": true,
+    "workbench.iconTheme": "vscode-icons",
 }
