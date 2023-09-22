@@ -23,6 +23,7 @@ pacman -S --noconfirm \
 # wine-staging or wine
 pacman -S --noconfirm \
     mediainfo \
+    git-delta \
     libnotify \
     playerctl \
     ark \
