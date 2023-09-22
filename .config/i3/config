@@ -103,6 +103,7 @@ bindsym $alt+F4 kill
 #bindsym $mod+d exec rofi -show run
 bindsym $mod+d exec rofi -show drun
 bindsym $mod+Shift+d exec rofi -show run
+bindsym $mod+Shift+f exec "$HOME/scripts/rofi/firefox.sh"
 
 # vim keys
 bindsym $mod+h focus left
