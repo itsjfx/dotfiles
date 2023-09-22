@@ -24,6 +24,7 @@ pacman -S --noconfirm \
 pacman -S --noconfirm \
     mediainfo \
     git-delta \
+    bfs \
     libnotify \
     playerctl \
     ark \
