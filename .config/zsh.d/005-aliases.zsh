@@ -66,3 +66,13 @@ mkcd() { mkdir -p -- "$@" && cd -- "$@" }
 
 alias mktargz="tar -czvf"
 alias count='sort | uniq -c | sort -rn'
+
+# git aliases
+alias ga='git add'
+alias gap='git add --patch'
+alias gb='git branch'
+alias gs='git status'
+gcm() { git commit --message "$*" }
+alias gl='git log --stat --patch'
+alias gl='git pull'
+alias gp='git push'
