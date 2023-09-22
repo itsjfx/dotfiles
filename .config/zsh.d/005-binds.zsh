@@ -60,4 +60,3 @@ fzf_search() {
     bash -c 'eval $(compgen -c | fzf)'
 }
 zle -N fzf_search
-bindkey '^[f' fzf_search

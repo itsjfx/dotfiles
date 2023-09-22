@@ -12,7 +12,15 @@ bindkey '^I' fzf_completion
 [[ -f /usr/share/fzf/shell/key-bindings.zsh ]] && source /usr/share/fzf/shell/key-bindings.zsh
 [[ -f /usr/share/fzf/key-bindings.zsh ]] && source /usr/share/fzf/key-bindings.zsh
 
+# Ctrl + F instead of Ctrl + T
 bindkey -M emacs '^F' fzf-file-widget
+# basically a Ctrl + T with git files
+# Alt + F to activate
+fzf_git_search() {
+	FZF_CTRL_T_COMMAND='git ls-files 2>/dev/null' fzf-file-widget
+}
+zle -N fzf_git_search
+bindkey '^[f' fzf_git_search
 
 export PATH="$PATH:$HOME/.fnm"
 eval "$(fnm env)"
