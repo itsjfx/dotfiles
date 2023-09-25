@@ -76,3 +76,5 @@ gcm() { git commit --message "$*" }
 alias gl='git log --stat --patch'
 alias gl='git pull'
 alias gp='git push'
+
+alias search='rg-bm25'

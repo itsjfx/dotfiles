@@ -56,7 +56,9 @@ pacman -S --noconfirm \
     obsidian \
     kolourpaint \
     pngquant \
-    progress
+    progress \
+    shellcheck \
+
 
 # wine
 # needs multilib enabled
