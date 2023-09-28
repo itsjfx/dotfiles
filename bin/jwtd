@@ -1,0 +1,2 @@
+#!/usr/bin/env bash
+jq -Rre 'split(".") | .[1] | @base64d | fromjson' "$@"

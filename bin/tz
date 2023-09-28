@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+
+TZ='Australia/Melbourne' date
+TZ='Australia/Perth' date
+TZ='UTC' date
