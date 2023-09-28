@@ -1,0 +1,2 @@
+#!/usr/bin/env bash
+sep=${1:-$'\t'}; [ -t 1 ] && column -t -s"$sep" || cat
