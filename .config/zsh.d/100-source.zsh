@@ -1,7 +1,7 @@
 # essentially plugins and anything i need to source
 
 source "$HOME"/source/zsh-autosuggestions/zsh-autosuggestions.zsh
-fpath=("$HOME"/source/zsh-completions/src $fpath)
+# fpath in 000-opts
 
 source "$HOME"/source/fzf-tab-completion/zsh/fzf-zsh-completion.sh
 bindkey '^I' fzf_completion
