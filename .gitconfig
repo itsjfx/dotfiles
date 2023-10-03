@@ -14,5 +14,10 @@
 [diff]
 	colorMoved = default
 
+# annoying
+[push]
+    autoSetupRemote = true
+
+# custom, not committed
 [include]
     path = .gitconfig_user
