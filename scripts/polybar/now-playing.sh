@@ -5,8 +5,8 @@
 # spotify font: nerdfonts
 format_player() {
     case "$1" in
-        spotify) echo -n "%{F#1db954} " ;;
-        cmus) echo -n "%{F#06bdff}🎶 " ;;
+        spotify) echo -n "%{F#1db954} " ;; # green
+        cmus) echo -n "%{F#06bdff}🎶 " ;;   # blue-ish
     esac
     playerctl --player="$1" metadata --format="{{ artist }} - {{ title }}"
 }
