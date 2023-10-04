@@ -24,14 +24,13 @@ alias lsa='ls -lah'
 #alias l='ls -lah'
 alias ll='ls -lh'
 alias la='ls -lAh'
-alias diff='diff --color'
 
 alias md='mkdir -p'
 alias rd=rmdir
 
 
 alias -- -='cd -'
-alias diff='diff --color'
+alias diff='delta'
 alias egrep='egrep --color=auto --exclude-dir={.bzr,CVS,.git,.hg,.svn,.idea,.tox}'
 alias fgrep='fgrep --color=auto --exclude-dir={.bzr,CVS,.git,.hg,.svn,.idea,.tox}'
 alias globurl='noglob urlglobber '
