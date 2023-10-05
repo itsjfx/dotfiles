@@ -75,9 +75,9 @@
     // Enable/disable default YAML formatter (requires restart)
     "yaml.format.enable": true,
     "vim.handleKeys": {
-        "<C-a>": false,
-        "<C-w>": false,
-        "<C-p>": false
+        "<C-a>": false, // CTRL + a - select all
+        "<C-w>": false, // CTRL + w - close windows
+        "<C-p>": false // CTRL + p - file finder
     },
     "vim.enableNeovim": true,
     // "vim.neovimUseConfigFile": true,
@@ -85,4 +85,7 @@
     "notebook.stickyScroll.enabled": true,
     "workbench.iconTheme": "vscode-icons",
     "editor.cursorSurroundingLines": 10,
+    "workbench.editor.wrapTabs": true,
+    "editor.wordWrap": "on",
+    "window.zoomLevel": 1,
 }
