@@ -87,5 +87,4 @@
     "editor.cursorSurroundingLines": 10,
     "workbench.editor.wrapTabs": true,
     "editor.wordWrap": "on",
-    "window.zoomLevel": 1,
 }

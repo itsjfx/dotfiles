@@ -78,3 +78,5 @@ alias gp='git push'
 
 alias search='rg-bm25'
 alias reload='exec zsh'
+
+noop() { }
