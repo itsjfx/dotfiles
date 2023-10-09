@@ -78,5 +78,5 @@ alias gp='git push'
 
 alias search='rg-bm25'
 alias reload='exec zsh'
-
 noop() { }
+sshkey() { cat "$HOME"/.ssh/id_ed25519.pub; }
