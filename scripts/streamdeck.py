@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 
 import os
+import subprocess
 import threading
 import pulsectl
 import time
@@ -15,6 +16,8 @@ from StreamDeck.Transport.Transport import TransportError
 import copy
 
 VOLUME_INCREMENT = 0.05
+
+class UnreachableError(Exception): pass
 
 DEFAULTS = {
    'label': {
@@ -88,23 +91,23 @@ def key_change_callback(deck, key_num, state):
 
     if state:
         if key == Keys.SPOTIFY_PREVIOUS:
-            os.system('playerctl --player=spotify previous')
+            subprocess.run(['playerctl', '--player=spotify', 'previous'])
         elif key == Keys.SPOTIFY_PLAYPAUSE:
-            os.system('playerctl --player=spotify play-pause')
+            subprocess.run(['playerctl', '--player=spotify', 'play-pause'])
         elif key == Keys.SPOTIFY_NEXT:
-            os.system('playerctl --player=spotify next')
+            subprocess.run(['playerctl', '--player=spotify', 'next'])
         elif key == Keys.CMUS_PREVIOUS:
-            os.system('playerctl --player=cmus previous')
+            subprocess.run(['playerctl', '--player=cmus', 'previous'])
         elif key == Keys.CMUS_PLAYPAUSE:
-            os.system('playerctl --player=cmus play-pause')
+            subprocess.run(['playerctl', '--player=cmus', 'play-pause'])
         elif key == Keys.CMUS_NEXT:
-            os.system('playerctl --player=cmus next')
+            subprocess.run(['playerctl', '--player=cmus', 'next'])
         elif key == Keys.SPOTIFY_VOLUME_UP:
             pulse_sink_input_volume('Spotify', increase=True)
         elif key == Keys.SPOTIFY_VOLUME_DOWN:
             pulse_sink_input_volume('Spotify', increase=False)
         else:
-            raise NotImplementedError
+            raise UnreachableError()
 
 
 # this could probably be replaced with:
@@ -204,6 +207,10 @@ def main():
                         pass
             except TransportError:
                 pass
+
+            if deck and deck.is_open():
+                deck.reset()
+            return 1
 
 if __name__ == '__main__':
     try:
