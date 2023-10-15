@@ -1,7 +1,23 @@
 #!/usr/bin/env bash
 set -eu -o pipefail
 
+
 pacman -Syy
+
+# pip/python section
+
+pip3 install --user --break-system-packages \
+    streamdeck \
+    monitorcontrol \
+
+
+# pillow for streamdeck
+pacman -S --noconfirm \
+    python-ruamel-yaml \
+    python-boto3 \
+    python-pillow \
+    python-websockets \
+
 
 # evince or okular for a PDF reader -- trying okular
 

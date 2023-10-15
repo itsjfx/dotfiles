@@ -148,6 +148,8 @@ get \
     tmux \
     kitty \
     neovim \
+    python \
+    python-pip \
     python-neovim \
     nano \
     whois \
