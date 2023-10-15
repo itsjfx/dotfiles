@@ -183,7 +183,7 @@ def main():
                 deck.open()
                 deck.reset()
 
-                print(f'Opened {deck.deck_type()} device (serial number: {deck.get_serial_number()}', file=sys.stderr)
+                print(f'Opened {deck.deck_type()} device', file=sys.stderr)
 
                 deck.set_brightness(35)
 
