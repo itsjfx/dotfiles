@@ -37,8 +37,11 @@ pacman -S --noconfirm \
 
 # mpv -> vlc
 # wine-staging or wine
+# yt-dlp = youtube-dl
 pacman -S --noconfirm \
     mediainfo \
+    ffmpeg \
+    yt-dlp \
     git-delta \
     bfs \
     libnotify \
@@ -180,8 +183,6 @@ pacman -S --noconfirm \
     util-linux \
     valgrind \
     python-pylint \
-    python \
-    python-pip \
     rustup
 
 # for python2
