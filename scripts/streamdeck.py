@@ -17,8 +17,6 @@ import copy
 
 VOLUME_INCREMENT = 0.05
 
-class UnreachableError(Exception): pass
-
 DEFAULTS = {
    'label': {
         # https://pillow.readthedocs.io/en/stable/reference/ImageFont.html
@@ -41,6 +39,10 @@ DEFAULTS = {
 # extend these
 
 class Keys(Enum):
+    MONITOR_DP1 = 0
+    MONITOR_HDMI1 = 5
+    MONITOR_HDMI2 = 10
+
     SPOTIFY_PREVIOUS = 6
     SPOTIFY_PLAYPAUSE = 7
     SPOTIFY_NEXT = 8
@@ -71,6 +73,13 @@ def get_key_style(deck, key, state):
         info['label']['text']['text'] = 'Play/Pause'
     elif key == Keys.CMUS_NEXT:
         info['label']['text']['text'] = 'Next'
+    elif key == Keys.MONITOR_DP1:
+        info['label']['text']['text'] = 'Desktop'
+    elif key == Keys.MONITOR_HDMI1:
+        info['label']['text']['text'] = 'Laptop'
+    elif key == Keys.MONITOR_HDMI2:
+        info['label']['text']['text'] = 'Other'
+
     # elif key == Keys.CMUS_VOLUME_UP:
     #     info['label']['text']['text'] = 'Volume Up'
     # elif key == Keys.CMUS_VOLUME_DOWN:
@@ -106,8 +115,15 @@ def key_change_callback(deck, key_num, state):
             pulse_sink_input_volume('Spotify', increase=True)
         elif key == Keys.SPOTIFY_VOLUME_DOWN:
             pulse_sink_input_volume('Spotify', increase=False)
+        # TODO, detect correct monitor instead of assuming monitor=2
+        elif key == Keys.MONITOR_DP1:
+            subprocess.run(['monitorcontrol', '--monitor=2', '--set-input-source=DP1'])
+        elif key == Keys.MONITOR_HDMI1:
+            subprocess.run(['monitorcontrol', '--monitor=2', '--set-input-source=HDMI1'])
+        elif key == Keys.MONITOR_HDMI2:
+            subprocess.run(['monitorcontrol', '--monitor=2', '--set-input-source=HDMI2'])
         else:
-            raise UnreachableError()
+            raise NotImplementedError()
 
 
 # this could probably be replaced with:
@@ -116,14 +132,13 @@ def key_change_callback(deck, key_num, state):
 def pulse_sink_input_volume(app_name, increase=True):
     with pulsectl.Pulse('volume') as pulse:
         for sink in pulse.sink_input_list():
+            # sometimes there are multiple sinks named after the app, so not returning early on purpose
             if sink.name == app_name:
                 vol = pulse.volume_get_all_chans(sink)
                 if increase and vol + VOLUME_INCREMENT <= 1.0:
                     pulse.volume_set_all_chans(sink, vol + VOLUME_INCREMENT)
-                    return
                 elif vol - VOLUME_INCREMENT >= 0:
                     pulse.volume_set_all_chans(sink, vol - VOLUME_INCREMENT)
-                    return
 
 
 
