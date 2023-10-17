@@ -135,10 +135,11 @@ def pulse_sink_input_volume(app_name, increase=True):
             # sometimes there are multiple sinks named after the app, so not returning early on purpose
             if sink.name == app_name:
                 vol = pulse.volume_get_all_chans(sink)
-                if increase and vol + VOLUME_INCREMENT <= 1.0:
-                    pulse.volume_set_all_chans(sink, vol + VOLUME_INCREMENT)
-                elif vol - VOLUME_INCREMENT >= 0:
-                    pulse.volume_set_all_chans(sink, vol - VOLUME_INCREMENT)
+                if increase:
+                    new_vol = min(1, vol + VOLUME_INCREMENT)
+                else:
+                    new_vol = max(0, vol - VOLUME_INCREMENT)
+                pulse.volume_set_all_chans(sink, new_vol)
 
 
 
