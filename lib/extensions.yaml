@@ -1,0 +1,21 @@
+extensions:
+- {name: Gruntfuggly.todo-tree}
+- {name: mechatroner.rainbow-csv}
+- {name: ms-python.python}
+- {name: ms-python.vscode-pylance}
+- {name: streetsidesoftware.code-spell-checker}
+- {name: vscodevim.vim}
+- {name: waderyan.gitblame}
+- {name: wix.vscode-import-cost}
+- {name: yzhang.markdown-all-in-one}
+- {name: zxh404.vscode-proto3}
+- {name: ms-vscode-remote.remote-ssh}
+- {name: ms-vscode-remote.remote-ssh-edit}
+- {name: ms-vscode.remote-explorer}
+- {name: redhat.vscode-xml}
+- {name: redhat.vscode-yaml}
+- {name: vscode-icons-team.vscode-icons}
+# - dbaeumer.vscode-eslint
+# - asvetliakov.vscode-neovim
+# - aws-scripting-guy.cform
+# - timonwong.shellcheck

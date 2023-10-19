@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+
+set -eu -o pipefail
+
+extensions="$(cat "$HOME"/lib/extensions.yaml | yaml2json | jq -rce '.extensions[]')"
+for extension in $extensions; do
+    name="$(<<<"$extension" jq -re .name)"
+    code --install-extension "$name"
+done
