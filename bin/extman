@@ -2,8 +2,48 @@
 
 set -eu -o pipefail
 
+print_help() {
+    prog="$(basename "$0")"
+    cat <<EOF >&2
+Usage:  $prog list         - List staged extensions
+        $prog diff         - Compare installed and staged extensions
+        $prog install      - Install all staged extensions
+        $prog clean        - Clean unstaged extensions
+        $prog help         - Print this help message
+EOF
+}
+
+# https://stackoverflow.com/a/3232082
+confirm() {
+    local response
+    read -r -p "$@ [y/n] " response
+    response="${response,,}" # tolower
+    [[ "$response" =~ ^(yes|y)$ ]]
+}
+
 extensions="$(cat "$HOME"/lib/extensions.yaml | yaml2json | jq -rce '.extensions[]')"
-for extension in $extensions; do
-    name="$(<<<"$extension" jq -re .name)"
-    code --install-extension "$name"
-done
+
+action="${1:-}"
+shift || true
+case "$action" in
+    list)
+        <<<"$extensions" jq -re .name | sort -u
+        ;;
+    diff)
+        diff <(code --list-extensions | sort -u) <(<<<"$extensions" jq -re .name | sort -u)
+        ;;
+    install)
+        for extension in $extensions; do
+            name="$(<<<"$extension" jq -re .name)"
+            code --install-extension "$name"
+        done
+       ;;
+    clean)
+        for extension in $(comm -23 <(code --list-extensions | sort -u) <(<<<"$extensions" jq -re .name | sort -u)); do
+            confirm "Uninstall $extension ?" && code --uninstall-extension "$extension"
+        done
+        ;;
+    *)
+        print_help
+        ;;
+esac
