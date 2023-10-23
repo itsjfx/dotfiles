@@ -24,6 +24,22 @@ for arg in "$@"; do
     { git diff --color=always -- "$arg" || git log --color=always "$arg" } 2>/dev/null
 done'
 
+# https://github.com/lincheney/fzf-tab-completion/commit/337deb9fcfc20557fec5cdbd6fd1b3a99d349417
+#
+# press ctrl-r to repeat completion *without* accepting i.e. reload the completion
+# press right to accept the completion and retrigger it
+# press alt-enter to accept the completion and run it
+keys=(
+    ctrl-r:'repeat-fzf-completion'
+    right:accept:'repeat-fzf-completion'
+    alt-enter:accept:'zle accept-line'
+)
+
+zstyle ':completion:*' fzf-completion-keybindings "${keys[@]}"
+# also accept and retrigger completion when pressing / when completing cd
+zstyle ':completion::*:cd:*' fzf-completion-keybindings "${keys[@]}" /:accept:'repeat-fzf-completion'
+
+
 
 
 # https://github.com/ohmyzsh/ohmyzsh/blob/master/themes/robbyrussell.zsh-theme
