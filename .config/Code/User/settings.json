@@ -83,7 +83,7 @@
     // "vim.neovimUseConfigFile": true,
     "editor.stickyScroll.enabled": true,
     "notebook.stickyScroll.enabled": true,
-    "workbench.iconTheme": "vscode-icons",
+    "workbench.iconTheme": "material-icon-theme",
     "editor.cursorSurroundingLines": 10,
     "workbench.editor.wrapTabs": true,
     "editor.wordWrap": "on",

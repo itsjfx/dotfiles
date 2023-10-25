@@ -40,6 +40,7 @@ pacman -S --noconfirm \
 # yt-dlp = youtube-dl
 pacman -S --noconfirm \
     mediainfo \
+    postgresql-libs \
     ffmpeg \
     yt-dlp \
     git-delta \

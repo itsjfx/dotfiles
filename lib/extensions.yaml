@@ -14,7 +14,8 @@ extensions:
 - {name: ms-vscode.remote-explorer}
 - {name: redhat.vscode-xml}
 - {name: redhat.vscode-yaml}
-- {name: vscode-icons-team.vscode-icons}
+- {name: PKief.material-icon-theme}
+- {name: usernamehw.errorlens}
 # - dbaeumer.vscode-eslint
 # - asvetliakov.vscode-neovim
 # - aws-scripting-guy.cform
