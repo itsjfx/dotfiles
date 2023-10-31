@@ -4,6 +4,8 @@
 # Take advantage of $LS_COLORS for completion as well.
 zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
 
+# show Loading... text
+zstyle ':completion:*' show-completer 'true'
 
 # below from: https://github.com/lincheney/fzf-tab-completion#specifying-custom-fzf-options
 
