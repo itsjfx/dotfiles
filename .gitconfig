@@ -1,7 +1,7 @@
 # delta
 # https://github.com/dandavison/delta
 [core]
-    pager = delta
+    pager = delta --paging=always
 [interactive]
     diffFilter = delta --color-only
 [delta]
