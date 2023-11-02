@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+
+git config user.email me@jfx.ac
+git config user.name Thomas
+git config commit.gpgsign false
