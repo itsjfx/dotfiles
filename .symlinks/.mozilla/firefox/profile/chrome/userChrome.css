@@ -14,7 +14,7 @@
 #contentAreaContextMenu #context-bookmarklink,
 #contentAreaContextMenu #context-selectall,
 #contentAreaContextMenu #context-sendlinktodevice,
-#contentAreaContextMenu #context-sendpagetodevice, 
+#contentAreaContextMenu #context-sendpagetodevice,
 #contentAreaContextMenu #context-sep-sendlinktodevice,
 #contentAreaContextMenu #context-sep-sendpagetodevice,
 #contentAreaContextMenu #context-sendimage,
@@ -29,10 +29,10 @@
 	width: 0 !important;
 }
 
-/* 
+/*
 * Remove tiny space next to the X button and the last tabs
 * Useful if using a tiling window manager
-* 
+*
 * If not using a tiling window manager you will find the blank/grab room useful
 */
 .titlebar-spacer[type="post-tabs"] {
@@ -45,8 +45,8 @@
 }
 .tab-background {
 	/* Add colour line at bottom for container tabs */
-	border-bottom: 3px solid var(--identity-icon-color) !important;
-	
+	border-bottom: 4px solid var(--identity-icon-color) !important;
+
 	/* Remove spacing at bottom of tabs */
 	margin-bottom: 0;
 
@@ -82,7 +82,7 @@ html|*:root#main-window[privatebrowsingmode] tab .tab-content::before {
 	/* border-top: 0 !important;
 	border-bottom: 0 !important;
 	border-left: 0 !important;
-	
+
 	padding-left: 0 !important;
 	padding-top: 0 !important;
 	padding-bottom: 0 !important; */
@@ -122,7 +122,7 @@ html|*:root#main-window[privatebrowsingmode] tab .tab-content::before {
 	--urlbar-toolbar-height: 40px !important;
 
 	/* default: font-size: 1.15em; */
-	font-size: 1.2em !important; 
+	font-size: 1.2em !important;
 }
 
 /* some spacing idk to remove */
@@ -165,7 +165,7 @@ tab .tab-content::before {
 
 	counter-increment: tab_count;
 	content: counter(tab_count);
-	
+
 	font-weight: bold;
 	color: black;
 	background-color: orange;
@@ -177,7 +177,7 @@ html|*:root#main-window[privatebrowsingmode] tab .tab-content::before {
     color: white;
 }
 
-vbox .tab-background[selected="true"] {
+vbox .tab-background[selected=""] {
 	background-color: rosybrown !important;
 	background-image: none !important;
 }
