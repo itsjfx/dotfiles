@@ -33,7 +33,6 @@ done'
 # press alt-enter to accept the completion and run it
 keys=(
     ctrl-r:'repeat-fzf-completion'
-    right:accept:'repeat-fzf-completion'
     alt-enter:accept:'zle accept-line'
 )
 

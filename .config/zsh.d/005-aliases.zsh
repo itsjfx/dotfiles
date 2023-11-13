@@ -72,6 +72,7 @@ alias count='sort | uniq -c | sort -rn'
 # git aliases
 alias ga='git add'
 alias gap='git add --patch'
+alias cap='config add --patch'
 alias gb='git branch'
 alias gs='git status'
 gcm() { git commit --message "$*" }
