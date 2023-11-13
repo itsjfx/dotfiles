@@ -60,3 +60,12 @@ fzf_search() {
     bash -c 'eval $(compgen -c | fzf)'
 }
 zle -N fzf_search
+
+# Ctrl + k
+# https://unix.stackexchange.com/a/11982
+# clear buffer, then restore on next prompt
+bindkey '^K' push-line
+
+# Ctrl + u
+# kill everything from start to cursor. like in bash
+bindkey '^U' backward-kill-line
