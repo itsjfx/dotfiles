@@ -15,6 +15,7 @@ user_pref("browser.sessionstore.resume_from_crash", false);
 // downloads
 user_pref("browser.download.useDownloadDir", false);
 user_pref("browser.download.lastDir", "/tmp");
+user_pref("browser.download.dir", "/tmp");
 
 // set to refresh rate
 user_pref("layout.frame_rate", 240);
