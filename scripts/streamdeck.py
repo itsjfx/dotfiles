@@ -55,7 +55,7 @@ class Keys(Enum):
 
 # Returns styling information for a key based on its position and state.
 @lru_cache(None)
-def get_key_style(deck, key, state):
+def get_key_style(key, state):
     info = copy.deepcopy(DEFAULTS)
     if key == Keys.SPOTIFY_PREVIOUS:
         info['label']['text']['text'] = 'Previous'
@@ -123,7 +123,7 @@ def key_change_callback(deck, key_num, state):
         elif key == Keys.MONITOR_HDMI2:
             subprocess.run(['monitorcontrol', '--monitor=2', '--set-input-source=HDMI2'])
         else:
-            raise NotImplementedError()
+            raise NotImplementedError(key)
 
 
 # this could probably be replaced with:
@@ -169,7 +169,7 @@ def render_key_image(deck, label, background='black', image=None):
 # Creates a new key image based on the key index, style and current key state
 # and updates the image on the StreamDeck.
 def update_key_image(deck, key, state):
-    key_info = get_key_style(deck, key, state)
+    key_info = get_key_style(key, state)
     # Generate the custom key with the requested image and label.
     #render_key_image(deck, label, background='black', image=None):
     image = render_key_image(deck, key_info['label'], key_info['background'], key_info['image'])
