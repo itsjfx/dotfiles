@@ -1,6 +1,13 @@
 #!/usr/bin/env bash
 set -eu -o pipefail
 
+
+# Only root can run this script
+if ! [ $UID -eq 0 ]; then
+    echo 'Run this script as root' >&2
+    exit 1
+fi
+
 LAPTOP=0
 DESKTOP=0
 case "${1:-}" in
@@ -12,8 +19,8 @@ case "${1:-}" in
         LAPTOP=1
         ;;
     *)
-        echo "Unknown: ${1:-}" >&2
-        exit 1
+        echo "Unknown platform: ${1-}. Please use desktop or laptop" >&2
+        exit 2
         ;;
 esac
 
@@ -67,17 +74,17 @@ get() { pacman -S --noconfirm --needed "$@"; }
 # in /etc/fstab
 
 
-# Only root can run this script
-[ $UID -eq 0 ] || exit 1
-
 # Ensure the system is up to date
 pacman -Syy
 pacman -Syu
 
 
-# intel cpu
-get \
-    intel-ucode
+cpu_arch="$(lscpu | grep '^Vendor ID:' | cut -d ':' -f2 | tr -d ' ')"
+case "$cpu_arch" in
+    GenuineIntel) get intel-ucode ;;
+    AuthenticAMD) get amd-ucode ;;
+    *) echo "Unknown CPU architecture $cpu_arch" >&2; exit 3 ;;
+esac
 
 # Remove kms from the HOOKS array in /etc/mkinitcpio.conf
 # mkinitcpio -P
@@ -170,7 +177,8 @@ get \
     wget \
     curl \
     man-db \
-    btrfs-progs
+    btrfs-progs \
+    jq
 
 
 get \

@@ -48,7 +48,6 @@ pacman -S --noconfirm \
     libnotify \
     playerctl \
     ark \
-    jq \
     bc \
     croc \
     gron \

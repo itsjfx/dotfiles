@@ -79,6 +79,7 @@ gcm() { git commit --message "$*" }
 alias gl='git log --stat --patch'
 alias gl='git pull'
 alias gp='git push'
+alias gco='git checkout'
 
 alias search='rg-bm25'
 alias reload='exec zsh'
