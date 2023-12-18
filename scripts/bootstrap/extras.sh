@@ -185,16 +185,12 @@ pacman -S --noconfirm --needed \
     util-linux \
     valgrind \
     python-pylint \
-    rustup
+    rustup \
+    proxychains-ng \
+
 
 # for python2
 # install via AUR
-
-# proxychains
-# install from https://github.com/rofl0r/proxychains-ng
-# or from pacman
-# or aur
-
 
 # TODO: podman
 #pacman -S --noconfirm --needed \
