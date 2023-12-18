@@ -1,7 +1,12 @@
 #!/usr/bin/env bash
 set -eu -o pipefail
 
+# done via AUR for now ...
 #curl -fsSL https://fnm.vercel.app/install | bash -s -- --skip-shell
+
+# neovim
+sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs \
+       https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
 
 # bash-my-aws TODO
 # TODO, lincheney readline
@@ -14,6 +19,7 @@ for plugin in \
     'lincheney/snr' \
     'alacritty/alacritty-theme' \
     'lincheney/rg-bm25' \
+    'lincheney/i3-automark' \
 ; do
     plugin_name="${plugin##*/}"
     plugin_path="$HOME/source/$plugin_name"
@@ -36,6 +42,12 @@ fi
 if ! id -nGz "$USER" | grep -qzxF video; then
     echo "Requesting sudo to add $USER to video group" >&2
     sudo usermod -a -G video "$USER"
+fi
+
+if command -vp code &>/dev/null; then
+    extman install
+else
+    echo 'code not installed, skipping extman' >&2
 fi
 
 kwriteconfig5 --file "$HOME"/.config/dolphinrc --group 'General' --key 'RememberOpenedTabs' false

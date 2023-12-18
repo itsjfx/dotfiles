@@ -22,8 +22,10 @@ fzf_git_search() {
 zle -N fzf_git_search
 bindkey '^[f' fzf_git_search
 
-export PATH="$PATH:$HOME/.fnm"
-eval "$(fnm env)"
+if [[ -d "$HOME/.fnm" ]]; then
+    export PATH="$PATH:$HOME/.fnm"
+    eval "$(fnm env)"
+fi
 
 #source "$HOME/repos/me/notes/notes.sh"
 source "$HOME/source/zsh-tmux-smart-status-bar/zsh-tmux-smart-status-bar.sh"

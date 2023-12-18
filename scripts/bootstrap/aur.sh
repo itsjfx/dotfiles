@@ -2,11 +2,21 @@
 
 set -eu -o pipefail
 
-# i don't use an AUR manager so some ghetto shit
-# TODO: look into yay ?
-
-mkdir -p ~/aur/
-
-for package in "alttab-git" "cmusfm" "fnm" "joplin-appimage" "picom-git" "spotify-snapstore" "visual-studio-code-bin" "st"; do
-    git clone https://aur.archlinux.org/"$package".git "$HOME"/aur/"$package"
-done
+if ! command -vp yay &>/dev/null; then
+    (
+        cd ~/.aur
+        git clone https://aur.archlinux.org/yay.git || true
+        cd yay
+        makepkg -si
+        yay -Y --gendb
+    )
+fi
+yay -S --needed \
+    alttab-git \
+    cmusfm \
+    fnm \
+    joplin-appimage \
+    picom-git \
+    spotify \
+    visual-studio-code-bin \
+    st \

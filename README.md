@@ -40,6 +40,11 @@ config config status.showUntrackedFiles no
 config pull origin master
 ```
 
+or
+```bash
+curl -fL https://raw.githubusercontent.com/itsjfx/dotfiles/master/scripts/bootstrap/run_bootstrap.sh | bash
+```
+
 Note for me:
 
 ```bash

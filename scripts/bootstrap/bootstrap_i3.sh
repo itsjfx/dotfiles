@@ -94,6 +94,9 @@ esac
     x11vnc \
     vdpauinfo
 
+# disable WiFi automatically
+(( DESKTOP )) && nmcli radio wifi off
+
 # laptop
 # POSSIBLY need xf86-input-synaptics
 # powerdevil, look at xfce alternative instead https://wiki.archlinux.org/title/Power_management#Userspace_tools
@@ -110,6 +113,7 @@ esac
     blueman \
     acpi
 
+# picom -> picom-git
 get \
     base-devel \
     sudo \
@@ -124,7 +128,6 @@ get \
     xorg-xkill \
     linux-firmware \
     openssh \
-    picom
 
 
 # xfce4-notifyd
@@ -140,6 +143,7 @@ get \
     dos2unix \
     flameshot \
     chrony \
+    ripgrep \
     xdg-utils \
     lm_sensors \
     xsensors \
@@ -154,6 +158,7 @@ get \
     git \
     tmux \
     kitty \
+    alacritty \
     neovim \
     python \
     python-pip \
@@ -293,6 +298,16 @@ systemctl start firewalld.service
 # Set graphical target and enable sddm at boot
 systemctl enable sddm.service || true
 systemctl set-default graphical.target
+
+mkdir -p ~/.ssh/
+chmod 700 ~/.ssh
+
+mkdir -p -m 700 /a/
+if id jfx &>/dev/null; then
+    chown -R jfx:jfx /a/
+else
+    echo 'No jfx user found, set the permissions for /a/ later' >&2
+fi
 
 # Boot into the new environment
 echo 'Rebooting in 10 seconds...' >&2

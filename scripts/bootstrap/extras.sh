@@ -9,14 +9,16 @@ pacman -Syy
 pip3 install --user --break-system-packages \
     streamdeck \
     monitorcontrol \
+    pulsectl \
 
 
 # pillow for streamdeck
-pacman -S --noconfirm \
+pacman -S --noconfirm --needed \
     python-ruamel-yaml \
     python-boto3 \
     python-pillow \
     python-websockets \
+
 
 
 # evince or okular for a PDF reader -- trying okular
@@ -32,13 +34,13 @@ pacman -S --noconfirm \
 
 # group with a lot of utils that help with compiling
 # or shell in general
-pacman -S --noconfirm \
+pacman -S --noconfirm --needed \
 	base-devel
 
 # mpv -> vlc
 # wine-staging or wine
 # yt-dlp = youtube-dl
-pacman -S --noconfirm \
+pacman -S --noconfirm --needed \
     mediainfo \
     postgresql-libs \
     ffmpeg \
@@ -81,64 +83,64 @@ pacman -S --noconfirm \
 
 # wine
 # needs multilib enabled
-#pacman -S --noconfirm \
+#pacman -S --noconfirm --needed \
 #    wine-staging \
 #    winetricks \
 #    wine-mono
 
 # icons
-pacman -S --noconfirm \
+pacman -S --noconfirm --needed \
     ttf-iosevka-nerd \
     ttf-font-awesome
 
 # streamdeck thing and yubikey
-pacman -S --noconfirm \
+pacman -S --noconfirm --needed \
     libusb \
     hidapi \
     xf86-input-wacom
 
 # protobuf dev
-pacman -S --noconfirm \
+pacman -S --noconfirm --needed \
     protobuf
 
 # yubikey
 # GUI installed cos
-pacman -S --noconfirm \
+pacman -S --noconfirm --needed \
     yubikey-manager \
     yubikey-personalization
 # yubikey-manager-qt \
 # yubikey-personalization-gui
 
 # VNC Server
-#pacman -S --noconfirm \
+#pacman -S --noconfirm --needed \
 #    x11vnc
 
 # Early OOM daemon that runs in userspace
-pacman -S --noconfirm earlyoom
+pacman -S --noconfirm --needed earlyoom
 systemctl enable --now earlyoom
 
 # Samba
-pacman -S --noconfirm \
+pacman -S --noconfirm --needed \
     smbclient \
     cifs-utils
 
 # Misc
-pacman -S --noconfirm \
+pacman -S --noconfirm --needed \
     cowsay \
     figlet \
     neofetch
 
 # VPN
 
-#pacman -S --noconfirm \
+#pacman -S --noconfirm --needed \
 #    openvpn \
 #    networkmanager-openvpn
 
-pacman -S --noconfirm \
+pacman -S --noconfirm --needed \
     wireguard-tools
 
 # Networking
-pacman -S --noconfirm \
+pacman -S --noconfirm --needed \
     ngrep \
     nmap \
     wireshark-qt \
@@ -148,7 +150,7 @@ pacman -S --noconfirm \
 # Security
 
 # missing bcrypt
-pacman -S --noconfirm \
+pacman -S --noconfirm --needed \
     gnupg \
     pwgen \
     firejail \
@@ -165,7 +167,7 @@ pacman -S --noconfirm \
 # lsb
 # uuid -> util-linux
 # xar
-pacman -S --noconfirm \
+pacman -S --noconfirm --needed \
     binutils \
     cmake \
     go \
@@ -195,7 +197,7 @@ pacman -S --noconfirm \
 
 
 # TODO: podman
-#pacman -S --noconfirm \
+#pacman -S --noconfirm --needed \
 #    docker
 
 # grab from AUR
@@ -206,15 +208,15 @@ pacman -S --noconfirm \
 # curl -sS https://download.spotify.com/debian/pubkey_0D811D58.gpg | gpg --import -
 
 # zsh
-pacman -S --noconfirm \
+pacman -S --noconfirm --needed \
     zsh
 
 # discord
-pacman -S --noconfirm \
+pacman -S --noconfirm --needed \
     discord
 
 
-rustup toolchain install
+rustup toolchain install stable
 rustup default stable
 
 # steam
@@ -229,7 +231,7 @@ rustup default stable
 
 # will need to install 32 bit nvidia drivers too
 
-#pacman -S --noconfirm \
+#pacman -S --noconfirm --needed \
 #steam \
 #libpng12
 
