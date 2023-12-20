@@ -21,3 +21,5 @@
 # custom, not committed
 [include]
     path = .gitconfig_user
+[init]
+	defaultBranch = master
