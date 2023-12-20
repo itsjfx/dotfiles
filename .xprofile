@@ -2,6 +2,7 @@
 
 export QT_QPA_PLATFORMTHEME=qt5ct
 export STEAM_FRAME_FORCE_CLOSE=1
+export BROWSER=firefox
 
 # just to not break stuff
 if [[ "$(hostname)" == "sandcastle" ]]; then
