@@ -133,7 +133,9 @@ get \
 # xfce4-notifyd
 get \
     dunst \
-    firefox
+    firefox \
+    chromium \
+
 
 #pesign
 #spectacle -> flameshot
@@ -183,7 +185,8 @@ get \
     curl \
     man-db \
     btrfs-progs \
-    jq
+    jq \
+    sysfsutils \
 
 
 get \
@@ -308,6 +311,8 @@ if id jfx &>/dev/null; then
 else
     echo 'No jfx user found, set the permissions for /a/ later' >&2
 fi
+
+xdg-settings set default-web-browser firefox.desktop
 
 # Boot into the new environment
 echo 'Rebooting in 10 seconds...' >&2

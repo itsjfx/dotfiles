@@ -25,7 +25,6 @@ pacman -S --noconfirm --needed \
 
 # Useful in day to day
 # fuse is useful for anything that uses appimage
-# find that chromium is useful on certain websites compared to firefox
 
 # not installing
 # thunderbird
@@ -64,7 +63,6 @@ pacman -S --noconfirm --needed \
     openssl \
     fuse2 \
     pciutils \
-    chromium \
     ncdu \
     moreutils \
     obs-studio \
