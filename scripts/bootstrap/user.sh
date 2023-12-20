@@ -50,5 +50,9 @@ else
     echo 'code not installed, skipping extman' >&2
 fi
 
+#if [[ -f "$HOME"/.completions/_wormhole ]]; then
+curl -fL https://raw.githubusercontent.com/magic-wormhole/magic-wormhole/master/wormhole_complete.zsh >"$HOME"/.completions/_wormhole
+#fi
+
 kwriteconfig5 --file "$HOME"/.config/dolphinrc --group 'General' --key 'RememberOpenedTabs' false
 kwriteconfig5 --file "$HOME"/.config/dolphinrc --group 'General' --key 'BrowseThroughArchives' true

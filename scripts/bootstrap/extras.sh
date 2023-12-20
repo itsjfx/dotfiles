@@ -77,6 +77,7 @@ pacman -S --noconfirm --needed \
     pngquant \
     progress \
     shellcheck \
+    magic-wormhole \
 
 
 # wine
