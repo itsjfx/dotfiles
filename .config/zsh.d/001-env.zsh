@@ -5,6 +5,7 @@ export SAVEHIST=500000
 export NODE_REPL_HISTORY_SIZE=500000
 export NODE_REPL_MODE=strict
 
+export BROWSER="${BROWSER-firefox}"
 # python3
 export PATH="$PATH:$HOME/.local/bin"
 # my scripts
