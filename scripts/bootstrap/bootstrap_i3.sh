@@ -187,6 +187,7 @@ get \
     btrfs-progs \
     jq \
     sysfsutils \
+    zstd \
 
 
 get \
