@@ -188,6 +188,7 @@ get \
     jq \
     sysfsutils \
     zstd \
+    zip \
 
 
 get \

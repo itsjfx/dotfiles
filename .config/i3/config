@@ -36,7 +36,7 @@ bindsym Control+Print exec flameshot gui
 # TODO: does this stuff _actually_ belong here
 exec --no-startup-id exec dunst
 # Melbourne, AU
-exec --no-startup-id exec redshift -l '-37.8103409:144.9728712' -t '6500:3300'
+exec --no-startup-id exec redshift -l '-37.8103409:144.9728712' -t '6500:3200'
 exec --no-startup-id exec "$HOME/scripts/polybar/launch.sh"
 exec --no-startup-id exec "$HOME/.fehbg"
 exec --no-startup-id exec "$HOME/scripts/streamdeck.py"
