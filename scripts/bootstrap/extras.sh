@@ -144,7 +144,13 @@ pacman -S --noconfirm --needed \
     nmap \
     wireshark-qt \
     wireshark-cli \
-    inetutils
+    inetutils \
+    mitmproxy \
+
+# AWS
+pacman -S --noconfirm --needed \
+    aws-cli-v2 \
+
 
 # Security
 
@@ -153,7 +159,8 @@ pacman -S --noconfirm --needed \
     gnupg \
     pwgen \
     firejail \
-    bubblewrap
+    bubblewrap \
+
 
 # DB clients
 # dnf install \

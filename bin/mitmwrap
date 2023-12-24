@@ -1,0 +1,43 @@
+#!/usr/bin/env bash
+
+# have a mitmproxy running before on 127.0.0.1:8080
+
+set -eu -o pipefail
+
+host="${MITMWRAP_HOST-127.0.0.1}"
+port="${MITMWRAP_PORT-8080}"
+
+#proxychains=0
+#for arg in "$@"; do
+#    case "$arg" in
+#        --proxychains) proxychains=1; shift ;;
+#        --) shift; break ;;
+#    esac
+#done
+proxychains="${MITMWRAP_PROXYCHAINS-0}"
+
+if (( proxychains )); then
+    file="$(mktemp)"
+    export PROXYCHAINS_CONF_FILE="$file"
+    # trap
+    cat <<EOF >"$file"
+proxy_dns
+quiet_mode
+[ProxyList]
+http $host $port
+EOF
+    cmd="proxychains4 -q $@"
+else
+    for proxy in http_proxy https_proxy HTTP_PROXY HTTPS_PROXY; do
+        eval "export ${proxy}=\"$host:$port\""
+    done
+    cmd="$@"
+fi
+
+# thanks https://github.com/lincheney/ffcli/blob/ac89f62ae7039fb0fcdb77fd09203b413ac2d2f3/ffcli.py#L581-L587
+cert="$HOME"/.mitmproxy/mitmproxy-ca-cert.cer
+export AWS_CA_BUNDLE="$cert"
+export CURL_CA_BUNDLE="$cert"
+export SSL_CERT_FILE="$cert"
+
+bwrap --dev-bind / / --ro-bind "$cert" /etc/ssl/certs/ca-certificates.crt -- $cmd
