@@ -20,6 +20,9 @@ pacman -S --noconfirm --needed \
     python-websockets \
 
 
+# android
+# pacman -S --noconfirm --needed \
+#     jre17-openjdk jdk17-openjdk
 
 # evince or okular for a PDF reader -- trying okular
 
