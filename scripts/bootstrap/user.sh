@@ -20,6 +20,8 @@ for plugin in \
     'alacritty/alacritty-theme' \
     'lincheney/rg-bm25' \
     'lincheney/i3-automark' \
+    'laktak/extrakto' \
+    'wfxr/tmux-fzf-url' \
 ; do
     plugin_name="${plugin##*/}"
     plugin_path="$HOME/source/$plugin_name"
