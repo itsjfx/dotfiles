@@ -11,7 +11,11 @@ export PATH="$PATH:$HOME/.local/bin"
 # my scripts
 export PATH="$HOME/bin:$PATH"
 [ -d "$HOME/.meteor" ] && export PATH="$PATH:$HOME/.meteor"
-[ -d "$HOME"/Android/Sdk ] && export ANDROID_SDK_ROOT="$HOME/Android/Sdk"
+
+if [ -d "$HOME"/Android/Sdk ]; then
+	export ANDROID_SDK_ROOT="$HOME/Android/Sdk"
+	export PATH="$PATH:$HOME/Android/Sdk/platform-tools"
+fi
 
 # bma
 if [ -d "$HOME"/source/bash-my-aws ]; then
