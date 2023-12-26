@@ -22,7 +22,9 @@ fzf_git_search() {
 zle -N fzf_git_search
 bindkey '^[f' fzf_git_search
 
-if [[ -d "$HOME/.fnm" ]]; then
+if command -vp fnm &>/dev/null; then
+    eval "$(fnm env)"    
+elif [[ -d "$HOME/.fnm" ]]; then
     export PATH="$PATH:$HOME/.fnm"
     eval "$(fnm env)"
 fi
