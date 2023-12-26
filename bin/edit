@@ -13,8 +13,12 @@ esac
 file="$1"
 shift
 
-# TODO get suffix
-tmpfile="$(mktemp)"
+if [[ "$file" = *.* ]]; then
+    suffix="${file##*.}"  # Extracts the part after the last dot
+    tmpfile="$(mktemp --suffix=".$suffix")"
+else
+    tmpfile="$(mktemp)"
+fi
 trap 'rm -- "$tmpfile"' EXIT
 cat "$file" >"$tmpfile"
 "${EDITOR:-vi}" "$tmpfile" "$@"
