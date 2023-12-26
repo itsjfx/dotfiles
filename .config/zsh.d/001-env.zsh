@@ -9,7 +9,7 @@ export BROWSER="${BROWSER-firefox}"
 # python3
 export PATH="$PATH:$HOME/.local/bin"
 # my scripts
-export PATH="$PATH:$HOME/bin"
+export PATH="$HOME/bin:$PATH"
 [ -d "$HOME/.meteor" ] && export PATH="$PATH:$HOME/.meteor"
 [ -d "$HOME"/Android/Sdk ] && export ANDROID_SDK_ROOT="$HOME/Android/Sdk"
 

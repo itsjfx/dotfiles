@@ -1,0 +1,40 @@
+#!/usr/bin/env bash
+
+set -eu -o pipefail
+
+cmd="$(basename "$0")"
+_cat=cat
+case "$cmd" in
+    sudoedit) _cat='sudo cat' ;;
+    edit) ;;
+    *) echo "Unknown command $cmd" >&2; exit 1 ;;
+esac
+
+file="$1"
+shift
+
+# TODO get suffix
+tmpfile="$(mktemp)"
+trap 'rm -- "$tmpfile"' EXIT
+cat "$file" >"$tmpfile"
+"${EDITOR:-vi}" "$tmpfile" "$@"
+
+if diff -q "$file" "$tmpfile"; then
+    echo 'File not modified' >&2
+    exit 1
+fi
+
+diff="$(git config --get interactive.diffFilter)"
+
+# diff --unified=0 "$file" "$tmpfile"
+$diff "$file" "$tmpfile" || true
+
+read -p 'Do you want to save the changes? [y/n] ' response
+if [[ "$response" =~ ^[Yy]$ ]]; then
+    # Overwrite the original file with the modified one
+    # cp "$tmpfile" "$file"
+    $_cat "$tmpfile" >"$file"
+    echo "Changes saved" >&2
+else
+    echo "Changes discarded" >&2
+fi
