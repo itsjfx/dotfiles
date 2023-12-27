@@ -131,7 +131,9 @@ pacman -S --noconfirm --needed \
 pacman -S --noconfirm --needed \
     cowsay \
     figlet \
-    neofetch
+    neofetch \
+    asciinema \
+
 
 # VPN
 

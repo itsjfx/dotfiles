@@ -20,3 +20,4 @@ yay -S --needed \
     spotify \
     visual-studio-code-bin \
     st \
+    asciinema-agg \
