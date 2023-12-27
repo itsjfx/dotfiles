@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+
+workspace="$(<<<"$1" sed -e s/.code-workspace//g)"
+shift
+echo "Launching $workspace code workspace..." >&2
+
+unset LD_PRELOAD
+code "$HOME/workspaces/$workspace.code-workspace" "$@"

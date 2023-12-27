@@ -87,3 +87,6 @@ noop() { }
 sshkey() { cat "$HOME"/.ssh/id_ed25519.pub; }
 
 sumup() { awk '{s+=$1} END {print s}' }
+
+# TODO move out of here
+compdef '_files -/ -W $HOME/.code-workspaces' codew
