@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+
+ffmpeg -y -f rawvideo -video_size 1920x1080 -pixel_format yuv420p -framerate 60 -i /dev/urandom -c:v libx265 -preset placebo -f matroska /dev/null &
+pid="$?"
+trap 'kill -9 "$pid"' SIGINT
+wait
