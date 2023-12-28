@@ -241,7 +241,8 @@ get \
     polybar \
     feh \
     volumeicon \
-    rofi
+    rofi \
+    xss-lock \
 
 # missing @Fonts
 get \

@@ -43,6 +43,7 @@ pacman -S --noconfirm --needed \
 # mpv -> vlc
 # wine-staging or wine
 # yt-dlp = youtube-dl
+# plasma-sdk for Cuttlefish (icon manager)
 pacman -S --noconfirm --needed \
     mediainfo \
     postgresql-libs \
@@ -82,6 +83,7 @@ pacman -S --noconfirm --needed \
     progress \
     shellcheck \
     magic-wormhole \
+    plasma-sdk \
 
 
 # wine
