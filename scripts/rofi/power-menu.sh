@@ -13,8 +13,8 @@ options() {
 }
 
 yesno() {
-    echo -e "Yes"
-    echo -e "No"
+    echo -e "Yes\0icon\x1fgtk-yes"
+    echo -e "No\0icon\x1fedit-none"
 }
 
 choice="$(options | rofi -dmenu -i -p '>' "$@")"
