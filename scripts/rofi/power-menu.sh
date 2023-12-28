@@ -22,7 +22,7 @@ choice="$(options | rofi -dmenu -i -p '>' "$@")"
 if [[ "$choice" == 'Shutdown' || "$choice" == "Reboot" || "$choice" == "Logout" ]]; then
     confirm="$(yesno | rofi -dmenu -i -p 'Are you sure?')"
     if [[ "$confirm" == "No" ]]; then
-        exit
+        exit 1
     fi
 fi
 
@@ -33,5 +33,6 @@ case "$choice" in
     Hibernate) systemctl hibernate ;;
     Lock) loginctl lock-session "${XDG_SESSION_ID-}" ;;
     Logout) i3-msg exit ;;
+    *) exit 2 ;;
 #    Logout) loginctl terminate-session "${XDG_SESSION_ID-}" ;;
 esac
