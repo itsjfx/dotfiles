@@ -29,6 +29,10 @@ export SAM_CLI_TELEMETRY=0
 export AWS_PAGER=''
 export SLS_TELEMETRY_DISABLED=1
 export AWS_EC2_METADATA_DISABLED=true
+export GOTELEMETRY=off
+export AZURE_CORE_COLLECT_TELEMETRY=False
+export DO_NOT_TRACK=1
+
 
 # monokai without backgrounding
 export FZF_DEFAULT_OPTS='--color=spinner:#E6DB74,hl:#F92672,fg:#F8F8F2,header:#7E8E91,info:#A6E22E,pointer:#A6E22E,marker:#F92672,fg+:#F8F8F2,prompt:#F92672,hl+:#F92672 --multi'

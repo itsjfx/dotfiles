@@ -102,11 +102,17 @@ pacman -S --noconfirm --needed \
 pacman -S --noconfirm --needed \
     libusb \
     hidapi \
-    xf86-input-wacom
+    xf86-input-wacom \
+
 
 # protobuf dev
 pacman -S --noconfirm --needed \
-    protobuf
+    protobuf \
+
+
+pacman -S --noconfirm --needed \
+    calibre \
+
 
 # yubikey
 # GUI installed cos
