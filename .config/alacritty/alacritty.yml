@@ -1,10 +1,5 @@
 shell:
   program: /usr/bin/tmux
-  #  program: /usr/bin/zsh
-  #  args:
-  #    - -l
-  #    - -c
-  #    - "tmux"
 
 # https://gist.github.com/andersevenrud/015e61af2fd264371032763d4ed965b6
 env:
