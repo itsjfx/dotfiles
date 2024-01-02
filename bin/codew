@@ -5,4 +5,4 @@ shift
 echo "Launching $workspace code workspace..." >&2
 
 unset LD_PRELOAD
-code "$HOME/workspaces/$workspace.code-workspace" "$@"
+code "$HOME/.code-workspaces/$workspace.code-workspace" "$@"
