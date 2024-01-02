@@ -19,9 +19,9 @@ yesno() {
 
 choice="$(options | rofi -dmenu -i -p '>' "$@")"
 
-if [[ "$choice" == 'Shutdown' || "$choice" == "Reboot" || "$choice" == "Logout" ]]; then
-    confirm="$(yesno | rofi -dmenu -i -p 'Are you sure?')"
-    if [[ "$confirm" == "No" ]]; then
+if [[ "$choice" == Shutdown || "$choice" == Reboot || "$choice" == Logout ]]; then
+    confirm="$(yesno | rofi -dmenu -i -p 'Are you sure?' "$@")"
+    if [[ "$confirm" == No ]]; then
         exit 1
     fi
 fi
