@@ -79,10 +79,16 @@
     },
     "vim.enableNeovim": true,
     // "vim.neovimUseConfigFile": true,
+    // vim-like
+    "editor.wordWrap": "on",
+    "editor.cursorSurroundingLines": 10,
+    // treesitter-context like
     "editor.stickyScroll.enabled": true,
     "notebook.stickyScroll.enabled": true,
+
     "workbench.iconTheme": "material-icon-theme",
-    "editor.cursorSurroundingLines": 10,
+
     "workbench.editor.wrapTabs": true,
-    "editor.wordWrap": "on",
+    // eff off
+	"typescript.surveys.enabled": false,
 }

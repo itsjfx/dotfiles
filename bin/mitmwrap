@@ -3,6 +3,7 @@
 # have a mitmproxy running before on 127.0.0.1:8080
 
 set -eu -o pipefail
+set -x
 
 host="${MITMWRAP_HOST-127.0.0.1}"
 port="${MITMWRAP_PORT-8080}"

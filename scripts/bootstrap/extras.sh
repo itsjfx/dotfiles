@@ -18,6 +18,7 @@ pacman -S --noconfirm --needed \
     python-boto3 \
     python-pillow \
     python-websockets \
+    python-pipenv \
 
 
 # android
@@ -84,6 +85,7 @@ pacman -S --noconfirm --needed \
     shellcheck \
     magic-wormhole \
     plasma-sdk \
+    reflector \
 
 
 # wine
@@ -215,6 +217,7 @@ pacman -S --noconfirm --needed \
 # TODO: podman
 #pacman -S --noconfirm --needed \
 #    docker
+#    docker-buildx
 
 # grab from AUR
 # code
