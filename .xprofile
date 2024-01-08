@@ -4,7 +4,7 @@ export QT_QPA_PLATFORMTHEME=qt5ct
 export STEAM_FRAME_FORCE_CLOSE=1
 export BROWSER=firefox
 export DA_TEST_DISABLE_TELEMETRY=1
-export UNA_CONTAINER_NO_SSH=1
+export UNA_NO_CONTAINER_SSH=1
 
 # just to not break stuff
 if [[ "$(hostname)" == "sandcastle" ]]; then
