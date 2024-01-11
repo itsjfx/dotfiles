@@ -4,15 +4,18 @@ WIP everyday
 
 ## Looks
 
-![neovim+cmus](https://user-images.githubusercontent.com/13778935/215322103-ea4a3b29-99c4-4b25-b6a5-ad493c00d458.png)
-![neofetch](https://user-images.githubusercontent.com/13778935/215322109-f126fd08-4383-4305-9f3c-93be0c255215.png)
-![neovim+rofi](https://user-images.githubusercontent.com/13778935/215322634-a0ca1d25-4b28-463d-9fa3-32c8501ece6a.png)
+![neofetch](https://github.com/itsjfx/dotfiles/assets/13778935/76a84b1c-4dcd-413a-9db4-980dc5a24e84)
+![2024-01-12_01-15_1](https://github.com/itsjfx/dotfiles/assets/13778935/c0cb6444-686d-4b31-bfb3-4c41fdb22ac6)
+![2024-01-12_01-26_1](https://github.com/itsjfx/dotfiles/assets/13778935/fc85ae12-ee0b-42bb-ad22-fb1cb33209cd)
+![2024-01-12_01-14_1](https://github.com/itsjfx/dotfiles/assets/13778935/2c2ffd13-7692-4dc4-8d36-f1520e417a73)
+![2024-01-12_01-20](https://github.com/itsjfx/dotfiles/assets/13778935/b82ae57e-3f5d-468d-9469-ca8c9e94c5a4)
 
 ## Non-complete list of things I run
 
 Running the following:
 * `zsh`
-* `alacritty` with `tmux`
+* `tmux` with [zsh-tmux-smart-status-bar](https://github.com/itsjfx/zsh-tmux-smart-status-bar) for status bar
+* `alacritty`
 * `i3-wm` with gaps
 * `polybar`
 * `picom` (when not gaming)
@@ -28,6 +31,12 @@ Running the following:
 Using bare dotfiles approach documented in: <https://wiki.archlinux.org/title/Dotfiles#Tracking_dotfiles_directly_with_Git>
 
 ```bash
+curl -fL https://raw.githubusercontent.com/itsjfx/dotfiles/master/scripts/bootstrap/run_bootstrap.sh | bash
+```
+
+or
+
+```bash
 git init --bare ~/.dotfiles
 alias config='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 
@@ -38,11 +47,6 @@ config remote add origin git@github.com:itsjfx/dotfiles.git
 
 config config status.showUntrackedFiles no
 config pull origin master
-```
-
-or
-```bash
-curl -fL https://raw.githubusercontent.com/itsjfx/dotfiles/master/scripts/bootstrap/run_bootstrap.sh | bash
 ```
 
 Note for me:
