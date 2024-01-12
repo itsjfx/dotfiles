@@ -1,7 +1,5 @@
 # aliases and functions
 
-config() { git --git-dir="$HOME"/.dotfiles/ --work-tree="$HOME" "$@"; }
-
 alias cls=clear
 alias clip='xclip -selection clipboard'
 alias netcat=nc
