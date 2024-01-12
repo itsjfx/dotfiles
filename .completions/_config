@@ -4,8 +4,17 @@
 # hooking it before and after this completion
 # but i keep f'ing up monkey patching zsh functions
 _config() {
-#    words[1]=git _normal
-    words[1]=git PATH="$HOME/.completions/.config-bin:$PATH" _normal
+    (
+        # config add does nothing out of the box cause __git_other_files hangs
+        # get it working for at least __git_modified_files
+        _git-add() { __git_modified_files; }
+        # _git-add() { __git_modified_files; 	__git_files --others --directory --exclude-standard --exclude '*/*'; }
+
+
+        # delegate the completer to git
+        # also replace git on the path to config, but only for the first time its run
+        words[1]=git PATH="$HOME/.completions/.config-bin:$PATH" _normal
+    )
 }
 
 # _original="${(kv)functions[_call_program]}"
