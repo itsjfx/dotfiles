@@ -13,6 +13,7 @@ cd "$HOME"
 rm -f .bashrc
 git init --bare ~/.dotfiles
 
+# see ~/.config/zsh.d/005-aliases.zsh
 config() { /usr/bin/git --git-dir="$HOME"/.dotfiles/ --work-tree="$HOME" "$@"; }
 
 config remote add origin https://github.com/itsjfx/dotfiles.git || true

@@ -1,5 +1,7 @@
 # aliases and functions
 
+config() { git --git-dir="$HOME"/.dotfiles/ --work-tree="$HOME" "$@"; }
+
 alias cls=clear
 alias clip='xclip -selection clipboard'
 alias netcat=nc
@@ -40,7 +42,6 @@ alias history="history 0"
 # https://wiki.archlinux.org/title/Sudo#Passing_aliases
 alias sudo="sudo "
 
-alias config='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 alias sizeof='du -hs'
 
 open() {
@@ -75,7 +76,9 @@ alias gap='git add --patch'
 alias cap='config add --patch'
 alias gb='git branch'
 alias gs='git status'
-gcm() { (( $# )) && git commit --message "$*" || git commit }
+_gcm() { (( $# > 1 )) && "$1" commit --message "$*" || "$1" commit }
+gcm() { _gcm git "$@" }
+ccm() { _gcm config "$@" }
 alias gl='git log --stat --patch'
 alias gl='git pull'
 alias gp='git push'
