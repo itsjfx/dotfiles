@@ -72,6 +72,7 @@ alias count='sort | uniq -c | sort -rn'
 
 # git aliases
 alias ga='git add'
+alias ca='config add'
 alias gap='git add --patch'
 alias cap='config add --patch'
 alias gb='git branch'
