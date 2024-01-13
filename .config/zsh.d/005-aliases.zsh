@@ -75,7 +75,7 @@ alias gap='git add --patch'
 alias cap='config add --patch'
 alias gb='git branch'
 alias gs='git status'
-_gcm() { cmd="$1"; shift; (( $# > 0 )) && "$1" commit --message "$*" || "$1" commit }
+_gcm() { cmd="$1"; shift; (( $# > 0 )) && "$cmd" commit --message "$*" || "$cmd" commit }
 gcm() { _gcm git "$@" }
 ccm() { _gcm config "$@" }
 alias gl='git log --stat --patch'
