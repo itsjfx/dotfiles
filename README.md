@@ -10,9 +10,8 @@ WIP everyday
 ![2024-01-12_01-14_1](https://github.com/itsjfx/dotfiles/assets/13778935/2c2ffd13-7692-4dc4-8d36-f1520e417a73)
 ![2024-01-12_01-20](https://github.com/itsjfx/dotfiles/assets/13778935/b82ae57e-3f5d-468d-9469-ca8c9e94c5a4)
 
-## Non-complete list of things I run
+## Incomplete list of things I use
 
-Running the following:
 * `zsh`
 * `alacritty`
     * `tmux`
@@ -22,22 +21,28 @@ Running the following:
     * [i3-automark](https://github.com/lincheney/i3-automark) to automark windows
     * [alttab](https://github.com/sagb/alttab) to alt tab
 * `polybar`
+    * with custom scripts
 * `picom` (when not gaming)
 * `rofi`
+    * `dmenu` like swithcer on `Mod+d`
+    * Firefox profile switcher on `Ctrl+F`
+    * Power menu on `Mod+P`
 * `dunst`
 * `neovim` or `code`
 * `cmus` or `spotify`
 * `dolphin`
+* and many other programs (mostly KDE)
 
 ## Setup
 
-Using bare dotfiles approach documented in: <https://wiki.archlinux.org/title/Dotfiles#Tracking_dotfiles_directly_with_Git>
+* Using bare dotfiles approach documented in: <https://wiki.archlinux.org/title/Dotfiles#Tracking_dotfiles_directly_with_Git>
+* I've modified the approach to be a [script](bin/config) and have a [custom completer](.completions/_config) to fix some issues with the completer on the alias
 
 ```bash
 curl -fL https://raw.githubusercontent.com/itsjfx/dotfiles/master/scripts/bootstrap/run_bootstrap.sh | bash
 ```
 
-or
+or (alias to get started)
 
 ```bash
 git init --bare ~/.dotfiles
