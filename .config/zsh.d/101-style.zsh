@@ -1,5 +1,9 @@
 # make style file last just in case something modifies my prompt
 
+# one liner hack to get completions up for git custom commands
+# see: https://github.com/zsh-users/zsh/blob/d6e4ddd4d48b6ac9c0a29b95e0e2fc0e6012d725/Completion/Unix/Command/_git#L16C54-L16C90
+zstyle ':completion:*:*:git:*' user-commands ${${${(M)${(k)commands}:#git-*}/git-/}/%/:(custom)}
+
 # i think this is from oh-my-zsh
 # Take advantage of $LS_COLORS for completion as well.
 zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"

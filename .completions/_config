@@ -3,33 +3,26 @@
 _config() {
     (
         # config add does nothing out of the box cause __git_other_files hangs
+        # looks to be a bug with showUntrackedFiles = no
         # modify the command to list files correctly
-        # TODO error handling
         __git_other_files() {
-            local files
-            files="$(config ls-files --others --directory --exclude-standard --exclude='*/*')"
-            if [[ -n "$files" ]]; then
-                files=("${(f)files}")
-                compadd -q -a -- files
-            fi
+            (
+                set -eu -o pipefail
+                local files
+                files="$(config ls-files --others --directory --exclude-standard --exclude='*/*')"
+                if [[ -n "$files" ]]; then
+                    files=("${(f)files}")
+                    # overrided fzf completion crashes
+                    builtin compadd -q -a -- files
+                fi
+            )
         }
 
         # delegate the completer to git
         # also replace git on the path to config, but only for the first time its run
         # this can probably be done by monkey patching _call_program
         # hooking it before and after this completion
-        # but i keep f'ing up monkey patching zsh functions
+        # but i keep f'ing up monkey patching it
         words[1]=git PATH="$HOME/.completions/.config-bin:$PATH" _normal
     )
 }
-
-# _original="${(kv)functions[_call_program]}"
-# _config_call_program() {
-#     set -- "$1" config "$@"
-#     eval $_original "$@"
-# }
-# _call_program() { _config_call_program "$@"; }
-
-# __override_call_program() { _call_program() { _config_call_program "$@"; }; }
-# __override_call_program
-# __override_call_program() { functions[_call_program]="set -- $1 config $@; $@"; }
