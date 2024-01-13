@@ -14,9 +14,13 @@ WIP everyday
 
 Running the following:
 * `zsh`
-* `tmux` with [zsh-tmux-smart-status-bar](https://github.com/itsjfx/zsh-tmux-smart-status-bar) for status bar
 * `alacritty`
-* `i3-wm` with gaps
+    * `tmux`
+    * [zsh-tmux-smart-status-bar](https://github.com/itsjfx/zsh-tmux-smart-status-bar) for tmux status bar
+* `i3-wm`
+    * gaps
+    * [i3-automark](https://github.com/lincheney/i3-automark) to automark windows
+    * [alttab](https://github.com/sagb/alttab) to alt tab
 * `polybar`
 * `picom` (when not gaming)
 * `rofi`
@@ -24,7 +28,6 @@ Running the following:
 * `neovim` or `code`
 * `cmus` or `spotify`
 * `dolphin`
-* `alttab`
 
 ## Setup
 
