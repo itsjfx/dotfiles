@@ -52,8 +52,8 @@ alias code='LD_PRELOAD= code'
 
 alias unzipd='unzip $1 -d "${"$(basename "$1")"%.zip}"'
 alias node="node -r $HOME/lib/node-custom-repl.js"
-if [[ -f "$HOME"/source/rl_custom_function/target/release/librl_custom_function.so ]]; then
-    alias python3="LD_PRELOAD=$HOME/source/rl_custom_function/target/release/librl_custom_function.so python3"
+if [[ -f "$HOME"/lib/external/rl_custom_function/target/release/librl_custom_function.so ]]; then
+    alias python3="LD_PRELOAD=$HOME/lib/external/rl_custom_function/target/release/librl_custom_function.so python3"
 fi
 
 alias nvimdiff="nvim -d"

@@ -1,11 +1,11 @@
 # essentially plugins and anything i need to source
 
-source "$HOME"/source/zsh-autosuggestions/zsh-autosuggestions.zsh
+source "$HOME"/lib/external/zsh-autosuggestions/zsh-autosuggestions.zsh
 # fpath in 000-opts
 
-source "$HOME"/source/fzf-tab-completion/zsh/fzf-zsh-completion.sh
+source "$HOME"/lib/external/fzf-tab-completion/zsh/fzf-zsh-completion.sh
 bindkey '^I' fzf_completion
-[ -d "$HOME/source/bash-my-aws" ] && source "$HOME"/source/bash-my-aws/bash_completion.sh
+[ -d "$HOME/lib/external/bash-my-aws" ] && source "$HOME"/lib/external/bash-my-aws/bash_completion.sh
 
 #complete -C '/usr/local/bin/aws_completer' aws
 
@@ -30,5 +30,5 @@ elif [[ -d "$HOME/.fnm" ]]; then
 fi
 
 #source "$HOME/repos/me/notes/notes.sh"
-source "$HOME/source/zsh-tmux-smart-status-bar/zsh-tmux-smart-status-bar.sh"
+source "$HOME/lib/external/zsh-tmux-smart-status-bar/zsh-tmux-smart-status-bar.sh"
 

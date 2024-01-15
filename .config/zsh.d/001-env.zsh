@@ -18,8 +18,8 @@ if [ -d "$HOME"/Android/Sdk ]; then
 fi
 
 # bma
-if [ -d "$HOME"/source/bash-my-aws ]; then
-	export BMA_HOME="$HOME"/source/bash-my-aws
+if [ -d "$HOME"/lib/external/bash-my-aws ]; then
+	export BMA_HOME="$HOME"/lib/external/bash-my-aws
 	export PATH="$PATH:$BMA_HOME/bin"
 	export BMA_COLUMNISE_ONLY_WHEN_TERMINAL_PRESENT=true
 fi

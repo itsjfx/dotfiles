@@ -31,7 +31,7 @@ for plugin in \
         git pull --ff-only
     else
         echo "Cloning $plugin_name" >&2
-        git clone https://github.com/"$plugin" "$HOME"/source/"${plugin##*/}"
+        git clone https://github.com/"$plugin" "$HOME"/lib/external/"${plugin##*/}"
     fi
 done
 

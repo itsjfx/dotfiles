@@ -24,9 +24,9 @@ WIP everyday
     * with custom scripts
 * `picom` (when not gaming)
 * `rofi`
-    * `dmenu` like swithcer on `Mod+d`
-    * Firefox profile switcher on `Ctrl+F`
-    * Power menu on `Mod+P`
+    * `dmenu`-like switcher on `Mod+d`
+    * Firefox profile switcher on `Mod+Shift+f`
+    * Power menu on `Mod+Shift+p`
 * `dunst`
 * `neovim` or `code`
 * `cmus` or `spotify`

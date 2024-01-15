@@ -10,7 +10,7 @@ setopt interactivecomments
 autoload -U colors && colors
 # BEFORE compinit
 fpath=("$HOME"/.completions $fpath)
-fpath=("$HOME"/source/zsh-completions/src $fpath)
+fpath=("$HOME"/lib/external/zsh-completions/src $fpath)
 autoload -U +X compinit && compinit
 autoload -U +X bashcompinit && bashcompinit
 

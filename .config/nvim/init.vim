@@ -49,7 +49,6 @@ Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'nvim-treesitter/nvim-treesitter-context'
 Plug 'rhysd/committia.vim'
 Plug 'ap/vim-buftabline'
-" Plug 'sheerun/vim-polyglot'
 Plug 'unblevable/quick-scope'
 Plug 'junegunn/vim-easy-align'
 " TODO figure out how the heck to use this
