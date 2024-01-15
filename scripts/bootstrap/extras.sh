@@ -10,6 +10,7 @@ pip3 install --user --break-system-packages \
     streamdeck \
     monitorcontrol \
     pulsectl \
+    cfn-flip \
 
 
 # pillow for streamdeck
