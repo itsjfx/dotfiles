@@ -2,9 +2,14 @@
 
 set -eu -o pipefail
 
+if [[ ! -f /etc/arch-release ]]; then
+    echo 'Not running on Arch. Exitting' >&2
+fi
+
 if ! command -vp yay &>/dev/null; then
     (
-        cd ~/.aur
+        echo 'Doing initial install of yay' >&2
+        cd "$(mktemp -d)"
         git clone https://aur.archlinux.org/yay.git || true
         cd yay
         makepkg -si
