@@ -69,21 +69,24 @@ alias mktargz="tar -czvf"
 alias count='sort | uniq -c | sort -rn'
 
 # git aliases
+_gcm() { cmd="$1"; shift; (( $# > 0 )) && "$cmd" commit --message "$*" || "$cmd" commit }
+
+gcm() { _gcm git "$@" }
 alias ga='git add'
-alias ca='config add'
 alias gap='git add --patch'
-alias cap='config add --patch'
 alias gb='git branch'
 alias gs='git status'
-_gcm() { cmd="$1"; shift; (( $# > 0 )) && "$cmd" commit --message "$*" || "$cmd" commit }
-gcm() { _gcm git "$@" }
-ccm() { _gcm config "$@" }
 alias gl='git log --stat --patch'
 alias gl='git pull'
 alias gp='git push'
+alias gco='git checkout'
+
+ccm() { _gcm config "$@" }
+alias ca='config add'
+alias cap='config add --patch'
+alias cl='config pull'
 # cp is taken obviously
 alias .cp='config push'
-alias gco='git checkout'
 
 alias search='rg-bm25'
 alias reload='exec zsh'
