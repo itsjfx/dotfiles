@@ -38,8 +38,10 @@ WIP everyday
 * Using bare dotfiles approach documented in: <https://wiki.archlinux.org/title/Dotfiles#Tracking_dotfiles_directly_with_Git>
 * I've modified the approach to be a [script](bin/config) and have a [custom completer](.completions/_config) to fix some issues with the completer on the alias
 
+**WARNING: This will run my highly opinionated bootstrap script. This is for myself. I suggest not doing this:**
+
 ```bash
-curl -fL https://raw.githubusercontent.com/itsjfx/dotfiles/master/scripts/bootstrap/run_bootstrap.sh | bash
+curl -fL https://raw.githubusercontent.com/itsjfx/dotfiles/master/lib/bootstrap/run_bootstrap.sh | bash
 ```
 
 or (alias to get started)
