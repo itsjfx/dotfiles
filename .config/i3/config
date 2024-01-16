@@ -37,7 +37,7 @@ bindsym Control+Print exec flameshot gui
 exec --no-startup-id exec dunst
 # Melbourne, AU
 exec --no-startup-id exec redshift -l '-37.8103409:144.9728712' -t '6500:3200'
-exec --no-startup-id exec "$HOME/scripts/polybar/launch.sh"
+exec --no-startup-id exec "$HOME/lib/polybar/launch.sh"
 exec --no-startup-id exec "$HOME/.fehbg"
 exec --no-startup-id exec "$HOME/lib/streamdeck.py"
 # https://github.com/lincheney/i3-automark
@@ -105,8 +105,8 @@ bindsym $alt+F4 kill
 #bindsym $mod+d exec rofi -show run
 bindsym $mod+d exec rofi -show drun
 bindsym $mod+Shift+d exec rofi -show run
-bindsym $mod+Shift+f exec "$HOME/scripts/rofi/firefox.sh"
-bindsym $mod+Shift+p exec "$HOME/scripts/rofi/power-menu.sh"
+bindsym $mod+Shift+f exec "$HOME/lib/rofi/firefox.sh"
+bindsym $mod+Shift+p exec "$HOME/lib/rofi/power-menu.sh"
 
 # vim keys
 bindsym $mod+h focus left

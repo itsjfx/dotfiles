@@ -24,14 +24,14 @@ for plugin in \
     'wfxr/tmux-fzf-url' \
 ; do
     plugin_name="${plugin##*/}"
-    plugin_path="$HOME/source/$plugin_name"
+    plugin_path="$HOME/lib/external/$plugin_name"
 
     if cd "$plugin_path" 2>/dev/null; then
         echo "Fetching $plugin_name" >&2
         git pull --ff-only
     else
         echo "Cloning $plugin_name" >&2
-        git clone https://github.com/"$plugin" "$HOME"/lib/external/"${plugin##*/}"
+        git clone https://github.com/"$plugin" "$plugin_path"
     fi
 done
 

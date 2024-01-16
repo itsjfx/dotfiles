@@ -21,7 +21,7 @@ confirm() {
     [[ "$response" =~ ^(yes|y)$ ]]
 }
 
-extensions="$(cat "$HOME"/lib/extensions.yaml | yaml2json | jq -rce '.extensions[]')"
+extensions="$(cat "$HOME"/.config/extman/extensions.yaml | yaml2json | jq -rce '.extensions[]')"
 
 action="${1:-}"
 shift || true
