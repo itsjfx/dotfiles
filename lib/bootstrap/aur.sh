@@ -4,6 +4,7 @@ set -eu -o pipefail
 
 if [[ ! -f /etc/arch-release ]]; then
     echo 'Not running on Arch. Exitting' >&2
+    exit 1
 fi
 
 if ! command -vp yay &>/dev/null; then
