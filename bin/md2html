@@ -2,4 +2,3 @@
 
 pandoc "$@" -f gfm -t html | xclip -selection clipboard -t text/html
 echo "Copied selection to clipboard as html" >&2
-
