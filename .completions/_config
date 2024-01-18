@@ -6,16 +6,13 @@ _config() {
         # looks to be a bug with showUntrackedFiles = no
         # modify the command to list files correctly
         __git_other_files() {
-            (
-                set -eu -o pipefail
-                local files
-                files="$(config ls-files --others --directory --exclude-standard --exclude='*/*')"
-                if [[ -n "$files" ]]; then
-                    files=("${(f)files}")
-                    # overrided fzf completion crashes
-                    builtin compadd -q -a -- files
-                fi
-            )
+            local files
+            files="$(config ls-files --others --directory --exclude-standard --exclude='*/*')"
+            if [[ -n "$files" ]]; then
+                files=("${(f)files}")
+                # overrided fzf completion crashes
+                compadd -Q -q -a -- files
+            fi
         }
 
         # delegate the completer to git
