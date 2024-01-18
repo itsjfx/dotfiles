@@ -36,8 +36,8 @@ fi
 
 # thanks https://github.com/lincheney/ffcli/blob/ac89f62ae7039fb0fcdb77fd09203b413ac2d2f3/ffcli.py#L581-L587
 cert="$HOME"/.mitmproxy/mitmproxy-ca-cert.cer
-export AWS_CA_BUNDLE="$cert"
-export CURL_CA_BUNDLE="$cert"
-export SSL_CERT_FILE="$cert"
+for var in AWS_CA_BUNDLE CURL_CA_BUNDLE SSL_CERT_FILE NODE_EXTRA_CA_CERTS; do
+    eval "export $var=\"$cert\""
+done
 
-bwrap --dev-bind / / --ro-bind "$cert" /etc/ssl/certs/ca-certificates.crt -- $cmd
+bwrap --dev-bind / / --ro-bind "$cert" "$(readlink -f /etc/ssl/certs/ca-certificates.crt)" -- $cmd
