@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+
+set -eu -o pipefail
+
+"$(dirname "$0")"/multilib
+sudo pacman -S --noconfirm --needed \
+    wine-staging \
+    winetricks \
+    wine-mono \
+

@@ -88,14 +88,6 @@ pacman -S --noconfirm --needed \
     plasma-sdk \
     reflector \
 
-
-# wine
-# needs multilib enabled
-#pacman -S --noconfirm --needed \
-#    wine-staging \
-#    winetricks \
-#    wine-mono
-
 # icons
 pacman -S --noconfirm --needed \
     ttf-iosevka-nerd \
@@ -241,13 +233,6 @@ rustup default stable
 
 # steam
 # https://wiki.archlinux.org/title/steam#Installation
-# enable multilib
-# https://wiki.archlinux.org/title/Official_repositories#multilib
-
-#/etc/pacman.conf
-
-#[multilib]
-#Include = /etc/pacman.d/mirrorlist
 
 # will need to install 32 bit nvidia drivers too
 

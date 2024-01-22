@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+pattern="/\[multilib\]/,/Include/"'s/^#//'
+if [[ -n "$(sed -n "$pattern"p /etc/pacman.conf)" ]]; then
+    sudo sed -i "$pattern" /etc/pacman.conf && \
+    sudo pacman -Syu
+fi

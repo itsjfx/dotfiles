@@ -27,3 +27,4 @@ yay -S --needed \
     visual-studio-code-bin \
     st \
     asciinema-agg \
+    winbox \
