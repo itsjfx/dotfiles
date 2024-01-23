@@ -45,7 +45,8 @@
     },
     "files.trimTrailingWhitespace": true,
     "[markdown]": {
-        "files.trimTrailingWhitespace": false
+        "files.trimTrailingWhitespace": false,
+        "editor.autoClosingQuotes": "never",
     },
     "workbench.colorTheme": "Default Dark+",
     "workbench.startupEditor": "none",
@@ -90,5 +91,5 @@
 
     "workbench.editor.wrapTabs": true,
     // eff off
-    "typescript.surveys.enabled": false,
+    "typescript.surveys.enabled": false
 }
