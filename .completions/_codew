@@ -1,0 +1,5 @@
+#compdef codew
+
+_codew() {
+    _files -W "$HOME/.code-workspaces" -g '*.code-workspace'
+}
