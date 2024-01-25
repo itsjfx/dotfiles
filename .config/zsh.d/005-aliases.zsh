@@ -96,3 +96,5 @@ sshkey() { cat "$HOME"/.ssh/id_ed25519.pub; }
 sumup() { awk '{s+=$1} END {print s}' }
 
 gotmp() { mkdir -p /tmp/"$1"; cd /tmp/"$1" }
+
+alias mkssh='ssh-keygen -t ed25519'
