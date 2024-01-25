@@ -6,7 +6,21 @@
 [[ $- != *i* ]] && return
 
 alias ls='ls --color=auto'
-PS1='[\u@\h \W]\$ '
+
+__bash_prompt() {
+    local GREEN="\[\e[1;32m\]"
+    local RED="\[\e[1;31m\]"
+    local CYAN="\[\e[0;36m\]"
+    local RESET="\[\e[0m\]"
+    if ! (( $? )); then
+        PS1="${GREEN}➜ "
+    else
+        PS1="${RED}➜ "
+    fi
+    PS1+=" ${CYAN}\w${RESET}$ "
+}
+
+PROMPT_COMMAND=__bash_prompt
 
 # Use bash-completion, if available
 [[ $PS1 && -f /usr/share/bash-completion/bash_completion ]] && \
