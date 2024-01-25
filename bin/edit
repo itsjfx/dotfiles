@@ -3,9 +3,9 @@
 set -eu -o pipefail
 
 cmd="$(basename "$0")"
-_cat=cat
+_sudo=0
 case "$cmd" in
-    sudoedit) _cat='sudo cat' ;;
+    sudoedit) _sudo=1 ;;
     edit) ;;
     *) echo "Unknown command $cmd" >&2; exit 1 ;;
 esac
@@ -14,7 +14,7 @@ file="$1"
 shift
 
 if [[ "$file" = *.* ]]; then
-    suffix="${file##*.}"  # Extracts the part after the last dot
+    suffix="${file##*.}"
     tmpfile="$(mktemp --suffix=".$suffix")"
 else
     tmpfile="$(mktemp)"
@@ -35,14 +35,16 @@ fi
 
 diff="$(git config --get interactive.diffFilter)"
 
-# diff --unified=0 "$file" "$tmpfile"
 <<<"$data" $diff - "$tmpfile" || true
 
 read -p 'Do you want to save the changes? [y/n] ' response
 if [[ "$response" =~ ^[Yy]$ ]]; then
-    # Overwrite the original file with the modified one
-    # cp "$tmpfile" "$file"
-    $_cat "$tmpfile" >"$file"
+    cmd="cat $tmpfile >$file"
+    if (( _sudo )); then
+        sudo sh -c "$cmd"
+    else
+        sh -c "$cmd"
+    fi
     echo "Changes saved" >&2
 else
     echo "Changes discarded" >&2
