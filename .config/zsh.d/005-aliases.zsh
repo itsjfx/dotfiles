@@ -45,7 +45,7 @@ alias sizeof='du -hs'
 open() {
     (nohup dolphin "${1:-.}" &) >/dev/null 2>&1
 }
-alias pwgensafe="pwgen --secure -1 60"
+pwgensafe() { openssl rand -base64 24 | tr '\n' -d; }
 alias proxychains='proxychains4'
 
 alias code='LD_PRELOAD= code'
