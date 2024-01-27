@@ -63,15 +63,15 @@ url-query() {
     python3 -c "import urllib.parse, json; print(json.dumps(dict(urllib.parse.parse_qsl(urllib.parse.urlsplit('$1').query))))" | jq -r .
 }
 
-mkcd() { mkdir -p -- "$@" && cd -- "$@" }
+mkcd() { mkdir -p -- "$@" && cd -- "$@"; }
 
 alias mktargz="tar -czvf"
 alias count='sort | uniq -c | sort -rn'
 
 # git aliases
-_gcm() { cmd="$1"; shift; (( $# > 0 )) && "$cmd" commit --message "$*" || "$cmd" commit }
+_gcm() { cmd="$1"; shift; (( $# > 0 )) && "$cmd" commit --message "$*" || "$cmd" commit; }
 
-gcm() { _gcm git "$@" }
+gcm() { _gcm git "$@"; }
 alias ga='git add'
 alias gap='git add --patch'
 alias gb='git branch'
@@ -81,7 +81,7 @@ alias gl='git pull'
 alias gp='git push'
 alias gco='git checkout'
 
-ccm() { _gcm config "$@" }
+ccm() { _gcm config "$@"; }
 alias ca='config add'
 alias cap='config add --patch'
 alias cl='config pull'
