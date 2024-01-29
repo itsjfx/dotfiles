@@ -8,11 +8,12 @@
 alias ls='ls --color=auto'
 
 __bash_prompt() {
+    local code="$?"
     local GREEN="\[\e[1;32m\]"
     local RED="\[\e[1;31m\]"
     local CYAN="\[\e[0;36m\]"
     local RESET="\[\e[0m\]"
-    if ! (( $? )); then
+    if ! (( "$code" )); then
         PS1="${GREEN}➜ "
     else
         PS1="${RED}➜ "
