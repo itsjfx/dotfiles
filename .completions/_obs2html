@@ -1,0 +1,13 @@
+#compdef obs2html
+
+_obs2html() {
+    export FZF_COMPLETION_OPTS="--reverse"
+    local dir="$HOME/notes"
+    files=($(find -L "$dir" \
+        -mindepth 1 \
+        -type d -name '.obsidian' -prune -o \
+        -type d -name '.trash' -prune -o \
+        -type f -name '*.md' -print \
+    | sed "s#$dir/##"))
+    compadd -Q -q -a -- files
+}
