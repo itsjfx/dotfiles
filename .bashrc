@@ -18,7 +18,7 @@ __bash_prompt() {
     else
         PS1="${RED}➜ "
     fi
-    PS1+=" ${CYAN}\w${RESET}$ "
+    PS1+=" ${CYAN}\W${RESET}$ "
 }
 
 PROMPT_COMMAND=__bash_prompt
