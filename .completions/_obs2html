@@ -2,11 +2,12 @@
 
 _obs2html() {
     local dir="$HOME/notes"
-    files=($(find -L "$dir" \
+    files="$(find -L "$dir" \
         -mindepth 1 \
         -type d -name '.obsidian' -prune -o \
         -type d -name '.trash' -prune -o \
         -type f -name '*.md' -print \
-    | sed "s#$dir/##"))
+    | sed "s#$dir/##")"
+    files=("${(f)files}")
     compadd -Q -q -a -- files
 }
