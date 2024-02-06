@@ -79,6 +79,7 @@ alias gs='git status'
 alias gl='git log --stat --patch'
 alias gl='git pull'
 alias gp='git push'
+alias gm='git morelog'
 alias gco='git checkout'
 
 ccm() { _gcm config "$@"; }
@@ -93,8 +94,21 @@ alias reload='exec zsh'
 noop() { }
 sshkey() { cat "$HOME"/.ssh/id_ed25519.pub; }
 
-sumup() { awk '{s+=$1} END {print s}' }
+sumup() { awk '{s+=$1} END {print s}'; }
 
-gotmp() { mkdir -p /tmp/"$1"; cd /tmp/"$1" }
+gotmp() { mkdir -p /tmp/"$1"; cd /tmp/"$1"; }
 
 alias mkssh='ssh-keygen -t ed25519'
+
+ssh_with_dynamic_prompt() {
+    local SSH_COMMAND
+    SSH_COMMAND=$(cat <<'EOF'
+case "$SHELL" in
+    *bash*) export PS1="\u@\h:\w\$ "; exec bash --login ;;
+    *zsh*)  export PROMPT="%n@%m:%~\% "; exec zsh -l ;;
+    *) echo "Unsupported shell: $SHELL"; exit 1 ;;
+esac
+EOF
+    )
+    ssh "$@" -t "$SSH_COMMAND"
+}
