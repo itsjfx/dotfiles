@@ -91,5 +91,6 @@
 
     "workbench.editor.wrapTabs": true,
     // eff off
-    "typescript.surveys.enabled": false
+    "typescript.surveys.enabled": false,
+    "playwright.reuseBrowser": true
 }
