@@ -17,6 +17,7 @@ if ! command -vp yay &>/dev/null; then
         yay -Y --gendb
     )
 fi
+# winbox if wine is installed TODO
 yay -S --needed \
     alttab-git \
     cmusfm \
@@ -27,4 +28,3 @@ yay -S --needed \
     visual-studio-code-bin \
     st \
     asciinema-agg \
-    winbox \

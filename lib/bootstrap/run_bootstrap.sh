@@ -22,4 +22,4 @@ echo "Don't forget to change origin ref to SSH later" >&2
 config config status.showUntrackedFiles no
 config pull origin master
 
-sudo bash "$HOME"/lib/bootstrap/bootstrap.sh "$@"
+sudo bash "$HOME"/lib/bootstrap/bootstrap_i3.sh "$@"

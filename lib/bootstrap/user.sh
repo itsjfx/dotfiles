@@ -58,3 +58,13 @@ curl -fL https://raw.githubusercontent.com/magic-wormhole/magic-wormhole/master/
 
 kwriteconfig5 --file "$HOME"/.config/dolphinrc --group 'General' --key 'RememberOpenedTabs' false
 kwriteconfig5 --file "$HOME"/.config/dolphinrc --group 'General' --key 'BrowseThroughArchives' true
+
+( unset BROWSER; xdg-settings set default-web-browser firefox.desktop )
+
+# symlinks
+
+mkdir -p media/Pictures media/Music repos
+
+# probably redundant
+gsettings set org.gnome.desktop.interface gtk-theme 'Breeze'
+gsettings set org.gnome.desktop.interface color-scheme 'prefer-dark'

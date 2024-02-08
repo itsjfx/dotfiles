@@ -2,12 +2,6 @@
 set -eu -o pipefail
 
 
-# Only root can run this script
-if ! [ $UID -eq 0 ]; then
-    echo 'Run this script as root' >&2
-    exit 1
-fi
-
 LAPTOP=0
 DESKTOP=0
 case "${1:-}" in
@@ -24,7 +18,7 @@ case "${1:-}" in
         ;;
 esac
 
-get() { pacman -S --noconfirm --needed "$@"; }
+get() { sudo pacman -S --noconfirm --needed "$@"; }
 
 # https://wiki.archlinux.org/title/installation_guide
 # https://itsfoss.com/install-arch-linux/
@@ -75,8 +69,8 @@ get() { pacman -S --noconfirm --needed "$@"; }
 
 
 # Ensure the system is up to date
-pacman -Syy
-pacman -Syu
+sudo pacman -Syy
+sudo pacman -Syu
 
 
 cpu_arch="$(lscpu | grep '^Vendor ID:' | cut -d ':' -f2 | tr -d ' ')"
@@ -109,7 +103,6 @@ esac
     bluez \
     bluez-utils \
     libva-utils \
-    light \
     blueman \
     acpi
 
@@ -189,6 +182,7 @@ get \
     sysfsutils \
     zstd \
     zip \
+    brightnessctl \
 
 
 get \
@@ -265,24 +259,24 @@ get \
 
 get \
     gstreamer \
+    gst-libav \
     gst-plugins-bad \
     gst-plugins-base \
     gst-plugins-good
 
 
-get \
-    wireplumber
-
 # TODO: seem to always have an issue with wireplumber
 # missing a bunch of pulseaudio
+    #alsa-utils \
+    #alsa-firmware \
 get \
     pipewire \
+    pipewire-audio \
     pipewire-alsa \
-    alsa-utils \
-    alsa-firmware \
     pipewire-pulse \
+    wireplumber \
     pavucontrol \
-    pulseaudio-alsa \
+    sof-firmware \
     gst-plugin-pipewire
 
 # if wanting to use zram instead of a swapfile
@@ -293,29 +287,18 @@ get \
     firewalld
 
 # Disable sshd since the system is not yet hardened
-systemctl disable sshd || true
+sudo systemctl disable sshd || true
 
-systemctl enable NetworkManager.service
-systemctl start NetworkManager.service
-
-systemctl enable firewalld.service || true
-systemctl start firewalld.service
+sudo systemctl --now enable NetworkManager.service
+sudo systemctl --now enable firewalld.service || true
 
 # Set graphical target and enable sddm at boot
-systemctl enable sddm.service || true
-systemctl set-default graphical.target
+sudo systemctl --now enable sddm.service || true
+sudo systemctl set-default graphical.target
 
-mkdir -p ~/.ssh/
-chmod 700 ~/.ssh
-
-mkdir -p -m 700 /a/
-if id jfx &>/dev/null; then
-    chown -R jfx:jfx /a/
-else
-    echo 'No jfx user found, set the permissions for /a/ later' >&2
-fi
-
-xdg-settings set default-web-browser firefox.desktop
+mkdir -p -m 700 "$HOME"/.ssh/
+sudo mkdir -p -m 700 /a/
+sudo chown -R "$USER":"$USER" /a/
 
 # Boot into the new environment
 echo 'Rebooting in 10 seconds...' >&2

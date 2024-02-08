@@ -135,6 +135,7 @@ ForegroundVisited=155,89,182
 
 [General]
 BrowserApplication=firefox.desktop
+ColorScheme=BreezeDark
 Name=Breeze Dark
 TerminalApplication=alacritty
 TerminalService=Alacritty.desktop
@@ -143,6 +144,9 @@ XftSubPixel=rgb
 fixed=Noto Sans Mono,10,-1,5,50,0,0,0,0,0
 shadeSortColumn=true
 toolBarFont=Noto Sans,10,-1,5,50,0,0,0,0,0
+
+[Icons]
+Theme=breeze-dark
 
 [KDE]
 AnimationDurationFactor=0.7071067811865475

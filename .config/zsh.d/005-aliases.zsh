@@ -112,3 +112,6 @@ EOF
     )
     ssh "$@" -t "$SSH_COMMAND"
 }
+
+alias perm='stat -c "%n %a"'
+path() { readlink -f "${1-.}"; }
