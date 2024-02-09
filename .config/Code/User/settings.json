@@ -48,6 +48,7 @@
         "files.trimTrailingWhitespace": false,
         "editor.autoClosingQuotes": "never",
     },
+    "markdown.editor.pasteUrlAsFormattedLink.enabled": "always",
     "workbench.colorTheme": "Default Dark+",
     "workbench.startupEditor": "none",
     // "typescript.updateImportsOnFileMove.enabled": "always",
@@ -92,5 +93,7 @@
     "workbench.editor.wrapTabs": true,
     // eff off
     "typescript.surveys.enabled": false,
-    "playwright.reuseBrowser": true
+
+    // playwright
+    "playwright.reuseBrowser": true,
 }
