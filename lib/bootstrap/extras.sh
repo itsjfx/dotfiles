@@ -18,6 +18,8 @@ pacman -S --noconfirm --needed \
     python-pillow \
     python-websockets \
     python-pipenv \
+    python-dateutil \
+    python-requests \
 
 
 # android

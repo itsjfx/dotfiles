@@ -28,3 +28,5 @@ yay -S --needed \
     visual-studio-code-bin \
     st \
     asciinema-agg \
+    realvnc-vnc-viewer \
+

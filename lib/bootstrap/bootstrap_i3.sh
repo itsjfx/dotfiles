@@ -223,7 +223,9 @@ get \
     qt5-declarative \
     kcolorchooser \
     gwenview \
-    qt5ct
+    qt5ct \
+    xdg-desktop-portal \
+    xdg-desktop-portal-kde \
 
 
 # i3
@@ -277,7 +279,8 @@ get \
     wireplumber \
     pavucontrol \
     sof-firmware \
-    gst-plugin-pipewire
+    gst-plugin-pipewire \
+    pamixer \
 
 # if wanting to use zram instead of a swapfile
 #get \
