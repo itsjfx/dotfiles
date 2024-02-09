@@ -44,13 +44,8 @@ function applyCustomScriptToWindow(window) {
             modifiers: ['accel'],
             key: 'J',
             command: 'Tools:Downloads',
+            reserved: true,
         },
-        {
-            id: 'focus_window',
-            modifiers: ['alt'],
-            key: 'VK_OEM_2',
-            command: 'Tools:Downloads',
-        }
     ];
 
     // CTRL + ALT keys
@@ -62,6 +57,7 @@ function applyCustomScriptToWindow(window) {
                 modifiers: [mod],
                 key: (key != 10 ? key : 0), // cater for pressing 0
                 oncommand: `gBrowser.selectTabAtIndex(${i}, event);`,
+                reserved: true,
             });
         });
     }
@@ -73,6 +69,7 @@ function applyCustomScriptToWindow(window) {
             modifiers: ['alt'],
             keycode: 'VK_F'+key,
             oncommand: `gBrowser.selectTabAtIndex(${i+10}, event);`,
+            reserved: true,
         });
     }
 
