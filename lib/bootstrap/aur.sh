@@ -29,4 +29,5 @@ yay -S --needed \
     st \
     asciinema-agg \
     realvnc-vnc-viewer \
+    pandoc-bin \
 
