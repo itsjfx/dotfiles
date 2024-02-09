@@ -163,8 +163,6 @@ icon_path = /usr/share/icons/breeze-dark/actions/22/
 frame_width = 3
 frame_color = "#8EC07C"
 
-[shortcuts]
-
 # Shortcuts are specified as [modifier+][modifier+]...key
 # Available modifiers are "ctrl", "mod1" (the alt-key), "mod2",
 # "mod3" and "mod4" (windows-key).
