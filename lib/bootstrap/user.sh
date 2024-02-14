@@ -65,6 +65,8 @@ kwriteconfig5 --file "$HOME"/.config/dolphinrc --group 'General' --key 'BrowseTh
 
 mkdir -p media/Pictures media/Music repos
 
+systemctl enable --now --user ssh-agent.service
+
 # probably redundant
 gsettings set org.gnome.desktop.interface gtk-theme 'Breeze'
 gsettings set org.gnome.desktop.interface color-scheme 'prefer-dark'

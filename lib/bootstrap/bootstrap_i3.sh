@@ -104,7 +104,9 @@ esac
     bluez-utils \
     libva-utils \
     blueman \
-    acpi
+    acpi \
+    intel-gpu-tools \
+
 
 # picom -> picom-git
 get \
@@ -183,6 +185,9 @@ get \
     zstd \
     zip \
     brightnessctl \
+    dosfsutils \
+    arch-install-scripts \
+
 
 
 get \
