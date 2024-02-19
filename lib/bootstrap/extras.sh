@@ -155,6 +155,8 @@ pacman -S --noconfirm --needed \
     wireshark-cli \
     inetutils \
     mitmproxy \
+    gnu-netcat \
+    socat \
 
 # AWS
 pacman -S --noconfirm --needed \
