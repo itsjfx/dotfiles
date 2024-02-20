@@ -16,6 +16,7 @@ extensions:
 - {name: redhat.vscode-yaml}
 - {name: PKief.material-icon-theme}
 - {name: usernamehw.errorlens}
+- {name: ms-python.black-formatter}
 # - dbaeumer.vscode-eslint
 # - asvetliakov.vscode-neovim
 # - aws-scripting-guy.cform
