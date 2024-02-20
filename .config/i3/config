@@ -48,6 +48,10 @@ exec --no-startup-id exec alttab -fg "#d58681" -bg "#1b1b25" -frame "#eb564d" -t
 bindsym XF86MonBrightnessUp exec --no-startup-id $HOME/lib/notify/brightness.sh up
 bindsym XF86MonBrightnessDown exec --no-startup-id $HOME/lib/notify/brightness.sh down
 
+# where title is WM_NAME from xprop
+
+for_window [title="Playwright Inspector"] floating enable
+
 for_window [title="KCalc"] floating enable
 for_window [title="^Android Emulator*"] floating enable
 
@@ -55,6 +59,7 @@ for_window [title="^Android Emulator*"] floating enable
 # https://github.com/ValveSoftware/steam-for-linux/issues/1040
 for_window [class="^steam$"] floating enable
 for_window [class="^steam$" title="^Steam$"] floating disable
+
 
 # TODO: does this actually do anything
 # The combination of xss-lock, nm-applet and pactl is a popular choice, so
