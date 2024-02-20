@@ -87,6 +87,7 @@ pacman -S --noconfirm --needed \
     magic-wormhole \
     plasma-sdk \
     reflector \
+    github-cli \
 
 # icons
 pacman -S --noconfirm --needed \
