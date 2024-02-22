@@ -1,7 +1,8 @@
 #compdef obs2html
 
 _obs2html() {
-    local dir="$HOME/notes"
+    local files dir
+    dir="$HOME/notes"
     files="$(find -L "$dir" \
         -mindepth 1 \
         -type d -name '.obsidian' -prune -o \

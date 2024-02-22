@@ -69,20 +69,20 @@ alias mktargz="tar -czvf"
 alias count='sort | uniq -c | sort -rn'
 
 # git aliases
-_gcm() { cmd="$1"; shift; (( $# > 0 )) && "$cmd" commit --message "$*" || "$cmd" commit; }
+__gcm() { cmd="$1"; shift; (( $# > 0 )) && "$cmd" commit --message "$*" || "$cmd" commit; }
 
-gcm() { _gcm git "$@"; }
+gcm() { __gcm git "$@"; }
 alias ga='git add'
 alias gap='git add --patch'
 alias gb='git branch'
 alias gs='git status'
-alias gl='git log --stat --patch'
 alias gl='git pull'
 alias gp='git push'
 alias gm='git morelog'
+alias cm='config morelog'
 alias gco='git checkout'
 
-ccm() { _gcm config "$@"; }
+ccm() { __gcm config "$@"; }
 alias ca='config add'
 alias cap='config add --patch'
 alias cl='config pull'
