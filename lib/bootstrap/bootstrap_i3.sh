@@ -123,6 +123,7 @@ get \
     xorg-xkill \
     linux-firmware \
     openssh \
+    chrony \
 
 
 # xfce4-notifyd
@@ -299,6 +300,7 @@ sudo systemctl disable sshd || true
 
 sudo systemctl --now enable NetworkManager.service
 sudo systemctl --now enable firewalld.service || true
+sudo systemctl --now enable chronyd.service
 
 # Set graphical target and enable sddm at boot
 sudo systemctl --now enable sddm.service || true
