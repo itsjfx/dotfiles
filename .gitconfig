@@ -23,3 +23,7 @@
     path = .gitconfig_user
 [init]
 	defaultBranch = master
+[gpg]
+	format = ssh
+[commit]
+	gpgsign = true

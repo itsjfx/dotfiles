@@ -117,7 +117,8 @@ pacman -S --noconfirm --needed \
 # GUI installed cos
 pacman -S --noconfirm --needed \
     yubikey-manager \
-    yubikey-personalization
+    yubikey-personalization \
+    libfido2
 # yubikey-manager-qt \
 # yubikey-personalization-gui
 
