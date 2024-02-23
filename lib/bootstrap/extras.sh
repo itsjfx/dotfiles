@@ -21,6 +21,9 @@ pacman -S --noconfirm --needed \
     python-dateutil \
     python-requests \
 
+# irc
+# weechat
+# hexchat
 
 # android
 # pacman -S --noconfirm --needed \

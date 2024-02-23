@@ -10,6 +10,7 @@ options() {
     echo -e "Lock\0icon\x1fsystem-lock-screen-symbolic"
     # echo -e "Lock\0icon\x1fsystem-lock-screen"
     echo -e "Logout\0icon\x1fsystem-log-out\x1fmeta\x1fLog out"
+    echo -e "Reboot to BIOS\0icon\x1fsystem-reboot"
 }
 
 yesno() {
@@ -19,7 +20,7 @@ yesno() {
 
 choice="$(options | rofi -dmenu -i -p '>' "$@")"
 
-if [[ "$choice" == Shutdown || "$choice" == Reboot || "$choice" == Logout ]]; then
+if [[ "$choice" == Shutdown || "$choice" == Reboot* || "$choice" == Logout ]]; then
     confirm="$(yesno | rofi -dmenu -i -p 'Are you sure?' "$@")"
     if [[ "$confirm" == No ]]; then
         exit 1
@@ -33,6 +34,7 @@ case "$choice" in
     Hibernate) systemctl hibernate ;;
     Lock) loginctl lock-session "${XDG_SESSION_ID-}" ;;
     Logout) i3-msg exit ;;
+    'Reboot to BIOS') systemctl reboot --firmware-setup ;;
     *) exit 2 ;;
 #    Logout) loginctl terminate-session "${XDG_SESSION_ID-}" ;;
 esac
