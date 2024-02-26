@@ -116,3 +116,5 @@ EOF
 
 alias perm='stat -c "%n %a"'
 path() { readlink -f "${1-.}"; }
+
+alias youtube-dl='yt-dlp'

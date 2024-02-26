@@ -91,6 +91,7 @@ pacman -S --noconfirm --needed \
     plasma-sdk \
     reflector \
     github-cli \
+    yt-dlp \
 
 # icons
 pacman -S --noconfirm --needed \
