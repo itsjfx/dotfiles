@@ -1,3 +1,8 @@
 #!/usr/bin/env bash
 
-pandoc "$@" -f gfm -t html | xclip -selection clipboard -t text/html
+set -eu -o pipefail
+
+cd "$(dirname "$1")"
+file="$(basename "$1")"
+shift
+pandoc "$file" -f gfm -t html --embed-resources=true "$@" | xclip -selection clipboard -t text/html
