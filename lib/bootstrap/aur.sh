@@ -30,4 +30,5 @@ yay -S --needed \
     asciinema-agg \
     realvnc-vnc-viewer \
     pandoc-bin \
+    isoimagewriter \
 
