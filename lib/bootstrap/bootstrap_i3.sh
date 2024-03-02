@@ -186,7 +186,7 @@ get \
     zstd \
     zip \
     brightnessctl \
-    dosfsutils \
+    dosfstools \
     arch-install-scripts \
 
 
