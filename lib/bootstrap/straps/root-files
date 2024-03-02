@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+
+set -eu -o pipefail
+
+cd "$HOME"/.root-files
+find . -type f -print | sed 's/^.//' | xargs -I{} -- sh -c 'echo "Installing {}" >&2; sudo install -Dm 644 ".{}" "{}"'
