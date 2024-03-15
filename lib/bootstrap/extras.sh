@@ -20,6 +20,15 @@ pacman -S --noconfirm --needed \
     python-pipenv \
     python-dateutil \
     python-requests \
+    python-black \
+    python-cfn-lint \
+
+pacman -S --noconfirm --needed \
+    podman \
+    podman-compose \
+    podman-docker \
+    aardvark-dns \
+    slirp4netns \
 
 # irc
 # weechat

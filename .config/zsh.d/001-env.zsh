@@ -69,4 +69,4 @@ if type bat &>/dev/null; then
 	export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 	export MANROFFOPT="-c"
 fi
-
+export PODMAN_USERNS=keep-id

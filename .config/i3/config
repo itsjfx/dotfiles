@@ -117,6 +117,7 @@ bindsym $mod+Shift+d exec rofi -show run
 bindsym $mod+Shift+f exec "$HOME/lib/rofi/firefox.sh"
 bindsym $mod+Shift+p exec "$HOME/lib/rofi/power-menu.sh"
 bindsym $mod+Shift+c exec "$HOME/lib/rofi/code.sh"
+bindsym $mod+Shift+m exec "$HOME/lib/rofi/display.sh"
 
 # vim keys
 bindsym $mod+h focus left
