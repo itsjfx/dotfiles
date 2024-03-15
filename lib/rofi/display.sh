@@ -8,6 +8,9 @@ options() {
     echo -e "Work\0icon\x1fx-office-contact"
 }
 
+# TODO work on other machines
+[[ "$(hostname)" == bazooka ]]
+
 choice="$(options | rofi -dmenu -i -p '>' "$@")"
 
 case "$choice" in
