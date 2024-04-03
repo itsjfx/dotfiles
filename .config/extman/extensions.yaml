@@ -6,7 +6,6 @@ extensions:
 - {name: streetsidesoftware.code-spell-checker}
 - {name: vscodevim.vim}
 - {name: waderyan.gitblame}
-- {name: wix.vscode-import-cost}
 - {name: yzhang.markdown-all-in-one}
 - {name: zxh404.vscode-proto3}
 - {name: ms-vscode-remote.remote-ssh}
