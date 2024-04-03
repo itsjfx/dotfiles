@@ -1,5 +1,6 @@
 {
     "diffEditor.ignoreTrimWhitespace": false,
+    // https://github.com/microsoft/vscode/issues/106697
     // "editor.renderWhitespace": "trailing",
     "cSpell.enabledLanguageIds": [
         "git-commit",
@@ -18,9 +19,6 @@
         "*.ipynb": "jupyter-notebook"
     },
     "extensions.ignoreRecommendations": true,
-    "workbench.colorCustomizations": {
-        "tab.activeBackground": "#bf6a8a"
-    },
     "python.showStartPage": false,
     "notebook.cellToolbarLocation": {
         "default": "right",
@@ -96,20 +94,58 @@
     // playwright
     "playwright.reuseBrowser": true,
 
+    "errorLens.enabledDiagnosticLevels": [
+        "error",
+        "info",
+    ],
+
+    // themeing
+    // official Dracula has weird colouring on nav
+    // TODO just set the overrides here and use the official Dracula
+    "workbench.colorTheme": "Dracula Refined",
+    // change markdown heading colours to differentiate between them
+    "editor.tokenColorCustomizations": {
+        "[Dracula*]": {
+            "textMateRules": [
+                {
+                    "scope": "heading.2.markdown entity.name.section.markdown, heading.2.markdown punctuation.definition.heading.markdown",
+                    "settings": {
+                        "foreground": "#ffb86c",
+                    }
+                },
+                {
+                    "scope": "heading.3.markdown entity.name.section.markdown, heading.3.markdown punctuation.definition.heading.markdown",
+                    "settings": {
+                        "foreground": "#50fa7b",
+                    }
+                },
+                {
+                    "scope": "heading.4.markdown entity.name.section.markdown, heading.4.markdown punctuation.definition.heading.markdown",
+                    "settings": {
+                        "foreground": "#ff5555",
+                    }
+                },
+                {
+                    "scope": "heading.4.markdown entity.name.section.markdown, heading.4.markdown punctuation.definition.heading.markdown",
+                    "settings": {
+                        "foreground": "#f1fa8c",
+                    }
+                }
+            ]
+        }
+    },
+    "workbench.colorCustomizations": {
+        "tab.activeBackground": "#bf6a8a",
+    },
+
+    // python formatting
     // Black
     // "[python]": {
     //     "editor.defaultFormatter": "ms-python.black-formatter"
     // },
     // "black-formatter.args": ["--skip-string-normalization"],
-    "errorLens.enabledDiagnosticLevels": [
-        "error",
-        "info",
-    ],
-    // official Dracula has weird colouring on nav
-    "workbench.colorTheme": "Dracula Refined",
-
     "[python]": {
         "editor.defaultFormatter": "eeyore.yapf"
     },
-    "yapf.args": ["--style", "{based_on_style: pep8, CONTINUATION_ALIGN_STYLE: FIXED, DEDENT_CLOSING_BRACKETS: True, COLUMN_LIMIT: 110, BLANK_LINES_AROUND_TOP_LEVEL_DEFINITION: 1, SPLIT_ALL_TOP_LEVEL_COMMA_SEPARATED_VALUES: True, DISABLE_ENDING_COMMA_HEURISTIC: False}"]
+    "yapf.args": ["--style", "{based_on_style: pep8, CONTINUATION_ALIGN_STYLE: FIXED, DEDENT_CLOSING_BRACKETS: True, COLUMN_LIMIT: 110, BLANK_LINES_AROUND_TOP_LEVEL_DEFINITION: 1, SPLIT_ALL_TOP_LEVEL_COMMA_SEPARATED_VALUES: False, DISABLE_ENDING_COMMA_HEURISTIC: False}"]
 }
