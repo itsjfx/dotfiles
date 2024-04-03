@@ -49,7 +49,6 @@
         "editor.autoClosingQuotes": "never",
     },
     "markdown.editor.pasteUrlAsFormattedLink.enabled": "always",
-    "workbench.colorTheme": "Default Dark+",
     "workbench.startupEditor": "none",
     // "typescript.updateImportsOnFileMove.enabled": "always",
     "zenMode.hideLineNumbers": false,
@@ -96,4 +95,21 @@
 
     // playwright
     "playwright.reuseBrowser": true,
+
+    // Black
+    // "[python]": {
+    //     "editor.defaultFormatter": "ms-python.black-formatter"
+    // },
+    // "black-formatter.args": ["--skip-string-normalization"],
+    "errorLens.enabledDiagnosticLevels": [
+        "error",
+        "info",
+    ],
+    // official Dracula has weird colouring on nav
+    "workbench.colorTheme": "Dracula Refined",
+
+    "[python]": {
+        "editor.defaultFormatter": "eeyore.yapf"
+    },
+    "yapf.args": ["--style", "{based_on_style: pep8, CONTINUATION_ALIGN_STYLE: FIXED, DEDENT_CLOSING_BRACKETS: True, COLUMN_LIMIT: 110, BLANK_LINES_AROUND_TOP_LEVEL_DEFINITION: 1, SPLIT_ALL_TOP_LEVEL_COMMA_SEPARATED_VALUES: True, DISABLE_ENDING_COMMA_HEURISTIC: False}"]
 }
