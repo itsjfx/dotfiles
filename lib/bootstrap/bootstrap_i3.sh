@@ -140,7 +140,6 @@ get \
     hdparm \
     dos2unix \
     flameshot \
-    chrony \
     ripgrep \
     xdg-utils \
     lm_sensors \
