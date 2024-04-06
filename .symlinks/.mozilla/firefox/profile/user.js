@@ -12,6 +12,12 @@ user_pref("middlemouse.contentLoadURL", false);
 user_pref("middlemouse.paste", false);
 user_pref("browser.sessionstore.resume_from_crash", false);
 
+// animations
+user_pref("browser.tabs.animate", false);
+user_pref("general.smoothScroll", true);
+user_pref("general.smoothScroll.durationToIntervalRatio", 100)
+user_pref("general.smoothScroll.lines.durationMaxMS", 100)
+
 // annoying
 user_pref("network.protocol-handler.external.ext+container", true);
 

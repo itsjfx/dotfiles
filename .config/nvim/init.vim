@@ -147,7 +147,7 @@ colorscheme tokyonight-storm
 lua << EOF
 require'nvim-treesitter.configs'.setup {
   -- A list of parser names, or "all"
-  ensure_installed = { "python", "javascript", "typescript", "yaml", "html", "vim", "graphql", "dockerfile", "markdown", "lua", "json", "nix" },
+  ensure_installed = { "python", "javascript", "typescript", "yaml", "html", "vim", "graphql", "dockerfile", "markdown", "lua", "json", "go" },
 
   -- Install parsers synchronously (only applied to `ensure_installed`)
   sync_install = false,
