@@ -46,6 +46,11 @@
     "[markdown]": {
         "files.trimTrailingWhitespace": false,
         "editor.autoClosingQuotes": "never",
+        "editor.rulers": [80],
+
+        // "editor.wordWrap": "bounded",
+        // "editor.wordWrapColumn": 80,
+        // "vim.textwidth": 80,
     },
     "markdown.editor.pasteUrlAsFormattedLink.enabled": "always",
     "workbench.startupEditor": "none",
@@ -75,7 +80,8 @@
     "vim.handleKeys": {
         "<C-a>": false, // CTRL + a - select all
         "<C-w>": false, // CTRL + w - close windows
-        "<C-p>": false // CTRL + p - file finder
+        "<C-p>": false, // CTRL + p - file finder
+        "<A-q>": false // Alt + q - rewrap
     },
     "vim.enableNeovim": true,
     // "vim.neovimUseConfigFile": true,
@@ -131,6 +137,7 @@
         }
     },
     "workbench.colorCustomizations": {
+        "editorRuler.foreground": "#8be9fd",
         "tab.activeBackground": "#bf6a8a",
     },
     // python formatting

@@ -17,6 +17,7 @@ extensions:
 - {name: usernamehw.errorlens}
 - {name: eeyore.yapf}
 - {name: mathcale.theme-dracula-refined}
+- {name: stkb.rewrap}
 # - {name: ms-python.black-formatter}
 # - dbaeumer.vscode-eslint
 # - asvetliakov.vscode-neovim
