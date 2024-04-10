@@ -31,4 +31,5 @@ yay -S --needed \
     realvnc-vnc-viewer \
     pandoc-bin \
     isoimagewriter \
+    bun-bin \
 

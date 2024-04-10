@@ -101,6 +101,7 @@ pacman -S --noconfirm --needed \
     reflector \
     github-cli \
     yt-dlp \
+    dbeaver \
 
 # icons
 pacman -S --noconfirm --needed \
