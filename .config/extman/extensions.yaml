@@ -18,6 +18,7 @@ extensions:
 - {name: eeyore.yapf}
 - {name: mathcale.theme-dracula-refined}
 - {name: stkb.rewrap}
+- {name: eamodio.gitlens}
 # - {name: ms-python.black-formatter}
 # - dbaeumer.vscode-eslint
 # - asvetliakov.vscode-neovim

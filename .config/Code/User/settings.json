@@ -81,7 +81,9 @@
         "<C-a>": false, // CTRL + a - select all
         "<C-w>": false, // CTRL + w - close windows
         "<C-p>": false, // CTRL + p - file finder
-        "<A-q>": false // Alt + q - rewrap
+        "<A-q>": false, // Alt + q - rewrap
+        "<A-b>": false, // Alt + b - git lens: git blame
+        "<A-c>": false // Alt + b - git lens: git blame
     },
     "vim.enableNeovim": true,
     // "vim.neovimUseConfigFile": true,
@@ -158,5 +160,6 @@
     },
     "[jsonc]": {
         "editor.defaultFormatter": "vscode.json-language-features"
-    }
+    },
+    // "gitlens.blame.highlight.enabled": false
 }
