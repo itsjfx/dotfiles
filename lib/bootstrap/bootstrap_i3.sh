@@ -189,6 +189,7 @@ get \
     brightnessctl \
     dosfstools \
     arch-install-scripts \
+    man-pages \
 
 
 
