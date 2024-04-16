@@ -35,10 +35,12 @@ for plugin in \
     fi
 done
 
-if [[ "$(basename "$(grep "^${USER}" /etc/passwd | cut -f7 -d:)")" != 'zsh' ]]; then
+if ! command -vp zsh; then
+    echo 'Not changing shell: missing zsh' >&2
+elif [[ "$(basename "$(grep "^${USER}" /etc/passwd | cut -f7 -d:)")" != 'zsh' ]]; then
     chsh -s "$(which zsh)"
 else
-    echo 'Not changing shell' >&2
+    echo 'Not changing shell: shell is zsh' >&2
 fi
 
 if ! id -nGz "$USER" | grep -qzxF video; then
