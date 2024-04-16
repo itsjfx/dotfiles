@@ -24,29 +24,33 @@ confirm() {
 extensions="$(cat "$HOME"/.config/extman/extensions.yaml | yaml2json | jq -rce '.extensions[]')"
 extensions=( $extensions )
 
-action="${1:-}"
-shift || true
-case "$action" in
-    list)
-        <<<"${extensions[@]}" jq -re .name | sort -u
-        ;;
-    diff)
-        diff <(code --list-extensions | sort -u) <("$0" list)
-        ;;
-    install)
-        for extension in "${extensions[@]}"; do
-            name="$(<<<"$extension" jq -re .name)"
-            code --install-extension "$name"
-        done
-       ;;
-    clean)
-        for extension in $(comm -23 <(code --list-extensions | sort -u) <(<<<"${extensions[@]}" jq -re .name | sort -u)); do
-            if confirm "Uninstall $extension ?"; then
-                code --uninstall-extension "$extension"
-            fi
-        done
-        ;;
-    *)
-        print_help
-        ;;
-esac
+main() {
+    action="${1:-}"
+    shift || true
+    case "$action" in
+        list)
+            <<<"${extensions[@]}" jq -re .name | sort -u
+            ;;
+        diff)
+            diff <(code --list-extensions | sort -u) <(main list)
+            ;;
+        install)
+            for extension in "${extensions[@]}"; do
+                name="$(<<<"$extension" jq -re .name)"
+                code --install-extension "$name"
+            done
+           ;;
+        clean)
+            for extension in $(comm -23 <(code --list-extensions | sort -u) <(<<<"${extensions[@]}" jq -re .name | sort -u)); do
+                if confirm "Uninstall $extension ?"; then
+                    code --uninstall-extension "$extension"
+                fi
+            done
+            ;;
+        *)
+            print_help
+            ;;
+    esac
+}
+
+main "$@"
