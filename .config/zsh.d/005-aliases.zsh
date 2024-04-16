@@ -68,7 +68,8 @@ mkcd() { mkdir -p -- "$@" && cd -- "$@"; }
 
 alias mktargz="tar -czvf"
 alias mkzip='zip -r'
-alias count='sort | uniq -c | sort -rn'
+alias countr='sort | uniq -c | sort -rn'
+alias count='sort | uniq -c | sort -n'
 
 # git aliases
 __gcm() { cmd="$1"; shift; (( $# > 0 )) && "$cmd" commit --message "$*" || "$cmd" commit; }

@@ -48,7 +48,7 @@ if ! id -nGz "$USER" | grep -qzxF video; then
     sudo usermod -a -G video "$USER"
 fi
 
-if command -vp code &>/dev/null; then
+if command -vp extman &>/dev/null && command -vp code &>/dev/null; then
     extman install
 else
     echo 'code not installed, skipping extman' >&2

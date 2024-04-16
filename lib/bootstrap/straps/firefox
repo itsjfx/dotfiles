@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+
+set -eu -o pipefail
+
+for profile in $(find -L "$HOME"/.mozilla/firefox -maxdepth 1 | grep -E default-release$); do
+    echo "Found profile $profile" >&2
+    for path in chrome user.js; do
+        ln -sf "$HOME"/.symlinks/.mozilla/firefox/profile/"$path" "$profile"/"$path"
+    done
+done
