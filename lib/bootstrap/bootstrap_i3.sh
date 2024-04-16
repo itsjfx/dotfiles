@@ -106,6 +106,8 @@ esac
     blueman \
     acpi \
     intel-gpu-tools \
+    powertop \
+    tlp \
 
 
 # picom -> picom-git
@@ -308,6 +310,8 @@ sudo systemctl set-default graphical.target
 mkdir -p -m 700 "$HOME"/.ssh/
 sudo mkdir -p -m 700 /a/
 sudo chown -R "$USER":"$USER" /a/
+
+(( LAPTOP )) && sudo systemctl --now enable tlp.service
 
 # Boot into the new environment
 echo 'Rebooting in 10 seconds...' >&2
