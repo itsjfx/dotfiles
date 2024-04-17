@@ -1,6 +1,6 @@
 # vi: ft=sh
 
-export QT_QPA_PLATFORMTHEME=kde
+export QT_QPA_PLATFORMTHEME=qt5
 export STEAM_FRAME_FORCE_CLOSE=1
 export BROWSER=firefox
 export DA_TEST_DISABLE_TELEMETRY=1
