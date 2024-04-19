@@ -312,7 +312,11 @@ mkdir -p -m 700 "$HOME"/.ssh/
 sudo mkdir -p -m 700 /a/
 sudo chown -R "$USER":"$USER" /a/
 
-(( LAPTOP )) && sudo systemctl --now enable tlp.service
+# https://wiki.archlinux.org/title/TLP
+if (( LAPTOP )); then
+    sudo systemctl mask systemd-rfkill.service systemd-rfkill.socket
+    sudo systemctl --now enable tlp.service
+fi
 
 # Boot into the new environment
 echo 'Rebooting in 10 seconds...' >&2
