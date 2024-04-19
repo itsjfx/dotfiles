@@ -161,5 +161,6 @@
     "[jsonc]": {
         "editor.defaultFormatter": "vscode.json-language-features"
     },
-    // "gitlens.blame.highlight.enabled": false
+    "editor.selectionClipboard": false,
+    "gitlens.blame.highlight.enabled": false
 }

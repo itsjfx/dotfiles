@@ -58,5 +58,6 @@
     {
         "key": "alt+c",
         "command": "workbench.files.action.compareFileWith"
-    }
+    },
+    { "key": "alt+shift+c", "command": "gitlens.copyRemoteFileUrlToClipboard"},
 ]
