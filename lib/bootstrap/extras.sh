@@ -102,6 +102,7 @@ pacman -S --noconfirm --needed \
     github-cli \
     yt-dlp \
     dbeaver \
+    git-filter-repo \
 
 # icons
 pacman -S --noconfirm --needed \
