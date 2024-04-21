@@ -14,8 +14,10 @@ fi
 # just to not break stuff
 if [[ "$(hostname)" == "sandcastle" ]]; then
     export __GL_SYNC_TO_VBLANK=1
-    export __GL_SYNC_DISPLAY_DEVICE=DP-2
-    export VDPAU_NVIDIA_SYNC_DISPLAY_DEVICE=DP-2
+    local device
+    device="$(xrandr | grep -E 'DP-[0-9]+ connected' | cut -f1 -d ' ')"
+    export __GL_SYNC_DISPLAY_DEVICE="$device"
+    export VDPAU_NVIDIA_SYNC_DISPLAY_DEVICE="$device"
     x11vnc -display :0 -usepw -forever -bg
 else
     # TODO
