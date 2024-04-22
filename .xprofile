@@ -9,8 +9,8 @@ export GTK_USE_PORTAL=1
 if [[ -z "$SSH_AUTH_SOCK" ]]; then
     export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR"/ssh-agent.socket
     ssh-add "$HOME"/.ssh/id_ed25519
-    find "$HOME"/.ssh/ -type f -name "*@$(hostname)" | xargs ssh-add
-    find "$HOME"/.ssh/ -type f -name "*@keychain*" ! -name "*.pub" | xargs ssh-add
+    find "$HOME"/.ssh/ -type f -name "*@$(hostname)" | xargs -n ssh-add
+    find "$HOME"/.ssh/ -type f -name "*@keychain*" ! -name "*.pub" | xargs -n ssh-add
 fi
 
 # just to not break stuff
