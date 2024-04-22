@@ -28,6 +28,7 @@ WIP everyday
     * `dmenu`-like switcher on `Mod+d`
     * Firefox profile switcher on `Mod+Shift+f`
     * Power menu on `Mod+Shift+p`
+    * VS Code workspace opener on `Mod+Shift+c`
 * `dunst`
 * `neovim` or `code`
 * `cmus` or `spotify`
