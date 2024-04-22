@@ -30,6 +30,12 @@ pacman -S --noconfirm --needed \
     aardvark-dns \
     slirp4netns \
 
+# ocr
+pacman -S --noconfirm --needed \
+    tesseract \
+    tesseract-data-eng \
+
+
 # irc
 # weechat
 # hexchat
