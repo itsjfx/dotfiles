@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+# this is a hack to prevent freezes when running python scripts in bash
+
+echo "you probably meant to run this as a python script..." >&2
+exit 255
