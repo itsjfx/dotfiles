@@ -5,7 +5,7 @@ set -eu -o pipefail
 cmd="$(basename "$0")"
 _sudo=0
 case "$cmd" in
-    sudoedit) _sudo=1 ;;
+    .sudoedit|sudoedit) _sudo=1 ;;
     edit) ;;
     *) echo "Unknown command $cmd" >&2; exit 1 ;;
 esac
