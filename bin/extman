@@ -38,7 +38,8 @@ main() {
             echo "$_extensions" | sort -u | tr '[:upper:]' '[:lower:]'
             ;;
         diff)
-            diff <(main list --code) <(main list)
+            diff="$(git config --get interactive.diffFilter)"
+            $diff <(main list --code) <(main list) || true
             ;;
         install)
             for extension in $(main list); do
