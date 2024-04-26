@@ -162,5 +162,10 @@
         "editor.defaultFormatter": "vscode.json-language-features"
     },
     "editor.selectionClipboard": false,
-    "gitlens.blame.highlight.enabled": false
+    "gitlens.blame.highlight.enabled": false,
+    "go.showWelcome": false,
+    "go.survey.prompt": false,
+    "go.toolsEnvVars": {
+        "GOEXPERIMENT": "rangefunc"
+    }
 }

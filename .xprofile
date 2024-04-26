@@ -6,6 +6,8 @@ export BROWSER=firefox
 export DA_TEST_DISABLE_TELEMETRY=1
 export UNA_NO_CONTAINER_SSH=1
 export GTK_USE_PORTAL=1
+export PATH="$HOME/sbin:$PATH"
+
 if [[ -z "$SSH_AUTH_SOCK" ]]; then
     export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR"/ssh-agent.socket
     ssh-add "$HOME"/.ssh/id_ed25519
