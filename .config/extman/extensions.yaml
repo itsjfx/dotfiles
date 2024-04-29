@@ -20,6 +20,7 @@ extensions:
 - {name: stkb.rewrap}
 - {name: eamodio.gitlens}
 - {name: golang.Go}
+- {name: Zorvalt.puke-debug}
 # - {name: ms-python.black-formatter}
 # - dbaeumer.vscode-eslint
 # - asvetliakov.vscode-neovim
