@@ -1,0 +1,5 @@
+#compdef tmp
+
+_tmp() {
+    _dir_list -W "/tmp/"
+}

@@ -167,5 +167,8 @@
     "go.survey.prompt": false,
     "go.toolsEnvVars": {
         "GOEXPERIMENT": "rangefunc"
-    }
+    },
+    "gitlens.blame.highlight.enabled": false,
+    // "remote.SSH.enableAgentForwarding": true,
+    "remote.SSH.useExecServer": false,
 }
