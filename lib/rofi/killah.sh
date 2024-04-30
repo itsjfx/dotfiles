@@ -11,7 +11,7 @@ pid="$(xdotool getactivewindow getwindowpid)"
 if [[ "$(xdotool getactivewindow getwindowclassname)" =~ (Alacritty|firefox) ]]; then
     confirm="$(yesno | rofi -dmenu -i -p 'Are you sure?' "$@")"
     if [[ "$confirm" == No ]]; then
-        exit
+        exit 1
     fi
 fi
 
