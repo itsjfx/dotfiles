@@ -13,6 +13,11 @@ Usage:  $prog list         - List staged extensions
 EOF
 }
 
+yaml2json() {
+    python3 -c 'import sys, yaml, json; [json.dump(doc, sys.stdout) for doc in yaml.safe_load_all(sys.stdin)]'
+}
+
+
 # https://stackoverflow.com/a/3232082
 confirm() {
     local response
