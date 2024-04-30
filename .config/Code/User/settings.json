@@ -171,4 +171,19 @@
     "gitlens.blame.highlight.enabled": false,
     // "remote.SSH.enableAgentForwarding": true,
     "remote.SSH.useExecServer": false,
+    "puke-debug.exposureFormats": {
+        "shellscript": "\"%name% = ${%name%}\"",
+        "c": "\"%name% = %s\", %name%",
+        "cpp": "\"%name% = \" << %name%",
+        "csharp": "\"%name% = \" + %name%",
+        "go": "\"%name% = \", %name%",
+        "java": "\"%name% = \" + %name%.toString()",
+        "javascript": "\"%name% = \" + %name%",
+        "makefile": "\"%name% = $%name%\"",
+        "php": "\"%name% = \" . %name%",
+        "python": "\"%name% = \" + str(%name%)",
+        "rust": "&(%name%)",
+        "scala": "\"%name% = \" + %name%.toString()",
+        "typescript": "\"%name% = \" + %name%"
+    },
 }
