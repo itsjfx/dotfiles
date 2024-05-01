@@ -18,7 +18,7 @@ WIP everyday
     * [zsh-tmux-smart-status-bar](https://github.com/itsjfx/zsh-tmux-smart-status-bar) for tmux status bar
     * [fzf-tab-completion](https://github.com/lincheney/fzf-tab-completion) for tab completion with fzf
 * `i3-wm`
-    * gaps
+    * gaps (sometimes)
     * [i3-automark](https://github.com/lincheney/i3-automark) to automark windows
     * [alttab](https://github.com/sagb/alttab) to alt tab
 * `polybar`

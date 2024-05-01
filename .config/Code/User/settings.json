@@ -186,4 +186,5 @@
         "scala": "\"%name% = \" + %name%.toString()",
         "typescript": "\"%name% = \" + %name%"
     },
+    "extensions.autoUpdate": "onlyEnabledExtensions",
 }
