@@ -57,6 +57,7 @@ bindsym XF86MonBrightnessDown exec --no-startup-id $HOME/lib/notify/brightness.s
 for_window [title="Playwright Inspector"] floating enable
 
 for_window [title="KCalc"] floating enable
+for_window [class="SpeedCrunch"] floating enable
 for_window [title="^Android Emulator*"] floating enable
 
 

@@ -109,6 +109,7 @@ pacman -S --noconfirm --needed \
     yt-dlp \
     dbeaver \
     git-filter-repo \
+    speedcrunch \
 
 # icons
 pacman -S --noconfirm --needed \
