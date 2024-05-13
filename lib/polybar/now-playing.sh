@@ -8,7 +8,8 @@ format_player() {
         spotify) echo -n "%{F#1db954} " ;; # green
         cmus) echo -n "%{F#06bdff}🎶 " ;;   # blue-ish
     esac
-    playerctl --player="$1" metadata --format="{{ artist }} - {{ title }}"
+    text="$(playerctl --player="$1" metadata --format="{{ artist }} - {{ title }}")"
+    printf '%s' "${text:0:68}"
 }
 
 for player in cmus spotify; do
