@@ -8,9 +8,9 @@ check() {
 
 if check wg0; then
     #printf '%s' '%{F#06bdff}wg0'
-    printf '%s' '%{F#1db954}wg0'
+    printf '%s' '%{F#50fa7b}wg0'
     #printf '%s' '%{F#FF0000}wg0'
 else
-    printf '%s' '%{F#FF0000}wg0'
+    printf '%s' '%{F#ff5555}wg0'
 fi
 
