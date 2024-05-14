@@ -14,9 +14,31 @@ options() {
 choice="$(options | rofi -dmenu -i -p '>' "$@")"
 
 case "$choice" in
-    "Laptop Only") xrandr --output eDP-1 --mode 1920x1200 --pos 0x0 --rotate normal --output DP-1 --off --output HDMI-1 --off --output DP-2 --off --output DP-3 --off --output DP-4 --off ;;
-    Home) xrandr --output eDP-1 --mode 1920x1200 --pos 0x0 --rotate normal --output DP-1 --off --output HDMI-1 --off --output DP-2 --off --output DP-3 --off --output DP-4 --mode 1920x1080 --pos 1920x0 --rotate normal --refresh 240 --primary ;;
-    Work) xrandr --output eDP-1 --mode 1920x1200 --pos 0x0 --rotate normal --output DP-1 --off --output HDMI-1 --off --output DP-2 --off --output DP-4 --primary --mode 1920x1080 --pos 1920x0 --rotate normal --output DP-3 --off;;
+    "Laptop Only")
+        xrandr \
+            --output eDP-1 --mode 1920x1200 --pos 0x0 --rotate normal \
+            --output DP-1 --off \
+            --output HDMI-1 --off \
+            --output DP-2 --off \
+            --output DP-3 --off \
+            --output DP-4 --off
+        ;;
+    Home) xrandr \
+            --output DP-4 --mode 1920x1080 --pos 1920x0 --rotate normal --refresh 240 --primary \
+            --output eDP-1 --mode 1920x1200 --pos 0x0 --rotate normal \
+            --output DP-1 --off \
+            --output HDMI-1 --off \
+            --output DP-2 --off \
+            --output DP-3 --off
+        ;;
+    Work) xrandr \
+            --output DP-4 --mode 3840x2160 --pos 1920x0 --rotate normal --scale 0.6x0.6 --primary \
+            --output eDP-1 --mode 1920x1200 --pos 0x0 --rotate normal \
+            --output DP-1 --off \
+            --output HDMI-1 --off \
+            --output DP-2 --off \
+            --output DP-3 --off
+        ;;
 esac
 
 sleep 2
