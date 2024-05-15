@@ -28,14 +28,14 @@ for plugin in \
 
     if cd "$plugin_path" 2>/dev/null; then
         echo "Fetching $plugin_name" >&2
-        git pull --ff-only
+        git pull --ff-only --no-rebase
     else
         echo "Cloning $plugin_name" >&2
         git clone https://github.com/"$plugin" "$plugin_path"
     fi
 done
 
-if ! command -vp zsh; then
+if ! command -vp zsh &>/dev/null; then
     echo 'Not changing shell: missing zsh' >&2
 elif [[ "$(basename "$(grep "^${USER}" /etc/passwd | cut -f7 -d:)")" != 'zsh' ]]; then
     chsh -s "$(which zsh)"
