@@ -183,8 +183,7 @@ pacman -S --noconfirm --needed \
     socat \
 
 # AWS
-pacman -S --noconfirm --needed \
-    aws-cli-v2 \
+yay -S --noconfirm --needed aws-cli-v2 --mflags "--nocheck"
 
 
 # Security
