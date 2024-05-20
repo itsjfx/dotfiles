@@ -185,7 +185,6 @@ pacman -S --noconfirm --needed \
 # AWS
 yay -S --noconfirm --needed aws-cli-v2 --mflags "--nocheck"
 
-
 # Security
 
 # missing bcrypt
