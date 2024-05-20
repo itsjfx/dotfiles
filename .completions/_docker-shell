@@ -1,0 +1,7 @@
+#compdef docker-shell
+
+_docker-shell() {
+    (
+        words=( docker exec '' ) CURRENT=3 _normal
+    )
+}

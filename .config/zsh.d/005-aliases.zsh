@@ -122,3 +122,10 @@ path() { readlink -f "${1-.}"; }
 alias youtube-dl='yt-dlp'
 
 own() { chown -R "$USER":"$USER" "$@"; }
+
+docker-shell() {
+    container="$1"
+    shift
+    docker exec -it "$container" sh -c "[ -f /bin/bash ] && exec /bin/bash $@ || exec /bin/sh $@"
+}
+alias podman-shell=docker-shell
