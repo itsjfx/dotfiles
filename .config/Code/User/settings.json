@@ -187,4 +187,11 @@
         "typescript": "\"%name% = \" + %name%"
     },
     "extensions.autoUpdate": "onlyEnabledExtensions",
+    "[html]": {
+        "editor.defaultFormatter": "vscode.html-language-features"
+    },
+    "workbench.colorTheme": "Dracula Refined",
+    "[yaml]": {
+        "editor.defaultFormatter": "redhat.vscode-yaml"
+    },
 }
