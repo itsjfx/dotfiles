@@ -1,0 +1,6 @@
+#compdef e
+
+_e() {
+    # https://stackoverflow.com/questions/59418289/zsh-completion-arguments-with-files-but-only-list-executable-files
+    _files -g "*(*)"
+}
