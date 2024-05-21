@@ -1,7 +1,7 @@
 #compdef docker-shell
 
 _docker-shell() {
-    (
-        words=( docker exec '' ) CURRENT=3 _normal
-    )
+    local cmd
+    cmd="$( builtin command -vp docker &>/dev/null && echo podman || echo docker )"
+    words=( "$cmd" exec '' ) CURRENT=3 _normal
 }
