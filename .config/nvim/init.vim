@@ -5,8 +5,6 @@ set number
 set expandtab
 set tabstop=4
 set shiftwidth=4
-" dodgy?
-set mouse=c
 set ignorecase smartcase
 
 " keep a buffer of 10 lines on scrolling
@@ -18,6 +16,19 @@ vnoremap <C-C> "+y
 " BUFFERS
 " keep current buffer open with unsafe changes
 set hidden
+
+set mouse=a
+function! ToggleMouse()
+    if &mouse == 'a'
+        set mouse=
+        echo "Mouse disabled"
+    else
+        set mouse=a
+        echo "Mouse enabled"
+    endif
+endfunction
+
+nnoremap <silent> <F2> :call ToggleMouse()<CR>
 
 if !exists('g:vscode')
 
