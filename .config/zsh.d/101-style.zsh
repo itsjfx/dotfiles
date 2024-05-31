@@ -49,7 +49,9 @@ zstyle ':completion::*:cd:*' fzf-completion-keybindings "${keys[@]}" /:accept:'r
 
 # https://github.com/ohmyzsh/ohmyzsh/blob/master/themes/robbyrussell.zsh-theme
 # but no git_prompt_info
-# TODO: basic prompt but it works pretty well for me
 PROMPT="%(?:%{$fg_bold[green]%}➜ :%{$fg_bold[red]%}➜ )"
+if [[ -n "$SSH_CONNECTION" ]]; then
+    PROMPT+=' %{$fg[green]%}%n@%m' # magenta
+fi
 PROMPT+=' %{$fg[cyan]%}%c%{$reset_color%} '
 export PROMPT
