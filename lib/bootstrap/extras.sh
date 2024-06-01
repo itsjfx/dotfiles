@@ -110,6 +110,7 @@ pacman -S --noconfirm --needed \
     dbeaver \
     git-filter-repo \
     speedcrunch \
+    mpv \
 
 # icons
 pacman -S --noconfirm --needed \
