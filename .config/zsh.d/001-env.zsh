@@ -75,3 +75,5 @@ if type bat &>/dev/null; then
 	export MANROFFOPT="-c"
 fi
 export PODMAN_USERNS=keep-id
+
+export AWS_DEFAULT_REGION=ap-southeast-2
