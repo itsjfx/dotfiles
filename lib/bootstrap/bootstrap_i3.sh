@@ -253,7 +253,8 @@ get \
     fontconfig \
     ttf-dejavu \
     ttf-liberation \
-    wqy-zenhei
+    wqy-zenhei \
+    ttf-fantasque-sans-mono
 
 
 
