@@ -138,7 +138,11 @@ pacman -S --noconfirm --needed \
 pacman -S --noconfirm --needed \
     yubikey-manager \
     yubikey-personalization \
-    libfido2
+    libfido2 \
+    yubikey-touch-detector \
+
+systemctl --user daemon-reload
+systemctl --user enable --now yubikey-touch-detector.service
 # yubikey-manager-qt \
 # yubikey-personalization-gui
 
