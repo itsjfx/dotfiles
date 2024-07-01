@@ -117,6 +117,11 @@ pacman -S --noconfirm --needed \
     ttf-iosevka-nerd \
     ttf-font-awesome
 
+# hardware hacking
+pacman -S --noconfirm --needed \
+    minicon \
+    screen \
+
 # streamdeck thing and yubikey
 pacman -S --noconfirm --needed \
     libusb \
