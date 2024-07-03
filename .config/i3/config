@@ -278,3 +278,6 @@ hide_edge_borders both
 
 #gaps inner 15
 #gaps outer 10
+
+# stop stealing focus, only mark as urgent
+focus_on_window_activation urgent
