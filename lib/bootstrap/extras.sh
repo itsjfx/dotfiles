@@ -22,6 +22,7 @@ pacman -S --noconfirm --needed \
     python-requests \
     python-black \
     python-cfn-lint \
+    python-pysocks \
 
 pacman -S --noconfirm --needed \
     podman \

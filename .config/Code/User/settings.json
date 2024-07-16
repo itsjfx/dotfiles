@@ -103,10 +103,6 @@
         "error",
         "info",
     ],
-    // themeing
-    // official Dracula has weird colouring on nav
-    // TODO just set the overrides here and use the official Dracula
-    "workbench.colorTheme": "Dracula Refined",
     // change markdown heading colours to differentiate between them
     "editor.tokenColorCustomizations": {
         "[Dracula*]": {
@@ -190,9 +186,9 @@
     "[html]": {
         "editor.defaultFormatter": "vscode.html-language-features"
     },
-    "workbench.colorTheme": "Dracula Refined",
+    "workbench.colorTheme": "Monokai",
     "[yaml]": {
-        "editor.defaultFormatter": "redhat.vscode-yaml"
+        // "editor.defaultFormatter": "redhat.vscode-yaml",
     },
     "prisma.showPrismaDataPlatformNotification": false,
 }
