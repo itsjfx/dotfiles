@@ -136,7 +136,7 @@
     },
     "workbench.colorCustomizations": {
         "editorRuler.foreground": "#8be9fd",
-        "tab.activeBackground": "#bf6a8a",
+        "tab.activeBackground": "#bf6a8a"
     },
     // python formatting
     // Black
@@ -191,4 +191,9 @@
         // "editor.defaultFormatter": "redhat.vscode-yaml",
     },
     "prisma.showPrismaDataPlatformNotification": false,
+    "gitlens.advanced.messages": {
+        "suppressLineUncommittedWarning": true
+    },
+    // "editor.fontFamily": "Fantasque Sans Mono",
+    // "editor.fontSize": 15
 }
