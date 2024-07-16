@@ -122,6 +122,7 @@ pacman -S --noconfirm --needed \
 pacman -S --noconfirm --needed \
     minicon \
     screen \
+    tcpdump \
 
 # streamdeck thing and yubikey
 pacman -S --noconfirm --needed \
