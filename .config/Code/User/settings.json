@@ -197,4 +197,5 @@
     "redhat.telemetry.enabled": false,
     // "editor.fontFamily": "Fantasque Sans Mono",
     // "editor.fontSize": 15
+    "vim.sneak": true
 }
