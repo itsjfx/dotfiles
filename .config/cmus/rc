@@ -9,3 +9,4 @@ set tree_width_percent=30
 set replaygain=disabled
 set scroll_offset=10
 set resume=true
+set status_display_program=cmusfm
