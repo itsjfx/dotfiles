@@ -28,10 +28,8 @@ while read -r line; do
 esac
 done < <(cmus-remote -C 'save -e -L -') | \
 fzf -d "[$SEP]" --ansi --with-nth=1,2,3,4 --nth=1,3 | \
-while IFS="$SEP" read -r artist _ track file; do
+while IFS="$SEP" read -r artist _ track file; do # dodgy
     echo "Now Playing: $file" >&2
-    #cmus-remote -C "add -q $file"
-    #cmus-remote -l -f "$file"
 
     cmus-remote -C "live-filter ~f \"$file\""
     cmus-remote -C "win-activate"
