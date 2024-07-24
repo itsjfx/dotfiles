@@ -3,6 +3,8 @@ bind -f common = vol +5%
 bind -f common - vol -5%
 bind -f common , seek -30s
 bind -f common . seek +30s
+bind -f common H seek -30s
+bind -f common L seek +30s
 bind -f library S shell tmux popup -e FZF_DEFAULT_OPTS="$FZF_DEFAULT_OPTS" -w 60% -h 60% -E ~/bin/cmus.sh
 
 set set_term_title=false
