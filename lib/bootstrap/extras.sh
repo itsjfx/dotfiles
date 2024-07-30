@@ -112,6 +112,7 @@ pacman -S --noconfirm --needed \
     git-filter-repo \
     speedcrunch \
     mpv \
+    sshfs \
 
 # icons
 pacman -S --noconfirm --needed \
