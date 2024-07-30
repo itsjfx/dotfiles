@@ -14,3 +14,5 @@ set scroll_offset=10
 set resume=true
 set status_display_program=cmusfm
 colorscheme dracula
+fset cue=filename="*.cue*"
+factivate !cue
