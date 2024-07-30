@@ -43,3 +43,4 @@ esac
 
 sleep 2
 nohup bash "$HOME"/lib/polybar/launch.sh >/dev/null 2>&1 &
+~/.fehbg
