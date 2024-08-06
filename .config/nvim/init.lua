@@ -655,6 +655,7 @@ require('lazy').setup({
             },
           },
         },
+        yamlls = {},
         -- clangd = {},
         -- gopls = {},
         -- pyright = {},
@@ -955,9 +956,10 @@ require('lazy').setup({
         'python',
         'typescript',
         'javascript',
+        'gitcommit',
       },
       -- Autoinstall languages that are not installed
-      auto_install = true,
+      -- auto_install = true,
       highlight = {
         enable = true,
         -- Some languages depend on vim's regex highlighting system (such as Ruby) for indent rules.
@@ -1026,24 +1028,13 @@ require('lazy').setup({
   },
 })
 
--- The line beneath this is called `modeline`. See `:help modeline`
--- vim: ts=2 sts=2 sw=2 et
---
--- vim.cmd [[
--- " {{{ Autocommands
---   " When editing a file, always jump to the last known cursor position.
---   " Don't do it for commit messages, when the position is invalid, or when
---   " inside an event handler (happens when dropping a file on gvim).
---   autocmd BufReadPost *
---     \ if &ft != 'gitcommit' && line("'\"") > 0 && line("'\"") <= line("$") |
---     \   exe "normal g`\'" |
---     \ endif
--- " }}}
--- ]]
-
+-- remember cursor position
 vim.cmd [[
   augroup vimrc-remember-cursor-position
     autocmd!
     autocmd BufReadPost * if &ft != 'gitcommit' && line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g`\"" | endif
   augroup END
 ]]
+
+-- The line beneath this is called `modeline`. See `:help modeline`
+-- vim: ts=2 sts=2 sw=2 et
