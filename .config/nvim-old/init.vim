@@ -47,6 +47,8 @@ map <A-f> :Files <CR>
 
 call plug#begin()
 
+Plug 'tpope/vim-fugitive'
+Plug 'rbong/vim-flog'
 Plug 'nvim-lualine/lualine.nvim'
 " If you want to have icons in your statusline choose one of these
 Plug 'nvim-tree/nvim-web-devicons'
