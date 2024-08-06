@@ -148,7 +148,7 @@ vim.opt.splitbelow = true
 vim.opt.list = true
 vim.opt.listchars = { tab = '» ', trail = '·', nbsp = '␣' }
 
--- Preview substitutions live, as you type!
+-- use default inccommand behaviour
 vim.opt.inccommand = 'nosplit'
 
 -- Show which line your cursor is on
@@ -263,7 +263,50 @@ vim.opt.rtp:prepend(lazypath)
 require('lazy').setup({
   -- NOTE: Plugins can be added with a link (or for a github repo: 'owner/repo' link).
   'tpope/vim-sleuth', -- Detect tabstop and shiftwidth automatically
-  'ap/vim-buftabline',
+
+  -- buffer line
+  -- 'ap/vim-buftabline', -- old school
+
+  {
+    'romgrk/barbar.nvim',
+    dependencies = {
+      -- 'lewis6991/gitsigns.nvim', -- OPTIONAL: for git status
+      'nvim-tree/nvim-web-devicons', -- OPTIONAL: for file icons
+    },
+    init = function()
+      vim.g.barbar_auto_setup = false
+    end,
+    opts = {
+      icons = {
+        buffer_index = true,
+      },
+      minimum_padding = 0,
+      maximum_padding = 0,
+      -- lazy.nvim will automatically call setup for you. put your options here, anything missing will use the default:
+      -- animation = true,
+      -- insert_at_start = true,
+      -- …etc.
+    },
+    version = '^1.0.0', -- optional: only update when a new 1.x version is released
+  },
+  -- {
+  --   'crispgm/nvim-tabline',
+  --   dependencies = { 'nvim-tree/nvim-web-devicons' }, -- optional
+  --   -- config = true,
+  --   config = function()
+  --     require('tabline').setup {
+  --       show_index = true, -- show tab index
+  --       show_modify = true, -- show buffer modification indicator
+  --       show_icon = true, -- show file extension icon
+  --       -- fnamemodify = ':t', -- file name modifier string
+  --       -- -- can be a function to modify buffer name
+  --       -- modify_indicator = '[+]', -- modify indicator
+  --       -- no_name = 'No name', -- no name buffer name
+  --       -- brackets = { '[', ']' }, -- file name brackets surrounding
+  --       -- inactive_tab_max_length = 0, -- max length of inactive tab titles, 0 to ignore
+  --     }
+  --   end,
+  -- },
 
   -- NOTE: Plugins can also be added by using a table,
   -- with the first argument being the link and the following
