@@ -1,3 +1,9 @@
+-- TODO fugitive
+-- oil
+-- undotree
+-- flog
+-- maybe nerdcommenter
+
 --[[
 
 =====================================================================
@@ -118,6 +124,8 @@ vim.opt.showmode = false
 --   vim.opt.clipboard = 'unnamedplus'
 -- end)
 
+vim.opt.pumheight = 12
+
 -- Enable break indent
 vim.opt.breakindent = true
 
@@ -156,6 +164,23 @@ vim.opt.cursorline = true
 
 -- Minimal number of screen lines to keep above and below the cursor.
 vim.opt.scrolloff = 10
+
+-- Ctrl + c to system clipboard
+vim.keymap.set('v', '<C-C>', '"+y', { noremap = true, silent = true })
+
+-- Show arrow on line break
+vim.opt.showbreak = '→ '
+
+-- Quickscope
+-- TODO move to its own section
+vim.g.qs_highlight_on_keys = { 'f', 'F', 't', 'T' }
+vim.cmd [[
+  augroup qs_colors
+  autocmd!
+  autocmd ColorScheme * highlight QuickScopePrimary guifg='#afff5f' gui=underline ctermfg=155 cterm=underline
+  autocmd ColorScheme * highlight QuickScopeSecondary guifg='#5fffff' gui=underline ctermfg=81 cterm=underline
+  augroup END
+]]
 
 -- [[ Basic Keymaps ]]
 --  See `:help vim.keymap.set()`
@@ -755,7 +780,7 @@ require('lazy').setup({
 
   { -- Autocompletion
     'hrsh7th/nvim-cmp',
-    event = 'InsertEnter',
+    event = { 'InsertEnter', 'CmdlineEnter' },
     dependencies = {
       -- Snippet Engine & its associated nvim-cmp source
       {
@@ -782,6 +807,8 @@ require('lazy').setup({
         },
       },
       'saadparwaiz1/cmp_luasnip',
+      'hrsh7th/cmp-cmdline',
+      'hrsh7th/cmp-nvim-lua',
 
       -- Adds other completion capabilities.
       --  nvim-cmp does not ship with all sources by default. They are split
@@ -865,8 +892,19 @@ require('lazy').setup({
           { name = 'nvim_lsp' },
           { name = 'luasnip' },
           { name = 'path' },
+          { name = 'nvim_lua' },
         },
       }
+
+      cmp.setup.cmdline(':', {
+        mapping = cmp.mapping.preset.cmdline(),
+        sources = cmp.config.sources({
+          { name = 'path' },
+        }, {
+          { name = 'cmdline' },
+        }),
+        matching = { disallow_symbol_nonprefix_matching = false },
+      })
     end,
   },
 
@@ -881,7 +919,7 @@ require('lazy').setup({
       -- Load the colorscheme here.
       -- Like many other themes, this one has different styles, and you could load
       -- any other, such as 'tokyonight-storm', 'tokyonight-moon', or 'tokyonight-day'.
-      vim.cmd.colorscheme 'tokyonight-night'
+      vim.cmd.colorscheme 'tokyonight-storm'
 
       -- You can configure highlights by doing something like:
       vim.cmd.hi 'Comment gui=none'
@@ -924,6 +962,7 @@ require('lazy').setup({
         return '%2l:%-2v'
       end
 
+      require('mini.cursorword').setup()
       -- ... and there is more!
       --  Check out: https://github.com/echasnovski/mini.nvim
     end,
@@ -936,6 +975,9 @@ require('lazy').setup({
   },
   {
     'rhysd/committia.vim',
+  },
+  {
+    'junegunn/vim-easy-align',
   },
   { -- Highlight, edit, and navigate code
     'nvim-treesitter/nvim-treesitter',
@@ -957,6 +999,11 @@ require('lazy').setup({
         'typescript',
         'javascript',
         'gitcommit',
+        'yaml',
+        'html',
+        'graphql',
+        'dockerfile',
+        'go',
       },
       -- Autoinstall languages that are not installed
       -- auto_install = true,
@@ -983,6 +1030,44 @@ require('lazy').setup({
       --    - Treesitter + textobjects: https://github.com/nvim-treesitter/nvim-treesitter-textobjects
     end,
   },
+  {
+    'nvim-treesitter/nvim-treesitter-context',
+    opts = {
+      max_lines = 5,
+    },
+  },
+  {
+    'unblevable/quick-scope',
+    config = function() end,
+  },
+  { 'lukas-reineke/indent-blankline.nvim', main = 'ibl', opts = {} },
+  {
+    'lincheney/nvim-ts-rainbow',
+    config = function()
+      vim.cmd [[
+        hi RainbowCol1 guifg=#bd93f9
+        hi RainbowCol2 guifg=#ff79c6
+        hi RainbowCol3 guifg=#50fa7b
+        hi RainbowCol4 guifg=#ffb86c
+        "hi RainbowCol1 guifg=#7aa2f7
+        "hi RainbowCol2 guifg=#e0af68
+        "hi RainbowCol3 guifg=#9ece6a
+        "hi RainbowCol4 guifg=#1abc9c
+      ]]
+      require('rainbow').setup {}
+    end,
+  },
+  {
+    'ggandor/leap.nvim',
+    config = function()
+      -- require('leap').create_default_mappings()
+      vim.keymap.set('n', 's', '<Plug>(leap)')
+      vim.keymap.set('n', 'S', '<Plug>(leap-from-window)')
+      vim.keymap.set({ 'x', 'o' }, 's', '<Plug>(leap-forward)')
+      vim.keymap.set({ 'x', 'o' }, 'S', '<Plug>(leap-backward)')
+    end,
+  },
+  { 'tpope/vim-repeat' },
 
   -- The following two comments only work if you have downloaded the kickstart repo, not just copy pasted the
   -- init.lua. If you want these files, they are in the repository, so you can just download them and
