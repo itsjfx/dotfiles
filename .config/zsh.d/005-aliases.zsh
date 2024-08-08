@@ -129,3 +129,5 @@ docker-shell() {
     docker exec -it "$container" sh -c "[ -f /bin/bash ] && exec /bin/bash $@ || exec /bin/sh $@"
 }
 alias podman-shell=docker-shell
+
+alias rice='v ~/.config/nvim/init.lua ~/.config/nvim-old/init.vim ~/.config/i3/config ~/.config/zsh.d/*'
