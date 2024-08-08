@@ -2,9 +2,16 @@ import = [
     "~/lib/external/alacritty-theme/themes/dracula.toml"
 ]
 
+[shell]
+program = "/usr/bin/tmux"
+
+# only works IF in transparent mode using a compositor like picom
+[window]
+opacity = 0.4
+
+# my epic font choice
 [font]
 size = 15
-
 # or Comic Mono
 [font.bold]
 family = "Fantasque Sans Mono"
@@ -22,9 +29,12 @@ style = "Italic"
 family = "Fantasque Sans Mono"
 style = "Regular"
 
+# needed for colours
 [env]
 TERM = "xterm-256color"
 
+# this is some hack to send raw characters to tmux for ctrl tab or ctrl shift tab to navigate tabs
+# https://github.com/alacritty/alacritty/issues/4451#issuecomment-1235088018
 [[keyboard.bindings]]
 chars = "\u001B[27;5;9~"
 key = "Tab"
@@ -35,6 +45,8 @@ chars = "\u001B[27;6;9~"
 key = "Tab"
 mods = "Control|Shift"
 
+# this is a hack to send raw characters to tmux to allow ctrl + num
+# https://unix.stackexchange.com/a/96936
 [[keyboard.bindings]]
 chars = "\u001B[27;5;49~"
 key = "Key1"
@@ -85,8 +97,15 @@ chars = "\u001B[27;5;48~"
 key = "Key0"
 mods = "Control"
 
-[shell]
-program = "/usr/bin/tmux"
 
-[window]
-opacity = 0.4
+# unbind default search so I can use it in vim
+[[keyboard.bindings]]
+action = "ReceiveChar"
+key = "f"
+mods = "Control|Shift"
+
+# unbind vi mode cause I use tmux
+[[keyboard.bindings]]
+action = "ReceiveChar"
+key = "Space"
+mods = "Control|Shift"
