@@ -421,7 +421,17 @@ require('lazy').setup({
       -- Ctrl + Shift + f like in VS code
       vim.keymap.set('n', '<C-F>', ':Rg<CR>')
       -- Ctrl + p like in VS code
-      vim.keymap.set('n', '<C-P>', ':GitFiles<CR>')
+      -- vim.keymap.set('n', '<C-P>', ':GitFiles<CR>')
+      vim.keymap.set('n', '<C-P>', function()
+        local success, _ = pcall(function()
+          vim.cmd.gitsigns.get_status()
+        end)
+        if success then
+          vim.cmd.GitFiles()
+        else
+          vim.cmd.Files()
+        end
+      end, { noremap = true, silent = true })
     end,
   },
   { -- Fuzzy Finder (files, lsp, etc)
