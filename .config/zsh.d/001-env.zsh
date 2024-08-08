@@ -31,6 +31,9 @@ if [ -d "$HOME"/lib/external/bash-my-aws ]; then
 	export BMA_COLUMNISE_ONLY_WHEN_TERMINAL_PRESENT=true
 fi
 
+# dsv
+[ -d "$HOME/lib/external/dsv" ] && export PATH="$PATH:$HOME/lib/external/dsv"
+
 export AWS_DEFAULT_REGION=ap-southeast-2
 export SAM_CLI_TELEMETRY=0
 export AWS_PAGER=''

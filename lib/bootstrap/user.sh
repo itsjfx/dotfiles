@@ -21,6 +21,7 @@ for plugin in \
     'alacritty/alacritty-theme' \
     'lincheney/rg-bm25' \
     'lincheney/i3-automark' \
+    'lincheney/dsv' \
     'laktak/extrakto' \
     'wfxr/tmux-fzf-url' \
 ; do
