@@ -418,8 +418,8 @@ require('lazy').setup({
     },
     config = function()
       -- fzf hotkeys
-      -- Ctrl + Shift + f like in VS code
-      vim.keymap.set('n', '<C-F>', ':Rg<CR>')
+      -- Alt + f like in VS code
+      vim.keymap.set('n', '<A-f>', ':Rg<CR>')
       -- Ctrl + p like in VS code
       -- vim.keymap.set('n', '<C-P>', ':GitFiles<CR>')
       vim.keymap.set('n', '<C-P>', function()
