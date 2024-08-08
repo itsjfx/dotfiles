@@ -411,6 +411,19 @@ require('lazy').setup({
   --
   -- Use the `dependencies` key to specify the dependencies of a particular plugin
 
+  {
+    'junegunn/fzf.vim',
+    dependencies = {
+      { 'junegunn/fzf', build = './install --all' },
+    },
+    config = function()
+      -- fzf hotkeys
+      -- Ctrl + Shift + f like in VS code
+      vim.keymap.set('n', '<C-F>', ':Rg<CR>')
+      -- Ctrl + p like in VS code
+      vim.keymap.set('n', '<C-P>', ':GitFiles<CR>')
+    end,
+  },
   { -- Fuzzy Finder (files, lsp, etc)
     'nvim-telescope/telescope.nvim',
     event = 'VimEnter',
