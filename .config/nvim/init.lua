@@ -1,19 +1,14 @@
--- TODO fugitive
--- oil
+-- TODO
 -- undotree
--- flog
 -- maybe nerdcommenter
--- neovim colorizer
 -- copilot ? with a toggle
--- vim argwrap
--- treesj
 -- luochen1990 rainbow
--- nvim-treesitter-textobjects
--- lsp lines nvim
+-- nvim-treesitter-textobjects (configure it)
+-- lsp lines nvim (unneeded)?
 -- debug plugin
 -- rewrap
 -- ruff for python
--- use vim move or mini to move lines around instead of d and p
+-- always have a basic linter for ts/js
 -- use a different status line so the mode is captailised
 
 --[[
@@ -138,6 +133,11 @@ vim.opt.showmode = false
 
 vim.opt.pumheight = 12
 
+-- default space size
+vim.opt.expandtab = true
+vim.opt.tabstop = 4
+vim.opt.shiftwidth = 4
+
 -- Enable break indent
 vim.opt.breakindent = true
 
@@ -176,6 +176,9 @@ vim.opt.cursorline = true
 
 -- Minimal number of screen lines to keep above and below the cursor.
 vim.opt.scrolloff = 10
+
+-- True color support
+vim.opt.termguicolors = true
 
 -- Ctrl + c to system clipboard
 vim.keymap.set('v', '<C-C>', '"+y', { noremap = true, silent = true })
@@ -406,11 +409,15 @@ require('lazy').setup({
       { 'junegunn/fzf', build = './install --all' },
     },
     config = function()
+      -- layout
+      vim.g.fzf_layout = { window = { width = 0.9, height = 0.8 } } -- default 0.6
+
       -- fzf hotkeys
       -- Alt + f like in VS code
       vim.keymap.set('n', '<A-f>', ':Rg<CR>')
+
       -- Ctrl + p like in VS code
-      -- vim.keymap.set('n', '<C-P>', ':GitFiles<CR>')
+      -- Do GitFiles if in a Git repo, else use normal Files
       vim.keymap.set('n', '<C-P>', function()
         local success, _ = pcall(function()
           vim.cmd.gitsigns.get_status()
@@ -446,6 +453,7 @@ require('lazy').setup({
 
       -- Useful for getting pretty icons, but requires a Nerd Font.
       { 'nvim-tree/nvim-web-devicons', enabled = vim.g.have_nerd_font },
+      'nvim-treesitter/nvim-treesitter', -- optional
     },
     config = function()
       -- Telescope is a fuzzy finder that comes with a lot of different things that
@@ -605,6 +613,10 @@ require('lazy').setup({
           --  To jump back, press <C-t>.
           map('gd', require('telescope.builtin').lsp_definitions, '[G]oto [D]efinition')
 
+          -- show definition / hover of thing. similar to VS Code Vim plugins hover feature
+          -- alternatively use lspsaga as it will allow opening links and stuff
+          map('gh', vim.lsp.buf.hover, '[H]over]')
+
           -- Find references for the word under your cursor.
           map('gr', require('telescope.builtin').lsp_references, '[G]oto [R]eferences')
 
@@ -739,7 +751,7 @@ require('lazy').setup({
         --    https://github.com/pmizio/typescript-tools.nvim
         --
         -- But for many setups, the LSP (`tsserver`) will work just fine
-        -- tsserver = {},
+        tsserver = {},
         --
 
         lua_ls = {
@@ -878,6 +890,14 @@ require('lazy').setup({
         },
         completion = { completeopt = 'menu,menuone,noinsert' },
 
+        -- TODO max height if pressing Ctrl + g
+        -- alternatively, also tinker the max width
+        window = {
+          documentation = {
+            max_height = 20,
+          },
+        },
+
         -- For an understanding of why these mappings were
         -- chosen, you will need to read `:help ins-completion`
         --
@@ -928,8 +948,14 @@ require('lazy').setup({
             end
           end, { 'i', 's' }),
 
-          -- For more advanced Luasnip keymaps (e.g. selecting choice nodes, expansion) see:
-          --    https://github.com/L3MON4D3/LuaSnip?tab=readme-ov-file#keymaps
+          -- from https://github.com/hrsh7th/nvim-cmp/blob/ae644feb7b67bf1ce4260c231d1d4300b19c6f30/doc/cmp.txt#L971
+          ['<C-g>'] = function()
+            if cmp.visible_docs() then
+              cmp.close_docs()
+            else
+              cmp.open_docs()
+            end
+          end,
         },
         sources = {
           {
@@ -942,8 +968,14 @@ require('lazy').setup({
           { name = 'path' },
           { name = 'nvim_lua' },
         },
+        view = {
+          docs = {
+            auto_open = false,
+          },
+        },
       }
 
+      -- get cmp to work on the command line
       cmp.setup.cmdline(':', {
         mapping = cmp.mapping.preset.cmdline(),
         sources = cmp.config.sources({
@@ -1031,6 +1063,13 @@ require('lazy').setup({
   {
     'junegunn/vim-easy-align',
   },
+  {
+    'stevearc/oil.nvim',
+    opts = {},
+    -- Optional dependencies
+    -- dependencies = { { 'echasnovski/mini.icons', opts = {} } },
+    dependencies = { 'nvim-tree/nvim-web-devicons' }, -- use if prefer nvim-web-devicons
+  },
   { -- Highlight, edit, and navigate code
     'nvim-treesitter/nvim-treesitter',
     build = ':TSUpdate',
@@ -1082,10 +1121,30 @@ require('lazy').setup({
       --    - Treesitter + textobjects: https://github.com/nvim-treesitter/nvim-treesitter-textobjects
     end,
   },
+  -- this splits and joins things dictionaries etc very nicely
+  {
+    'Wansmer/treesj',
+    keys = { '<space>m', '<space>j', '<space>s' },
+    dependencies = { 'nvim-treesitter/nvim-treesitter' }, -- if you install parsers with `nvim-treesitter`
+    config = function()
+      require('treesj').setup {--[[ your config ]]
+      }
+    end,
+  },
   {
     'nvim-treesitter/nvim-treesitter-context',
     opts = {
       max_lines = 5,
+    },
+    dependencies = {
+      'nvim-treesitter/nvim-treesitter',
+    },
+  },
+  -- TODO need to configure this
+  {
+    'nvim-treesitter/nvim-treesitter-textobjects',
+    dependencies = {
+      'nvim-treesitter/nvim-treesitter',
     },
   },
   {
@@ -1119,7 +1178,18 @@ require('lazy').setup({
       vim.keymap.set({ 'x', 'o' }, 'S', '<Plug>(leap-backward)')
     end,
   },
+  -- makes dot / repeat key work on more things
   { 'tpope/vim-repeat' },
+  -- colorizer, colors hex codes and stuff with the color
+  {
+    'norcalli/nvim-colorizer.lua',
+    config = function()
+      require('colorizer').setup()
+    end,
+  },
+  -- git stuff
+  { 'tpope/vim-fugitive' },
+  { 'rbong/vim-flog' },
 
   -- The following two comments only work if you have downloaded the kickstart repo, not just copy pasted the
   -- init.lua. If you want these files, they are in the repository, so you can just download them and
