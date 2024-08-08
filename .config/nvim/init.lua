@@ -13,8 +13,8 @@
 -- debug plugin
 -- rewrap
 -- ruff for python
+-- use vim move or mini to move lines around instead of d and p
 -- use a different status line so the mode is captailised
--- fzf
 
 --[[
 
@@ -287,6 +287,7 @@ vim.opt.rtp:prepend(lazypath)
 -- NOTE: Here is where you install your plugins.
 require('lazy').setup({
   -- NOTE: Plugins can be added with a link (or for a github repo: 'owner/repo' link).
+  -- TODO could use guess-indent.nvim instead
   'tpope/vim-sleuth', -- Detect tabstop and shiftwidth automatically
 
   -- buffer line
