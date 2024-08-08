@@ -221,29 +221,17 @@ vim.keymap.set('n', '<A-Right>', ':bnext<CR>', { noremap = true, silent = true }
 -- Close buffer
 vim.keymap.set('n', '<leader>c', ':bd<CR>', { noremap = true, silent = true })
 
--- Function to go to a specific buffer by number
-local function goto_buffer(n)
-  return function()
-    local buffers = vim.fn.getbufinfo { buflisted = 1 }
-    if n <= #buffers then
-      vim.api.nvim_set_current_buf(buffers[n].bufnr)
-    else
-      print('Buffer ' .. n .. ' does not exist')
-    end
-  end
-end
-
--- Keybindings
-vim.keymap.set('n', '<Leader>1', goto_buffer(1), { noremap = true, silent = true })
-vim.keymap.set('n', '<Leader>2', goto_buffer(2), { noremap = true, silent = true })
-vim.keymap.set('n', '<Leader>3', goto_buffer(3), { noremap = true, silent = true })
-vim.keymap.set('n', '<Leader>4', goto_buffer(4), { noremap = true, silent = true })
-vim.keymap.set('n', '<Leader>5', goto_buffer(5), { noremap = true, silent = true })
-vim.keymap.set('n', '<Leader>6', goto_buffer(6), { noremap = true, silent = true })
-vim.keymap.set('n', '<Leader>7', goto_buffer(7), { noremap = true, silent = true })
-vim.keymap.set('n', '<Leader>8', goto_buffer(8), { noremap = true, silent = true })
-vim.keymap.set('n', '<Leader>9', goto_buffer(9), { noremap = true, silent = true })
-vim.keymap.set('n', '<Leader>0', goto_buffer(10), { noremap = true, silent = true })
+-- buffer bindings using barbar
+vim.keymap.set('n', '<Leader>1', ':BufferGoto 1<CR>', { noremap = true, silent = true })
+vim.keymap.set('n', '<Leader>2', ':BufferGoto 2<CR>', { noremap = true, silent = true })
+vim.keymap.set('n', '<Leader>3', ':BufferGoto 3<CR>', { noremap = true, silent = true })
+vim.keymap.set('n', '<Leader>4', ':BufferGoto 4<CR>', { noremap = true, silent = true })
+vim.keymap.set('n', '<Leader>5', ':BufferGoto 5<CR>', { noremap = true, silent = true })
+vim.keymap.set('n', '<Leader>6', ':BufferGoto 6<CR>', { noremap = true, silent = true })
+vim.keymap.set('n', '<Leader>7', ':BufferGoto 7<CR>', { noremap = true, silent = true })
+vim.keymap.set('n', '<Leader>8', ':BufferGoto 8<CR>', { noremap = true, silent = true })
+vim.keymap.set('n', '<Leader>9', ':BufferGoto 9<CR>', { noremap = true, silent = true })
+vim.keymap.set('n', '<Leader>0', ':BufferGoto 10<CR>', { noremap = true, silent = true })
 
 -- TIP: Disable arrow keys in normal mode
 -- vim.keymap.set('n', '<left>', '<cmd>echo "Use h to move!!"<CR>')
