@@ -11,6 +11,9 @@
 -- always have a basic linter for ts/js
 -- use a different status line so the mode is captailised
 
+-- inspriation
+-- https://github.com/ofirgall/learn-nvim/blob/master/media/EverythingEverywhereAllAtOnce.md
+
 --[[
 
 =====================================================================
@@ -236,6 +239,25 @@ vim.keymap.set('n', '<Leader>8', ':BufferGoto 8<CR>', { noremap = true, silent =
 vim.keymap.set('n', '<Leader>9', ':BufferGoto 9<CR>', { noremap = true, silent = true })
 vim.keymap.set('n', '<Leader>0', ':BufferGoto 10<CR>', { noremap = true, silent = true })
 
+-- open new buffer on leader + e
+vim.keymap.set('n', '<Leader>e', ':enew<CR>', { noremap = true, silent = true })
+
+-- Delete stuff without yanking
+-- https://github.com/ofirgall/learn-nvim/blob/pre_proofreading/src/chapters/04-copy-paste-visual.md#binds-to-deletechangereplace-without-yanking
+-- chatgpt
+-- i don't think this actually works
+-- Map <leader>d to delete character without yanking
+vim.api.nvim_set_keymap('n', '<leader>d', '"_x', { noremap = true, silent = true })
+
+-- Map <leader>w to delete word without yanking
+vim.api.nvim_set_keymap('n', '<leader>w', '"_dw', { noremap = true, silent = true })
+
+-- Map <leader>l to delete line without yanking
+vim.api.nvim_set_keymap('n', '<leader>l', '"_dd', { noremap = true, silent = true })
+
+-- Map <leader>v to delete visual selection without yanking
+vim.api.nvim_set_keymap('x', '<leader>v', '"_d', { noremap = true, silent = true })
+
 -- TIP: Disable arrow keys in normal mode
 -- vim.keymap.set('n', '<left>', '<cmd>echo "Use h to move!!"<CR>')
 -- vim.keymap.set('n', '<right>', '<cmd>echo "Use l to move!!"<CR>')
@@ -386,7 +408,7 @@ require('lazy').setup({
       -- Document existing key chains
       require('which-key').add {
         { '<leader>c', group = '[C]ode' },
-        { '<leader>d', group = '[D]ocument' },
+        -- { '<leader>d', group = '[D]ocument' },
         { '<leader>r', group = '[R]ename' },
         { '<leader>s', group = '[S]earch' },
         { '<leader>w', group = '[W]orkspace' },
@@ -627,7 +649,7 @@ require('lazy').setup({
           -- Jump to the type of the word under your cursor.
           --  Useful when you're not sure what type a variable is and you want to see
           --  the definition of its *type*, not where it was *defined*.
-          map('<leader>D', require('telescope.builtin').lsp_type_definitions, 'Type [D]efinition')
+          -- map('<leader>D', require('telescope.builtin').lsp_type_definitions, 'Type [D]efinition')
 
           -- Fuzzy find all the symbols in your current document.
           --  Symbols are things like variables, functions, types, etc.
@@ -1180,6 +1202,8 @@ require('lazy').setup({
   },
   -- makes dot / repeat key work on more things
   { 'tpope/vim-repeat' },
+  -- auto bullets and numbers in markdown, also allows sorting or fixing lists
+  { 'bullets-vim/bullets.vim' },
   -- colorizer, colors hex codes and stuff with the color
   {
     'norcalli/nvim-colorizer.lua',
