@@ -11,6 +11,8 @@
 -- always have a basic linter for ts/js
 -- use a different status line so the mode is captailised
 -- bash LSP + shfmt + shellcheck?
+-- https://github.com/rhysd/conflict-marker.vim
+-- learn gitsigns hotkeys
 
 -- inspriation
 -- https://github.com/ofirgall/learn-nvim/blob/master/media/EverythingEverywhereAllAtOnce.md
@@ -338,7 +340,7 @@ require('lazy').setup({
   {
     'romgrk/barbar.nvim',
     dependencies = {
-      -- 'lewis6991/gitsigns.nvim', -- OPTIONAL: for git status
+      'lewis6991/gitsigns.nvim', -- OPTIONAL: for git status
       'nvim-tree/nvim-web-devicons', -- OPTIONAL: for file icons
     },
     init = function()
@@ -390,15 +392,15 @@ require('lazy').setup({
   -- See `:help gitsigns` to understand what the configuration keys do
   { -- Adds git related signs to the gutter, as well as utilities for managing changes
     'lewis6991/gitsigns.nvim',
-    opts = {
-      signs = {
-        add = { text = '+' },
-        change = { text = '~' },
-        delete = { text = '_' },
-        topdelete = { text = '‾' },
-        changedelete = { text = '~' },
-      },
-    },
+    config = function()
+      require('gitsigns').setup {}
+      -- matching VS codes diff colours, but using dracula colour scheme for now
+      vim.cmd [[
+        hi GitSignsAdd guifg=#50fa7b
+        hi GitSignsChange guifg=#8be9fd
+        hi GitSignsDelete guifg=#ff5555
+      ]]
+    end,
   },
 
   -- NOTE: Plugins can also be configured to run Lua code when they are loaded.
