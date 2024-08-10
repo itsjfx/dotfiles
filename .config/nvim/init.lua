@@ -10,9 +10,26 @@
 -- ruff for python
 -- always have a basic linter for ts/js
 -- use a different status line so the mode is captailised
+-- bash LSP + shfmt + shellcheck?
 
 -- inspriation
 -- https://github.com/ofirgall/learn-nvim/blob/master/media/EverythingEverywhereAllAtOnce.md
+
+-- basically just https://github.com/junegunn/fzf.vim/blob/6f28c8c7bb551161a0315a76488522204f39c1f4/autoload/fzf/vim.vim#L683
+-- but return an error if not in git repo
+function Get_git_root(dir)
+  -- If dir is not provided or empty, determine it based on the current file's path
+  dir = vim.fn.substitute(vim.fn.split(vim.fn.expand '%:p:h', [[[/\\]\.git\([/\\]\|$\)]])[1], '^fugitive://', '', '')
+
+  -- Run the git command to find the top-level directory of the git repo
+  local root = vim.fn.systemlist('git -C ' .. vim.fn.fnameescape(dir) .. ' rev-parse --show-toplevel')[1]
+
+  if vim.v.shell_error ~= 0 then
+    error 'not in git repo'
+  end
+
+  return #dir > 0 and vim.fn.fnamemodify(dir, ':p') or root
+end
 
 --[[
 
@@ -441,9 +458,7 @@ require('lazy').setup({
       -- Ctrl + p like in VS code
       -- Do GitFiles if in a Git repo, else use normal Files
       vim.keymap.set('n', '<C-P>', function()
-        local success, _ = pcall(function()
-          vim.cmd.gitsigns.get_status()
-        end)
+        local success = pcall(Get_git_root)
         if success then
           vim.cmd.GitFiles()
         else
