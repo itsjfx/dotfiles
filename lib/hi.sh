@@ -1,5 +1,6 @@
 # this is a hacky way of playing nice with zsh-autosuggestions
 # TODO: play nice with zsh-autosuggestions if completing gcm or ccm
+# TODO dont count quotes in arg length
 _GCM=0
 gcm_highlight() {
     local command cmd args
