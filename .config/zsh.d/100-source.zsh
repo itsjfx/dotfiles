@@ -1,5 +1,6 @@
 # essentially plugins and anything i need to source
 
+source "$HOME"/lib/hi.sh
 source "$HOME"/lib/external/zsh-autosuggestions/zsh-autosuggestions.zsh
 # fpath in 000-opts
 

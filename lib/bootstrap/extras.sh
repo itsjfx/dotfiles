@@ -14,6 +14,7 @@ pip3 install --user --break-system-packages \
 # pillow for streamdeck
 pacman -S --noconfirm --needed \
     python-ruamel-yaml \
+    python-yaml \
     python-boto3 \
     python-pillow \
     python-websockets \
