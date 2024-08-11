@@ -353,7 +353,7 @@ require('lazy').setup({
       minimum_padding = 0,
       maximum_padding = 0,
       -- lazy.nvim will automatically call setup for you. put your options here, anything missing will use the default:
-      -- animation = true,
+      animation = false,
       -- insert_at_start = true,
       -- …etc.
     },
@@ -426,7 +426,7 @@ require('lazy').setup({
 
       -- Document existing key chains
       require('which-key').add {
-        { '<leader>c', group = '[C]ode' },
+        -- { '<leader>c', group = '[C]ode' },
         -- { '<leader>d', group = '[D]ocument' },
         { '<leader>r', group = '[R]ename' },
         { '<leader>s', group = '[S]earch' },
@@ -790,7 +790,20 @@ require('lazy').setup({
         --    https://github.com/pmizio/typescript-tools.nvim
         --
         -- But for many setups, the LSP (`tsserver`) will work just fine
-        tsserver = {},
+        tsserver = {
+          settings = {
+            javascript = {
+              format = {
+                enable = false,
+              },
+            },
+            typescript = {
+              format = {
+                enable = false,
+              },
+            },
+          },
+        },
         --
 
         lua_ls = {
