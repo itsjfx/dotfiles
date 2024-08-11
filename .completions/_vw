@@ -1,5 +1,5 @@
 #compdef vw
 
 _vw() {
-    _files -W "$HOME/.nvim-sessions" -g '*.vim'
+    _files -W "$HOME/.nvim-sessions"
 }

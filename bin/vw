@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
-session="$(<<<"$1" sed -e s/.vim//g)"
+session="$1"
 shift
 echo "Launching $session nvim session..." >&2
 
-nvim -S "$HOME/.nvim-sessions/$session.vim" "$@"
+nvim -S "$HOME/.nvim-sessions/$session" "$@"
