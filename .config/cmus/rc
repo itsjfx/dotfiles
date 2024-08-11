@@ -1,3 +1,5 @@
+# the default key bindings either seek too far for me or increase the volume too much
+# cause my keyboard repeat is pretty high i've reduced them
 bind -f common + vol +5%
 bind -f common = vol +5%
 bind -f common - vol -5%
@@ -5,14 +7,31 @@ bind -f common , seek -30s
 bind -f common . seek +30s
 bind -f common H seek -30s
 bind -f common L seek +30s
+
+# this is https://github.com/itsjfx/cmus-fzf - fzf search for my cmus library running in a tmux popup
 bind -f library S shell tmux popup -e FZF_DEFAULT_OPTS="$FZF_DEFAULT_OPTS" -w 70% -h 70% -E ~/lib/external/cmus-fzf/cmus-fzf
 
-set set_term_title=false
-set tree_width_percent=30
-set replaygain=disabled
-set scroll_offset=10
-set resume=true
-set status_display_program=cmusfm
+# ui
 colorscheme dracula
+set tree_width_percent=30
+
+# vim like settings
+set mouse=true
+set scroll_offset=10
+
+# this interferes with zsh-tmux-smart-status-bar
+set set_term_title=false
+
+# this annoys me
+set replaygain=disabled
+
+# resumes playback and state on exit. i'd prefer if this didn't play immediately but TODO
+set resume=true
+
+# last fm
+set status_display_program=cmusfm
+
+# i add folders where there's cues and they normally result in duplicates
+# this always filters them out of my library
 fset cue=filename="*.cue*"
 factivate !cue
