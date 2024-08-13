@@ -3,6 +3,9 @@
 # TODO dont count quotes in arg length
 _GCM=0
 gcm_highlight() {
+    if (( $PENDING > 0 || $KEYS_QUEUED_COUNT > 0 )); then
+        return
+    fi
     local command cmd args
     command=${BUFFER%% *}  # Extract the command from the buffer
 
