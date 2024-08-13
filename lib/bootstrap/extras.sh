@@ -114,6 +114,7 @@ pacman -S --noconfirm --needed \
     speedcrunch \
     mpv \
     sshfs \
+    ipcalc \
 
 # icons
 pacman -S --noconfirm --needed \
