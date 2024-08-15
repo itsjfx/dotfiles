@@ -467,6 +467,8 @@ require('lazy').setup({
           vim.cmd.Files()
         end
       end, { noremap = true, silent = true })
+      -- TODO I'd rather this be Ctrl Shift P but I can't figure out how to do that yet
+      vim.keymap.set('n', '<A-p>', ':Files<CR>')
     end,
   },
   { -- Fuzzy Finder (files, lsp, etc)
