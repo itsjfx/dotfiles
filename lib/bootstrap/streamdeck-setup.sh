@@ -5,6 +5,11 @@ if [ $UID -eq 0 ]; then
     exit 1
 fi
 
+pip3 install --user --break-system-packages \
+    streamdeck \
+    pulsectl \
+
+
 sudo groupadd i2c
 sudo chown :i2c /dev/i2c-*
 sudo usermod -aG i2c "$USER"
