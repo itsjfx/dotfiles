@@ -1,5 +1,18 @@
 #compdef vw
 
 _vw() {
-    _files -W "$HOME/.nvim-sessions"
+    local files dir workdir
+    dir="$HOME/.nvim-sessions"
+    files="$(find -L "$dir" \
+        -mindepth 1 \
+        -not -name '.*' \
+        -type f \
+    | sed "s#$dir/##")"
+    files=("${(f)files}")
+    descriptions=()
+    for file in "${files[@]}"; do
+        workdir="$(cat "$dir"/"$file" | grep -oP '(?<=cd ).*')"
+        descriptions+=("$file -- $workdir")
+    done
+    compadd -Q -q -d descriptions -a files
 }
