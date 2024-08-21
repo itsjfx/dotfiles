@@ -11,7 +11,7 @@ _vw() {
     files=("${(f)files}")
     descriptions=()
     for file in "${files[@]}"; do
-        workdir="$(cat "$dir"/"$file" | grep -oP '(?<=cd ).*')"
+        workdir="$(cat "$dir"/"$file" | grep -m1 -oP '(?<=cd ).*')"
         descriptions+=("$file -- $workdir")
     done
     compadd -Q -q -d descriptions -a files
