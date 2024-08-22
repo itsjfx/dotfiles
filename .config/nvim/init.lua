@@ -238,10 +238,12 @@ vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagn
 -- vim.keymap.set('t', '<Esc><Esc>', '<C-\\><C-n>', { desc = 'Exit terminal mode' })
 
 -- Previous buffer
-vim.keymap.set('n', '<A-Left>', ':bprev<CR>', { noremap = true, silent = true })
+vim.keymap.set('n', '<A-Left>', ':BufferPrevious<CR>', { noremap = true, silent = true })
+vim.keymap.set('n', '<C-A-Left>', ':BufferMovePrevious<CR>', { noremap = true, silent = true })
 
 -- Next buffer
-vim.keymap.set('n', '<A-Right>', ':bnext<CR>', { noremap = true, silent = true })
+vim.keymap.set('n', '<A-Right>', ':BufferNext<CR>', { noremap = true, silent = true })
+vim.keymap.set('n', '<C-A-Right>', ':BufferMoveNext<CR>', { noremap = true, silent = true })
 
 -- Close buffer
 vim.keymap.set('n', '<leader>c', ':bd<CR>', { noremap = true, silent = true })
