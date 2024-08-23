@@ -226,6 +226,9 @@ vim.cmd [[
 --  See `:help hlsearch`
 vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
 
+vim.api.nvim_set_keymap('n', '<C-_>', 'gcc', { noremap = false, silent = true })
+vim.api.nvim_set_keymap('v', '<C-_>', 'gc', { noremap = false, silent = true })
+
 -- Diagnostic keymaps
 vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostic [Q]uickfix list' })
 
@@ -238,30 +241,30 @@ vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagn
 -- vim.keymap.set('t', '<Esc><Esc>', '<C-\\><C-n>', { desc = 'Exit terminal mode' })
 
 -- Previous buffer
-vim.keymap.set('n', '<A-Left>', ':BufferPrevious<CR>', { noremap = true, silent = true })
-vim.keymap.set('n', '<C-A-Left>', ':BufferMovePrevious<CR>', { noremap = true, silent = true })
+vim.keymap.set('n', '<A-Left>', ':BufferPrevious<CR>', { silent = true })
+vim.keymap.set('n', '<C-A-Left>', ':BufferMovePrevious<CR>', { silent = true })
 
 -- Next buffer
-vim.keymap.set('n', '<A-Right>', ':BufferNext<CR>', { noremap = true, silent = true })
-vim.keymap.set('n', '<C-A-Right>', ':BufferMoveNext<CR>', { noremap = true, silent = true })
+vim.keymap.set('n', '<A-Right>', ':BufferNext<CR>', { silent = true })
+vim.keymap.set('n', '<C-A-Right>', ':BufferMoveNext<CR>', { silent = true })
 
 -- Close buffer
-vim.keymap.set('n', '<leader>c', ':bd<CR>', { noremap = true, silent = true })
+vim.keymap.set('n', '<leader>c', ':bd<CR>', { silent = true })
 
 -- buffer bindings using barbar
-vim.keymap.set('n', '<Leader>1', ':BufferGoto 1<CR>', { noremap = true, silent = true })
-vim.keymap.set('n', '<Leader>2', ':BufferGoto 2<CR>', { noremap = true, silent = true })
-vim.keymap.set('n', '<Leader>3', ':BufferGoto 3<CR>', { noremap = true, silent = true })
-vim.keymap.set('n', '<Leader>4', ':BufferGoto 4<CR>', { noremap = true, silent = true })
-vim.keymap.set('n', '<Leader>5', ':BufferGoto 5<CR>', { noremap = true, silent = true })
-vim.keymap.set('n', '<Leader>6', ':BufferGoto 6<CR>', { noremap = true, silent = true })
-vim.keymap.set('n', '<Leader>7', ':BufferGoto 7<CR>', { noremap = true, silent = true })
-vim.keymap.set('n', '<Leader>8', ':BufferGoto 8<CR>', { noremap = true, silent = true })
-vim.keymap.set('n', '<Leader>9', ':BufferGoto 9<CR>', { noremap = true, silent = true })
-vim.keymap.set('n', '<Leader>0', ':BufferGoto 10<CR>', { noremap = true, silent = true })
+vim.keymap.set('n', '<Leader>1', ':BufferGoto 1<CR>', { silent = true })
+vim.keymap.set('n', '<Leader>2', ':BufferGoto 2<CR>', { silent = true })
+vim.keymap.set('n', '<Leader>3', ':BufferGoto 3<CR>', { silent = true })
+vim.keymap.set('n', '<Leader>4', ':BufferGoto 4<CR>', { silent = true })
+vim.keymap.set('n', '<Leader>5', ':BufferGoto 5<CR>', { silent = true })
+vim.keymap.set('n', '<Leader>6', ':BufferGoto 6<CR>', { silent = true })
+vim.keymap.set('n', '<Leader>7', ':BufferGoto 7<CR>', { silent = true })
+vim.keymap.set('n', '<Leader>8', ':BufferGoto 8<CR>', { silent = true })
+vim.keymap.set('n', '<Leader>9', ':BufferGoto 9<CR>', { silent = true })
+vim.keymap.set('n', '<Leader>0', ':BufferGoto 10<CR>', { silent = true })
 
 -- open new buffer on leader + e
-vim.keymap.set('n', '<Leader>e', ':enew<CR>', { noremap = true, silent = true })
+vim.keymap.set('n', '<Leader>e', ':enew<CR>', { silent = true })
 
 -- Delete stuff without yanking
 -- https://github.com/ofirgall/learn-nvim/blob/pre_proofreading/src/chapters/04-copy-paste-visual.md#binds-to-deletechangereplace-without-yanking
