@@ -9,9 +9,13 @@ set -x
 if (( ! ROFI_RETV )); then
     # for dodgy hotkeys
     printf '\0use-hot-keys\x1ftrue\n'
+    # cache entries
+    if ! [[ -f "$RUNTIME_DIR"/1password.tsv ]]; then
+        op item list --vault Employee --format json --categories LOGIN | jq -r '.[] | [.id, .title, .additional_information] | @tsv' >"$RUNTIME_DIR"/1password.tsv
+    fi
     while read -r id name email; do
         printf '%s/%s\0icon\x1flock\x1finfo\x1f%s\n' "$name" "$email" "$id"
-    done < <(op item list --vault Employee --format json --categories LOGIN | jq -r '.[] | [.id, .title, .additional_information] | @tsv')
+    done <"$RUNTIME_DIR"/1password.tsv
 # username
 elif [[ "$ROFI_RETV" -eq 10 ]]; then
     # TODO pull username from additional_information

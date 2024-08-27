@@ -7,7 +7,9 @@ set -eu -o pipefail
 ROOT="$(realpath "$(dirname "$0")")"
 # 0077 = 600 files, 700 dirs
 umask 0077
-session_file="${XDG_RUNTIME_DIR:-/tmp/}"/1password.sh
+RUNTIME_DIR="${XDG_RUNTIME_DIR:-/tmp/}"
+export RUNTIME_DIR
+session_file="$RUNTIME_DIR"/1password.sh
 [[ -f "$session_file" ]] && source "$session_file"
 
 # op account get is a pretty quick way to tell if logged in
