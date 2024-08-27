@@ -1237,6 +1237,8 @@ require('lazy').setup({
       vim.keymap.set({ 'x', 'o' }, 'S', '<Plug>(leap-backward)')
     end,
   },
+  -- formatting for tsv/csv, makes each column a different colour
+  { 'mechatroner/rainbow_csv' },
   -- makes dot / repeat key work on more things
   { 'tpope/vim-repeat' },
   { 'tpope/vim-obsession' },
