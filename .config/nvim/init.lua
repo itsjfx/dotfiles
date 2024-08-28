@@ -1242,6 +1242,7 @@ require('lazy').setup({
   -- makes dot / repeat key work on more things
   { 'tpope/vim-repeat' },
   { 'tpope/vim-obsession' },
+  { 'ruanyl/vim-gh-line' },
   -- auto bullets and numbers in markdown, also allows sorting or fixing lists
   { 'bullets-vim/bullets.vim' },
   -- colorizer, colors hex codes and stuff with the color
