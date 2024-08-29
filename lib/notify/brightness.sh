@@ -4,8 +4,12 @@ set -eu -o pipefail
 
 NOTIFICATION_TIMEOUT=2000
 
+brightness=''
 get_brightness () {
-    brightnessctl -m -d intel_backlight | cut -d, -f4 | tr -d %
+    if [[ -z "$brightness" ]]; then
+        brightness="$(brightnessctl -m -d intel_backlight | cut -d, -f4 | tr -d %)"
+    fi
+    echo "$brightness"
 }
 
 send_notification () {
@@ -21,11 +25,19 @@ send_notification () {
 
 case "$1" in
     up)
-        brightnessctl set +10%
+        if [[ "$(get_brightness)" -ge 0 && "$(get_brightness)" -lt 10 ]]; then
+            brightnessctl set +1%
+        else
+            brightnessctl set +10%
+        fi
         send_notification
         ;;
     down)
-        brightnessctl set 10%-
+        if [[ "$(get_brightness)" -le 10 ]]; then
+            brightnessctl set 1%-
+        else
+            brightnessctl set 10%-
+        fi
         send_notification
         ;;
 esac
