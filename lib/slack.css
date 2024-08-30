@@ -1,0 +1,117 @@
+/* ==UserStyle==
+@name           app.slack.com - 22/09/2023, 1:43:09 pm
+@namespace      github.com/openstyles/stylus
+@version        1.0.0
+@description    Cleaner Slack for new UI. Less padding on sidebar
+@author         jfx
+==/UserStyle== */
+
+@-moz-document domain("app.slack.com") {
+
+    html {
+        --side-bar-width: 30px;
+        --side-bar-scale: 0.7;
+        --top-bar-height: 35px;
+    }
+
+    .p-client_workspace__layout {
+        /* fit workspace name to top */
+        overflow: initial !important;
+        /* thinner borders */
+        border-top: none !important;
+        border-left: none !important;
+
+        /* hotfix */
+        margin-left: -24px;
+    }
+
+    .p-message_pane_input, .c-message_kit__gutter {
+        padding-left: 0.5em !important;
+        padding-right: 0.5em !important;
+    }
+
+    /* wtf??? clin hax */
+    /*.p-view_contents--sidebar:not([aria-label="Search"]) { */
+    .p-view_contents--sidebar[aria-label="Home"] {
+        top: calc(-1 * var(--top-bar-height)) !important;
+        max-height: 100vh !important;
+        height: 100vh !important;
+        /* border-left: 1px solid var(--dt_color-otl-ter); */
+        border-left: 0 !important;
+        border-right: 0 !important;
+
+    }
+
+    /* remove crap on the right */
+    .p-client_workspace {
+        padding: 0 !important;
+    }
+    .p-client_workspace__layout {
+        border-right: 0 !important;
+    }
+
+    /* reduce the height of main part so the message box sits lower */
+    .p-view_contents--primary {
+        max-height: calc(100vh - 40px) !important;
+    }
+
+    /* threads to bottom */
+    .p-view_contents--secondary {
+        max-height: calc(100vh - 40px) !important;
+    }
+
+    /* make threads less padded */
+    .p-threads_view_header {
+        margin-left: 1em !important
+    }
+    .p-multi_thread_background {
+        margin-left: 0.5em !important;
+    }
+
+    /* the new tab rail on the left hand side. home/DMs/etc */
+    .p-tab_rail {
+        align-items: normal !important;
+    }
+    .p-client_workspace--including_tab_rail {
+        grid-template-columns: 51px auto !important; /* controls the width of the first column */
+        align-items: normal !important;
+    }
+
+    /* hack, not sure on how its actually aligned so just eyeballed it to 7px */
+    .p-control_strip {
+        align-items: normal !important;
+        padding-left: 7px !important;
+    }
+    .p-tab_rail .active-managed-focus-container .p-peek_trigger {
+        padding-left: 7px !important;
+    }
+    .p-tab_rail .active-managed-focus-container .p-tab_rail__tab_container .p-peek_trigger {
+        padding-left: 0px !important;
+    }
+    .c-tabs__tab_content {
+        padding: 0 !important;
+    }
+
+    /* second column, reduce padding. chan/user list */
+    .p-channel_sidebar__static_list__item__row_container {
+        padding: 0 !important;
+        padding-left: 4px !important;
+    }
+    .p-channel_sidebar .p-channel_sidebar__link--all-threads, .p-channel_sidebar .p-channel_sidebar__link--page, .p-drag_layer .p-channel_sidebar__link--all-threads, .p-drag_layer .p-channel_sidebar__link--page {
+        padding: 0 !important;
+        padding-left: 4px !important;
+    }
+    .p-channel_sidebar__channel {
+        padding: 0 !important;
+        padding-left: 4px !important;
+    }
+    .p-channel_sidebar--iap1 .p-channel_sidebar__section_heading.p-channel_sidebar__section_heading_channels, .p-drag_layer .p-channel_sidebar__section_heading.p-channel_sidebar__section_heading_channels {
+        padding: 0 !important;
+        padding-left: 4px !important;
+        margin: 0 !important;
+    }
+    .p-channel_sidebar__link--add-more-items.p-channel_sidebar__link {
+        padding: 0 !important;
+        padding-left: 4px !important;
+    }
+}
