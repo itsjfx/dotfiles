@@ -7,7 +7,6 @@ pacman -Syy
 # pip/python section
 
 pip3 install --user --break-system-packages \
-    monitorcontrol \
     cfn-flip \
 
 

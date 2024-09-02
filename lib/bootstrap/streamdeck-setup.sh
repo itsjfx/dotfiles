@@ -8,6 +8,7 @@ fi
 pip3 install --user --break-system-packages \
     streamdeck \
     pulsectl \
+    monitorcontrol \
 
 
 sudo groupadd i2c
