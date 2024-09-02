@@ -46,8 +46,8 @@ class Keys(Enum):
     SPOTIFY_PREVIOUS = 6
     SPOTIFY_PLAYPAUSE = 7
     SPOTIFY_NEXT = 8
-    SPOTIFY_VOLUME_UP = 4
-    SPOTIFY_VOLUME_DOWN = 9
+    VOLUME_UP = 4
+    VOLUME_DOWN = 9
 
     CMUS_PREVIOUS = 11
     CMUS_PLAYPAUSE = 12
@@ -63,9 +63,9 @@ def get_key_style(key, state):
         info['label']['text']['text'] = 'Play/Pause'
     elif key == Keys.SPOTIFY_NEXT:
         info['label']['text']['text'] = 'Next'
-    elif key == Keys.SPOTIFY_VOLUME_UP:
+    elif key == Keys.VOLUME_UP:
         info['label']['text']['text'] = 'Volume Up'
-    elif key == Keys.SPOTIFY_VOLUME_DOWN:
+    elif key == Keys.VOLUME_DOWN:
         info['label']['text']['text'] = 'Volume Down'
     elif key == Keys.CMUS_PREVIOUS:
         info['label']['text']['text'] = 'Previous'
@@ -86,6 +86,7 @@ def get_key_style(key, state):
     #     info['label']['text']['text'] = 'Volume Down'
     return info
 
+# state = True if pressed, False if unpressing
 def key_change_callback(deck, key_num, state):
     key = key_num
     try:
@@ -98,42 +99,45 @@ def key_change_callback(deck, key_num, state):
     if not type(key) == Keys:
         return
 
-    if state:
-        if key == Keys.SPOTIFY_PREVIOUS:
-            subprocess.run(['playerctl', '--player=spotify', 'previous'])
-        elif key == Keys.SPOTIFY_PLAYPAUSE:
-            subprocess.run(['playerctl', '--player=spotify', 'play-pause'])
-        elif key == Keys.SPOTIFY_NEXT:
-            subprocess.run(['playerctl', '--player=spotify', 'next'])
-        elif key == Keys.CMUS_PREVIOUS:
-            subprocess.run(['playerctl', '--player=cmus', 'previous'])
-        elif key == Keys.CMUS_PLAYPAUSE:
-            subprocess.run(['playerctl', '--player=cmus', 'play-pause'])
-        elif key == Keys.CMUS_NEXT:
-            subprocess.run(['playerctl', '--player=cmus', 'next'])
-        elif key == Keys.SPOTIFY_VOLUME_UP:
-            pulse_sink_input_volume('Spotify', increase=True)
-        elif key == Keys.SPOTIFY_VOLUME_DOWN:
-            pulse_sink_input_volume('Spotify', increase=False)
-        # TODO, detect correct monitor instead of assuming monitor=2
-        elif key == Keys.MONITOR_DP1:
-            subprocess.run(['monitorcontrol', '--monitor=2', '--set-input-source=DP1'])
-        elif key == Keys.MONITOR_HDMI1:
-            subprocess.run(['monitorcontrol', '--monitor=2', '--set-input-source=HDMI1'])
-        elif key == Keys.MONITOR_HDMI2:
-            subprocess.run(['monitorcontrol', '--monitor=2', '--set-input-source=HDMI2'])
-        else:
-            raise NotImplementedError(key)
+    if not state:
+        return
+    if key == Keys.SPOTIFY_PREVIOUS:
+        subprocess.run(['playerctl', '--player=spotify', 'previous'])
+    elif key == Keys.SPOTIFY_PLAYPAUSE:
+        subprocess.run(['playerctl', '--player=spotify', 'play-pause'])
+    elif key == Keys.SPOTIFY_NEXT:
+        subprocess.run(['playerctl', '--player=spotify', 'next'])
+    elif key == Keys.CMUS_PREVIOUS:
+        subprocess.run(['playerctl', '--player=cmus', 'previous'])
+    elif key == Keys.CMUS_PLAYPAUSE:
+        subprocess.run(['playerctl', '--player=cmus', 'play-pause'])
+    elif key == Keys.CMUS_NEXT:
+        subprocess.run(['playerctl', '--player=cmus', 'next'])
+    elif key in (Keys.VOLUME_UP, Keys.VOLUME_DOWN):
+        for player in ('cmus', 'spotify'):
+            status = subprocess.run(['playerctl', '--player', player, 'status'], capture_output=True, text=True).stdout.rstrip()
+            if status == 'Playing':
+                pulse_sink_input_volume(player, increase=(key == Keys.VOLUME_UP))
+                return
+    # TODO, detect correct monitor instead of assuming monitor=2
+    elif key == Keys.MONITOR_DP1:
+        subprocess.run(['monitorcontrol', '--monitor=2', '--set-input-source=DP1'])
+    elif key == Keys.MONITOR_HDMI1:
+        subprocess.run(['monitorcontrol', '--monitor=2', '--set-input-source=HDMI1'])
+    elif key == Keys.MONITOR_HDMI2:
+        subprocess.run(['monitorcontrol', '--monitor=2', '--set-input-source=HDMI2'])
+    else:
+        raise NotImplementedError(key)
 
 
 # this could probably be replaced with:
 # pactl list short clients
 # pactl set-sink-input-volume ID -10%
-def pulse_sink_input_volume(app_name, increase=True):
+def pulse_sink_input_volume(process_name, increase=True):
     with pulsectl.Pulse('volume') as pulse:
         for sink in pulse.sink_input_list():
             # sometimes there are multiple sinks named after the app, so not returning early on purpose
-            if sink.name == app_name:
+            if sink.__dict__['proplist']['application.process.binary'] == process_name:
                 vol = pulse.volume_get_all_chans(sink)
                 if increase:
                     new_vol = min(1, vol + VOLUME_INCREMENT)
