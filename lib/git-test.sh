@@ -8,7 +8,7 @@
 # host="$(git remote get-url origin | sed 's/.*@//' | sed 's/:.*//')"
 # echo "$host" >&2
 if [ -n "$SSH_CLIENT" ]; then
-    if match="$(<<<"$(ssh-add -L)" grep -m 1 bazooka)"; then
+    if match="$(<<<"$(ssh-add -L)" grep -m 1 -e bazooka -e rpg)"; then
         :
     elif ! match="$(<<<"$(ssh-add -L)" grep -m 1 'github@keychain')"; then
         echo "Could not find keychain key in SSH Agent" >&2
