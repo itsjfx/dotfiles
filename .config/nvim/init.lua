@@ -266,6 +266,12 @@ vim.keymap.set('n', '<Leader>0', ':BufferGoto 10<CR>', { silent = true })
 -- open new buffer on leader + e
 vim.keymap.set('n', '<Leader>e', ':enew<CR>', { silent = true })
 
+-- weird find and replacement thing
+-- https://stackoverflow.com/a/676619
+vim.cmd [[
+  vnoremap <C-r> "hy:%s/<C-r>h//gc<left><left><left>
+]]
+
 -- Delete stuff without yanking
 -- https://github.com/ofirgall/learn-nvim/blob/pre_proofreading/src/chapters/04-copy-paste-visual.md#binds-to-deletechangereplace-without-yanking
 -- chatgpt
