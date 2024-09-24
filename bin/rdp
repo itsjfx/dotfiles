@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+
+set -eu -o pipefail
+
+rdp_client="$( builtin command -v xfreerdp3 &>/dev/null && echo xfreerdp3 || echo xfreerdp )"
+cmd=(
+    "$rdp_client"
+    "$@"
+    -grab-keyboard
+    /dynamic-resolution
+)
+version="$("$rdp_client" --version | head -n1 | grep -oP 'version \K[0-9]')"
+case "$version" in
+    2) cmd+=(/cert-tofu) ;;
+    3) cmd+=(/cert:tofu) ;;
+    *) echo "Unknown xfreerdp version $version"; exit 1; ;;
+esac
+"${cmd[@]}"
