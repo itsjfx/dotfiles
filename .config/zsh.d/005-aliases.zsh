@@ -131,3 +131,15 @@ docker-shell() {
 alias podman-shell=docker-shell
 
 alias rice='v ~/.config/nvim/init.lua ~/.config/nvim-old/init.vim ~/.config/i3/config ~/.config/zsh.d/*'
+
+whenis () {
+    if ! [[ "$1" =~ ^[0-9]+(\.[0-9]+)?$ ]]; then
+        date -d "$@"
+    elif (( $1 > 1000000000*1000*1000 )); then
+        date -d "@${1::-6}.${1:${#1}-6}" "${@:2}"
+    elif (( $1 > 1000000000*1000 )); then
+        date -d "@${1::-3}.${1:${#1}-3}" "${@:2}"
+    else
+        date -d "@$@"
+    fi
+}
