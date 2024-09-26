@@ -468,6 +468,9 @@ require('lazy').setup({
       -- Alt + f like in VS code
       vim.keymap.set('n', '<A-f>', ':Rg<CR>')
 
+      -- Alt + b to see buffers TODO not very comfortable
+      vim.keymap.set('n', '<A-b>', ':Buffers<CR>')
+
       -- Ctrl + p like in VS code
       -- Do GitFiles if in a Git repo, else use normal Files
       vim.keymap.set('n', '<C-P>', function()
@@ -1336,6 +1339,18 @@ vim.cmd [[
     autocmd BufReadPost * if &ft != 'gitcommit' && line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g`\"" | endif
   augroup END
 ]]
+
+-- Function to remove trailing whitespace
+local function trim_whitespace()
+  if vim.bo.filetype ~= 'markdown' then
+    vim.cmd [[ %s/\s\+$//e ]]
+  end
+end
+
+-- Auto command to trim whitespace on save
+vim.api.nvim_create_autocmd('BufWritePre', {
+  callback = trim_whitespace,
+})
 
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
