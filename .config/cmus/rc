@@ -10,6 +10,7 @@ bind -f common L seek +30s
 
 # this is https://github.com/itsjfx/cmus-fzf - fzf search for my cmus library running in a tmux popup
 bind -f library S shell tmux popup -e FZF_DEFAULT_OPTS="$FZF_DEFAULT_OPTS" -w 70% -h 70% -E ~/lib/external/cmus-fzf/cmus-fzf
+bind -f library i shell tmux popup -e FZF_DEFAULT_OPTS="$FZF_DEFAULT_OPTS" -w 85% -h 85% -E ~/lib/cmus-mediainfo.sh
 
 # ui
 colorscheme dracula
