@@ -1,2 +1,7 @@
 #!/usr/bin/env bash
-sep=${1:-$'\t'}; [ -t 1 ] && column -t -s"$sep" | sed $'n;s/.*/\x1b[38;2;255;190;190m&\x1b[0m/;' || cat
+sep=${1:-$'\t'}
+if [ -t 1 ] || (( _FORCE )); then
+    column -t -s"$sep" | sed $'n;s/.*/\x1b[38;2;255;190;190m&\x1b[0m/;'
+else
+    cat
+fi
