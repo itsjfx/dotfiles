@@ -1,4 +1,6 @@
 # i3 config file (v4)
+# use xprop to figure out window titles
+
 
 # bright blue selector
 client.focused          #088FC1 #088FC1 #FFFFFF #F41B7C #770404
@@ -9,7 +11,7 @@ client.placeholder      #000000 #0c0c0c #ffffff #000000 #0c0c0c
 
 set $mod Mod4
 set $alt Mod1
-set $TERMINAL alacritty 
+set $TERMINAL alacritty
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
@@ -64,6 +66,8 @@ for_window [title="^Android Emulator*"] floating enable
 # https://github.com/ValveSoftware/steam-for-linux/issues/1040
 for_window [class="^steam$"] floating enable
 for_window [class="^steam$" title="^Steam$"] floating disable
+
+for_window [class="^eac.exe$"] floating enable
 
 
 # TODO: does this actually do anything

@@ -1,6 +1,13 @@
 #!/usr/bin/env bash
 set -eu -o pipefail
 
+add_to_group() {
+    if ! id -nGz "$USER" | grep -qzxF "$1"; then
+        echo "Requesting sudo to add $USER to $1 group" >&2
+        sudo usermod -a -G "$1" "$USER"
+    fi
+}
+
 # done via AUR for now ...
 #curl -fsSL https://fnm.vercel.app/install | bash -s -- --skip-shell
 
@@ -45,10 +52,8 @@ else
     echo 'Not changing shell: shell is zsh' >&2
 fi
 
-if ! id -nGz "$USER" | grep -qzxF video; then
-    echo "Requesting sudo to add $USER to video group" >&2
-    sudo usermod -a -G video "$USER"
-fi
+add_to_group video
+add_to_group optical
 
 if command -vp extman &>/dev/null && command -vp code &>/dev/null; then
     extman install

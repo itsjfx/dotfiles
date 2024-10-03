@@ -32,4 +32,5 @@ yay -S --needed \
     pandoc-bin \
     isoimagewriter \
     bun-bin \
+    cmus-git \
 

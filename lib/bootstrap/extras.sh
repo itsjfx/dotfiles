@@ -94,7 +94,6 @@ pacman -S --noconfirm --needed \
     obs-studio \
     exfat-utils \
     unrar \
-    cmus \
     qbittorrent \
     vlc \
     signal-desktop \

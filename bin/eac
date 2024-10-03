@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+
+set -eu -o pipefail
+
+export WINEPREFIX="$HOME"/.local/share/wineprefixes/eac
+export EACDIR="$WINEPREFIX/drive_c/Program Files/Exact Audio Copy"
+export WINEDEBUG=-all
+
+cd "$EACDIR"/Microsoft.VC80.CRT
+wine "$EACDIR"/EAC.exe
