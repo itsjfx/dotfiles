@@ -20,6 +20,9 @@ user_pref("general.smoothScroll.lines.durationMaxMS", 100);
 
 // annoying
 user_pref("network.protocol-handler.external.ext+container", true);
+// driving me nuts in a VDI
+// https://support.mozilla.org/en-US/questions/1438617
+user_pref("signon.showAutoCompleteFooter", false);
 
 // downloads
 user_pref("browser.download.useDownloadDir", false);
