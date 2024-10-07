@@ -8,6 +8,10 @@ source "$HOME"/lib/external/fzf-tab-completion/zsh/fzf-zsh-completion.sh
 bindkey '^I' fzf_completion
 [ -d "$HOME/lib/external/bash-my-aws" ] && source "$HOME"/lib/external/bash-my-aws/bash_completion.sh
 
+source "$HOME"/lib/external/live-preview.zsh/live-preview.zsh
+bindkey '\ep' live_preview.toggle
+bindkey '\es' live_preview.save
+
 #complete -C '/usr/local/bin/aws_completer' aws
 
 [[ -f /usr/share/fzf/shell/key-bindings.zsh ]] && source /usr/share/fzf/shell/key-bindings.zsh

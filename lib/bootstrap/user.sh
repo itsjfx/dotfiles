@@ -29,6 +29,7 @@ for plugin in \
     'lincheney/rg-bm25' \
     'lincheney/i3-automark' \
     'lincheney/dsv' \
+    'lincheney/live-preview.zsh' \
     'laktak/extrakto' \
     'wfxr/tmux-fzf-url' \
 ; do
