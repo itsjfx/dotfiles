@@ -62,6 +62,8 @@ for_window [title="KCalc"] floating enable
 for_window [class="SpeedCrunch"] floating enable
 for_window [title="^Android Emulator*"] floating enable
 
+# Firefox developer tools
+for_window [title="Developer Tools*"] floating enable
 
 # https://github.com/ValveSoftware/steam-for-linux/issues/1040
 for_window [class="^steam$"] floating enable
