@@ -71,6 +71,9 @@ alias mkzip='zip -r'
 alias countr='sort | uniq -c | sort -rn'
 alias count='sort | uniq -c | sort -n'
 
+alias dsvcountr='dsv sort | dsv uniq -c | dsv sort -rn'
+alias dsvcount='dsv sort | dsv uniq -c | dsv sort -n'
+
 # git aliases
 __gcm() { cmd="$1"; shift; (( $# > 0 )) && "$cmd" commit --message "$*" || "$cmd" commit; }
 
