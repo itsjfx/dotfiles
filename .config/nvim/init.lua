@@ -1218,6 +1218,8 @@ require('lazy').setup({
         'graphql',
         'dockerfile',
         'go',
+        'puppet',
+        'hcl',
       },
       -- Autoinstall languages that are not installed
       -- auto_install = true,
