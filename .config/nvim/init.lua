@@ -1,4 +1,5 @@
 -- TODO
+-- hello
 -- undotree
 -- maybe nerdcommenter
 -- copilot ? with a toggle
