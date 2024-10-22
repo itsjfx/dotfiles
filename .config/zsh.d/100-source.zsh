@@ -6,6 +6,8 @@ source "$HOME"/lib/external/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 source "$HOME"/lib/external/fzf-tab-completion/zsh/fzf-zsh-completion.sh
 bindkey '^I' fzf_completion
+export FZF_COMPLETION_OPTS='--tiebreak=chunk'
+
 [ -d "$HOME/lib/external/bash-my-aws" ] && source "$HOME"/lib/external/bash-my-aws/bash_completion.sh
 
 source "$HOME"/lib/external/live-preview.zsh/live-preview.zsh
