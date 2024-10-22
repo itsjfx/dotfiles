@@ -139,7 +139,7 @@ alias podman-shell=docker-shell
 
 alias rice='v ~/.config/nvim/init.lua ~/.config/nvim-old/init.vim ~/.config/i3/config ~/.config/zsh.d/*'
 
-whenis () {
+whenis() {
     if ! [[ "$1" =~ ^[0-9]+(\.[0-9]+)?$ ]]; then
         date -d "$@"
     elif (( $1 > 1000000000*1000*1000 )); then
@@ -150,3 +150,5 @@ whenis () {
         date -d "@$@"
     fi
 }
+
+alias ssh-anon='ssh -o PubkeyAuthentication=no -o IdentitiesOnly=yes -o ForwardAgent=no -o GSSAPIAuthentication=no -o HostbasedAuthentication=no'
