@@ -53,7 +53,7 @@ get() { sudo pacman -S --noconfirm --needed "$@"; }
 # disable root
 
 # for swap with zram
-# add 
+# add
 # /etc/systemd/zram-generator.conf
 # /etc/fstab add
 # /dev/zram0 none swap defaults 0 0
@@ -190,6 +190,7 @@ get \
     dosfstools \
     arch-install-scripts \
     man-pages \
+    fd \
 
 
 
