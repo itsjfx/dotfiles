@@ -320,6 +320,12 @@ if (( LAPTOP )); then
     sudo systemctl --now enable tlp.service
 fi
 
+if (( DESKTOP )); then
+    sudo systemctl enable nvidia-hibernate.service
+    sudo systemctl enable nvidia-suspend.service
+    sudo systemctl enable nvidia-resume.service
+fi
+
 # Boot into the new environment
 echo 'Rebooting in 10 seconds...' >&2
 sleep 10
