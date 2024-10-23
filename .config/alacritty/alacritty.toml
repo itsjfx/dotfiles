@@ -1,8 +1,5 @@
-import = [
-    "~/lib/external/alacritty-theme/themes/dracula.toml"
-]
 
-[shell]
+[terminal.shell]
 program = "/usr/bin/tmux"
 
 # only works IF in transparent mode using a compositor like picom
@@ -109,3 +106,10 @@ mods = "Control|Shift"
 action = "ReceiveChar"
 key = "Space"
 mods = "Control|Shift"
+
+[general]
+import = [
+    "~/lib/external/alacritty-theme/themes/dracula.toml"
+]
+
+[terminal]
