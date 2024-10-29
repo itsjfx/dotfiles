@@ -45,6 +45,8 @@ for plugin in \
     fi
 done
 
+ln -sr "$HOME"/lib/external/dsv/completions/dsv.zsh "$HOME"/.completions/_dsv
+
 if ! command -vp zsh &>/dev/null; then
     echo 'Not changing shell: missing zsh' >&2
 elif [[ "$(basename "$(grep "^${USER}" /etc/passwd | cut -f7 -d:)")" != 'zsh' ]]; then
