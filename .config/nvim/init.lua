@@ -209,6 +209,10 @@ vim.keymap.set('v', '<C-C>', '"+y', { noremap = true, silent = true })
 -- Show arrow on line break
 vim.opt.showbreak = '→ '
 
+vim.diagnostic.config {
+  virtual_text = false,
+}
+
 -- Quickscope
 -- TODO move to its own section
 vim.g.qs_highlight_on_keys = { 'f', 'F', 't', 'T' }
@@ -1318,6 +1322,12 @@ require('lazy').setup({
     'norcalli/nvim-colorizer.lua',
     config = function()
       require('colorizer').setup()
+    end,
+  },
+  {
+    'https://git.sr.ht/~whynothugo/lsp_lines.nvim',
+    config = function()
+      require('lsp_lines').setup()
     end,
   },
   -- git stuff
