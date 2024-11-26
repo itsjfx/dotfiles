@@ -153,3 +153,5 @@ whenis() {
 }
 
 alias ssh-anon='ssh -o PubkeyAuthentication=no -o IdentitiesOnly=yes -o ForwardAgent=no -o GSSAPIAuthentication=no -o HostbasedAuthentication=no'
+
+alias nospace="tr -d ' '"
