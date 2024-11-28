@@ -1327,6 +1327,13 @@ require('lazy').setup({
   { 'ruanyl/vim-gh-line' },
   -- auto bullets and numbers in markdown, also allows sorting or fixing lists
   { 'bullets-vim/bullets.vim' },
+  -- scroll bar
+  {
+    'dstein64/nvim-scrollview',
+    config = function()
+      require('scrollview').setup {}
+    end,
+  },
   -- colorizer, colors hex codes and stuff with the color
   {
     'norcalli/nvim-colorizer.lua',
