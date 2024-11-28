@@ -45,7 +45,7 @@ for plugin in \
     fi
 done
 
-ln -sr "$HOME"/lib/external/dsv/completions/dsv.zsh "$HOME"/.completions/_dsv
+ln -srf "$HOME"/lib/external/dsv/completions/dsv.zsh "$HOME"/.completions/_dsv
 
 if ! command -vp zsh &>/dev/null; then
     echo 'Not changing shell: missing zsh' >&2
