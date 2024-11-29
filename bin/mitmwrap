@@ -35,7 +35,7 @@ fi
 
 # thanks https://github.com/lincheney/ffcli/blob/ac89f62ae7039fb0fcdb77fd09203b413ac2d2f3/ffcli.py#L581-L587
 cert="$HOME"/.mitmproxy/mitmproxy-ca-cert.cer
-for var in AWS_CA_BUNDLE CURL_CA_BUNDLE SSL_CERT_FILE NODE_EXTRA_CA_CERTS; do
+for var in AWS_CA_BUNDLE CURL_CA_BUNDLE SSL_CERT_FILE NODE_EXTRA_CA_CERTS REQUESTS_CA_BUNDLE GIT_SSL_CAINFO; do
     eval "export $var=\"$cert\""
 done
 
