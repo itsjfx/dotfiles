@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+
+mitmdump --flow-detail=4 --showhost "$@"
