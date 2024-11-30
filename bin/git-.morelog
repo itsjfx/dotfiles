@@ -1,3 +1,5 @@
 #!/usr/bin/env bash
 
-git log --follow --stat --patch "${1-.}"
+path="${1-.}"
+shift 2>/dev/null || true
+git log --follow --stat --patch "$path" "$@"
