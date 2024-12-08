@@ -1,0 +1,2 @@
+#!/usr/bin/env bash
+ssh -o PubkeyAuthentication=no -o IdentitiesOnly=yes -o ForwardAgent=no -o GSSAPIAuthentication=no -o HostbasedAuthentication=no "$@"
