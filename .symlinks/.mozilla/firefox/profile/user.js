@@ -67,7 +67,7 @@ user_pref("browser.newtabpage.activity-stream.telemetry", false);
 /* 1610: ALL: enable the DNT (Do Not Track) HTTP header
  * [NOTE] DNT is enforced with Enhanced Tracking Protection regardless of this pref
  * [SETTING] Privacy & Security>Enhanced Tracking Protection>Send websites a "Do Not Track" signal... ***/
-user_pref("privacy.donottrackheader.enabled", true);
+//user_pref("privacy.donottrackheader.enabled", true);
 
 /* 0330: disable telemetry */
 user_pref("toolkit.telemetry.unified", false);
