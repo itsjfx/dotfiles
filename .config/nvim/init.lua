@@ -330,6 +330,27 @@ vim.api.nvim_create_autocmd('FileType', {
   end,
 })
 
+vim.treesitter.query.add_directive('set-offset!', function(match, pattern, bufnr, pred, metadata)
+  ---@cast pred integer[]
+  local capture_id = pred[2]
+  if not metadata[capture_id] then
+    metadata[capture_id] = {}
+  end
+
+  local range = metadata[capture_id].range or { match[capture_id]:range() }
+  local key = tonumber(pred[3])
+  if type(pred[4]) == 'string' and pred[4]:find '^[-+]' then
+    range[key] = (range[key] or 0) + tonumber(pred[4])
+  else
+    range[key] = tonumber(pred[4])
+  end
+
+  -- If this produces an invalid range, we just skip it.
+  if range[1] < range[3] or (range[1] == range[3] and range[2] <= range[4]) then
+    metadata[capture_id].range = range
+  end
+end)
+
 -- [[ Install `lazy.nvim` plugin manager ]]
 --    See `:help lazy.nvim.txt` or https://github.com/folke/lazy.nvim for more info
 local lazypath = vim.fn.stdpath 'data' .. '/lazy/lazy.nvim'
