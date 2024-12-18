@@ -14,5 +14,5 @@ _vw() {
         workdir="$(cat "$dir"/"$file" | grep -m1 -oP '(?<=cd ).*')"
         descriptions+=("$file -- $workdir")
     done
-    compadd -Q -q -d descriptions -a files
+    compadd -q -d descriptions -a files
 }

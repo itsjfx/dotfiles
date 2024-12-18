@@ -10,5 +10,5 @@ _obs2html() {
         -type f -name '*.md' -print \
     | sed "s#$dir/##")"
     files=("${(f)files}")
-    compadd -Q -q -a -- files
+    compadd -q -a -- files
 }

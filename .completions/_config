@@ -11,7 +11,7 @@ _config() {
             if [[ -n "$files" ]]; then
                 files=("${(f)files}")
                 # overrided fzf completion crashes
-                compadd -Q -q -a -- files
+                compadd -q -a -- files
             fi
         }
 
