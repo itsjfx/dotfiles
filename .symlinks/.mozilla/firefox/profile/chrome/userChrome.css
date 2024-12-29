@@ -116,11 +116,18 @@ html|*:root#main-window[privatebrowsingmode] tab .tab-content::before {
 }
 
 /* Make URLs bigger */
+#urlbar[breakout] {
+	/* Maintain old size, not sure if display specific */
+	--urlbar-height: 32.00px !important;
+	--urlbar-toolbar-height: 40px !important;
+	height: 32px !important;
+}
 #urlbar {
 	/* Maintain old size, not sure if display specific */
 	--urlbar-height: 32.00px !important;
 	--urlbar-toolbar-height: 40px !important;
-
+}
+.urlbar-input-container {
 	/* default: font-size: 1.15em; */
 	font-size: 1.2em !important;
 }
