@@ -12,7 +12,7 @@ export PATH="$PATH:$HOME/.local/bin"
 # my scripts
 export PATH="$HOME/bin:$PATH"
 # sbin
-if ! echo $PATH | grep -Fq ":$HOME/sbin:"; then
+if ! echo "$PATH" | grep -Fq ":$HOME/sbin:"; then
     export PATH="$HOME/sbin:$PATH"
 fi
 [ -d "$HOME/.meteor" ] && export PATH="$PATH:$HOME/.meteor"
