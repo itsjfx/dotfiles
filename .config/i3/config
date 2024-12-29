@@ -71,6 +71,8 @@ for_window [class="^steam$" title="^Steam$"] floating disable
 
 for_window [class="^eac.exe$"] floating enable
 
+for_window [class="isoimagewriter"] floating enable
+
 
 # TODO: does this actually do anything
 # The combination of xss-lock, nm-applet and pactl is a popular choice, so
