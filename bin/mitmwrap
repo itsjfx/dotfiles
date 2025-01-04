@@ -17,8 +17,8 @@ done
 
 if (( proxychains )); then
     file="$(mktemp)"
+    trap 'code="$?"; rm -f -- "$file"; exit "$code"' EXIT
     export PROXYCHAINS_CONF_FILE="$file"
-    # trap
     cat <<EOF >"$file"
 proxy_dns
 quiet_mode
