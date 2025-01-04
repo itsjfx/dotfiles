@@ -39,4 +39,4 @@ for var in AWS_CA_BUNDLE CURL_CA_BUNDLE SSL_CERT_FILE NODE_EXTRA_CA_CERTS REQUES
     eval "export $var=\"$cert\""
 done
 
-bwrap --dev-bind / / --ro-bind "$cert" "$(readlink -f /etc/ssl/certs/ca-certificates.crt)" -- "${cmd[@]}"
+bwrap --dev-bind / / --ro-bind "$cert" "$(readlink -f /etc/ssl/certs/ca-certificates.crt)" --ro-bind "$cert" "$(readlink -f "$(python3 -m certifi)")" -- "${cmd[@]}"
