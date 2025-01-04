@@ -1,0 +1,32 @@
+#!/usr/bin/env bash
+
+set -eu -o pipefail
+
+diff=delta
+
+args=()
+filter=''
+file1= file2=
+while (( $# )); do
+    arg="$1"
+    case "$arg" in
+        --filter) filter="$2"; shift 2 ;;
+        --*) args+=("$arg"); shift ;;
+        *)
+            if [[ -z "$file1" ]]; then
+                file1="$1"
+            elif [[ -z "$file2" ]]; then
+                file2="$1"
+            else
+                args+=("$arg")
+            fi
+            shift
+            ;;
+    esac
+done
+
+if [[ -n "$filter" ]]; then
+    "$diff" <(cat "$file1" | eval "$filter") <(cat "$file2" | eval "$filter") "${args[@]}"
+else
+    "$diff" "$file1" "$file2" "${args[@]}"
+fi
