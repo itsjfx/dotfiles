@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+pip3 install --user --break-system-packages -U \
+    'boto3-stubs[essential]' \
+    'boto3-stubs[iam]' \
+    'boto3-stubs[sts'] \
+
