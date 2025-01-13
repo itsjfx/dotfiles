@@ -1357,8 +1357,10 @@ require('lazy').setup({
   -- scroll bar
   {
     'dstein64/nvim-scrollview',
+    dependencies = { 'lewis6991/gitsigns.nvim' },
     config = function()
       require('scrollview').setup {}
+      require('scrollview.contrib.gitsigns').setup()
     end,
   },
   -- colorizer, colors hex codes and stuff with the color
