@@ -80,7 +80,7 @@ function applyCustomScriptToWindow(window) {
             removeExistingHotKeys(window, details);
         }
         let el = createElement(document, "key", details);
-        
+
         el.addEventListener("command", (ev) => {
             window.focus();
             //func(ev.target.ownerGlobal, eToO(ev))
@@ -109,14 +109,14 @@ try {
             window.console.log(document, window, location, 'hi', location.href);
 
             if (/^(chrome:(?!\/\/(global\/content\/commonDialog|browser\/content\/webext-panels)\.x?html)|about:(?!blank))/i.test(location.href)) {
-                if (window._gBrowser) {
+                //if (window._gBrowser) {
                     window.console.log('Applying script');
                     try {
                         applyCustomScriptToWindow(window);
                     } catch (ex) {
                         window.console.error('Error', ex);
                     }
-                }
+                //}
             }
         }
     }
