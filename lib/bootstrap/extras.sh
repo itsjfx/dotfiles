@@ -113,6 +113,7 @@ pacman -S --noconfirm --needed \
     mpv \
     sshfs \
     ipcalc \
+    grc \
 
 # icons
 pacman -S --noconfirm --needed \
