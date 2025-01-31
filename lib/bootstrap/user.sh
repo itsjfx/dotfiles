@@ -21,6 +21,7 @@ for plugin in \
     'zsh-users/zsh-autosuggestions' \
     'zsh-users/zsh-completions' \
     'lincheney/fzf-tab-completion' \
+    'lincheney/rl_custom_isearch' \
     'itsjfx/zsh-tmux-smart-status-bar' \
     'itsjfx/cmus-fzf' \
     'bash-my-aws/bash-my-aws' \
