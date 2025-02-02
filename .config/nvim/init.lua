@@ -927,6 +927,7 @@ require('lazy').setup({
         clangd = {},
         html = {},
         gopls = {},
+        -- ruff = {},
       }
 
       -- Ensure the servers and tools above are installed

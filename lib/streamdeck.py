@@ -1,43 +1,39 @@
 #!/usr/bin/env python3
 
-import os
+import copy
 import subprocess
-import threading
-import pulsectl
-import time
 import sys
+import threading
+import time
+from enum import Enum
 from functools import lru_cache
 
-from enum import Enum
+import pulsectl
 from PIL import Image, ImageDraw, ImageFont
 from StreamDeck.DeviceManager import DeviceManager
 from StreamDeck.ImageHelpers import PILHelper
 from StreamDeck.Transport.Transport import TransportError
-import copy
+
+class UnreachableException(Exception):
+    pass
 
 VOLUME_INCREMENT = 0.05
 
 DEFAULTS = {
-   'label': {
+    'label': {
         # https://pillow.readthedocs.io/en/stable/reference/ImageFont.html
         'font': {
             'font': '/usr/share/fonts/TTF/Roboto-Regular.ttf',
             'size': 14,
         },
         # https://pillow.readthedocs.io/en/stable/reference/ImageDraw.html?highlight=text#PIL.ImageDraw.ImageDraw.text
-        'text': {
-            'xy': (36, 50),
-            'anchor': 'ms',
-            'fill': 'white',
-            'text': None
-        }
+        'text': {'xy': (36, 50), 'anchor': 'ms', 'fill': 'white', 'text': None},
     },
     'image': None,
     'background': 'black',
 }
 
 # extend these
-
 class Keys(Enum):
     MONITOR_DP1 = 0
     MONITOR_HDMI1 = 5
@@ -96,7 +92,7 @@ def key_change_callback(deck, key_num, state):
 
     print(f'Deck {deck.id()} Key {key} / {key_num} = {state}', flush=True, file=sys.stderr)
 
-    if not type(key) == Keys:
+    if type(key) is not Keys:
         return
 
     if not state:
@@ -115,7 +111,9 @@ def key_change_callback(deck, key_num, state):
         subprocess.run(['playerctl', '--player=cmus', 'next'])
     elif key in (Keys.VOLUME_UP, Keys.VOLUME_DOWN):
         for player in ('cmus', 'spotify'):
-            status = subprocess.run(['playerctl', '--player', player, 'status'], capture_output=True, text=True).stdout.rstrip()
+            status = subprocess.run(
+                ['playerctl', '--player', player, 'status'], capture_output=True, text=True
+            ).stdout.rstrip()
             if status == 'Playing':
                 pulse_sink_input_volume(player, increase=(key == Keys.VOLUME_UP))
                 return
@@ -127,8 +125,7 @@ def key_change_callback(deck, key_num, state):
     elif key == Keys.MONITOR_HDMI2:
         subprocess.run(['monitorcontrol', '--monitor=2', '--set-input-source=HDMI2'])
     else:
-        raise NotImplementedError(key)
-
+        raise UnreachableException(key)
 
 # this could probably be replaced with:
 # pactl list short clients
@@ -144,8 +141,6 @@ def pulse_sink_input_volume(process_name, increase=True):
                 else:
                     new_vol = max(0, vol - VOLUME_INCREMENT)
                 pulse.volume_set_all_chans(sink, new_vol)
-
-
 
 # Generates a custom tile with run-time generated text and custom image via the
 # PIL module.
@@ -175,7 +170,7 @@ def render_key_image(deck, label, background='black', image=None):
 def update_key_image(deck, key, state):
     key_info = get_key_style(key, state)
     # Generate the custom key with the requested image and label.
-    #render_key_image(deck, label, background='black', image=None):
+    # render_key_image(deck, label, background='black', image=None):
     image = render_key_image(deck, key_info['label'], key_info['background'], key_info['image'])
 
     # Use a scoped-with on the deck to ensure we're the only thread using it
@@ -183,7 +178,6 @@ def update_key_image(deck, key, state):
     with deck:
         # Update requested key with the generated image.
         deck.set_key_image(key.value, image)
-
 
 def main():
     no_streamdeck_counter = 0

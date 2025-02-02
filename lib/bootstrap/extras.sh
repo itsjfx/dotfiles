@@ -24,6 +24,7 @@ pacman -S --noconfirm --needed \
     python-cfn-lint \
     python-pysocks \
     python-uv \
+    python-ruff \
 
 pacman -S --noconfirm --needed \
     podman \
@@ -297,7 +298,7 @@ rustup default stable
 # cat <<EOF > /etc/wireguard/wg0.conf
 # [Interface]
 # PrivateKey = $privatekey
-# Address = 
+# Address =
 # EOF
 
 # to import to network manager
