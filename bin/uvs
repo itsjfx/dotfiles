@@ -1,0 +1,39 @@
+#!/usr/bin/env python3
+
+import os
+import shlex
+import subprocess
+import sys
+from itertools import chain
+from pathlib import Path
+
+def find_venv(path):
+    for parent in chain([path], path.parents):
+        venv = parent / '.venv'
+        if venv.exists():
+            return venv
+
+def list_executables(path):
+    for file in path.iterdir():
+        if file.is_file() and os.access(file, os.X_OK):
+            yield file
+
+def main():
+    if venv := os.environ.get('VIRTUAL_ENV'):
+        raise Exception(f'Already in virtual env: {venv}')
+
+    venv = find_venv(Path.cwd())
+    if not venv:
+        raise Exception('No .venv found')
+
+    shell = os.environ.get('SHELL', '/bin/zsh')
+    shell = shlex.quote(shell)
+    script = venv / 'bin' / 'activate'
+    script = shlex.quote(str(script.absolute()))
+
+    commands = [f.name for f in list_executables(venv / 'bin')]
+    print('Commands available:', ' '.join(commands), file=sys.stderr)
+    subprocess.run([shell, '-i', '-c', f'source {script} && exec {shell}'])
+
+if __name__ == '__main__':
+    sys.exit(main())
