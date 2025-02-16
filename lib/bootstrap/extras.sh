@@ -116,6 +116,7 @@ pacman -S --noconfirm --needed \
     sshfs \
     ipcalc \
     grc \
+    tk \
 
 # icons
 pacman -S --noconfirm --needed \
