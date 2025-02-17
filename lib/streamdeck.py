@@ -93,7 +93,10 @@ def is_hub_connected():
     return False
 
 def toggle_hub():
-    r = requests.get('http://192.168.88.26')
+    try:
+        requests.get('http://192.168.88.16')
+    except Exception:
+        pass
     # r.raise_for_status()
 
 # state = True if pressed, False if unpressing
