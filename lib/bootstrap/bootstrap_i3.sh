@@ -191,6 +191,7 @@ get \
     arch-install-scripts \
     man-pages \
     fd \
+    usbutils \
 
 
 

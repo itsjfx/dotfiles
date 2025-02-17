@@ -5,6 +5,7 @@ import subprocess
 import sys
 import threading
 import time
+import requests
 from enum import Enum
 from functools import lru_cache
 
@@ -82,6 +83,19 @@ def get_key_style(key, state):
     #     info['label']['text']['text'] = 'Volume Down'
     return info
 
+# lol
+def is_hub_connected():
+    DEVICE = '05e3:0610'
+    output = subprocess.run(['lsusb'], capture_output=True, text=True).stdout
+    for line in output.split('\n'):
+        if DEVICE in line:
+            return True
+    return False
+
+def toggle_hub():
+    r = requests.get('http://192.168.88.26')
+    # r.raise_for_status()
+
 # state = True if pressed, False if unpressing
 def key_change_callback(deck, key_num, state):
     key = key_num
@@ -119,8 +133,12 @@ def key_change_callback(deck, key_num, state):
                 return
     # TODO, detect correct monitor instead of assuming monitor=2
     elif key == Keys.MONITOR_DP1:
+        if not is_hub_connected():
+            toggle_hub()
         subprocess.run(['monitorcontrol', '--monitor=2', '--set-input-source=DP1'])
     elif key == Keys.MONITOR_HDMI1:
+        if is_hub_connected():
+            toggle_hub()
         subprocess.run(['monitorcontrol', '--monitor=2', '--set-input-source=HDMI1'])
     elif key == Keys.MONITOR_HDMI2:
         subprocess.run(['monitorcontrol', '--monitor=2', '--set-input-source=HDMI2'])
