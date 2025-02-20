@@ -28,7 +28,7 @@ DEFAULTS = {
             'size': 14,
         },
         # https://pillow.readthedocs.io/en/stable/reference/ImageDraw.html?highlight=text#PIL.ImageDraw.ImageDraw.text
-        'text': {'xy': (36, 50), 'anchor': 'ms', 'fill': 'white', 'text': None},
+        'text': {'xy': (36, 36), 'anchor': 'ms', 'fill': 'white', 'text': None},
     },
     'image': None,
     'background': 'black',
@@ -37,6 +37,7 @@ DEFAULTS = {
 # extend these
 class Keys(Enum):
     MONITOR_DP1 = 0
+    KM_TOGGLE = 1
     MONITOR_HDMI1 = 5
     MONITOR_HDMI2 = 10
 
@@ -76,6 +77,13 @@ def get_key_style(key, state):
         info['label']['text']['text'] = 'Laptop'
     elif key == Keys.MONITOR_HDMI2:
         info['label']['text']['text'] = 'Other'
+    elif key == Keys.KM_TOGGLE:
+        info['label']['text']['text'] = 'Toggle\nDevices'
+
+    if key in (Keys.SPOTIFY_PREVIOUS, Keys.SPOTIFY_PLAYPAUSE, Keys.SPOTIFY_NEXT):
+        info['background'] = 'green'
+    if key in (Keys.CMUS_PREVIOUS, Keys.CMUS_PLAYPAUSE, Keys.CMUS_NEXT):
+        info['background'] = 'blue'
 
     # elif key == Keys.CMUS_VOLUME_UP:
     #     info['label']['text']['text'] = 'Volume Up'
@@ -97,7 +105,6 @@ def toggle_hub():
         requests.get('http://192.168.88.16')
     except Exception:
         pass
-    # r.raise_for_status()
 
 # state = True if pressed, False if unpressing
 def key_change_callback(deck, key_num, state):
@@ -145,6 +152,8 @@ def key_change_callback(deck, key_num, state):
         subprocess.run(['monitorcontrol', '--monitor=2', '--set-input-source=HDMI1'])
     elif key == Keys.MONITOR_HDMI2:
         subprocess.run(['monitorcontrol', '--monitor=2', '--set-input-source=HDMI2'])
+    elif key == Keys.KM_TOGGLE:
+        toggle_hub()
     else:
         raise UnreachableException(key)
 
