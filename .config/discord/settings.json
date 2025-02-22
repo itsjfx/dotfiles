@@ -1,6 +1,6 @@
 {
-  "IS_MAXIMIZED": true,
-  "IS_MINIMIZED": false,
+  "IS_MAXIMIZED": false,
+  "IS_MINIMIZED": true,
   "WINDOW_BOUNDS": {
     "x": 1928,
     "y": 50,
@@ -8,5 +8,6 @@
     "height": 1030
   },
   "chromiumSwitches": {},
-  "SKIP_HOST_UPDATE": true
+  "SKIP_HOST_UPDATE": true,
+  "BACKGROUND_COLOR": "#2b2d31"
 }
