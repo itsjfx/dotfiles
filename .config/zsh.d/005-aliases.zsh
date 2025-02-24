@@ -156,6 +156,7 @@ alias q="tgpt --model claude-3-haiku-20240307 -m"
 
 alias nospace="tr -d ' '"
 secret() { unset HISTFILE; }
+nohist() { unset HISTFILE; }
 
 autoload -z edit-command-line
 zle -N edit-command-line
