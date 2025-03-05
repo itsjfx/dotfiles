@@ -59,6 +59,7 @@ fi
 add_to_group video
 add_to_group optical
 add_to_group uucp
+add_to_group games
 
 if command -vp extman &>/dev/null && command -vp code &>/dev/null; then
     extman install
