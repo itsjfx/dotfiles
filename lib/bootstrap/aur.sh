@@ -19,7 +19,7 @@ if ! command -vp yay &>/dev/null; then
 fi
 # winbox if wine is installed TODO
 yay -S --needed \
-    alttab-git \
+    alttab \
     cmusfm \
     fnm \
     joplin-appimage \
