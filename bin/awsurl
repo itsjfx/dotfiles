@@ -1,0 +1,70 @@
+#!/usr/bin/env python3
+
+import argparse
+import requests
+import shlex
+import hashlib
+import os
+import urllib.parse
+import urllib.request
+import json
+import boto3
+import sys
+import subprocess
+
+COLORS = ['blue', 'turquoise', 'green', 'yellow', 'orange', 'red', 'pink', 'purple']
+URL = 'https://signin.aws.amazon.com/federation'
+ISSUER = 'example.org'
+
+def get_link(service):
+    session = boto3.Session()
+    dest = 'https://console.aws.amazon.com'
+    if session.region_name is not None:
+        dest = f'https://{session.region_name}.console.aws.amazon.com'
+
+    if service:
+        dest = dest + '/' + service
+        if '/home' not in service:
+            dest = dest + '/home'
+        if session.region_name is not None:
+            params = urllib.parse.urlencode({'region': session.region_name})
+            dest = dest + '?' + params
+
+    creds = session.get_credentials()
+    payload = json.dumps({'sessionId': creds.access_key, 'sessionKey': creds.secret_key, 'sessionToken': creds.token})
+    response = requests.get(URL, params={'Action': 'getSigninToken', 'Session': payload}).json()
+
+    params = urllib.parse.urlencode(
+        {'Action': 'login', 'Issuer': ISSUER, 'Destination': dest, 'SigninToken': response['SigninToken']}
+    )
+    return URL + '?' + params
+
+def main(args):
+    link = get_link(args.service)
+    if args.print:
+        print(link)
+        return
+
+    link = urllib.parse.quote(link, safe='')
+    link = shlex.quote(link)
+    profile = 'aws-' + os.environ['AWS_PROFILE']
+    profile = shlex.quote(profile)
+    index = int(hashlib.md5(profile.encode()).hexdigest(), 16)
+    color = COLORS[index % len(COLORS)]
+    print('Opening URL in browser', file=sys.stderr)
+    subprocess.Popen(
+        ['firefox', f'ext+container:name={profile}&url={link}&color={color}'],
+        stdout=subprocess.DEVNULL,
+        stderr=subprocess.DEVNULL,
+        preexec_fn=os.setpgrp,
+    )
+
+if __name__ == '__main__':
+    parser = argparse.ArgumentParser(description='Get a console URL for AWS')
+    parser.add_argument('service', help='Service to open (optional)', nargs='?')
+    parser.add_argument('--print', action='store_true', help='Write the URL to stdout instead of opening')
+    args = parser.parse_args()
+    try:
+        sys.exit(main(args))
+    except KeyboardInterrupt:
+        sys.exit(130)
