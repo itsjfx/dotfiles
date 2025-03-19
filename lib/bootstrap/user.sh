@@ -24,6 +24,7 @@ for plugin in \
     'lincheney/rl_custom_isearch' \
     'itsjfx/zsh-tmux-smart-status-bar' \
     'itsjfx/cmus-fzf' \
+    'itsjfx/csi' \
     'bash-my-aws/bash-my-aws' \
     'lincheney/snr' \
     'alacritty/alacritty-theme' \
