@@ -81,3 +81,5 @@ export PODMAN_USERNS=keep-id
 export COMPUTER_TYPE=work
 
 export AWS_DEFAULT_REGION=ap-southeast-2
+
+export AIDER_AUTO_COMMITS=false
