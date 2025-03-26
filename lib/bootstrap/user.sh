@@ -2,6 +2,10 @@
 set -eu -o pipefail
 
 add_to_group() {
+    if ! getent group "$1"; then
+        echo 'Group does not exist' >&2
+        return
+    fi
     if ! id -nGz "$USER" | grep -qzxF "$1"; then
         echo "Requesting sudo to add $USER to $1 group" >&2
         sudo usermod -a -G "$1" "$USER"
