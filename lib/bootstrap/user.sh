@@ -3,7 +3,7 @@ set -eu -o pipefail
 
 add_to_group() {
     if ! getent group "$1"; then
-        echo 'Group does not exist' >&2
+        echo "Group: $1 does not exist" >&2
         return
     fi
     if ! id -nGz "$USER" | grep -qzxF "$1"; then
