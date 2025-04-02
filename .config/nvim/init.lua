@@ -1353,6 +1353,8 @@ require('lazy').setup({
   { 'tpope/vim-obsession' },
   -- handy plugin to open git repos in the browser
   { 'ruanyl/vim-gh-line' },
+  -- moar syntax highlighting
+  { 'sheerun/vim-polyglot' },
   -- auto bullets and numbers in markdown, also allows sorting or fixing lists
   { 'bullets-vim/bullets.vim' },
   -- scroll bar
