@@ -1382,6 +1382,7 @@ require('lazy').setup({
   -- git stuff
   { 'tpope/vim-fugitive' },
   { 'rbong/vim-flog' },
+  { 'nextmn/vim-yaml-jinja' },
   {
     'nvim-neo-tree/neo-tree.nvim',
     version = '*',
