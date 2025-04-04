@@ -2,7 +2,7 @@
 set -eu -o pipefail
 
 add_to_group() {
-    if ! getent group "$1"; then
+    if ! getent group "$1" &>/dev/null; then
         echo "Group: $1 does not exist" >&2
         return
     fi
