@@ -3,4 +3,4 @@
 set -eu -o pipefail
 
 origin="${1-origin}"
-git remote set-url "$origin" "$(git remote get-url "$origin" | sed 's/^https:\/\/\([^\/]*\)\/\(.*\).git/git@\1\:\2.git/')"
+git remote set-url "$origin" "$(git remote get-url "$origin" | sed 's|https://github.com/\(.*\)|git@github.com:\1.git|')"
