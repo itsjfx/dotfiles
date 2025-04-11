@@ -1380,6 +1380,20 @@ require('lazy').setup({
   -- git stuff
   { 'tpope/vim-fugitive' },
   { 'rbong/vim-flog' },
+  {
+    'Goose97/timber.nvim',
+    version = '*', -- Use for stability; omit to use `main` branch for the latest features
+    event = 'VeryLazy',
+    config = function()
+      require('timber').setup {
+        highlight = {
+          on_insert = false,
+          duration = 0,
+        },
+        -- Configuration here, or leave empty to use defaults
+      }
+    end,
+  },
   { 'nextmn/vim-yaml-jinja' },
   {
     'nvim-neo-tree/neo-tree.nvim',
