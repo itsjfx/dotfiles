@@ -184,7 +184,7 @@ html|*:root#main-window[privatebrowsingmode] tab .tab-content::before {
     color: white;
 }
 
-vbox .tab-background[selected=""] {
-	background-color: rosybrown !important;
+.tab-background[selected=""] {
+	background-color: #0781ad !important;
 	background-image: none !important;
 }
