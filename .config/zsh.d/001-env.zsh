@@ -49,7 +49,8 @@ export FZF_DEFAULT_OPTS='--color=spinner:#E6DB74,hl:#F92672,fg:#F8F8F2,header:#7
 
 export PUPPETEER_EXECUTABLE_PATH="$(which chromium-browser)"
 
-#export PYTHONPATH=~/.aws/cli/plugins/:"$PYTHONPATH"
+# for cloudformation hooks
+export PYTHONPATH=~/.aws/cli/plugins/:"$PYTHONPATH"
 
 export GEM_HOME="$HOME/.gem"
 export PAGER=less
