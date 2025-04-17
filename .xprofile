@@ -6,6 +6,7 @@ export BROWSER=firefox
 export DA_TEST_DISABLE_TELEMETRY=1
 export UNA_NO_CONTAINER_SSH=1
 export GTK_USE_PORTAL=1
+export DOTNET_CLI_TELEMETRY_OPTOUT=1
 export PATH="$HOME/sbin:$PATH"
 
 if [[ -z "$SSH_AUTH_SOCK" ]]; then
