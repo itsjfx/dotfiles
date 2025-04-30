@@ -231,6 +231,7 @@ vim.cmd [[
 --  See `:help hlsearch`
 vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
 
+-- comment code with Ctrl + / like in VS Code
 vim.api.nvim_set_keymap('n', '<C-_>', 'gcc', { noremap = false, silent = true })
 vim.api.nvim_set_keymap('v', '<C-_>', 'gc', { noremap = false, silent = true })
 
@@ -1405,7 +1406,7 @@ require('lazy').setup({
     },
     cmd = 'Neotree',
     keys = {
-      { '\\', ':Neotree reveal<CR>', desc = 'NeoTree reveal' },
+      { '\\', ':Neotree reveal<CR>', desc = 'NeoTree reveal', silent = true },
     },
     opts = {
       filesystem = {
