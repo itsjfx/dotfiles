@@ -111,6 +111,11 @@ try {
 
             window.console.log(document, window, location, 'hi', location.href);
 
+            if (location.href === 'chrome://extensions/content/dummy.xhtml') {
+                window.console.log('Ignoring dummy');
+                return;
+            }
+
             if (/^(chrome:(?!\/\/(global\/content\/commonDialog|browser\/content\/webext-panels)\.x?html)|about:(?!blank))/i.test(location.href)) {
                 //if (window._gBrowser) {
                     window.console.log('Applying script');
