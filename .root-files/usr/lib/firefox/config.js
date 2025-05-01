@@ -37,6 +37,7 @@ function removeExistingHotKeys(window, details) {
 function applyCustomScriptToWindow(window) {
     window.console.log('1');
     const document = window.document;
+    const console = window.console;
     let keyChanges = [
         // DL
         {
@@ -53,10 +54,12 @@ function applyCustomScriptToWindow(window) {
         ['accel', 'alt'].forEach((mod) => {
             let key = i + 1;
             keyChanges.push({
-                id: `${mod}_selectTab${key}`,
+                // tap into the browser native tab handling instead
+                // https://github.com/mozilla/gecko-dev/blob/7d73613454bfe426fdceb635b33cd3061a69def4/browser/base/content/browser-sets.js#L297-L311
+                id: `key_selectTab${key}`,
                 modifiers: [mod],
                 key: (key != 10 ? key : 0), // cater for pressing 0
-                oncommand: `gBrowser.selectTabAtIndex(${i}, event);`,
+                // command: `gBrowser.selectTabAtIndex(${i}, event);`,
                 reserved: true,
             });
         });
