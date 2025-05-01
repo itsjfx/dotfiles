@@ -61,6 +61,7 @@ function applyCustomScriptToWindow(window) {
                 key: (key != 10 ? key : 0), // cater for pressing 0
                 // command: `gBrowser.selectTabAtIndex(${i}, event);`,
                 reserved: true,
+                _keepExistingHotKey: true,
             });
         });
     }
@@ -68,17 +69,18 @@ function applyCustomScriptToWindow(window) {
     for (let i = 0; i < 12; i++) {
         let key = i + 1;
         keyChanges.push({
-            id: `alt_selectTabF${key}`,
+            id: `key_selectTab${key}`,
             modifiers: ['alt'],
             keycode: 'VK_F'+key,
-            oncommand: `gBrowser.selectTabAtIndex(${i+10}, event);`,
+            // oncommand: `gBrowser.selectTabAtIndex(${i+10}, event);`,
             reserved: true,
+            _keepExistingHotKey: true,
         });
     }
 
     keyChanges.forEach((details) => {
-        if (details.keepExistingHotKey) {
-            delete details.keepExistingHotKey;
+        if (details._keepExistingHotKey) {
+            delete details._keepExistingHotKey;
         } else {
             removeExistingHotKeys(window, details);
         }
