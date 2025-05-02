@@ -1,0 +1,9 @@
+set ttyfast
+set scrolloff=10
+" visual mode: Ctrl + c = copy to system clipboard
+vnoremap <C-C> "+y
+
+" https://stackoverflow.com/a/78982421
+" let Ctrl+V paste from clipboard in insert mode
+" sort of slow
+inoremap <C-V> <Esc>"*pa
