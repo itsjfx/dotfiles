@@ -1,6 +1,11 @@
 let mapleader = " "
 set ttyfast
 set scrolloff=10
+
+set nocompatible
+set ignorecase
+set smartcase
+
 " visual mode: Ctrl + c = copy to system clipboard
 vnoremap <C-C> "+y
 
