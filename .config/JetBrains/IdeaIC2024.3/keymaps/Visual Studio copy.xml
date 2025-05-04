@@ -1,0 +1,5 @@
+<keymap version="1" name="Visual Studio copy" parent="Visual Studio">
+  <action id="CollapsiblePanel-toggle" />
+  <action id="QuickPreview" />
+  <action id="SplitChooser.SplitCenter" />
+</keymap>
