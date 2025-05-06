@@ -6,6 +6,10 @@ set nocompatible
 set ignorecase
 set smartcase
 
+" highlight searches
+set hlsearch
+set incsearch
+
 " visual mode: Ctrl + c = copy to system clipboard
 vnoremap <C-C> "+y
 
@@ -34,3 +38,5 @@ map <A-k> <Action>(MoveStatementUp)
 "map <A-l> >
 map <A-h> <Action>(EditorUnindentSelection)
 map <A-l> <Action>(EditorIndentSelection)
+
+Plug 'machakann/vim-highlightedyank'
