@@ -2,6 +2,6 @@
 
 _docker-shell() {
     local cmd
-    cmd="$( builtin command -vp docker &>/dev/null && echo docker || echo docker )"
+    cmd="$( builtin command -vp podman &>/dev/null && echo podman || echo docker )"
     words=( "$cmd" exec '' ) CURRENT=3 _normal
 }
