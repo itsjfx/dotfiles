@@ -22,4 +22,5 @@ EOF
 fi
 
 source "$session_file"
+# rebind accept-alt key binding to something else so we can use Shift+Return for custom key
 rofi -show fb -modes "fb:/$ROOT/_1pass.sh" -kb-accept-alt "Ctrl+Delete" -kb-custom-1 "Shift+Return"
