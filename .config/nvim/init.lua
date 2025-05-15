@@ -1268,12 +1268,26 @@ require('lazy').setup({
       --  Check out: https://github.com/echasnovski/mini.nvim
     end,
   },
+
+  -- markdown
   {
     'Kicamon/markdown-table-mode.nvim',
     config = function()
       require('markdown-table-mode').setup()
     end,
   },
+  -- auto bullets and numbers in markdown, also allows sorting or fixing lists
+  { 'bullets-vim/bullets.vim' },
+  {
+    'MeanderingProgrammer/render-markdown.nvim',
+    dependencies = { 'nvim-treesitter/nvim-treesitter', 'echasnovski/mini.nvim' }, -- if you use the mini.nvim suite
+    -- dependencies = { 'nvim-treesitter/nvim-treesitter', 'echasnovski/mini.icons' }, -- if you use standalone mini plugins
+    -- dependencies = { 'nvim-treesitter/nvim-treesitter', 'nvim-tree/nvim-web-devicons' }, -- if you prefer nvim-web-devicons
+    ---@module 'render-markdown'
+    ---@type render.md.UserConfig
+    opts = {},
+  },
+
   {
     'rhysd/committia.vim',
   },
@@ -1409,8 +1423,6 @@ require('lazy').setup({
   { 'tpope/vim-obsession' },
   -- handy plugin to open git repos in the browser
   { 'ruanyl/vim-gh-line' },
-  -- auto bullets and numbers in markdown, also allows sorting or fixing lists
-  { 'bullets-vim/bullets.vim' },
   -- scroll bar
   {
     'dstein64/nvim-scrollview',
