@@ -2,6 +2,11 @@ let mapleader = " "
 set ttyfast
 set scrolloff=10
 
+" i think defaults
+set linenumber
+set showmode
+set showcmd
+
 set nocompatible
 set ignorecase
 set smartcase
@@ -39,4 +44,16 @@ map <A-k> <Action>(MoveStatementUp)
 map <A-h> <Action>(EditorUnindentSelection)
 map <A-l> <Action>(EditorIndentSelection)
 
+" close current tab
+map <leader>c <Action>(CloseContent)
+map <C-p> <Action>(GotoFile)
+
+" hover function signature
+map gh <Action>(QuickJavaDoc)
+
+" file browser
+set nerdtree
+map \\ :NERDTreeToggle<CR>
+
+" make yank highlighted
 Plug 'machakann/vim-highlightedyank'
