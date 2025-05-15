@@ -1333,6 +1333,7 @@ require('lazy').setup({
         'go',
         'puppet',
         'hcl',
+        'kotlin',
       },
       -- Autoinstall languages that are not installed
       -- auto_install = true,
