@@ -1280,12 +1280,56 @@ require('lazy').setup({
   { 'bullets-vim/bullets.vim' },
   {
     'MeanderingProgrammer/render-markdown.nvim',
-    dependencies = { 'nvim-treesitter/nvim-treesitter', 'echasnovski/mini.nvim' }, -- if you use the mini.nvim suite
+    -- dependencies = { 'nvim-treesitter/nvim-treesitter', 'echasnovski/mini.nvim' }, -- if you use the mini.nvim suite
     -- dependencies = { 'nvim-treesitter/nvim-treesitter', 'echasnovski/mini.icons' }, -- if you use standalone mini plugins
-    -- dependencies = { 'nvim-treesitter/nvim-treesitter', 'nvim-tree/nvim-web-devicons' }, -- if you prefer nvim-web-devicons
+    dependencies = { 'nvim-treesitter/nvim-treesitter', 'nvim-tree/nvim-web-devicons' }, -- if you prefer nvim-web-devicons
     ---@module 'render-markdown'
     ---@type render.md.UserConfig
-    opts = {},
+    opts = {
+      heading = {
+        -- give me back my old headings
+        icons = { '# ', '## ', '### ', '#### ', '##### ', '###### ' },
+      },
+    },
+  },
+  {
+    {
+      'jakewvincent/mkdnflow.nvim',
+      ft = { 'markdown' },
+      config = function(_, opts)
+        require('mkdnflow').setup(opts)
+      end,
+      opts = {
+        -- Config values
+        links = {
+          style = 'markdown', -- 'markdown', 'wiki', or a table of options
+          name_is_source = false, -- Use file name as link text by default
+          conceal = false, -- Use Neovim's conceal feature for links
+          context = 0, -- Lines of context to provide
+          implicit_extension = false, -- Don't add .md to implicit links
+          transform_implicit = false, -- Transform implicit links
+          transform_explicit = false, -- Transform explicit links
+          relative_to = 'current', -- Create links relative to the current file
+          absolute = false, -- Force absolute paths
+        },
+        mappings = {
+          MkdnEnter = { { 'n', 'v' }, '<CR>' }, -- Follow link under cursor
+          MkdnNextLink = { 'n', '<Tab>' }, -- Find next link
+          MkdnPrevLink = { 'n', '<S-Tab>' }, -- Find previous link
+          MkdnNextHeading = { 'n', ']]' }, -- Go to next heading
+          MkdnPrevHeading = { 'n', '[[' }, -- Go to previous heading
+          MkdnGoBack = { 'n', '<BS>' }, -- Go back to previous position
+          MkdnGoForward = { 'n', '<Del>' }, -- Go forward to next position
+          MkdnCreateLinkFromClipboard = { { 'n', 'v' }, '<leader>p' }, -- Paste link
+          MkdnDestroyLink = { 'n', '<M-CR>' }, -- Destroy link under cursor
+          MkdnToggleToDo = { { 'n', 'v' }, '<C-Space>' }, -- Toggle to-do status
+        },
+        perspective = {
+          priority = 'current', -- Prioritize current file
+          fallback = 'current',
+        },
+      },
+    },
   },
 
   {
