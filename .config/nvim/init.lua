@@ -1507,7 +1507,11 @@ require('lazy').setup({
       }
     end,
   },
+
+  -- language definitions
   { 'nextmn/vim-yaml-jinja' },
+  { 'Disinterpreter/vim-pawn' },
+
   {
     'nvim-neo-tree/neo-tree.nvim',
     version = '*',

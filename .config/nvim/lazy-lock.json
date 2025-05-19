@@ -47,6 +47,7 @@
   "vim-fugitive": { "branch": "master", "commit": "4a745ea72fa93bb15dd077109afbb3d1809383f2" },
   "vim-gh-line": { "branch": "master", "commit": "731751fdfa4f64a061dbc7088cb7b2f12e0828ad" },
   "vim-obsession": { "branch": "master", "commit": "ed9dfc7c2cc917ace8b24f4f9f80a91e05614b63" },
+  "vim-pawn": { "branch": "master", "commit": "7c61e7ea9e54343c025969c441c922b803e52442" },
   "vim-repeat": { "branch": "master", "commit": "65846025c15494983dafe5e3b46c8f88ab2e9635" },
   "vim-sleuth": { "branch": "master", "commit": "be69bff86754b1aa5adcbb527d7fcd1635a84080" },
   "vim-yaml-jinja": { "branch": "master", "commit": "2279346a8f10bc0b1b149f5b71b5518a53e94ec7" },
