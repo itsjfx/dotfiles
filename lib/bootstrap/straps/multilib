@@ -1,7 +1,14 @@
 #!/usr/bin/env bash
 
+set -eu -o pipefail
+
+if [[ "$ID" != arch ]]; then
+    warn 'Not running on Arch. Doing nothing for multilib'
+    exit
+fi
+
 pattern="/\[multilib\]/,/Include/"'s/^#//'
 if [[ -n "$(sed -n "$pattern"p /etc/pacman.conf)" ]]; then
     sudo sed -i "$pattern" /etc/pacman.conf && \
-    sudo pacman -Syu
+    pkg_sys_upgrade
 fi

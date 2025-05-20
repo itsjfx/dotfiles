@@ -2,11 +2,8 @@
 
 set -eu -o pipefail
 
-source "$(dirname "$0")"/../lib.sh
-
-"$(dirname "$0")"/multilib
-install \
+run_strap multilib
+pkg_install \
     wine-staging \
     winetricks \
     wine-mono \
-
