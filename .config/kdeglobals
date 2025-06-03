@@ -178,7 +178,8 @@ View Style=DetailTree
 Dialog Size=600,480
 
 [PreviewSettings]
-MaximumRemoteSize=0
+EnableRemoteFolderThumbnail=false
+MaximumRemoteSize=104857600
 
 [Shortcuts]
 AboutApp=
