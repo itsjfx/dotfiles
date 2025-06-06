@@ -1,0 +1,39 @@
+#!/usr/bin/env python3
+# usage: .gen-awsurl-completion > ~/.completions/_awsurl
+
+import subprocess
+from pathlib import Path
+import json
+
+from bs4 import BeautifulSoup
+import requests
+import boto3
+
+def get_services(data):
+    output = {}
+    for service in data['services']:
+        if (url := service.get('url')) and '/home' in url and '.com' not in url:
+            output[url.removeprefix('/').removesuffix('/home')] = service['label'] or ''
+    return output
+
+session = requests.Session()
+
+url = subprocess.check_output(['awsurl', '--print'], text=True)
+session.get(url)
+
+_session = boto3.Session()
+region = _session.region_name
+response = session.get('https://' + region + '.console.aws.amazon.com/console/home', params={'region': region, 'hashArgs': 'x'})
+soup = BeautifulSoup(response.text, 'html.parser')
+data = soup.find('meta', attrs={'name': 'awsc-mezz-data'})['content']
+data = json.loads(data)
+
+services = dict(sorted(get_services(data).items()))
+
+print('#compdef awsurl')
+print('local _awsurl_services=(')
+
+for service, desc in services.items():
+    print("    '" + service.replace(':', '\\') + ':' + desc.replace(':', '\\') + "'")
+print(')')
+print('_describe awsurl _awsurl_services')
