@@ -256,7 +256,8 @@ get \
     ttf-dejavu \
     ttf-liberation \
     wqy-zenhei \
-    ttf-fantasque-sans-mono
+    ttf-fantasque-sans-mono \
+    ttf-fantasque-nerd
 
 
 

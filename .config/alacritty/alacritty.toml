@@ -11,19 +11,19 @@ opacity = 0.4
 size = 15
 # or Comic Mono
 [font.bold]
-family = "Fantasque Sans Mono"
+family = "FantasqueSansM Nerd Font Mono"
 style = "Bold"
 
 [font.bold_italic]
-family = "Fantasque Sans Mono"
+family = "FantasqueSansM Nerd Font Mono"
 style = "Bold Italic"
 
 [font.italic]
-family = "Fantasque Sans Mono"
+family = "FantasqueSansM Nerd Font Mono"
 style = "Italic"
 
 [font.normal]
-family = "Fantasque Sans Mono"
+family = "FantasqueSansM Nerd Font Mono"
 style = "Regular"
 
 # needed for colours
