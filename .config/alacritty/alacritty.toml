@@ -1,10 +1,10 @@
 
 [terminal.shell]
-program = "/usr/bin/tmux"
+program = "tmux"
 
 # only works IF in transparent mode using a compositor like picom
-[window]
-opacity = 0.4
+#[window]
+#opacity = 0.4
 
 # my epic font choice
 [font]
