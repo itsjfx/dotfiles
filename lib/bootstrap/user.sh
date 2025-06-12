@@ -1,6 +1,11 @@
 #!/usr/bin/env bash
 set -eu -o pipefail
 
+is_mac=0
+if [ "$(uname)" == "Darwin" ]; then
+    is_mac=1
+fi
+
 add_to_group() {
     if ! getent group "$1" &>/dev/null; then
         echo "Group: $1 does not exist" >&2
@@ -16,8 +21,8 @@ add_to_group() {
 #curl -fsSL https://fnm.vercel.app/install | bash -s -- --skip-shell
 
 # neovim
-sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs \
-       https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+#sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs \
+#       https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
 
 # bash-my-aws TODO
 # TODO, lincheney readline
@@ -55,10 +60,14 @@ ln -srf "$HOME"/lib/external/dsv/completions/dsv.zsh "$HOME"/.completions/_dsv
 ln -srf "$HOME"/lib/external/csi/completions/csi.zsh "$HOME"/.completions/_csi
 ln -srf "$HOME"/lib/external/csi/bin/csi "$HOME"/bin/csi
 
-ln -srf "$HOME"/.aws/cli/plugins /a/.aws-plugins
+if [[ -d /a/ ]]; then
+    ln -srf "$HOME"/.aws/cli/plugins /a/.aws-plugins
+fi
 
 if ! command -vp zsh &>/dev/null; then
     echo 'Not changing shell: missing zsh' >&2
+elif (( is_mac )); then
+    echo 'Not changing shell: on Mac' >&2
 elif [[ "$(basename "$(grep "^${USER}" /etc/passwd | cut -f7 -d:)")" != 'zsh' ]]; then
     chsh -s "$(which zsh)"
 else
@@ -80,13 +89,17 @@ fi
 curl -fL https://raw.githubusercontent.com/magic-wormhole/magic-wormhole/master/wormhole_complete.zsh >"$HOME"/.completions/_wormhole
 #fi
 
-kwriteconfig5 --file "$HOME"/.config/dolphinrc --group 'General' --key 'RememberOpenedTabs' false
-kwriteconfig5 --file "$HOME"/.config/dolphinrc --group 'General' --key 'BrowseThroughArchives' true
+if (( ! is_mac )); then
+    # default settings in Dolphin
+    kwriteconfig5 --file "$HOME"/.config/dolphinrc --group 'General' --key 'RememberOpenedTabs' false
+    kwriteconfig5 --file "$HOME"/.config/dolphinrc --group 'General' --key 'BrowseThroughArchives' true
 
-( unset BROWSER; xdg-settings set default-web-browser firefox.desktop )
+    ( unset BROWSER; xdg-settings set default-web-browser firefox.desktop || true )
+
+    # mac has no systemd
+    systemctl enable --now --user ssh-agent.service xdg-desktop-portal.service plasma-xdg-desktop-portal-kde.service
+fi
 
 # symlinks
 
 mkdir -p media/Pictures media/Music repos
-
-systemctl enable --now --user ssh-agent.service xdg-desktop-portal.service plasma-xdg-desktop-portal-kde.service

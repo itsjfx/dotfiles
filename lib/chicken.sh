@@ -1,3 +1,4 @@
+# usage: source chicken.sh
 animal_counter=0
 animal_prev_update=0
 animals() {

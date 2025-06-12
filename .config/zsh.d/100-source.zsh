@@ -30,7 +30,7 @@ fzf_git_search() {
 zle -N fzf_git_search
 bindkey '^[f' fzf_git_search
 
-if command -vp fnm &>/dev/null; then
+if command -v fnm &>/dev/null; then
     eval "$(fnm env)"
 elif [[ -d "$HOME/.fnm" ]]; then
     export PATH="$PATH:$HOME/.fnm"
@@ -40,3 +40,7 @@ fi
 #source "$HOME/repos/me/notes/notes.sh"
 source "$HOME/lib/external/zsh-tmux-smart-status-bar/zsh-tmux-smart-status-bar.sh"
 
+# promote to top
+if [[ -d "$HOME/.nix-profile/bin" ]]; then
+    export PATH="$HOME/.nix-profile/bin:$PATH"
+fi

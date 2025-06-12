@@ -1,7 +1,6 @@
 # aliases and functions
 
 alias cls=clear
-alias clip='xclip -selection clipboard'
 alias netcat=nc
 
 #music() {

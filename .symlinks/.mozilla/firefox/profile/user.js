@@ -15,6 +15,9 @@ user_pref("browser.sessionstore.resume_from_crash", false);
 // make stuff smaller
 user_pref("browser.uidensity", 1);
 
+// work
+user_pref("browser.fixup.domainwhitelist.go", true);
+
 // animations
 user_pref("browser.tabs.animate", false);
 user_pref("general.smoothScroll", true);
