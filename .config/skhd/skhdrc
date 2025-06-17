@@ -106,7 +106,7 @@
 # ]
 
 # open terminal
-cmd - return : ~/.nix-profile/bin/alacritty
+cmd - return : open -a Alacritty.app -n
 
 # open dmenu
 cmd - d : ~/lib/choose/apps.sh
