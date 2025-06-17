@@ -54,8 +54,14 @@ def main(args):
 
     link = urllib.parse.quote(link, safe='')
     link = shlex.quote(link)
-    profile = 'aws-' + os.environ['AWS_PROFILE']
+
+    profile = os.environ.get('AWS_PROFILE')
+    if not profile:
+        sts = boto3.client('sts')
+        profile = sts.get_caller_identity()['Arn'].partition('/')[2].replace('/', '-')
+    profile = 'aws-' + profile
     profile = shlex.quote(profile)
+
     index = int(hashlib.md5(profile.encode()).hexdigest(), 16)
     color = COLORS[index % len(COLORS)]
     print('Opening URL in browser', file=sys.stderr)
