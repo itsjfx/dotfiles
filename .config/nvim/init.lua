@@ -1020,7 +1020,7 @@ require('lazy').setup({
         },
         clangd = {},
         html = {},
-        -- gopls = {},
+        gopls = {},
         -- ruff = {},
       }
 
