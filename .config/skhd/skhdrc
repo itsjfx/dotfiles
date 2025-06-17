@@ -111,6 +111,8 @@ cmd - return : open -a Alacritty.app -n
 # open dmenu
 cmd - d : ~/lib/choose/apps.sh
 
+cmd + shift - q : aerospace close --quit-if-last-window
+
 # open qutebrowser
 #cmd + shift - return : ~/Scripts/qtb.sh
 

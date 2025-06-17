@@ -29,6 +29,11 @@
 	width: 0 !important;
 }
 
+/* for Macs, hide the power buttons as we are using a tiling WM */
+.titlebar-buttonbox-container {
+	display: none !important;
+}
+
 /*
 * Remove tiny space next to the X button and the last tabs
 * Useful if using a tiling window manager

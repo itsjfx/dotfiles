@@ -40,6 +40,9 @@ nix profile install \
     nixpkgs#htop \
     nixpkgs#unixtools.watch \
     nixpkgs#awscli2 \
+    nixpkgs#nerd-fonts.noto \
+    nixpkgs#ncdu \
+    nixpkgs#nerd-fonts.dejavu-sans-mono \
 
 # podman
 # nix profile install \
