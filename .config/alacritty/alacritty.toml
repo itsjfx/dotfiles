@@ -6,6 +6,10 @@ program = "tmux"
 #[window]
 #opacity = 0.4
 
+[window]
+startup_mode = "Maximized"
+decorations = "None"
+
 # my epic font choice
 [font]
 size = 15
