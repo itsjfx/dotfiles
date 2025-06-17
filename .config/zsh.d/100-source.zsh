@@ -40,7 +40,19 @@ fi
 #source "$HOME/repos/me/notes/notes.sh"
 source "$HOME/lib/external/zsh-tmux-smart-status-bar/zsh-tmux-smart-status-bar.sh"
 
+# mac
+if [[ -d /opt/homebrew ]]; then
+    export HOMEBREW_PREFIX="/opt/homebrew"
+    export HOMEBREW_CELLAR="/opt/homebrew/Cellar"
+    export HOMEBREW_REPOSITORY="/opt/homebrew"
+    fpath[1,0]="/opt/homebrew/share/zsh/site-functions"
+    export PATH="/opt/homebrew/bin:$PATH"
+    [ -z "${MANPATH-}" ] || export MANPATH=":${MANPATH#:}"
+    export INFOPATH="/opt/homebrew/share/info:${INFOPATH:-}"
+fi
+
 # promote to top
+# leave at bottom
 if [[ -d "$HOME/.nix-profile/bin" ]]; then
     export PATH="$HOME/.nix-profile/bin:$PATH"
 fi

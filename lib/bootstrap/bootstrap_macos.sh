@@ -11,7 +11,7 @@ set -eu -o pipefail
 # for now installing alacritty with nix, not sure if it has an auto updater?
 # it don't matter cause i use with a key binding anyway, doesn't need to be in Launchpad etc
 
-# shell stuff
+# general shell stuff
 nix profile install \
     nixpkgs#alacritty \
     nixpkgs#bash \
@@ -36,6 +36,23 @@ nix profile install \
     nixpkgs#uv \
     nixpkgs#wget \
     nixpkgs#curl \
+    nixpkgs#bun \
+    nixpkgs#htop \
+    nixpkgs#unixtools.watch \
+    nixpkgs#awscli2 \
+
+# podman
+# nix profile install \
+#     nixpkgs#podman \
+#     nixpkgs#podman-compose \
+
+
+# work specific
+nix profile install \
+    nixpkgs#maven \
+    nixpkgs#go \
+    nixpkgs#asdf-vm \
+    nixpkgs#gettext \
 
 
 # fonts

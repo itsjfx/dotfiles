@@ -43,7 +43,11 @@ alias sudo="sudo "
 alias sizeof='du -hs'
 
 open() {
-    (nohup dolphin "${1:-.}" &) >/dev/null 2>&1
+    if command -vp dolphin; then
+        (nohup dolphin "${1:-.}" &) >/dev/null 2>&1
+    else
+        command open "$@"
+    fi
 }
 pwgensafe() { openssl rand -base64 24 | tr '\n' -d; }
 alias proxychains='proxychains4'
