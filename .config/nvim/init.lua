@@ -1357,6 +1357,7 @@ require('lazy').setup({
       ensure_installed = {
         'bash',
         'c',
+        'css',
         'diff',
         'html',
         'lua',
