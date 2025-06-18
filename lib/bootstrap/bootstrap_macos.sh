@@ -43,6 +43,9 @@ nix profile install \
     nixpkgs#nerd-fonts.noto \
     nixpkgs#ncdu \
     nixpkgs#nerd-fonts.dejavu-sans-mono \
+    nixpkgs#lua \
+    nixpkgs#readline \
+    nixpkgs#tree \
 
 # podman
 # nix profile install \

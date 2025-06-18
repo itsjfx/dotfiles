@@ -9,6 +9,7 @@ program = "tmux"
 [window]
 startup_mode = "Maximized"
 decorations = "None"
+option_as_alt = 'Both'
 
 # my epic font choice
 [font]
