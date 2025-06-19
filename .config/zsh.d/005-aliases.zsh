@@ -168,3 +168,13 @@ zle -N edit-command-line
 bindkey "\ev" edit-command-line
 
 alias epoch='date +%s'
+
+# on Mac OS, i install a lot of GNU applications to my users bin directory
+# however, there are times that using the Mac/BSD/Xcode offered tooling is necessary
+# for example, gcc offered by Xcode has some headers which the GNU one does not
+# and some CLI tools like sed behave differently on BSD
+# in these cases, we can bump the bin folders ahead of our own one
+# this has duplication on PATH, but cause we generally want to target binaries in these folders, I don't think this is introduces huge performance concern
+sysexec() {
+    PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:$PATH" "$@"
+}

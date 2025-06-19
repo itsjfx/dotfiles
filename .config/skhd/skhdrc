@@ -106,12 +106,15 @@
 # ]
 
 # open terminal
-cmd - return : open -a Alacritty.app -n
+alt - return : open -a Alacritty.app -n
 
 # open dmenu
-cmd - d : ~/lib/choose/apps.sh
+alt - d : ~/lib/choose/apps.sh
 
-cmd + shift - q : aerospace close --quit-if-last-window
+alt + shift - q : aerospace close --quit-if-last-window
+
+# bindsym alt + ctrl - greater : aerospace move-workspace-to-monitor next
+# bindsym alt + ctrl - less : aerospace move-workspace-to-monitor prev
 
 # open qutebrowser
 #cmd + shift - return : ~/Scripts/qtb.sh

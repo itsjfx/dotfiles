@@ -20,19 +20,24 @@ on-focused-monitor-changed = ['move-mouse monitor-lazy-center']
 # You can use it to add commands that run after login to macOS user session.
 # 'start-at-login' needs to be 'true' for 'after-login-command' to work
 # Available commands: https://nikitabobko.github.io/AeroSpace/commands
-after-login-command = []
+after-login-command = [
+    'exec-and-forget sketchybar',
+]
 
 # You can use it to add commands that run after AeroSpace startup.
 # 'after-startup-command' is run after 'after-login-command'
 # Available commands : https://nikitabobko.github.io/AeroSpace/commands
-after-startup-command = ['exec-and-forget sketchybar']
+# after-startup-command = [
+#     'exec-and-forget sketchybar',
+# ]
 
-# Start AeroSpace at login
-start-at-login = true
-
-exec-on-workspace-change = ['/bin/bash', '-c',
+exec-on-workspace-change = [
+    '/bin/bash',
+    '-c',
     'sketchybar --trigger aerospace_workspace_change FOCUSED_WORKSPACE=$AEROSPACE_FOCUSED_WORKSPACE'
 ]
+
+# on-focus-changed = [ 'exec-and-forget sketchybar --trigger aerospace_focus_change' ]
 
 # See: https://nikitabobko.github.io/AeroSpace/guide#layouts
 # The 'accordion-padding' specifies the size of accordion padding
@@ -93,12 +98,18 @@ automatically-unhide-macos-hidden-apps = false
     alt-shift-k = 'move up'
     alt-shift-l = 'move right'
 
+    alt-ctrl-comma = 'move-workspace-to-monitor prev'
+    alt-ctrl-period = 'move-workspace-to-monitor next'
+    # bindsym alt + ctrl - greater : aerospace move-workspace-to-monitor next
+    # bindsym alt + ctrl - less : aerospace move-workspace-to-monitor prev
+
+
     # Consider using 'join-with' command as a 'split' replacement if you want to enable
     # normalizations
     #alt-h = 'split horizontal'
     alt-v = 'split vertical'
 
-    alt-f = 'fullscreen'
+    # alt-f = 'fullscreen'
 
     alt-s = 'layout v_accordion' # 'layout stacking' in i3
     alt-c = 'layout h_accordion' # 'layout tabbed' in i3 alt+w
@@ -115,6 +126,8 @@ automatically-unhide-macos-hidden-apps = false
     # alt-a = 'focus parent'
 
     alt-1 = 'workspace 1'
+    # ctrl-2 = 'workspace 2'
+    # ctrl-3 = 'workspace 3'
     alt-2 = 'workspace 2'
     alt-3 = 'workspace 3'
     alt-4 = 'workspace 4'
