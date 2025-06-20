@@ -1021,6 +1021,7 @@ require('lazy').setup({
         clangd = {},
         html = {},
         gopls = {},
+        kotlin_lsp = {},
         -- ruff = {},
       }
 
