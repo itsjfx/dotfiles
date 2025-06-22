@@ -20,7 +20,7 @@ on-focused-monitor-changed = ['move-mouse monitor-lazy-center']
 # You can use it to add commands that run after login to macOS user session.
 # 'start-at-login' needs to be 'true' for 'after-login-command' to work
 # Available commands: https://nikitabobko.github.io/AeroSpace/commands
-after-login-command = [
+after-startup-command = [
     'exec-and-forget sketchybar',
 ]
 
@@ -61,6 +61,9 @@ automatically-unhide-macos-hidden-apps = false
 # See https://nikitabobko.github.io/AeroSpace/guide#key-mapping
 [key-mapping]
     preset = 'qwerty'
+
+[exec.env-vars]
+    PATH = '${HOME}/.nix-profile/bin:/usr/local/bin:${PATH}'
 
 # Gaps between windows (inner-*) and between monitor edges (outer-*).
 # Possible values:
