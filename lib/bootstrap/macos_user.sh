@@ -34,3 +34,7 @@ defaults write com.apple.finder NewWindowTargetPath -string "file://${HOME}/"
 # screenshots
 mkdir -p "$SCREENSHOT_DIR"
 defaults write com.apple.screencapture location "$SCREENSHOT_DIR"
+
+# To prevent startup when opening the lid or connecting to power
+# https://support.apple.com/en-au/120622
+sudo nvram BootPreference=%00
