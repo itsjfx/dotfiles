@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+
+set -eu -o pipefail
+
+branch="$1"
+shift
+
+repo="$(git rev-parse --show-toplevel)"
+name="$(basename "$repo")"
+cd "$repo"
+git worktree add ../"$name"."$branch" -b "$branch" "$@"
