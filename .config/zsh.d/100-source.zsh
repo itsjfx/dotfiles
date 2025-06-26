@@ -45,7 +45,7 @@ if [[ -d /opt/homebrew ]]; then
     export HOMEBREW_PREFIX="/opt/homebrew"
     export HOMEBREW_CELLAR="/opt/homebrew/Cellar"
     export HOMEBREW_REPOSITORY="/opt/homebrew"
-    fpath[1,0]="/opt/homebrew/share/zsh/site-functions"
+    # fpath added in opts
     export PATH="/opt/homebrew/bin:$PATH"
     [ -z "${MANPATH-}" ] || export MANPATH=":${MANPATH#:}"
     export INFOPATH="/opt/homebrew/share/info:${INFOPATH:-}"
@@ -53,6 +53,6 @@ fi
 
 # promote to top
 # leave at bottom
-if [[ -d "$HOME/.nix-profile/bin" ]]; then
-    export PATH="$HOME/.nix-profile/bin:$PATH"
+if [[ -d /nix ]]; then
+    source /nix/var/nix/profiles/default/etc/profile.d/nix.sh
 fi

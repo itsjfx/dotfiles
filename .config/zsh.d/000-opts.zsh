@@ -9,8 +9,13 @@ setopt interactivecomments
 
 autoload -U colors && colors
 # BEFORE compinit
-fpath=("$HOME"/.completions $fpath)
-fpath=("$HOME"/lib/external/zsh-completions/src $fpath)
+if [[ -d /opt/homebrew ]]; then
+    fpath[1,0]="/opt/homebrew/share/zsh/site-functions"
+fi
+if [[ -d "$HOME"/.nix-profile/share/zsh/site-functions ]]; then
+    fpath[1,0]="$HOME"/.nix-profile/share/zsh/site-functions
+fi
+fpath=("$HOME"/.completions "$HOME"/lib/external/zsh-completions/src $fpath)
 autoload -U +X compinit && compinit
 autoload -U +X bashcompinit && bashcompinit
 
