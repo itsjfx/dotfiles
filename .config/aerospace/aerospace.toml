@@ -163,3 +163,7 @@ automatically-unhide-macos-hidden-apps = false
     l = 'resize width +50'
     enter = 'mode main'
     esc = 'mode main'
+
+[workspace-to-monitor-force-assignment]
+    9 = 'secondary'
+    10 = 'secondary'

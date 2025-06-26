@@ -38,3 +38,7 @@ defaults write com.apple.screencapture location "$SCREENSHOT_DIR"
 # To prevent startup when opening the lid or connecting to power
 # https://support.apple.com/en-au/120622
 sudo nvram BootPreference=%00
+
+# you can move windows by holding ctrl+cmd and dragging any part of the window (not necessarily the window title)
+# https://github.com/nikitabobko/AeroSpace?tab=readme-ov-file#tip-of-the-day
+defaults write -g NSWindowShouldDragOnGesture -bool true
