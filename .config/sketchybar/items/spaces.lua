@@ -6,7 +6,7 @@ sbar.exec("aerospace list-workspaces --all", function(spaces)
   for space_name in spaces:gmatch "[^\r\n]+" do
     local space = sbar.add("item", "space." .. space_name, {
       icon = {
-        string = space_name .. " " .. icons.separators.right,
+        string = space_name,
         color = colors.icon.color,
         highlight_color = colors.icon.highlight,
         padding_left = 8,

@@ -8,7 +8,7 @@ sbar.default {
     font = {
       family = settings.font.text,
       style = settings.font.style_map["Regular"],
-      size = 14.0,
+      size = 20.0,
     },
     color = colors.item.text,
     padding_left = settings.paddings,
@@ -19,7 +19,7 @@ sbar.default {
     font = {
       family = settings.font.text,
       style = settings.font.style_map["Regular"],
-      size = 14.0,
+      size = 16.0,
     },
     color = colors.item.text,
     padding_left = settings.paddings,
