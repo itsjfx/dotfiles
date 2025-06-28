@@ -46,7 +46,7 @@ pacman -S --noconfirm --needed \
 # android
 # pacman -S --noconfirm --needed \
 #     jre17-openjdk jdk17-openjdk
-# yay -S android-studio
+# yay -S android-studio android-udev
 
 # evince or okular for a PDF reader -- trying okular
 
