@@ -57,7 +57,6 @@ nix profile install \
 nix profile install \
     nixpkgs#maven \
     nixpkgs#go \
-    nixpkgs#asdf-vm \
     nixpkgs#gettext \
 
 
@@ -65,3 +64,16 @@ nix profile install \
 nix profile install \
     nixpkgs#fantasque-sans-mono \
     nixpkgs#nerd-fonts.fantasque-sans-mono \
+
+# latest not in nix
+brew install asdf
+asdf completion zsh > "$HOME"/.completions/_asdf
+
+# git completion
+git_completion="$(nix eval --raw nixpkgs#git)"/share/git/contrib/completion
+if [[ ! -d "$git_completion" ]]; then
+    echo 'No ZSH completion found for git' >&2
+else
+    ln -srf "$git_completion"/git-completion.zsh "$HOME/.completions/_git"
+    ln -srf "$git_completion"/git-completion.bash "$HOME/.completions/"
+fi
