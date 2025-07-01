@@ -117,6 +117,7 @@ pacman -S --noconfirm --needed \
     ipcalc \
     grc \
     tk \
+    syncthing \
 
 # icons
 pacman -S --noconfirm --needed \
