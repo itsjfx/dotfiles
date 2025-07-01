@@ -11,9 +11,9 @@ decorations = "None"
 option_as_alt = 'Both'
 
 # my epic font choice
+# on Mac I override font.size when launching Alacritty
 [font]
 size = 15
-# or Comic Mono
 [font.bold]
 family = "FantasqueSansM Nerd Font Mono"
 style = "Bold"
@@ -110,6 +110,32 @@ mods = "Control|Shift"
 action = "ReceiveChar"
 key = "Space"
 mods = "Control|Shift"
+
+# key bindings for mac
+#
+# bind paste
+[[keyboard.bindings]]
+action = "PasteSelection"
+key = "v"
+mods = "Control|Shift"
+
+# zoom in
+[[keyboard.bindings]]
+action = "IncreaseFontSize"
+key = "="
+mods = "Control"
+
+# zoom out
+[[keyboard.bindings]]
+action = "DecreaseFontSize"
+key = "-"
+mods = "Control"
+
+# zoom reset
+[[keyboard.bindings]]
+action = "ResetFontSize"
+key = "0"
+mods = "Control"
 
 [general]
 import = [

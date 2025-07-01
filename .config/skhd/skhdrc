@@ -106,7 +106,7 @@
 # ]
 
 # open terminal
-alt - return : open -a Alacritty.app -n
+alt - return : open -a Alacritty.app -n --args -o font.size=22
 
 # open dmenu
 alt - d : ~/lib/choose/apps.sh
