@@ -15,6 +15,11 @@ user_pref("browser.sessionstore.resume_from_crash", false);
 // make stuff smaller
 user_pref("browser.uidensity", 1);
 
+// remove annoying search bar icon always in URL bar
+// https://www.reddit.com/r/firefox/comments/1lka4nu/how_to_remove_this_icon_in_search_bar
+// around Firefox 140
+user_pref("browser.urlbar.scotchBonnet.enableOverride", false);
+
 // work
 user_pref("browser.fixup.domainwhitelist.go", true);
 
