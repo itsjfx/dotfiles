@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+
+set -eu -o pipefail
+
+echo -n 'SSID: ' >&2
+IFS= read -r ssid
+
+echo -n 'Password: ' >&2
+IFS= read -rs password
+
+echo '' >&2
+qrencode -t utf8 "WIFI:T:WPA;S:$ssid;P:$password;;"
