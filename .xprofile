@@ -27,8 +27,8 @@ if [[ "$(hostname)" == "sandcastle" ]]; then
     xrandr --output HDMI-0 --off --output DP-0 --off --output DP-1 --off --output HDMI-1 --mode 1920x1080 --pos 0x0 --rotate normal --output DP-2 --off --output DP-3 --off --output HDMI-1-3 --off --output DP-1-3 --off --output DP-1-4 --off --output DP-1-5 --off
     # just now turn them on properly
     xrandr --output "$hdmi_device" --mode 1920x1080 --pos 0x0 --rotate normal --output "$dp_device" --primary --mode 1920x1080 --pos 1928x0 --rotate normal --rate 240
-    export __GL_SYNC_DISPLAY_DEVICE="$device"
-    export VDPAU_NVIDIA_SYNC_DISPLAY_DEVICE="$device"
+    export __GL_SYNC_DISPLAY_DEVICE="$dp_device"
+    export VDPAU_NVIDIA_SYNC_DISPLAY_DEVICE="$dp_device"
     x11vnc -display :0 -usepw -forever -bg
 else
     # TODO
