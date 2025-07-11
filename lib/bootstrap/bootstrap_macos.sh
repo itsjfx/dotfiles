@@ -58,6 +58,7 @@ nix profile install \
     nixpkgs#maven \
     nixpkgs#go \
     nixpkgs#gettext \
+    nixpkgs#git-lfs \
 
 
 # fonts
