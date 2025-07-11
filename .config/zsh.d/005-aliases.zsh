@@ -135,11 +135,6 @@ alias youtube-dl='yt-dlp'
 
 own() { chown -R "$USER":"$USER" "$@"; }
 
-docker-shell() {
-    container="$1"
-    shift
-    docker exec -it "$container" sh -c "[ -f /bin/bash ] && exec /bin/bash $@ || exec /bin/sh $@"
-}
 alias podman-shell=docker-shell
 
 alias rice='v ~/.config/nvim/init.lua ~/.config/nvim-old/init.vim ~/.config/i3/config ~/.config/zsh.d/*'
@@ -177,4 +172,10 @@ alias epoch='date +%s'
 # this has duplication on PATH, but cause we generally want to target binaries in these folders, I don't think this is introduces huge performance concern
 sysexec() {
     PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:$PATH" "$@"
+}
+
+datediff() {
+    local val
+    val=$(( "$(date +%s -d "$2")"-"$(date +%s -d "$1")"/86400 ))
+    echo "$val"
 }

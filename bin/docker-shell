@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+
+if [[ "$1" == docker-cli-plugin-metadata ]]; then
+    cat << EOF
+{
+     "SchemaVersion": "0.1.0",
+     "Vendor": "https://jfx.ac",
+     "Version": "v0.1.0",
+     "ShortDescription": "(custom) run a shell on container"
+}
+EOF
+    exit
+fi
+
+set -eu -o pipefail
+
+cmd="$(basename "$0" | cut -f1 -d-)"
+
+container="$2"
+shift 2
+docker exec -it "$container" sh -c "[ -f /bin/bash ] && exec /bin/bash $@ || exec /bin/sh $@"
