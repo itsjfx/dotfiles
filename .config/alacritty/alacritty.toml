@@ -11,23 +11,22 @@ decorations = "None"
 option_as_alt = 'Both'
 
 # my epic font choice
-# on Mac I override font.size when launching Alacritty
 [font]
 size = 15
 [font.bold]
-family = "FantasqueSansM Nerd Font Mono"
+family = "Fantasque Sans Mono"
 style = "Bold"
 
 [font.bold_italic]
-family = "FantasqueSansM Nerd Font Mono"
+family = "Fantasque Sans Mono"
 style = "Bold Italic"
 
 [font.italic]
-family = "FantasqueSansM Nerd Font Mono"
+family = "Fantasque Sans Mono"
 style = "Italic"
 
 [font.normal]
-family = "FantasqueSansM Nerd Font Mono"
+family = "Fantasque Sans Mono"
 style = "Regular"
 
 # needed for colours
@@ -111,14 +110,6 @@ action = "ReceiveChar"
 key = "Space"
 mods = "Control|Shift"
 
-# key bindings for mac
-#
-# bind paste
-[[keyboard.bindings]]
-action = "PasteSelection"
-key = "v"
-mods = "Control|Shift"
-
 # zoom in
 [[keyboard.bindings]]
 action = "IncreaseFontSize"
@@ -139,7 +130,7 @@ mods = "Control"
 
 [general]
 import = [
-    "~/lib/alacritty/dracula-dark.toml"
+    "~/.config/alacritty/dracula-dark.toml"
 ]
 
 [terminal]

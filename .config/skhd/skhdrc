@@ -106,7 +106,7 @@
 # ]
 
 # open terminal
-alt - return : open -a Alacritty.app -n --args -o font.size=22
+alt - return : open -a Alacritty.app -n --args --config-file=~/.config/alacritty/mac.toml
 
 # open dmenu
 alt - d : ~/lib/choose/apps.sh
