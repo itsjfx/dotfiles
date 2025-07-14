@@ -106,7 +106,9 @@
 # ]
 
 # open terminal
-alt - return : open -a Alacritty.app -n --args --config-file=~/.config/alacritty/mac.toml
+alt - return : open -a Alacritty.app -n --args --config-file=$HOME/.config/alacritty/mac.toml
+
+alt + shift - return : open -a Alacritty.app -n --args --config-file=$HOME/.config/alacritty/mac.toml -e zsh
 
 # open dmenu
 alt - d : ~/lib/choose/apps.sh
