@@ -23,3 +23,8 @@ style = "Regular"
 action = "PasteSelection"
 key = "v"
 mods = "Control|Shift"
+
+[general]
+import = [
+    "~/.config/alacritty/alacritty.toml"
+]
