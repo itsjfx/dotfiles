@@ -3,10 +3,10 @@
 set -eu -o pipefail
 
 # sudo sed -E -i 's/http:\/\/(archive|security).ubuntu.com/https:\/\/mirror.gsl.icu/' /etc/apt/sources.list
-sudo add-apt-repository ppa:neovim-ppa/unstable
-sudo apt update
-sudo apt upgrade
-sudo apt install \
+sudo DEBIAN_FRONTEND=noninteractive add-apt-repository ppa:neovim-ppa/unstable -y
+sudo DEBIAN_FRONTEND=noninteractive apt update -y
+sudo DEBIAN_FRONTEND=noninteractive apt upgrade -y
+sudo DEBIAN_FRONTEND=noninteractive apt install -y \
     ca-certificates \
     neovim \
     git \
@@ -18,7 +18,6 @@ sudo apt install \
     unzip \
     bc \
     gron \
-    fzf \
     bat \
     ncdu \
     moreutils \
@@ -26,3 +25,5 @@ sudo apt install \
     python3-pip \
     magic-wormhole \
 
+git clone --depth 1 https://github.com/junegunn/fzf.git "$HOME"/.fzf
+ln -srf "$HOME"/.fzf/bin/fzf "$HOME"/bin/

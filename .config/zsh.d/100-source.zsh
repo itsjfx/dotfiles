@@ -20,6 +20,7 @@ bindkey '\es' live_preview.save
 [[ -f /usr/share/fzf/key-bindings.zsh ]] && source /usr/share/fzf/key-bindings.zsh
 [[ -f /usr/share/doc/fzf/examples/key-bindings.zsh ]] && source /usr/share/doc/fzf/examples/key-bindings.zsh
 [[ -f "$HOME"/.nix-profile/share/fzf/key-bindings.zsh ]] && source "$HOME"/.nix-profile/share/fzf/key-bindings.zsh
+[[ -f "$HOME"/.fzf/shell/key-bindings.zsh ]] && source "$HOME"/.fzf/shell/key-bindings.zsh
 
 # Ctrl + F instead of Ctrl + T
 bindkey -M emacs '^F' fzf-file-widget
