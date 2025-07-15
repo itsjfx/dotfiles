@@ -38,4 +38,4 @@ fi
 
 /usr/lib/polkit-kde-authentication-agent-1 &
 xset r on
-xset r rate 200 35
+xset r rate 200 45
