@@ -78,7 +78,7 @@ automatically-unhide-macos-hidden-apps = false
     inner.vertical =   0
     outer.left =       0
     outer.bottom =     0
-    outer.top =        [{ monitor."zowie" = 30 }, 0]
+    outer.top =        [{ monitor."ZOWIE RL" = 30 }, { monitor."ZOWIE XL" = 30 }, 0]
     outer.right =      0
 
 [mode.main.binding]
@@ -166,4 +166,4 @@ automatically-unhide-macos-hidden-apps = false
 
 [workspace-to-monitor-force-assignment]
     9 = 'secondary'
-    10 = 'secondary'
+    10 = 'ZOWIE RL'
