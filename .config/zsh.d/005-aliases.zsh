@@ -163,6 +163,7 @@ zle -N edit-command-line
 bindkey "\ev" edit-command-line
 
 alias epoch='date +%s'
+alias epochms='date +%s%3N'
 
 # on Mac OS, i install a lot of GNU applications to my users bin directory
 # however, there are times that using the Mac/BSD/Xcode offered tooling is necessary
