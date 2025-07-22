@@ -1382,6 +1382,7 @@ require('lazy').setup({
         'hcl',
         'html',
         'html',
+        'java',
         'javascript',
         'kotlin',
         'lua',
