@@ -1,5 +1,6 @@
 local colors = require("colors").sections.widgets.volume
 local icons = require "icons"
+local settings = require "settings"
 
 local popup_width = 250
 
@@ -8,7 +9,17 @@ local volume_icon = sbar.add("item", "widgets.volume", {
   icon = {
     color = colors.icon,
   },
-  label = { drawing = false },
+  label = {
+    color = colors.label,
+    font = {
+      family = settings.font.text,
+      style = settings.font.style_map["Regular"],
+      size = 20.0,
+    },
+    align = "left",
+    padding_right = 8,
+    padding_left = 8,
+  },
   background = { drawing = false },
   popup = {
     align = "center",
@@ -52,6 +63,8 @@ volume_icon:subscribe("volume_change", function(env)
     end
 
     volume_icon:set { icon = icon }
+    -- volume_icon:set { label = "󰝟 " .. volume }
+    volume_icon:set { label = volume }
     volume_slider:set { slider = { percentage = volume } }
   end)
 end)

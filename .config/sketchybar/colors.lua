@@ -12,8 +12,7 @@ local transparent = 0x00000000
 local rp_moon = {
   base = 0xff232136,
   surface = 0xff2a273f,
-  -- overlay = 0xff393552,
-  overlay = 0xff282a2e,
+  overlay = 0xff393552,
   muted = 0xff6e6a86,
   subtle = 0xff908caa,
   text = 0xffe0def4,
@@ -25,6 +24,10 @@ local rp_moon = {
   foam = 0xff9ccfd8,
   highlight_low = 0xff21202e,
   highlight_med = 0xff44415a,
+}
+
+local me = {
+  background = 0xff282a2e,
 }
 
 local dracula = {
@@ -59,7 +62,7 @@ local theme = rp
 
 M.sections = {
   bar = {
-    bg = with_alpha(rp_moon.overlay, 1.0),
+    bg = me.background,
     border = theme.highlight_low,
   },
   item = {
