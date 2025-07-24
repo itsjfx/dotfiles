@@ -4,6 +4,23 @@
             "complex_modifications": {
                 "rules": [
                     {
+                        "description": "F13 to Copy",
+                        "enabled": false,
+                        "manipulators": [
+                            {
+                                "from": {
+                                    "key_code": "left_control",
+                                    "modifiers": {
+                                        "mandatory": ["right_command"],
+                                        "optional": ["any"]
+                                    }
+                                },
+                                "to": [{ "key_code": "x" }],
+                                "type": "basic"
+                            }
+                        ]
+                    },
+                    {
                         "description": "Swap CMD and Control in terminal",
                         "manipulators": [
                             {
