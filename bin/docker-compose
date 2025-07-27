@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
-if command -v docker &>/dev/null; then
-    docker compose "$@"
+if command -v podman &>/dev/null; then
+    command -vp podman-compose "$@"
 else
-    podman-compose "$@"
+    docker compose "$@"
 fi
