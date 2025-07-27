@@ -11,6 +11,9 @@ options() {
     # echo -e "Lock\0icon\x1fsystem-lock-screen"
     echo -e "Logout\0icon\x1fsystem-log-out\x1fmeta\x1fLog out"
     echo -e "Reboot to BIOS\0icon\x1fsystem-reboot"
+    if [[ "$(hostname)" == sandcastle ]]; then
+        echo -e "Reboot to Windows\0icon\x1fsystem-reboot"
+    fi
 }
 
 yesno() {
@@ -35,6 +38,7 @@ case "$choice" in
     Lock) loginctl lock-session "${XDG_SESSION_ID-}" ;;
     Logout) i3-msg exit ;;
     'Reboot to BIOS') systemctl reboot --firmware-setup ;;
+    'Reboot to Windows') systemctl reboot --boot-loader-entry=windows.conf ;;
     *) exit 2 ;;
 #    Logout) loginctl terminate-session "${XDG_SESSION_ID-}" ;;
 esac
