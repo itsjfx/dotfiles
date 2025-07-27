@@ -597,7 +597,7 @@ require('lazy').setup({
   {
     'junegunn/fzf.vim',
     dependencies = {
-      { 'junegunn/fzf', build = './install --all' },
+      { 'junegunn/fzf' },
     },
     config = function()
       -- layout
