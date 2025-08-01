@@ -50,6 +50,27 @@ map <C-p> <Action>(GotoFile)
 
 " hover function signature
 map gh <Action>(QuickJavaDoc)
+map grd <Action>(GotoDeclaration)
+map gt <Action>(GotoTypeDeclaration)
+map gu <Action>(GotoTest)
+map <Ctrl-p> <Action>(GotoFile)
+map <Alt-f> <Action>(FindInPath)
+map <Alt-p> <Action>(GotoFile)
+
+map gc <Action>(CommentByLineComment)
+map gcc <Action>(CommentByLineComment)
+
+map <leader>v :vsplit<CR>
+
+nnoremap <leader>cf :action ReformatCode<CR>
+
+nmap <Leader>rf :action Refactorings.QuickListPopupAction<CR>
+nmap <Leader>rt :action RunClass<CR>
+
+nmap <Leader>fb :action RecentFiles<CR>
+
+" clear highlights on search when pressing enter
+nnoremap <Esc> :nohlsearch<CR>
 
 " file browser
 set nerdtree
