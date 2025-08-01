@@ -16,6 +16,6 @@ set -eu -o pipefail
 
 cmd="$(basename "$0" | cut -f1 -d-)"
 
-container="$2"
+container="$1"
 shift 2
 docker exec -it "$container" sh -c "[ -f /bin/bash ] && exec /bin/bash $@ || exec /bin/sh $@"
