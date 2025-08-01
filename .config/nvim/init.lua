@@ -819,6 +819,8 @@ require('lazy').setup({
           --  To jump back, press <C-t>.
           map('grd', require('telescope.builtin').lsp_definitions, '[G]oto [D]efinition')
 
+          map('gd', require('telescope.builtin').lsp_definitions, '[G]oto [D]efinition')
+
           -- show definition / hover of thing. similar to VS Code Vim plugins hover feature
           -- alternatively use lspsaga as it will allow opening links and stuff
           map('gh', vim.lsp.buf.hover, '[H]over]')
