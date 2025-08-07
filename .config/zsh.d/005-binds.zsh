@@ -34,7 +34,7 @@ _no_history_eval() {
 }
 _bind_git_status_git() { _no_history_eval 'git status' }
 _bind_git_status_config() { _no_history_eval 'config status' }
-_bind_git_diff() { git rev-parse --is-inside-work-tree &>/dev/null && git diff }
+_bind_git_diff() { git rev-parse --is-inside-work-tree &>/dev/null && _no_history_eval git diffmuch --paging=always }
 # TODO surely this can be done better?
 zle -N _bind_git_status_git
 zle -N _bind_git_status_config

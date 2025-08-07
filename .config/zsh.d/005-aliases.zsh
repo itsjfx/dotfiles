@@ -92,7 +92,7 @@ alias glp='gl && gp'
 alias gm='git morelog'
 alias cm='config morelog'
 alias gco='git checkout'
-alias gd='git diff'
+alias gd='git diffmuch'
 alias gds='git diff --staged'
 
 ccm() { __gcm config "$@"; }

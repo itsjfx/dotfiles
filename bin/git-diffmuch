@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+
+set -eu -o pipefail
+
+# shows you added changes and modified changes
+(
+    git diff
+    git ls-files --others --exclude-standard -z | xargs -0 -n 1 git diff /dev/null
+) | "$(git config --get core.pager)" "$@"
