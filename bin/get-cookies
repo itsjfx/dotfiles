@@ -1,0 +1,170 @@
+#!/usr/bin/env -S uv run --script
+# vi: ft=python
+
+# /// script
+# dependencies = [
+#   'browser-cookie3'
+# ]
+# ///
+
+'''
+Get cookies for a website from various browsers.
+
+Supports outputting in JSON format or curl/netscape format for use with curl.
+'''
+
+import argparse
+import json
+import sys
+from urllib.parse import urlparse
+import browser_cookie3
+
+BROWSERS = {b.__name__: b for b in browser_cookie3.all_browsers}
+
+def _get_all_cookies(domain, browsers):
+    for browser_name, browser_func in BROWSERS.items():
+        try:
+            yield from browser_func(domain_name=domain)
+        except:
+            pass
+
+def get_cookies_for_domain(domain, browsers=None, cookie_names=None):
+    '''Get all cookies for a domain from the specified browser(s) or all browsers.'''
+    # Collect all cookies from the generator
+    all_cookies = list(_get_all_cookies(domain, browsers))
+
+    # If no specific cookie names requested, return all cookies
+    if not cookie_names:
+        return all_cookies
+
+    # Filter cookies by name if specific names were requested
+    filtered_cookies = []
+    found_names = set()
+
+    for cookie in all_cookies:
+        if cookie.name in cookie_names:
+            filtered_cookies.append(cookie)
+            found_names.add(cookie.name)
+
+    # Check if all requested cookies were found
+    missing_names = set(cookie_names) - found_names
+    if missing_names:
+        print(f'Error: Could not find cookies: {', '.join(sorted(missing_names))}', file=sys.stderr)
+        return
+
+    return filtered_cookies
+
+def cookies_to_json(cookies):
+    '''Convert cookies to JSON format.'''
+    cookie_list = []
+    for cookie in cookies:
+        cookie_dict = {
+            'name': cookie.name,
+            'value': cookie.value,
+            'domain': cookie.domain,
+            'path': cookie.path,
+            'secure': cookie.secure,
+            'httponly': getattr(cookie, 'httponly', False),
+            'expires': cookie.expires,
+        }
+        cookie_list.append(cookie_dict)
+
+    return json.dumps(cookie_list)
+
+def cookies_to_netscape(cookies):
+    '''Convert cookies to Netscape/curl format.'''
+    lines = []
+    lines.append('# Netscape HTTP Cookie File')
+    lines.append('# This is a generated file! Do not edit.')
+    lines.append('')
+
+    for cookie in cookies:
+        # Netscape format: domain, domain_specified, path, secure, expires, name, value
+        domain_specified = 'TRUE' if cookie.domain.startswith('.') else 'FALSE'
+        secure = 'TRUE' if cookie.secure else 'FALSE'
+        expires = str(int(cookie.expires)) if cookie.expires else '0'
+
+        line = '\t'.join([
+            cookie.domain,
+            domain_specified,
+            cookie.path,
+            secure,
+            expires,
+            cookie.name,
+            cookie.value
+        ])
+        lines.append(line)
+
+    return '\n'.join(lines)
+
+def main():
+    parser = argparse.ArgumentParser(
+        description='Get cookies for a website from various browsers',
+        epilog='''
+Examples:
+  %(prog)s example.com
+  %(prog)s example.com session_id csrf_token
+  %(prog)s example.com --format json
+  %(prog)s example.com --browser chrome
+  %(prog)s example.com --browser chrome --browser firefox
+
+  # Use with curl:
+  curl -b <(%(prog)s example.com --format netscape) https://example.com
+  curl -b <(%(prog)s example.com session_id --format netscape) https://example.com
+        ''',
+        formatter_class=argparse.RawDescriptionHelpFormatter
+    )
+
+    parser.add_argument('domain', help='Domain to get cookies for (e.g., example.com)')
+    parser.add_argument('cookies', nargs='*', help='Specific cookie names to retrieve (optional)')
+    parser.add_argument('--format', '-f', choices=['json', 'netscape'], default='netscape', help='Output format (default: %(default)s)')
+
+    parser.add_argument('--browser', '-b',
+                        choices=BROWSERS.keys(),
+                        action='append',
+                        help='Specific browser(s) to get cookies from. Can be specified multiple times (default: all browsers)')
+    parser.add_argument('--verbose', '-v', action='store_true', help='Verbose output')
+
+    args = parser.parse_args()
+
+    # Parse domain to handle URLs
+    if args.domain.startswith(('http://', 'https://')):
+        parsed = urlparse(args.domain)
+        domain = parsed.netloc
+    else:
+        domain = args.domain
+
+    if not args.browser:
+        args.browser = BROWSERS
+
+    if args.verbose:
+        print(f'Getting cookies for domain: {domain}', file=sys.stderr)
+        if args.cookies:
+            print(f'Looking for specific cookies: {", ".join(args.cookies)}', file=sys.stderr)
+        print(f'Using browsers: {", ".join(args.browser)}', file=sys.stderr)
+
+    cookies = get_cookies_for_domain(domain, args.browser, args.cookies)
+
+    if cookies is None:
+        return 1
+
+    if not cookies:
+        if args.verbose:
+            if args.cookies:
+                print('No matching cookies found for domain', file=sys.stderr)
+            else:
+                print('No cookies found for domain', file=sys.stderr)
+        return 2
+
+    if args.verbose:
+        print(f'Found {len(cookies)} cookies', file=sys.stderr)
+
+    if args.format == 'json':
+        print(cookies_to_json(cookies))
+    elif args.format == 'netscape':
+        print(cookies_to_netscape(cookies))
+    else:
+        raise NotImplementedError(f'No implementation for format: {args.format}')
+
+if __name__ == '__main__':
+    sys.exit(main())
