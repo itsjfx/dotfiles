@@ -165,5 +165,5 @@ automatically-unhide-macos-hidden-apps = false
     esc = 'mode main'
 
 [workspace-to-monitor-force-assignment]
-    9 = 'secondary'
+    9 = ['built-in', 'secondary']
     10 = 'ZOWIE RL'
