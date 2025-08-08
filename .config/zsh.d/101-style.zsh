@@ -53,9 +53,8 @@ PROMPT="%(?:%{$fg_bold[green]%}➜ :%{$fg_bold[red]%}➜ )"
 if [[ -n "$SSH_CONNECTION" ]]; then
     PROMPT+=' %{$fg[green]%}%n@%m' # magenta
 fi
-PROMPT+=' %{$fg[cyan]%}%c%{$reset_color%}'
+PROMPT+=' %{$fg[cyan]%}%c %{$reset_color%}'
 if [ -d "$HOME"/lib/external/live-preview.zsh ]; then
     PROMPT+='${live_preview_vars[active]:+"%F{10}%B (live)%f%b"}'
 fi
-PROMPT+=' '
 export PROMPT
