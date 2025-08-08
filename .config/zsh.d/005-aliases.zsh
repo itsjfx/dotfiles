@@ -94,6 +94,7 @@ alias cm='config morelog'
 alias gco='git checkout'
 alias gd='git diffmuch'
 alias gds='git diff --staged'
+alias .cd='config diffmuch'
 
 ccm() { __gcm config "$@"; }
 alias ca='config add'
