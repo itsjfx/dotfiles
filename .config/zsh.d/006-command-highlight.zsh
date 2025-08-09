@@ -4,7 +4,7 @@
 # Custom accept-line widget that highlights the command before execution
 _highlight_command_and_execute() {
     local HIGHLIGHT_BG_COLOR='\033[48;5;234m' # or 235
-    local HIGHLIGHT_TEXT_COLOR='\033[38;5;207m'
+    local HIGHLIGHT_TEXT_COLOR='\033[38;5;207m\e[1m'
     # local HIGHLIGHT_BG_COLOR='\033[38;5;206;48;5;57m'
     # local HIGHLIGHT_BG_COLOR='\033[38;5;206;48;5;236m'
     local HIGHLIGHT_RESET='\033[0m'         # Reset all colors
