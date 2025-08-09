@@ -34,10 +34,11 @@ for_window [class=".*"] title_window_icon yes
 # bold title
 for_window [class=".*"] title_format "<b>%title</b>"
 
-# screenshotting with flameshot
-bindsym Print exec flameshot screen -c
-bindsym Control+Shift+Print exec flameshot full -c
-bindsym Control+Print exec flameshot gui
+# screenshotting with spectacle
+# i used to use flameshot, but its broken in QT6 so moving back to spectacle
+bindsym Print exec spectacle --activewindow
+bindsym Control+Shift+Print exec spectacle --current
+bindsym Control+Print exec spectacle --region
 
 # TODO: does this stuff _actually_ belong here
 exec --no-startup-id exec dunst

@@ -136,12 +136,12 @@ get \
 
 
 #pesign
-#spectacle -> flameshot
+#spectacle -> flameshot -> spectacle
 get \
     arandr \
     hdparm \
     dos2unix \
-    flameshot \
+    spectacle \
     ripgrep \
     xdg-utils \
     lm_sensors \
