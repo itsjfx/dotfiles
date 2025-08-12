@@ -110,7 +110,7 @@ automatically-unhide-macos-hidden-apps = false
     # Consider using 'join-with' command as a 'split' replacement if you want to enable
     # normalizations
     #alt-h = 'split horizontal'
-    alt-v = 'split vertical'
+    # alt-v = 'split vertical'
 
     # alt-f = 'fullscreen'
 
