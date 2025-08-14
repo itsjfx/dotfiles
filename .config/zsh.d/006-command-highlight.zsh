@@ -17,8 +17,18 @@ _highlight_command_and_execute() {
         return
     fi
 
-    # Highlight the command since we know it contains actual content
-    # Move to beginning of line and clear it
+    # Force clear all zsh highlighting including autosuggestions
+    region_highlight=()
+
+    # Clear autosuggestion buffer to prevent interference
+    if [[ -n "$POSTDISPLAY" ]]; then
+        POSTDISPLAY=""
+    fi
+
+    # Force a redraw to clear any existing highlights
+    zle -R
+
+    # Move to beginning of line and clear it completely
     printf '\r\033[2K'
 
     # Apply background with purple text to entire terminal line
@@ -26,8 +36,7 @@ _highlight_command_and_execute() {
     print -nP "$PROMPT"  # Prompt with original colors on background
     printf "${HIGHLIGHT_BG_COLOR}${HIGHLIGHT_TEXT_COLOR}%s" "$current_buffer"  # Command with background and purple text
 
-    # Use a simpler approach - just fill to the end regardless of calculation
-    # This ensures we always get full terminal width coverage
+    # Fill to end of line with background color to ensure full terminal width coverage
     printf "${HIGHLIGHT_BG_COLOR}\033[K"  # Fill to end of line with current background color
     printf "${HIGHLIGHT_RESET}"  # Reset colors
 
@@ -35,5 +44,5 @@ _highlight_command_and_execute() {
     zle .accept-line
 }
 
-# Register the widget
+# Register the widget (will be re-registered after plugins load)
 zle -N accept-line _highlight_command_and_execute
