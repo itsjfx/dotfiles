@@ -98,6 +98,7 @@ pacman -S --noconfirm --needed \
     unrar \
     qbittorrent \
     vlc \
+    vlc-plugins-all \
     signal-desktop \
     obsidian \
     kolourpaint \
