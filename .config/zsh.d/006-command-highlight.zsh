@@ -32,8 +32,9 @@ _highlight_command_and_execute() {
     printf '\r\033[2K'
 
     # Apply background with purple text to entire terminal line
-    printf "${HIGHLIGHT_BG_COLOR}${HIGHLIGHT_TEXT_COLOR}"  # Start background with purple text
+    printf "${HIGHLIGHT_BG_COLOR}"  # Start background
     print -nP "$PROMPT"  # Prompt with original colors on background
+    # echo "buffer: $current_buffer" >&2
     printf "${HIGHLIGHT_BG_COLOR}${HIGHLIGHT_TEXT_COLOR}%s" "$current_buffer"  # Command with background and purple text
 
     # Fill to end of line with background color to ensure full terminal width coverage
