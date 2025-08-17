@@ -328,6 +328,9 @@ if (( DESKTOP )); then
     sudo systemctl enable nvidia-resume.service
 fi
 
+sudo systemctl enable systemd-boot-update.service
+sudo systemctl enable paccache.timer
+
 # Boot into the new environment
 echo 'Rebooting in 10 seconds...' >&2
 sleep 10

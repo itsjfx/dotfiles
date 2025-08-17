@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+
+set -x
+
+echo 'Check systemd failed services' >&@
+systemctl --failed | less
+
+echo 'Log files check' >&2
+sudo journalctl -p 3 -xb | less

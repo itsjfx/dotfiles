@@ -1,0 +1,26 @@
+#!/usr/bin/env bash
+
+set -eu -o pipefail
+set -x
+
+echo 'Update' >&2
+yay -Syu --devel
+
+echo 'Delete unwanted dependencies' >&2
+yay -Yc
+
+echo 'Delete Yay Cache' >&2
+yay -Scc
+
+echo 'Check Orphan packages' >&2
+pacman -Qtdq
+
+# echo 'Remove Orphan packages' >&2
+# sudo pacman -Rns "$(pacman -Qtdq)"
+
+# echo 'Clean the journal' >&2
+# sudo journalctl --vacuum-time=2weeks
+
+# This is on a timer
+# echo 'Clean old files' >&2
+# sudo paccache -r
