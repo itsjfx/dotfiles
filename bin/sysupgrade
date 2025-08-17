@@ -9,8 +9,8 @@ yay -Syu --devel
 echo 'Delete unwanted dependencies' >&2
 yay -Yc
 
-echo 'Delete Yay Cache' >&2
-yay -Scc
+# echo 'Delete Yay Cache' >&2
+# yay -Scc
 
 echo 'Check Orphan packages' >&2
 pacman -Qtdq
