@@ -120,6 +120,11 @@ pacman -S --noconfirm --needed \
     tk \
     syncthing \
 
+# for troubleshooting hardware acceleration
+pacman -S --noconfirm --needed \
+    libva-utils \
+    vdpauinfo
+
 # icons
 pacman -S --noconfirm --needed \
     ttf-iosevka-nerd \

@@ -127,6 +127,7 @@ get \
     linux-firmware \
     openssh \
     chrony \
+    ffmpeg \
 
 
 # xfce4-notifyd

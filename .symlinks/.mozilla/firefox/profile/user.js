@@ -44,6 +44,7 @@ user_pref("browser.download.dir", "/tmp");
 user_pref("layout.frame_rate", 240);
 // fixes framerate issues on NVIDIA
 // not sure if this breaks intel :)
+// https://github.com/elFarto/nvidia-vaapi-driver/#firefox
 user_pref("gfx.x11-egl.force-disabled", true);
 user_pref("gfx.webrender.all", true);
 

@@ -30,6 +30,7 @@ if [[ "$(hostname)" == "sandcastle" ]]; then
     export __GL_SYNC_DISPLAY_DEVICE="$dp_device"
     export VDPAU_NVIDIA_SYNC_DISPLAY_DEVICE="$dp_device"
     x11vnc -display :0 -usepw -forever -bg
+    LIBVA_DRIVER_NAME=nvidia
 else
     # TODO
     # not very portable
