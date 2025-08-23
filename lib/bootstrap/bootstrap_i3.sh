@@ -85,6 +85,7 @@ esac
 # reboot
 (( DESKTOP )) && get \
     nvidia-open \
+    libva-nvidia-driver \
     x11vnc \
     vdpauinfo
 
