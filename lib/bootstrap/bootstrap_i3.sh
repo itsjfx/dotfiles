@@ -84,7 +84,7 @@ esac
 # mkinitcpio -P
 # reboot
 (( DESKTOP )) && get \
-    nvidia \
+    nvidia-open \
     x11vnc \
     vdpauinfo
 
