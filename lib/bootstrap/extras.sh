@@ -119,6 +119,7 @@ pacman -S --noconfirm --needed \
     grc \
     tk \
     syncthing \
+    wol \
 
 # for troubleshooting hardware acceleration
 pacman -S --noconfirm --needed \
