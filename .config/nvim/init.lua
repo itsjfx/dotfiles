@@ -1108,7 +1108,7 @@ require('lazy').setup({
         -- Disable "format_on_save lsp_fallback" for languages that don't
         -- have a well standardized coding style. You can add additional
         -- languages here or re-enable it for the disabled ones.
-        local disable_filetypes = { c = true, cpp = true, javascript = true, typescript = true, js = true, ts = true, css = true, scss = true }
+        local disable_filetypes = { c = true, cpp = true, javascript = true, typescript = true, js = true, ts = true, kotlin = true, kt = true, css = true, scss = true }
         if disable_filetypes[vim.bo[bufnr].filetype] then
           return nil
         else
