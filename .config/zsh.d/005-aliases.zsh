@@ -182,3 +182,5 @@ datediff() {
     val=$(( "$(date +%s -d "$2")"-"$(date +%s -d "$1")"/86400 ))
     echo "$val"
 }
+
+zsh-vanilla() { env -i ZDOTDIR="$(mktemp -d)" zsh --login; }
