@@ -40,7 +40,6 @@ elif [[ -d "$HOME/.fnm" ]]; then
 fi
 
 #source "$HOME/repos/me/notes/notes.sh"
-source "$HOME/lib/external/zsh-tmux-smart-status-bar/zsh-tmux-smart-status-bar.sh"
 
 # mac
 if [[ -d /opt/homebrew ]]; then
