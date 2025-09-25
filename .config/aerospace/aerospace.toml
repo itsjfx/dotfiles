@@ -78,7 +78,7 @@ automatically-unhide-macos-hidden-apps = false
     inner.vertical =   0
     outer.left =       0
     outer.bottom =     0
-    outer.top =        [{ monitor."ZOWIE RL" = 30 }, { monitor."ZOWIE XL" = 30 }, 0]
+    outer.top =        [{ monitor."ZOWIE RL" = 30 }, { monitor."ZOWIE XL" = 30 }, { monitor."DELL .*" = 30 }, 0]
     outer.right =      0
 
 [mode.main.binding]
