@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+
+# get root on a Mac Docker VM
+# https://github.com/justincormack/nsenter1
+
+docker run -it --rm --privileged --pid=host justincormack/nsenter1
