@@ -36,7 +36,6 @@ for plugin in \
     'itsjfx/csi' \
     'bash-my-aws/bash-my-aws' \
     'lincheney/snr' \
-    'alacritty/alacritty-theme' \
     'lincheney/rg-bm25' \
     'lincheney/i3-automark' \
     'lincheney/dsv' \
