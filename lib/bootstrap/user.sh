@@ -90,13 +90,19 @@ curl -fL https://raw.githubusercontent.com/magic-wormhole/magic-wormhole/master/
 
 if (( ! is_mac )); then
     # default settings in Dolphin
-    kwriteconfig5 --file "$HOME"/.config/dolphinrc --group 'General' --key 'RememberOpenedTabs' false
-    kwriteconfig5 --file "$HOME"/.config/dolphinrc --group 'General' --key 'BrowseThroughArchives' true
+    kwriteconfig6 --file "$HOME"/.config/dolphinrc --group 'General' --key 'RememberOpenedTabs' false
+    kwriteconfig6 --file "$HOME"/.config/dolphinrc --group 'General' --key 'BrowseThroughArchives' true
 
     ( unset BROWSER; xdg-settings set default-web-browser firefox.desktop || true )
 
     # mac has no systemd
     systemctl enable --now --user ssh-agent.service xdg-desktop-portal.service plasma-xdg-desktop-portal-kde.service
+
+    if systemctl --user cat batsignal.service; then
+        systemctl --user enable batsignal.service --now
+    fi
+
+    systemctl --user enable --now yubikey-touch-detector.service
 fi
 
 # symlinks

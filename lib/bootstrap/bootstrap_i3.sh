@@ -109,6 +109,7 @@ esac
     intel-gpu-tools \
     powertop \
     tlp \
+    batsignal \
 
 
 # picom -> picom-git
@@ -214,6 +215,9 @@ get \
 # plasma-desktop \
 # plasma-nm \
 # plasma-workspace \
+#
+#sddm \
+#sddm-kcm \
 get \
     breeze \
     breeze-gtk \
@@ -223,11 +227,8 @@ get \
     kdegraphics-thumbnailers \
     kdialog \
     kmenuedit \
-    ksysguard \
     ksystemlog \
     polkit-kde-agent \
-    sddm \
-    sddm-kcm \
     libappindicator-gtk3 \
     colord-kde \
     kcalc \
@@ -238,6 +239,7 @@ get \
     qt5ct \
     xdg-desktop-portal \
     xdg-desktop-portal-kde \
+    ly \
 
 
 # i3
@@ -310,8 +312,9 @@ sudo systemctl --now enable NetworkManager.service
 sudo systemctl --now enable firewalld.service || true
 sudo systemctl --now enable chronyd.service
 
-# Set graphical target and enable sddm at boot
-sudo systemctl --now enable sddm.service || true
+# enable ly
+sudo systemctl enable ly.service
+sudo systemctl disable getty@tty2.service
 sudo systemctl set-default graphical.target
 
 mkdir -p -m 700 "$HOME"/.ssh/
@@ -322,6 +325,9 @@ sudo chown -R "$USER":"$USER" /a/
 if (( LAPTOP )); then
     sudo systemctl mask systemd-rfkill.service systemd-rfkill.socket
     sudo systemctl --now enable tlp.service
+    if ! [[ "$(hostname)" == luger ]]; then
+        sudo systemctl enable bluetooth.service
+    fi
 fi
 
 if (( DESKTOP )); then

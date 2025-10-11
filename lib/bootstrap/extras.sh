@@ -6,25 +6,26 @@ pacman -Syy
 
 # pip/python section
 
-pip3 install --user --break-system-packages \
-    cfn-flip \
+# pip3 install --user --break-system-packages \
+#     cfn-flip \
 
 
 # pillow for streamdeck
 pacman -S --noconfirm --needed \
     python-ruamel-yaml \
     python-yaml \
-    python-boto3 \
-    python-pillow \
-    python-websockets \
-    python-pipenv \
-    python-dateutil \
-    python-requests \
-    python-black \
-    python-cfn-lint \
-    python-pysocks \
-    python-uv \
-    python-ruff \
+
+    # python-boto3 \
+    # python-pillow \
+    # python-websockets \
+    # python-pipenv \
+    # python-dateutil \
+    # python-requests \
+    # python-black \
+    # python-cfn-lint \
+    # python-pysocks \
+    # python-uv \
+    # python-ruff \
 
 pacman -S --noconfirm --needed \
     podman \
@@ -133,7 +134,7 @@ pacman -S --noconfirm --needed \
 
 # hardware hacking
 pacman -S --noconfirm --needed \
-    minicon \
+    minicom \
     screen \
     tcpdump \
 
@@ -161,8 +162,8 @@ pacman -S --noconfirm --needed \
     libfido2 \
     yubikey-touch-detector \
 
-systemctl --user daemon-reload
-systemctl --user enable --now yubikey-touch-detector.service
+# systemctl --user daemon-reload
+# systemctl --user enable --now yubikey-touch-detector.service
 # yubikey-manager-qt \
 # yubikey-personalization-gui
 
@@ -183,7 +184,7 @@ pacman -S --noconfirm --needed \
 pacman -S --noconfirm --needed \
     cowsay \
     figlet \
-    neofetch \
+    fastfetch \
     asciinema \
 
 
