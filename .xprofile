@@ -16,6 +16,10 @@ if [[ -z "$SSH_AUTH_SOCK" ]]; then
     find "$HOME"/.ssh/ -type f -name "*@keychain*" ! -name "*.pub" | xargs -n1 ssh-add
 fi
 
+# caps to esc
+xmodmap -e "clear lock"
+xmodmap -e "keycode 66 = Escape NoSymbol Escape"
+
 # just to not break stuff
 if [[ "$(hostname)" == "sandcastle" ]]; then
     export __GL_SYNC_TO_VBLANK=1
