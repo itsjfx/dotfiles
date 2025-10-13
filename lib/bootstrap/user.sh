@@ -98,7 +98,7 @@ if (( ! is_mac )); then
     # mac has no systemd
     systemctl enable --now --user ssh-agent.service xdg-desktop-portal.service plasma-xdg-desktop-portal-kde.service
 
-    if systemctl --user cat batsignal.service; then
+    if systemctl --user cat batsignal.service &>/dev/null; then
         systemctl --user enable batsignal.service --now
     fi
 
