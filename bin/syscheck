@@ -2,7 +2,7 @@
 
 set -x
 
-echo 'Check systemd failed services' >&@
+echo 'Check systemd failed services' >&2
 systemctl --failed | less
 
 echo 'Log files check' >&2
