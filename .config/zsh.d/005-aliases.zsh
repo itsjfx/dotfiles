@@ -153,8 +153,6 @@ whenis() {
     fi
 }
 
-alias q="tgpt --model claude-3-haiku-20240307 -m"
-
 alias nospace="tr -d ' '"
 alias noline="tr -d '\n'"
 secret() { unset HISTFILE; }
