@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 if [[ "$(uname)" == Darwin ]]; then
-    pbcopy
+    pbcopy "$@"
 else
-    xclip -selection clipboard
+    xclip -selection clipboard "$@"
 fi
