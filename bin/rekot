@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+
+java -jar "$HOME/lib/external/rekot.jar" "$@"
