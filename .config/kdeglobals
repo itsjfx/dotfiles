@@ -149,6 +149,7 @@ Theme=breeze-dark
 
 [KDE]
 AnimationDurationFactor=0.7071067811865475
+ColorScheme=BreezeDark
 LookAndFeelPackage=org.kde.breezedark.desktop
 ShowDeleteCommand=false
 SingleClick=false

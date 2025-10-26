@@ -9,5 +9,7 @@
   },
   "chromiumSwitches": {},
   "SKIP_HOST_UPDATE": true,
-  "BACKGROUND_COLOR": "#2b2d31"
+  "BACKGROUND_COLOR": "#121214",
+  "offloadAdmControls": true,
+  "enableHardwareAcceleration": true
 }
