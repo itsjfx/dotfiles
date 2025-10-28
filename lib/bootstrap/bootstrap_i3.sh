@@ -220,6 +220,7 @@ get \
 #sddm-kcm \
 get \
     breeze \
+    breeze5 \
     breeze-gtk \
     breeze-icons \
     dolphin \
@@ -237,6 +238,7 @@ get \
     kcolorchooser \
     gwenview \
     qt5ct \
+    qt6ct \
     xdg-desktop-portal \
     xdg-desktop-portal-kde \
     ly \

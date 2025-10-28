@@ -121,6 +121,7 @@ pacman -S --noconfirm --needed \
     tk \
     syncthing \
     wol \
+    android-tools \
 
 # for troubleshooting hardware acceleration
 pacman -S --noconfirm --needed \
