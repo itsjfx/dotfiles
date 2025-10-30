@@ -79,4 +79,7 @@ export AWS_DEFAULT_REGION=ap-southeast-2
 
 export AIDER_AUTO_COMMITS=false
 
+# smart case search on less by default
+export LESS="-i"
+
 WORDCHARS="${WORDCHARS/\/}"
