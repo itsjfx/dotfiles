@@ -1,3 +1,4 @@
 #!/usr/bin/env bash
 
-mitmdump --flow-detail=4 --showhost "$@"
+# mitmdump --flow-detail=4 --showhost --set hardump=- "$@"
+mitmdump --flow-detail=4 --showhost --set hardump=/tmp/mitmoutput.har "$@"
