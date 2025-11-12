@@ -136,6 +136,7 @@ bindsym $mod+Shift+p exec "$HOME/lib/rofi/power-menu.sh"
 bindsym $mod+Shift+c exec "$HOME/lib/rofi/code.sh"
 bindsym $mod+Shift+m exec "$HOME/lib/rofi/display.sh"
 bindsym $mod+Shift+i exec "$HOME/lib/rofi/1pass.sh"
+bindsym $mod+Shift+s exec rofi -modes '>>:~/lib/rofi/audio-sink.sh' -show '>>'
 
 # vim keys
 bindsym $mod+h focus left
