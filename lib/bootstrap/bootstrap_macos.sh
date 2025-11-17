@@ -70,6 +70,9 @@ nix profile install \
 brew install asdf
 asdf completion zsh > "$HOME"/.completions/_asdf
 
+# not in nix
+brew install displayplacer
+
 # git completion
 git_completion="$(nix eval --raw nixpkgs#git)"/share/git/contrib/completion
 if [[ ! -d "$git_completion" ]]; then
