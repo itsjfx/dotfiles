@@ -63,7 +63,7 @@ automatically-unhide-macos-hidden-apps = false
     preset = 'qwerty'
 
 [exec.env-vars]
-    PATH = '${HOME}/.nix-profile/bin:/usr/local/bin:${PATH}'
+    PATH = '${HOME}/.nix-profile/bin:/opt/homebrew/bin:/usr/local/bin:${PATH}'
 
 # Gaps between windows (inner-*) and between monitor edges (outer-*).
 # Possible values:

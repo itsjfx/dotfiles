@@ -73,6 +73,10 @@ asdf completion zsh > "$HOME"/.completions/_asdf
 # not in nix
 brew install displayplacer
 
+brew install --cask nikitabobko/tap/aerospace
+brew tap FelixKratz/formulae
+brew install sketchybar
+
 # git completion
 git_completion="$(nix eval --raw nixpkgs#git)"/share/git/contrib/completion
 if [[ ! -d "$git_completion" ]]; then
