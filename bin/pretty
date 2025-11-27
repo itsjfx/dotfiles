@@ -9,6 +9,7 @@ RESET = b'\x1b[0m'
 SPACES = '  '
 TAB = '\t'
 
+# https://github.com/lincheney/dsv/blob/2bb67d7fe6a598a28afa89d6b877bfb404e9272d/_dsv/_base.py#L350
 @cache
 def get_rgb(i, step=0.647, sat=0.3):  # cycle every 17 columns
     r, g, b = colorsys.hsv_to_rgb(step * i % 1, sat, 1)
