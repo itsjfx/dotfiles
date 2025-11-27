@@ -1,0 +1,61 @@
+#!/usr/bin/env python3
+
+import sys
+import colorsys
+import argparse
+from functools import cache
+
+RESET = b'\x1b[0m'
+SPACES = '  '
+TAB = '\t'
+
+@cache
+def get_rgb(i, step=0.647, sat=0.3):  # cycle every 17 columns
+    r, g, b = colorsys.hsv_to_rgb(step * i % 1, sat, 1)
+    return b'\x1b[38;2;%i;%i;%im' % (r*255, g*255, b*255)
+
+def colorize_fields(fields):
+    return [get_rgb(i).decode('utf-8') + field + RESET.decode('utf-8') for i, field in enumerate(fields)]
+
+def calculate_widths(rows):
+    """Calculate maximum width for each column"""
+    num_cols = max(len(row) for row in rows)
+    widths = [0] * num_cols
+    for row in rows:
+        for i, field in enumerate(row):
+            widths[i] = max(widths[i], len(field))
+    return widths
+
+def main(args):
+    use_colors = args.color == 'always' or (args.color == 'auto' and sys.stdout.isatty())
+    columnize = args.columnize == 'always' or (args.columnize == 'auto' and sys.stdout.isatty())
+
+    rows = [line.rstrip('\n\r').split(TAB) for line in sys.stdin]
+    if not rows:
+        return
+
+    if columnize:
+        widths = calculate_widths(rows)
+        separator = SPACES
+    else:
+        separator = TAB
+
+    for row in rows:
+        if columnize:
+            row = [field.ljust(widths[i]) for i, field in enumerate(row[:-1])] + row[-1:]
+
+        if use_colors:
+            row = colorize_fields(row)
+
+        print(separator.join(row))
+
+if __name__ == '__main__':
+    parser = argparse.ArgumentParser(description='Pretty print TSV with colors')
+    parser.add_argument('--color', choices=['never', 'always', 'auto'], default='auto', help='When to use colors (default: %(default)s)')
+    parser.add_argument('--columnize', choices=['never', 'always', 'auto'], default='auto', help='Columnize output (default: %(default)s)')
+    args = parser.parse_args()
+
+    try:
+        main(args)
+    except (BrokenPipeError, KeyboardInterrupt):
+        pass
