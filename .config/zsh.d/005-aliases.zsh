@@ -182,3 +182,4 @@ datediff() {
 }
 
 zsh-vanilla() { env -i ZDOTDIR="$(mktemp -d)" zsh --login; }
+alias v-='v -'
