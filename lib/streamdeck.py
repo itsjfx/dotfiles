@@ -38,6 +38,8 @@ DEFAULTS = {
 class Keys(Enum):
     MONITOR_DP1 = 0
     KM_TOGGLE = 1
+    SEEK_BACKWARD = 2
+    SEEK_FORWARD = 3
     MONITOR_HDMI1 = 5
     MONITOR_HDMI2 = 10
 
@@ -79,6 +81,10 @@ def get_key_style(key, state):
         info['label']['text']['text'] = 'Other'
     elif key == Keys.KM_TOGGLE:
         info['label']['text']['text'] = 'Toggle\nDevices'
+    elif key == Keys.SEEK_BACKWARD:
+        info['label']['text']['text'] = '    Seek\nBackward'
+    elif key == Keys.SEEK_FORWARD:
+        info['label']['text']['text'] = '  Seek\nForward'
 
     if key in (Keys.SPOTIFY_PREVIOUS, Keys.SPOTIFY_PLAYPAUSE, Keys.SPOTIFY_NEXT):
         info['background'] = 'green'
@@ -141,6 +147,10 @@ def key_change_callback(deck, key_num, state):
             if status == 'Playing':
                 pulse_sink_input_volume(player, increase=(key == Keys.VOLUME_UP))
                 return
+    elif key == Keys.SEEK_BACKWARD:
+        subprocess.run(['playerctl', '--player=cmus', 'position', '15-'])
+    elif key == Keys.SEEK_FORWARD:
+        subprocess.run(['playerctl', '--player=cmus', 'position', '15+'])
     # TODO, detect correct monitor instead of assuming monitor=2
     elif key == Keys.MONITOR_DP1:
         if not is_hub_connected():
