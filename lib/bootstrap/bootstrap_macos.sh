@@ -47,6 +47,7 @@ nix profile install \
     nixpkgs#readline \
     nixpkgs#tree \
     nixpkgs#moreutils \
+    nixpkgs#gnutar \
 
 # podman
 # nix profile install \

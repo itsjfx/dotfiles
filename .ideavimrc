@@ -18,6 +18,12 @@ set incsearch
 " visual mode: Ctrl + c = copy to system clipboard
 vnoremap <C-C> "+y
 
+" D = Ctrl
+" M = Alt
+
+nmap <C-f> :action EditorPageUp<CR>
+nmap <C-b> :action EditorPageUp<CR>
+
 " https://stackoverflow.com/a/78982421
 " let Ctrl+V paste from clipboard in insert mode
 " sort of slow
@@ -37,12 +43,12 @@ map <leader>0 <Action>(GoToLastTab)
 
 " re-impl of mini.move using editors in-built indentation mechanism
 " https://github.com/echasnovski/mini.move
-map <A-j> <Action>(MoveStatementDown)
-map <A-k> <Action>(MoveStatementUp)
-"map <A-h> <
-"map <A-l> >
-map <A-h> <Action>(EditorUnindentSelection)
-map <A-l> <Action>(EditorIndentSelection)
+map <M-j> <Action>(MoveStatementDown)
+map <M-k> <Action>(MoveStatementUp)
+"map <M-h> <
+"map <M-l> >
+map <M-h> <Action>(EditorUnindentSelection)
+map <M-l> <Action>(EditorIndentSelection)
 
 " close current tab
 map <leader>c <Action>(CloseContent)
@@ -55,7 +61,9 @@ map grd <Action>(GotoDeclaration)
 map grr <Action>(GotoDeclaration)
 map gt <Action>(GotoTypeDeclaration)
 map gu <Action>(GotoTest)
-map <Ctrl-p> <Action>(GotoFile)
+"map <A-p> <Action>(GotoFile)
+map <D-p> <Action>(GotoFile)
+map <M-p> <Action>(GotoFile)
 map <Alt-f> <Action>(FindInPath)
 map <Alt-p> <Action>(GotoFile)
 
@@ -70,6 +78,10 @@ nmap <Leader>rf :action Refactorings.QuickListPopupAction<CR>
 nmap <Leader>rt :action RunClass<CR>
 
 nmap <Leader>fb :action RecentFiles<CR>
+
+imap <C-n> <ESC>:action HippieCompletion<CR>a
+imap <C-p> <ESC>:action HippieBackwardCompletion<CR>a
+imap <C-y> <ESC>:action EditorChooseLookupItem<CR>a
 
 " clear highlights on search when pressing enter
 nnoremap <Esc> :nohlsearch<CR>

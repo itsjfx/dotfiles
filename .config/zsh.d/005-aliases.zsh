@@ -183,3 +183,5 @@ datediff() {
 
 zsh-vanilla() { env -i ZDOTDIR="$(mktemp -d)" zsh --login; }
 alias v-='v -'
+
+alias uuidgen='uuidgen | tr "[:upper:]" "[:lower:]"'
