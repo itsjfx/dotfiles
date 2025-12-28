@@ -112,4 +112,4 @@ mkdir -p media/Pictures media/Music repos
 
 # rekot
 
-curl -fL https://github.com/darthorimar/rekot/releases/download/0.1.4/rekot-0.1.4.jar > "$HOME"/lib/external/rekot.jar
+#curl -fL https://github.com/darthorimar/rekot/releases/download/0.1.4/rekot-0.1.4.jar > "$HOME"/lib/external/rekot.jar

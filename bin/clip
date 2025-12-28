@@ -1,7 +1,13 @@
 #!/usr/bin/env bash
 
-if [[ "$(uname)" == Darwin ]]; then
-    pbcopy "$@"
-else
-    xclip -selection clipboard "$@"
-fi
+set -eu -o pipefail
+
+case "$XDG_SESSION_TYPE" in
+    x11) xclip -selection clipboard "$@" ;;
+    wayland) wl-copy "$@" ;;
+    *)
+        if [[ "$(uname)" == Darwin ]]; then
+            pbcopy "$@"
+        fi
+        ;;
+esac

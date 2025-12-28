@@ -315,7 +315,7 @@ sudo systemctl --now enable firewalld.service || true
 sudo systemctl --now enable chronyd.service
 
 # enable ly
-sudo systemctl enable ly.service
+sudo systemctl enable ly@tty2.service
 sudo systemctl disable getty@tty2.service
 sudo systemctl set-default graphical.target
 

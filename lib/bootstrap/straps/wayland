@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+
+set -eu -o pipefail
+
+pacman -Syy --noconfirm --needed \
+    sway \
+    grim \
+    slurp \
+    swaybg \
+    wl-clipboard \
+    sway-alttab-bin \
+    wdisplays \
+    swaylock \
+    swayidle \
+    xdg-desktop-portal-wlr \
+

@@ -1,21 +1,5 @@
 # vi: ft=sh
 
-export QT_QPA_PLATFORMTHEME=qt5ct
-export STEAM_FRAME_FORCE_CLOSE=1
-export BROWSER=firefox
-export DA_TEST_DISABLE_TELEMETRY=1
-export UNA_NO_CONTAINER_SSH=1
-export GTK_USE_PORTAL=1
-export DOTNET_CLI_TELEMETRY_OPTOUT=1
-export PATH="$HOME/sbin:$PATH"
-
-if [[ -z "$SSH_AUTH_SOCK" ]]; then
-    export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR"/ssh-agent.socket
-    ssh-add "$HOME"/.ssh/id_ed25519
-    find "$HOME"/.ssh/ -type f -name "*@$(hostname)" | xargs -n1 ssh-add
-    find "$HOME"/.ssh/ -type f -name "*@keychain*" ! -name "*.pub" | xargs -n1 ssh-add
-fi
-
 # caps to esc
 xmodmap -e "clear lock"
 xmodmap -e "keycode 66 = Escape NoSymbol Escape"
@@ -34,13 +18,11 @@ if [[ "$(hostname)" == "sandcastle" ]]; then
     export __GL_SYNC_DISPLAY_DEVICE="$dp_device"
     export VDPAU_NVIDIA_SYNC_DISPLAY_DEVICE="$dp_device"
     x11vnc -display :0 -usepw -forever -bg
-    LIBVA_DRIVER_NAME=nvidia
 else
     # TODO
     # not very portable
-    export LIBVA_DRIVER_NAME=iHD
+    :
 fi
 
-/usr/lib/polkit-kde-authentication-agent-1 &
 xset r on
 xset r rate 200 45
