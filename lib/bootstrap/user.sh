@@ -93,6 +93,7 @@ if (( ! is_mac )); then
     kwriteconfig6 --file "$HOME"/.config/dolphinrc --group 'General' --key 'RememberOpenedTabs' false
     kwriteconfig6 --file "$HOME"/.config/dolphinrc --group 'General' --key 'BrowseThroughArchives' true
     gsettings set org.gnome.desktop.interface color-scheme 'prefer-dark'
+    gsettings set org.gnome.desktop.interface gtk-enable-primary-paste false
 
     ( unset BROWSER; xdg-settings set default-web-browser firefox.desktop || true )
 

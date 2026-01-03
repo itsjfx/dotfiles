@@ -15,6 +15,9 @@ set $TERMINAL alacritty
 
 workspace 1
 
+# XWayland title format
+for_window [shell="xwayland"] title_format "[XWayland] %title"
+
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
 # font pango:monospace 10
@@ -53,7 +56,8 @@ input type:touchpad {
         tap enabled
         # fixes scroll direction
         natural_scroll enabled
-        # middle_emulation disabled
+        # middle click
+        middle_emulation disabled
 }
 #
 #   input type:keyboard {
@@ -65,17 +69,14 @@ input type:touchpad {
 
 
 ### Idle configuration
-#
-# Example configuration:
-#
+
+# lock after 5 mins
+# turn off after 6 mins
+# lock before sleep
 exec swayidle -w \
          timeout 300 'swaylock -f' \
-         timeout 600 'swaymsg "output * power off"' resume 'swaymsg "output * power on"' \
+         timeout 360 'swaymsg "output * power off"' resume 'swaymsg "output * power on"' \
          before-sleep 'swaylock -f'
-#
-# This will lock your screen after 300 seconds of inactivity, then turn off
-# your displays after another 300 seconds, and turn your screens back on when
-# resumed. It will also lock your screen before your computer goes to sleep.
 
 # Only enable gaps on a workspace when there is at least one container
 #smart_gaps on
@@ -287,6 +288,21 @@ set $ws10 "10"
 # monitors
 workspace $ws1 output DP-0
 workspace $ws2 output HDMI-1
+
+for_window    [app_id="firefox"]                    title_format "<span foreground='#FF6611'><tt></tt></span> <b>%title</b>"
+for_window    [app_id="Alacritty"]                  title_format "<span foreground='#00FF00'><tt></tt></span> <b>%title</b>"
+for_window    [app_id="chromium"]                   title_format "<span foreground='#4285f4'><tt></tt></span> <b>%title</b>"
+for_window    [app_id="signal"]                     title_format "<span foreground='#3777f0'><tt>󰭹</tt></span> <b>%title</b>"
+for_window    [app_id="Spotify"]                    title_format "<span foreground='#1ed760'><tt>󰓇</tt></span> <b>%title</b>"
+# TODO: color
+for_window    [app_id="org.keepassxc.KeePassXC"]    title_format "<span foreground='#1ed760'><tt>󰌋</tt></span> <b>%title</b>"
+for_window    [class="obsidian"]                    title_format "<span foreground='#7c46bf'><tt>󰙏</tt></span> <b>%title</b>"
+for_window    [app_id="discord"]                    title_format "<span foreground='#404eed'><tt>󰙯</tt></span> <b>%title</b>"
+# TODO: icon/color
+for_window    [app_id="org.kde.dolphin"]            title_format "<span foreground='#4285f4'><tt></tt></span> <b>%title</b>"
+
+
+for_window    [app_id="telegramdesktop"]            title_format "<span foreground='#84b3ff'><tt></tt></span> <b>%title</b>"
 
 # switch to workspace
 bindsym $mod+1 workspace number $ws1

@@ -1,11 +1,9 @@
 [ColorEffects:Disabled]
-ChangeSelectionColor=
 Color=56,56,56
 ColorAmount=0
 ColorEffect=0
 ContrastAmount=0.65
 ContrastEffect=1
-Enable=
 IntensityAmount=0.1
 IntensityEffect=2
 
@@ -132,87 +130,41 @@ ForegroundNormal=252,252,252
 ForegroundPositive=39,174,96
 ForegroundVisited=155,89,182
 
-[DirSelect Dialog]
-DirSelectDialog Size=784,584
-
 [General]
-BrowserApplication=firefox.desktop
 ColorScheme=BreezeDark
 Name=Breeze Dark
 TerminalApplication=alacritty
 TerminalService=Alacritty.desktop
-XftHintStyle=hintslight
-XftSubPixel=rgb
-fixed=Noto Sans Mono,10,-1,5,50,0,0,0,0,0
+BrowserApplication=firefox.desktop
 shadeSortColumn=true
-toolBarFont=Noto Sans,10,-1,5,50,0,0,0,0,0
 
 [Icons]
 Theme=breeze-dark
 
 [KDE]
-AnimationDurationFactor=0.7071067811865475
-ColorScheme=BreezeDark
-LookAndFeelPackage=org.kde.breezedark.desktop
-ShowDeleteCommand=false
-SingleClick=false
 contrast=4
+widgetStyle=Breeze
+ColorScheme=BreezeDark
 
 [KFileDialog Settings]
 Allow Expansion=false
 Automatically select filename extension=true
 Breadcrumb Navigation=true
-Decoration position=2
+Decoration position=0
 Show Full Path=false
 Show Inline Previews=true
-Show Preview=false
 Show Speedbar=true
 Show hidden files=true
 Sort by=Name
 Sort directories first=true
 Sort hidden files last=false
 Sort reversed=false
-Speedbar Width=138
-View Style=DetailTree
-
-[KShortcutsDialog Settings]
-Dialog Size=600,480
-
-[PreviewSettings]
-EnableRemoteFolderThumbnail=false
-MaximumRemoteSize=104857600
-
-[Shortcuts]
-AboutApp=
-AboutKDE=
-Clear=
-ConfigureNotifications=
-ConfigureToolbars=
-Donate=
-EditBookmarks=
-FitToHeight=
-FitToPage=
-FitToWidth=
-Goto=
-GotoPage=
-KeyBindings=
-Mail=
-OpenRecent=
-PrintPreview=
-ReportBug=
-Revert=
-SaveOptions=
-ShowStatusbar=
-ShowToolbar=
-Spelling=
-SwitchApplicationLanguage=
-TipofDay=
-Zoom=
+Speedbar Width=104
+View Style=Detail
 
 [WM]
 activeBackground=39,44,49
 activeBlend=252,252,252
-activeFont=Noto Sans,10,-1,5,50,0,0,0,0,0
 activeForeground=252,252,252
 inactiveBackground=32,36,40
 inactiveBlend=161,169,177

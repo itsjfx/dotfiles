@@ -33,4 +33,5 @@ yay -S --needed \
     isoimagewriter \
     bun-bin \
     cmus-git \
+    claude-code \
 
