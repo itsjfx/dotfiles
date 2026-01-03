@@ -2,7 +2,7 @@
 
 set -eu -o pipefail
 
-pacman -Syy --noconfirm --needed \
+yay -Syy --noconfirm --needed \
     sway \
     grim \
     slurp \
@@ -13,4 +13,5 @@ pacman -Syy --noconfirm --needed \
     swaylock \
     swayidle \
     xdg-desktop-portal-wlr \
+    waybar \
 

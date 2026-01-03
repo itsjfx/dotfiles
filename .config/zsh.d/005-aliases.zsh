@@ -73,6 +73,7 @@ mkcd() { mkdir -p -- "$@" && cd -- "$@"; }
 alias mktargz="tar -czvf"
 alias mkzip='zip -r'
 alias mktarzst='tar --zstd -cvf'
+alias untar='tar -xvf'
 alias countr='sort | uniq -c | sort -rn'
 alias count='sort | uniq -c | sort -n'
 
