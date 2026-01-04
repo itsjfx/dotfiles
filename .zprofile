@@ -1,0 +1,48 @@
+# vi: ft=sh
+
+# ly has no special init file for zsh on wayland like with x11
+# https://github.com/fairyglade/ly/blob/master/res/setup.sh#L27-L37
+# so to run only on init, set some var
+if (( __LY_WAYLAND_INIT )); then
+    return
+fi
+export __LY_WAYLAND_INIT=1
+
+#export QT_QPA_PLATFORMTHEME=qt5ct
+export QT_QPA_PLATFORMTHEME=kde
+export STEAM_FRAME_FORCE_CLOSE=1
+export BROWSER=firefox
+export DA_TEST_DISABLE_TELEMETRY=1
+export GTK_USE_PORTAL=1
+export DOTNET_CLI_TELEMETRY_OPTOUT=1
+export PATH="$HOME/sbin:$PATH"
+
+if [[ -z "$SSH_AUTH_SOCK" ]]; then
+    export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR"/ssh-agent.socket
+    ssh-add "$HOME"/.ssh/id_ed25519
+    find "$HOME"/.ssh/ -type f -name "*@$(hostname)" | xargs -n1 ssh-add
+    find "$HOME"/.ssh/ -type f -name "*@keychain*" ! -name "*.pub" | xargs -n1 ssh-add
+fi
+
+if [[ "$(hostname)" == "sandcastle" ]]; then
+    # TODO
+    # export __GL_SYNC_TO_VBLANK=1
+    # export CLUTTER_DEFAULT_FPS=240
+    # local dp_device hdmi_device
+    # dp_device="$(xrandr | grep -E 'DP-[0-9]+ connected' | cut -f1 -d ' ')"
+    # hdmi_device="$(xrandr | grep -E 'HDMI-[0-9]+ connected' | cut -f1 -d ' ')"
+    # # turn em all off
+    # xrandr --output HDMI-0 --off --output DP-0 --off --output DP-1 --off --output HDMI-1 --off --output DP-2 --off --output DP-3 --off --output HDMI-1-3 --off --output DP-1-3 --off --output DP-1-4 --off --output DP-1-5 --off
+    # # just now turn them on properly
+    # xrandr --output "$hdmi_device" --mode 1920x1080 --pos 0x0 --rotate normal --output "$dp_device" --primary --mode 1920x1080 --pos 1928x0 --rotate normal --rate 240
+    # export __GL_SYNC_DISPLAY_DEVICE="$dp_device"
+    # export VDPAU_NVIDIA_SYNC_DISPLAY_DEVICE="$dp_device"
+    # x11vnc -display :0 -usepw -forever -bg
+    export LIBVA_DRIVER_NAME=nvidia
+else
+    # TODO
+    # not very portable
+    export LIBVA_DRIVER_NAME=iHD
+fi
+
+/usr/lib/polkit-kde-authentication-agent-1 &
