@@ -25,4 +25,4 @@ else
 fi
 
 xset r on
-xset r rate 200 45
+xset r rate 200 70

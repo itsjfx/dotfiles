@@ -13,7 +13,20 @@ set $mod Mod4
 set $alt Mod1
 set $TERMINAL alacritty
 
-workspace 1
+# Define names for default workspaces for which we configure key bindings later on.
+# We use variables to avoid repeating the names in multiple places.
+set $ws1 "1"
+set $ws2 "2"
+set $ws3 "3"
+set $ws4 "4"
+set $ws5 "5"
+set $ws6 "6"
+set $ws7 "7"
+set $ws8 "8"
+set $ws9 "9"
+set $ws10 "10"
+
+workspace $ws1
 
 # XWayland title format
 for_window [shell="xwayland"] title_format "[XWayland] %title"
@@ -30,8 +43,6 @@ font pango:DejaVu Sans Mono 12
 #
 # Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
 output * bg /usr/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png fill
-
-output DSI-1 transform 90
 #
 # Example configuration:
 #
@@ -69,15 +80,16 @@ input type:touchpad {
 # You can also configure each device individually.
 # Read `man 5 sway-input` for more information about this section.
 
+exec_always --no-startup-id /usr/lib/polkit-kde-authentication-agent-1
 
 ### Idle configuration
 
 # lock after 5 mins
-# turn off after 6 mins
+# turn off after 5.5 mins
 # lock before sleep
 exec swayidle -w \
          timeout 300 'swaylock -f' \
-         timeout 360 'swaymsg "output * power off"' resume 'swaymsg "output * power on"' \
+         timeout 330 'swaymsg "output * power off"' resume 'swaymsg "output * power on"' \
          before-sleep 'swaylock -f'
 
 # Only enable gaps on a workspace when there is at least one container
@@ -274,23 +286,6 @@ bindsym $mod+a focus parent
 # focus the child container
 #bindsym $mod+d focus child
 
-# Define names for default workspaces for which we configure key bindings later on.
-# We use variables to avoid repeating the names in multiple places.
-set $ws1 "1"
-set $ws2 "2"
-set $ws3 "3"
-set $ws4 "4"
-set $ws5 "5"
-set $ws6 "6"
-set $ws7 "7"
-set $ws8 "8"
-set $ws9 "9"
-set $ws10 "10"
-
-# monitors
-workspace $ws1 output DP-0
-workspace $ws2 output HDMI-1
-
 for_window    [app_id="firefox"]                    title_format "<span foreground='#FF6611'><tt></tt></span> <b>%title</b>"
 for_window    [app_id="Alacritty"]                  title_format "<span foreground='#00FF00'><tt></tt></span> <b>%title</b>"
 for_window    [app_id="chromium"]                   title_format "<span foreground='#4285f4'><tt></tt></span> <b>%title</b>"
@@ -302,8 +297,7 @@ for_window    [class="obsidian"]                    title_format "<span foregrou
 for_window    [app_id="discord"]                    title_format "<span foreground='#404eed'><tt>󰙯</tt></span> <b>%title</b>"
 # TODO: icon/color
 for_window    [app_id="org.kde.dolphin"]            title_format "<span foreground='#4285f4'><tt></tt></span> <b>%title</b>"
-
-
+# untested
 for_window    [app_id="telegramdesktop"]            title_format "<span foreground='#84b3ff'><tt></tt></span> <b>%title</b>"
 
 # switch to workspace
@@ -367,10 +361,14 @@ bindsym $mod+v mode "resize"
 for_window [class="^.*"] border pixel 0
 hide_edge_borders both
 
+# old gaps config
 #gaps inner 15
 #gaps outer 10
 
 # stop stealing focus, only mark as urgent
 focus_on_window_activation urgent
 
+# load config based on host
+include ~/.config/sway/hosts/$(hostname).conf
+# always run waybar last
 exec waybar

@@ -18,22 +18,29 @@ WIP everyday
     * [zsh-tmux-smart-status-bar](https://github.com/itsjfx/zsh-tmux-smart-status-bar) for tmux status bar
     * [fzf-tab-completion](https://github.com/lincheney/fzf-tab-completion) for tab completion with fzf
 * `i3-wm`
-    * gaps (sometimes)
     * [i3-automark](https://github.com/lincheney/i3-automark) to automark windows
     * [alttab](https://github.com/sagb/alttab) to alt tab
 * `polybar`
     * with custom scripts
 * `picom` (when not gaming)
 * `rofi`
-    * `dmenu`-like switcher on `Mod+d`
-    * Firefox profile switcher on `Mod+Shift+f`
-    * Power menu on `Mod+Shift+p`
-    * VS Code workspace opener on `Mod+Shift+c`
 * `dunst`
 * `neovim` or `code`
 * `cmus` or `spotify`
 * `dolphin`
 * and many other programs (mostly KDE)
+
+## Goodies
+
+
+* rofi: see https://github.com/itsjfx/dotfiles/tree/master/lib/rofi
+    + `dmenu`-like switcher on `Mod+d`
+    + Firefox profile switcher on `Mod+Shift+f`
+    + Power menu on `Mod+Shift+p`
+    + VS Code workspace opener on `Mod+Shift+c`
+    + 1Password grabber on `Mod+Shift+i`
+    + audio sink switcher on `Mod+Shift+s`
+
 
 ## Setup
 
