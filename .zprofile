@@ -44,5 +44,3 @@ else
     # not very portable
     export LIBVA_DRIVER_NAME=iHD
 fi
-
-/usr/lib/polkit-kde-authentication-agent-1 &
