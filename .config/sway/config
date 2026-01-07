@@ -113,8 +113,8 @@ exec dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DE
 exec systemctl --user restart xdg-desktop-portal.service
 
 
-bindsym Print exec grim
-# bindsym Control+Print exec grim -g "$(slurp)"
+bindsym Print exec grimshot savecopy window
+bindsym Control+Print exec grimshot savecopy area
 # screenshotting with spectacle
 # i used to use flameshot, but its broken in QT6 so moving back to spectacle
 # bindsym Print exec spectacle --activewindow

@@ -15,4 +15,5 @@ yay -Syy --noconfirm --needed \
     xdg-desktop-portal-wlr \
     waybar \
     gammastep \
+    sway-contrib \
 
