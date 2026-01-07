@@ -1,6 +1,6 @@
 {
-  "IS_MAXIMIZED": false,
-  "IS_MINIMIZED": true,
+  "IS_MAXIMIZED": true,
+  "IS_MINIMIZED": false,
   "WINDOW_BOUNDS": {
     "x": 1928,
     "y": 50,
@@ -11,5 +11,6 @@
   "SKIP_HOST_UPDATE": true,
   "BACKGROUND_COLOR": "#121214",
   "offloadAdmControls": true,
-  "enableHardwareAcceleration": true
+  "enableHardwareAcceleration": true,
+  "asyncVideoInputDeviceInit": false
 }
