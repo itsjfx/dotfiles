@@ -253,6 +253,7 @@ pacman -S --noconfirm --needed \
     python-pylint \
     rustup \
     proxychains-ng \
+    bun \
 
 
 # for python2
