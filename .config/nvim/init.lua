@@ -1044,6 +1044,7 @@ require('lazy').setup({
               },
             },
           },
+          rust_analyzer = {},
           -- ruff = {},
         },
         others = {},

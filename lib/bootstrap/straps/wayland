@@ -16,4 +16,5 @@ yay -Syy --noconfirm --needed \
     waybar \
     gammastep \
     sway-contrib \
+    gtk4-layer-shell \
 

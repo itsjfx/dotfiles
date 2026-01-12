@@ -18,6 +18,14 @@ user_pref("ui.prefersReducedMotion", 1);
 // make stuff smaller
 user_pref("browser.uidensity", 1);
 
+// disable search
+user_pref("browser.search.suggest.enabled", false);
+user_pref("browser.urlbar.suggest.searches", false);
+user_pref("browser.urlbar.quicksuggest.enabled", false);
+user_pref("browser.urlbar.suggest.quicksuggest", false);
+user_pref("browser.urlbar.suggest.quicksuggest.sponsored", false);
+user_pref("browser.urlbar.suggest.quicksuggest.nonsponsored", false);
+
 // remove annoying search bar icon always in URL bar
 // https://www.reddit.com/r/firefox/comments/1lka4nu/how_to_remove_this_icon_in_search_bar
 // around Firefox 140

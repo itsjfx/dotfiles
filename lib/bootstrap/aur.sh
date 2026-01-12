@@ -34,4 +34,5 @@ yay -S --needed \
     cmus-git \
     claude-code \
     sway-alttab-gui-bin \
+    winbox \
 
