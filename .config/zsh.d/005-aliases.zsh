@@ -186,3 +186,5 @@ zsh-vanilla() { env -i ZDOTDIR="$(mktemp -d)" zsh --login; }
 alias v-='v -'
 
 alias uuidgen='uuidgen | tr "[:upper:]" "[:lower:]"'
+
+alias curl_safe='curl --silent --show-error --fail-with-body'

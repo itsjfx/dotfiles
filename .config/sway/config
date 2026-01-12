@@ -123,7 +123,7 @@ bindsym Control+Print exec grimshot savecopy area
 
 # TODO: does this stuff _actually_ belong here
 exec --no-startup-id exec dunst
-exec --no-startup-id exec sway-alttab
+exec --no-startup-id sway-alttab-gui daemon
 # Melbourne, AU
 exec --no-startup-id exec gammastep -l '-37.8103409:144.9728712' -t '6500:3200'
 exec --no-startup-id exec "$HOME/lib/streamdeck.py"
@@ -356,8 +356,10 @@ mode "resize" {
 
 bindsym $mod+v mode "resize"
 
-# bg
-# gaps fix
+# Alt-Tab window switcher (layer-shell handles keyboard input)
+bindsym $alt+Tab exec sway-alttab-gui show
+
+# stop showing borders
 for_window [class="^.*"] border pixel 0
 hide_edge_borders both
 

@@ -16,6 +16,7 @@ export DA_TEST_DISABLE_TELEMETRY=1
 export GTK_USE_PORTAL=1
 export DOTNET_CLI_TELEMETRY_OPTOUT=1
 export PATH="$HOME/sbin:$PATH"
+export XDG_SCREENSHOTS_DIR="$HOME/media/Pictures/Screenshots"
 
 if [[ -z "$SSH_AUTH_SOCK" ]]; then
     export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR"/ssh-agent.socket

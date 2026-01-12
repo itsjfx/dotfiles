@@ -33,4 +33,5 @@ yay -S --needed \
     isoimagewriter \
     cmus-git \
     claude-code \
+    sway-alttab-gui-bin \
 
