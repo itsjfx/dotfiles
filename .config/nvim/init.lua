@@ -1118,7 +1118,7 @@ require('lazy').setup({
         -- have a well standardized coding style. You can add additional
         -- languages here or re-enable it for the disabled ones.
         local disable_filetypes =
-          { c = true, cpp = true, javascript = true, typescript = true, js = true, ts = true, kotlin = true, kt = true, css = true, scss = true }
+          { c = true, cpp = true, javascript = true, typescript = true, js = true, ts = true, kotlin = true, kt = true, css = true, scss = true, yaml = true }
         if disable_filetypes[vim.bo[bufnr].filetype] then
           return nil
         else
@@ -1496,7 +1496,7 @@ require('lazy').setup({
     end,
   },
   {
-    'ggandor/leap.nvim',
+    'https://codeberg.org/andyg/leap.nvim',
     config = function()
       -- require('leap').create_default_mappings()
       vim.keymap.set('n', 's', '<Plug>(leap)')
