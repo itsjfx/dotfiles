@@ -32,13 +32,6 @@ fzf_git_search() {
 zle -N fzf_git_search
 bindkey '^[f' fzf_git_search
 
-if command -v fnm &>/dev/null; then
-    eval "$(fnm env)"
-elif [[ -d "$HOME/.fnm" ]]; then
-    export PATH="$PATH:$HOME/.fnm"
-    eval "$(fnm env)"
-fi
-
 #source "$HOME/repos/me/notes/notes.sh"
 
 # mac
@@ -52,8 +45,16 @@ if [[ -d /opt/homebrew ]]; then
     export INFOPATH="/opt/homebrew/share/info:${INFOPATH:-}"
 fi
 
+if command -v fnm &>/dev/null; then
+    eval "$(fnm env)"
+elif [[ -d "$HOME/.fnm" ]]; then
+    export PATH="$PATH:$HOME/.fnm"
+    eval "$(fnm env)"
+fi
+
 # promote to top
 # leave at bottom
 if [[ -d /nix ]]; then
+    . '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh'
     source /nix/var/nix/profiles/default/etc/profile.d/nix.sh
 fi

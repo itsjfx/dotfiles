@@ -74,6 +74,7 @@ alias mktargz="tar -czvf"
 alias mkzip='zip -r'
 alias mktarzst='tar --zstd -cvf'
 alias untar='tar -xvf'
+untarto() { mkdir -p "$2"; tar -xvf "$1" -C "$2" };
 alias countr='sort | uniq -c | sort -rn'
 alias count='sort | uniq -c | sort -n'
 
