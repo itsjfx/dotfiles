@@ -1,0 +1,14 @@
+#!/usr/bin/env python3
+
+import sys
+
+# https://github.com/statsig-io/python-sdk/blob/main/statsig/utils.py#L33-L38
+def djb2(s):
+    hash = 0
+    for (_i, c) in enumerate(s):
+        hash = (hash << 5) - hash + ord(c)
+        hash = hash & hash
+    return hash & 0xffffffff
+
+if __name__ == "__main__":
+    print(djb2(sys.argv[1]))
