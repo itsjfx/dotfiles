@@ -122,6 +122,7 @@ pacman -S --noconfirm --needed \
     syncthing \
     wol \
     android-tools \
+    android-file-transfer \
 
 # for troubleshooting hardware acceleration
 pacman -S --noconfirm --needed \
