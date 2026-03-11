@@ -4,6 +4,8 @@ WIP everyday
 
 ## Looks
 
+This is what my old i3 setup looked like
+
 ![neofetch](https://github.com/itsjfx/dotfiles/assets/13778935/76a84b1c-4dcd-413a-9db4-980dc5a24e84)
 ![2024-01-12_01-15_1](https://github.com/itsjfx/dotfiles/assets/13778935/c0cb6444-686d-4b31-bfb3-4c41fdb22ac6)
 ![2024-01-12_01-26_1](https://github.com/itsjfx/dotfiles/assets/13778935/fc85ae12-ee0b-42bb-ad22-fb1cb33209cd)
@@ -17,12 +19,16 @@ WIP everyday
     * `tmux`
     * [zsh-tmux-smart-status-bar](https://github.com/itsjfx/zsh-tmux-smart-status-bar) for tmux status bar
     * [fzf-tab-completion](https://github.com/lincheney/fzf-tab-completion) for tab completion with fzf
-* `i3-wm`
+* `sway`
+    * [i3-automark](https://github.com/lincheney/i3-automark) to automark windows (works on sway)
+    * [sway-alttab-gui](https://github.com/itsjfx/sway-alttab-gui) to alt tab on sway
+    * `waybar` for now
+* formerly `i3-wm`
     * [i3-automark](https://github.com/lincheney/i3-automark) to automark windows
-    * [alttab](https://github.com/sagb/alttab) to alt tab
-* `polybar`
-    * with custom scripts
-* `picom` (when not gaming)
+    * [alttab](https://github.com/sagb/alttab) to alt tab on i3
+    * `polybar`
+        + with custom scripts
+    * `picom`
 * `rofi`
 * `dunst`
 * `neovim` or `code`

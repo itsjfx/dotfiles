@@ -95,6 +95,7 @@ alias glp='gl && gp'
 alias gm='git morelog'
 alias cm='config morelog'
 alias gco='git checkout'
+alias gcob='git checkout -b'
 alias gd='git diffmuch'
 alias gds='git diff --staged'
 alias .cd='config diffmuch'
@@ -189,3 +190,5 @@ alias v-='v -'
 alias uuidgen='uuidgen | tr "[:upper:]" "[:lower:]"'
 
 alias curl_safe='curl --silent --show-error --fail-with-body'
+
+portfor() { port="$1"; shift; "lsof -i :$port" "$@"; }
