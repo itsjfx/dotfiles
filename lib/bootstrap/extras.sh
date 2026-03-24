@@ -123,6 +123,8 @@ pacman -S --noconfirm --needed \
     wol \
     android-tools \
     android-file-transfer \
+    caligula \
+
 
 # for troubleshooting hardware acceleration
 pacman -S --noconfirm --needed \
