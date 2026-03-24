@@ -1,4 +1,15 @@
-#!/usr/bin/env python3
+#!/usr/bin/env -S uv run --script
+# vi: ft=python
+
+# /// script
+# requires-python = ">=3.12"
+# dependencies = [
+#     "pillow>=12.1.1",
+#     "pulsectl>=24.12.0",
+#     "requests>=2.32.5",
+#     "streamdeck>=0.9.8",
+# ]
+# ///
 
 import copy
 import subprocess
@@ -36,12 +47,12 @@ DEFAULTS = {
 
 # extend these
 class Keys(Enum):
-    MONITOR_DP1 = 0
+    MONITOR_DESKTOP = 0
     KM_TOGGLE = 1
     SEEK_BACKWARD = 2
     SEEK_FORWARD = 3
-    MONITOR_HDMI1 = 5
-    MONITOR_HDMI2 = 10
+    MONITOR_LAPTOP = 5
+    MONITOR_DESKTOP_SIDE = 10
 
     SPOTIFY_PREVIOUS = 6
     SPOTIFY_PLAYPAUSE = 7
@@ -73,12 +84,12 @@ def get_key_style(key, state):
         info['label']['text']['text'] = 'Play/Pause'
     elif key == Keys.CMUS_NEXT:
         info['label']['text']['text'] = 'Next'
-    elif key == Keys.MONITOR_DP1:
+    elif key == Keys.MONITOR_DESKTOP:
         info['label']['text']['text'] = 'Desktop'
-    elif key == Keys.MONITOR_HDMI1:
+    elif key == Keys.MONITOR_LAPTOP:
         info['label']['text']['text'] = 'Laptop'
-    elif key == Keys.MONITOR_HDMI2:
-        info['label']['text']['text'] = 'Other'
+    elif key == Keys.MONITOR_DESKTOP_SIDE:
+        info['label']['text']['text'] = 'Desktop\nSide'
     elif key == Keys.KM_TOGGLE:
         info['label']['text']['text'] = 'Toggle\nDevices'
     elif key == Keys.SEEK_BACKWARD:
@@ -152,16 +163,21 @@ def key_change_callback(deck, key_num, state):
     elif key == Keys.SEEK_FORWARD:
         subprocess.run(['playerctl', '--player=cmus', 'position', '15+'])
     # TODO, detect correct monitor instead of assuming monitor=2
-    elif key == Keys.MONITOR_DP1:
+    elif key == Keys.MONITOR_DESKTOP:
         if not is_hub_connected():
             toggle_hub()
+        subprocess.run(['monitorcontrol', '--monitor=1', '--set-input-source=HDMI2'])
         subprocess.run(['monitorcontrol', '--monitor=2', '--set-input-source=DP1'])
-    elif key == Keys.MONITOR_HDMI1:
+    elif key == Keys.MONITOR_LAPTOP:
         if is_hub_connected():
             toggle_hub()
-        subprocess.run(['monitorcontrol', '--monitor=2', '--set-input-source=HDMI1'])
-    elif key == Keys.MONITOR_HDMI2:
-        subprocess.run(['monitorcontrol', '--monitor=2', '--set-input-source=HDMI2'])
+        # I want to select 0x1a
+        # This is "Reserved and are un-assigned"
+        # ASUS monitor is using a non-standard vendor-specific code for USB-C that isn't in the MCCS 2.2a spec as spec is from 2011
+        subprocess.run(['monitorcontrol', '--monitor=1', '--set-input-source=HDMI1'])
+        subprocess.run(['monitorcontrol', '--monitor=2', '--set-input-source=26'])
+    elif key == Keys.MONITOR_DESKTOP_SIDE:
+        subprocess.run(['monitorcontrol', '--monitor=1', '--set-input-source=HDMI2'])
     elif key == Keys.KM_TOGGLE:
         toggle_hub()
     else:

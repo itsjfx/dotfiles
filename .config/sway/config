@@ -126,7 +126,6 @@ exec --no-startup-id exec dunst
 exec --no-startup-id sway-alttab-gui daemon
 # Melbourne, AU
 exec --no-startup-id exec gammastep -l '-37.8103409:144.9728712' -t '6500:3200'
-exec --no-startup-id exec "$HOME/lib/streamdeck.py"
 # https://github.com/lincheney/i3-automark
 exec --no-startup-id exec "$HOME/lib/external/i3-automark/i3-automark.py" --wm=sway --focused-only
 exec --no-startup-id exec "$HOME/lib/sway-passthrough-daemon.sh"
