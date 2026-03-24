@@ -7,11 +7,17 @@
 #         bindsym $mod+0 mode default
 # }
 
-swaymsg -t subscribe -m '["window"]' | while read -r line; do
-    if name="$(<<<"$line" jq -re 'if .change == "focus" then .container.name else null end')"; then
+current_mode=0
+
+swaymsg -t subscribe -m '["window"]' |
+    jq --unbuffered -r 'if .change == "focus" then .container.name // empty else empty end' |
+    while read -r name; do
         case "$name" in
-            *'(WayVNC) - RealVNC Viewer'*) swaymsg mode passthrough ;;
-            *) swaymsg mode default ;;
+            *'(WayVNC) - RealVNC Viewer'*) want=1 ;;
+            *) want=0 ;;
         esac
-    fi
-done
+        if (( want != current_mode )); then
+            (( want )) && swaymsg mode passthrough || swaymsg mode default
+            current_mode="$want"
+        fi
+    done
