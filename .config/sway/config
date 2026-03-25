@@ -83,14 +83,7 @@ input type:touchpad {
 exec_always --no-startup-id /usr/lib/polkit-kde-authentication-agent-1
 
 ### Idle configuration
-
-# lock after 5 mins
-# turn off after 5.5 mins
-# lock before sleep
-exec swayidle -w \
-         timeout 300 'swaylock -f' \
-         timeout 330 'swaymsg "output * power off"' resume 'swaymsg "output * power on"' \
-         before-sleep 'swaylock -f'
+exec $HOME/lib/swayidle.sh
 
 # Only enable gaps on a workspace when there is at least one container
 #smart_gaps on
