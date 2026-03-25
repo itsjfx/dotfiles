@@ -6,4 +6,4 @@ set -eu -o pipefail
 (
     git diff
     git ls-files --others --exclude-standard -z | xargs -0 -n 1 git diff /dev/null
-) | "$(git config --get core.pager)" "$@"
+) | if [ -t 1 ]; then "$(git config --get core.pager)"; else cat; fi
