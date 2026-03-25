@@ -88,6 +88,22 @@ Write Python code following these conventions:
 - Use generators as much as possible, instead of making lists and returning in a function
 - List/dict/set comprehensions freely
 
+## Collections
+
+- `defaultdict` when accumulating into groups or building lookup tables
+
+## JSON
+
+- When dumping JSON that contains `datetime` objects (e.g., from AWS responses), use a custom default handler:
+  ```python
+  def json_dumper(x):
+      if isinstance(x, datetime.datetime):
+          return x.timestamp()
+      return json.JSONEncoder().default(x)
+
+  print(json.dumps(summary, default=json_dumper))
+  ```
+
 ## Modern Python
 
 - Walrus operator freely
