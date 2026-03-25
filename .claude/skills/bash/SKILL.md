@@ -34,6 +34,13 @@ Write bash scripts following these conventions:
 - When needed, build commands as arrays: `cmd=(command); cmd+=(--flag); "${cmd[@]}"`
 - Support `--` as argument terminator where appropriate
 
+## Current working directory
+
+- Avoid doing `(cd && pwd)`
+- If possible, run scripts inside the current working directory when needed (manipulating files in dir, etc). Use `cd "$(dirname "$0")"` or append `../` when needed to move out of a `bin/` directory
+  - This results in more readable scripts
+- If the current working directory should not be changed for the script (UX, etc), use `"$(dirname "$(readlink -f "$0")")"`
+
 ## Conditionals
 
 - Prefer `[[ ]]` over `[ ]`
