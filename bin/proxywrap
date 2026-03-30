@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+
+set -eu -o pipefail
+
+host="${MITMWRAP_HOST-127.0.0.1}"
+port="${MITMWRAP_PORT-1080}"
+
+file="$(mktemp)"
+trap 'code="$?"; rm -f -- "$file"; exit "$code"' EXIT
+export PROXYCHAINS_CONF_FILE="$file"
+cat <<EOF >"$file"
+proxy_dns
+quiet_mode
+[ProxyList]
+socks5 $host $port
+EOF
+proxychains4 -q "$@"
