@@ -2,8 +2,8 @@
 
 set -eu -o pipefail
 
-host="${MITMWRAP_HOST-127.0.0.1}"
-port="${MITMWRAP_PORT-1080}"
+host="${PROXYWRAP_HOST-127.0.0.1}"
+port="${PROXYWRAP_PORT-1080}"
 
 file="$(mktemp)"
 trap 'code="$?"; rm -f -- "$file"; exit "$code"' EXIT
