@@ -183,6 +183,8 @@ bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOU
 
 # clipboard hack
 # bindsym $mod+Shift+v exec --no-startup-id sleep 0.5 && xdotool type --clearmodifiers --delay=30 "$(xclip -selection clipboard -r -o)"
+bindsym $mod+Shift+v exec --no-startup-id sleep 0.5 && wl-paste | wtype -d 30 -
+
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod normal
