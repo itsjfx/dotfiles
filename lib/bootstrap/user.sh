@@ -90,21 +90,29 @@ curl -fL https://raw.githubusercontent.com/magic-wormhole/magic-wormhole/master/
 
 if (( ! is_mac )); then
     # default settings in Dolphin
-    kwriteconfig6 --file "$HOME"/.config/dolphinrc --group 'General' --key 'RememberOpenedTabs' false
-    kwriteconfig6 --file "$HOME"/.config/dolphinrc --group 'General' --key 'BrowseThroughArchives' true
-    gsettings set org.gnome.desktop.interface color-scheme 'prefer-dark'
-    gsettings set org.gnome.desktop.interface gtk-enable-primary-paste false
+    if command -v kwriteconfig6 &>/dev/null; then
+        kwriteconfig6 --file "$HOME"/.config/dolphinrc --group 'General' --key 'RememberOpenedTabs' false
+        kwriteconfig6 --file "$HOME"/.config/dolphinrc --group 'General' --key 'BrowseThroughArchives' true
+    fi
+    if command -v gsettings &>/dev/null; then
+        gsettings set org.gnome.desktop.interface color-scheme 'prefer-dark'
+        gsettings set org.gnome.desktop.interface gtk-enable-primary-paste false
+    fi
 
     ( unset BROWSER; xdg-settings set default-web-browser firefox.desktop || true )
 
     # mac has no systemd
-    systemctl enable --now --user ssh-agent.service xdg-desktop-portal.service plasma-xdg-desktop-portal-kde.service
+    if systemctl --user cat ssh-agent.service &>/dev/null; then
+        systemctl enable --now --user ssh-agent.service xdg-desktop-portal.service plasma-xdg-desktop-portal-kde.service
+    fi
 
     if systemctl --user cat batsignal.service &>/dev/null; then
         systemctl --user enable batsignal.service --now
     fi
 
-    systemctl --user enable --now yubikey-touch-detector.service
+    if systemctl --user cat yubikey-touch-detector.service &>/dev/null; then
+        systemctl --user enable --now yubikey-touch-detector.service
+    fi
 fi
 
 # symlinks

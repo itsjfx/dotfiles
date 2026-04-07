@@ -39,7 +39,7 @@ Write Python code following these conventions:
 
 ## Strings & Formatting
 
-- Single quotes preferred for strings: `'hello'`, `'utf-8'`
+- Single quotes preferred for strings: `'hello'`, `'utf-8'` - unless running in `python3 -c $''`, in which case use double quotes
 - f-strings for interpolation: `f'Creating {name}'`
 - `%` formatting inside logging calls: `logging.info('Creating %s', name)`
 - Raw strings for regex: `r'\[([^]]+)\]'`
