@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
-sudo apt install -y ca-certificates
-sudo apt update -y
+# sudo apt install -y ca-certificates
+# sudo apt update -y
 
 nix profile install \
     nixpkgs#awscli2 \
