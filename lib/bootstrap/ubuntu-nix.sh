@@ -53,4 +53,5 @@ nix profile install \
     nixpkgs#gradle \
     nixpkgs#javaPackages.compiler.openjdk21 \
     nixpkgs#postgresql \
+    nixpkgs#zoxide \
 
