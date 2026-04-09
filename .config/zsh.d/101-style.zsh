@@ -51,7 +51,7 @@ zstyle ':completion::*:cd:*' fzf-completion-keybindings "${keys[@]}" /:accept:'r
 # but no git_prompt_info
 PROMPT="%(?:%{$fg_bold[green]%}➜ :%{$fg_bold[red]%}➜ )"
 if [[ -n "$SSH_CONNECTION" ]]; then
-    PROMPT+=' %{$fg[green]%}%n@%m' # magenta
+    PROMPT+=" %{$fg[green]%}%n@${SSH_ALIAS:-%m}"
 fi
 PROMPT+=' %{$fg[cyan]%}%c %{$reset_color%}'
 if [ -d "$HOME"/lib/external/live-preview.zsh ]; then
