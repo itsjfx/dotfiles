@@ -55,6 +55,11 @@ fi
 # promote to top
 # leave at bottom
 if [[ -d /nix ]]; then
-    . '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh'
-    source /nix/var/nix/profiles/default/etc/profile.d/nix.sh
+    # multi user
+    [ -f /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh ] && source '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh'
+    [ -f /nix/var/nix/profiles/default/etc/profile.d/nix.sh ] && source /nix/var/nix/profiles/default/etc/profile.d/nix.sh
+    # single user
+    [ -f "$HOME"/.nix-profile/etc/profile.d/nix.sh ] && source "$HOME/.nix-profile/etc/profile.d/nix.sh"
 fi
+
+eval "$(zoxide init zsh)"
