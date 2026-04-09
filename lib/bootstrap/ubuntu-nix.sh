@@ -52,4 +52,5 @@ nix profile install \
     nixpkgs#zsh \
     nixpkgs#gradle \
     nixpkgs#javaPackages.compiler.openjdk21 \
+    nixpkgs#postgresql \
 
