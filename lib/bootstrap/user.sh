@@ -97,6 +97,7 @@ if (( ! is_mac )); then
     if command -v gsettings &>/dev/null; then
         gsettings set org.gnome.desktop.interface color-scheme 'prefer-dark'
         gsettings set org.gnome.desktop.interface gtk-enable-primary-paste false
+        gsettings set org.gnome.desktop.privacy remember-recent-files false
     fi
 
     ( unset BROWSER; xdg-settings set default-web-browser firefox.desktop || true )
