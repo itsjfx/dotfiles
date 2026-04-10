@@ -124,6 +124,7 @@ pacman -S --noconfirm --needed \
     android-tools \
     android-file-transfer \
     caligula \
+    zoxide \
 
 
 # for troubleshooting hardware acceleration
