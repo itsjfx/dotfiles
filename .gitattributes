@@ -1,0 +1,2 @@
+.npmrc filter=clean-configs
+uv.toml filter=clean-configs
