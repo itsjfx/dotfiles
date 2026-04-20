@@ -42,6 +42,7 @@ for plugin in \
     'lincheney/live-preview.zsh' \
     'laktak/extrakto' \
     'wfxr/tmux-fzf-url' \
+    'lincheney/nsb' \
 ; do
     plugin_name="${plugin##*/}"
     plugin_path="$HOME/lib/external/$plugin_name"
