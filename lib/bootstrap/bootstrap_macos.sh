@@ -48,6 +48,13 @@ nix profile install \
     nixpkgs#tree \
     nixpkgs#moreutils \
     nixpkgs#gnutar \
+    nixpkgs#socat \
+
+# extras
+nix profile install \
+    nixpkgs#cmus \
+    nixpkgs#yt-dlp \
+
 
 # podman
 # nix profile install \
