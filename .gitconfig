@@ -9,6 +9,12 @@
     light = false      # set to true if you're in a terminal w/ a light background color (e.g. the default macOS terminal)
 #    side-by-side = true
     line-numbers = true
+[filter "clean-configs"]
+    clean = "~/bin/git-clean-configs"
+    required = false
+[filter "clean-secrets"]
+    clean = "~/bin/git-clean-secrets"
+    required = false
 [merge]
     conflictstyle = diff3
 [diff]
