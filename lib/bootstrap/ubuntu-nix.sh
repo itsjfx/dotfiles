@@ -50,8 +50,9 @@ nix profile install \
     nixpkgs#zip \
     nixpkgs#zstd \
     nixpkgs#zsh \
-    nixpkgs#gradle \
-    nixpkgs#javaPackages.compiler.openjdk21 \
     nixpkgs#postgresql \
     nixpkgs#zoxide \
+    nixpkgs#mitmproxy \
 
+    # nixpkgs#gradle \
+    # nixpkgs#javaPackages.compiler.openjdk21 \
