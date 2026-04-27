@@ -53,6 +53,6 @@ nix profile install \
     nixpkgs#postgresql \
     nixpkgs#zoxide \
     nixpkgs#mitmproxy \
+    nixpkgs#gradle \
+    nixpkgs#javaPackages.compiler.openjdk21 \
 
-    # nixpkgs#gradle \
-    # nixpkgs#javaPackages.compiler.openjdk21 \
