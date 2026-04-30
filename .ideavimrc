@@ -56,6 +56,7 @@ map <C-p> <Action>(GotoFile)
 
 " hover function signature
 map gh <Action>(QuickJavaDoc)
+map gra <Action>(ShowIntentionActions)
 map grd <Action>(GotoDeclaration)
 " there is no equivalent in intellj, this does both declaration and usages
 map grr <Action>(GotoDeclaration)
