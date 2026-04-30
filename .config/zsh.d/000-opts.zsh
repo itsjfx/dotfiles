@@ -16,7 +16,14 @@ if [[ -d "$HOME"/.nix-profile/share/zsh/site-functions ]]; then
     fpath[1,0]="$HOME"/.nix-profile/share/zsh/site-functions
 fi
 fpath=("$HOME"/.completions "$HOME"/lib/external/zsh-completions/src $fpath)
-autoload -U +X compinit && compinit
+# Cached compinit: full security check + dump runs at most once per 24h.
+# See ~/.zsh-perf/README.md for context. Glob-free idiom because the previous
+# (#qN.mh+24) qualifier needs `setopt extended_glob` which isn't on here.
+autoload -Uz compinit
+for _ in ~/.zcompdump(N.mh+24); do
+    compinit
+done
+compinit -C
 autoload -U +X bashcompinit && bashcompinit
 
 ## History command configuration
