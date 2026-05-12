@@ -162,6 +162,7 @@ get \
     kitty \
     alacritty \
     neovim \
+    tree-sitter-cli \
     python \
     python-pip \
     python-neovim \
