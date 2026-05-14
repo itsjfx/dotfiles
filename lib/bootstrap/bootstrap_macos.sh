@@ -50,6 +50,7 @@ nix profile install \
     nixpkgs#moreutils \
     nixpkgs#gnutar \
     nixpkgs#socat \
+    nixpkgs#pstree \
 
 # extras
 nix profile install \
