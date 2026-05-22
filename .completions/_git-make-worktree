@@ -1,0 +1,28 @@
+#compdef git-make-worktree
+
+# Mirror entry point for `git make-worktree <TAB>` dispatch.
+# zsh's _git completer calls `_call_function ret _git-$words[1]` for
+# unknown subcommands, requiring a dashed function name. Autoload
+# registers functions by exact filename, so the file must also be
+# named with dashes.
+#
+# The underscored counterpart at ~/.completions/_git_make_worktree
+# handles the standalone `git-make-worktree <TAB>` case. We forward
+# to it here to keep the logic in one place.
+
+_git-make-worktree() {
+    # Ensure the underscored implementation is loaded.
+    (( $+functions[_git_make_worktree] )) || autoload -Uz _git_make_worktree
+
+    # When dispatched via `git make-worktree`, $words looks like
+    #   (git make-worktree <args>...)
+    # but our impl was written assuming
+    #   (git-make-worktree <args>...)
+    # The shapes are equivalent for our CURRENT-based indexing as long
+    # as CURRENT points at the same relative position. _git already
+    # adjusts $words/$CURRENT for the subcommand context, so we just
+    # forward.
+    _git_make_worktree "$@"
+}
+
+_git-make-worktree "$@"

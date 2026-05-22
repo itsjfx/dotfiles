@@ -47,7 +47,7 @@ export PUPPETEER_EXECUTABLE_PATH="$(which chromium-browser)"
 export PYTHONPATH=~/.aws/cli/plugins/:"$PYTHONPATH"
 
 export GEM_HOME="$HOME/.gem"
-export PAGER=less
+export PAGER='less -R -F -K'
 export LESS=-R
 
 export EDITOR='vim'

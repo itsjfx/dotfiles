@@ -1,0 +1,46 @@
+#compdef git-make-worktree
+
+# Completion for git-make-worktree.
+#
+# Script semantics (~/bin/git-make-worktree):
+#   git-make-worktree <branch> [extra flags forwarded to `git worktree add`...]
+#
+# Arg 1: branch name (the only positional we accept).
+# Arg 2+: always flags to `git worktree add` -- never positional paths.
+#
+# Option specs mirror `_git-worktree` add from Completion/Unix/Command/_git.
+# We use _describe so candidates render as "option -- description" rather
+# than description-only; the current word stays untouched (no fake leading
+# dash), which is good for the fzf-tab UX.
+
+_git_make_worktree() {
+    if (( CURRENT == 2 )); then
+        if (( $+functions[__git_branch_names] )); then
+            __git_branch_names
+        elif (( $+functions[__git_heads] )); then
+            __git_heads
+        else
+            local -a branches
+            branches=(${(f)"$(git for-each-ref --format='%(refname:short)' refs/heads refs/remotes 2>/dev/null)"})
+            _describe -t branches 'branch' branches
+        fi
+        # Always succeed so _git's use-fallback (file completion) stays off.
+        return 0
+    fi
+
+    # "name:description" pairs for _describe.
+    local -a opts=(
+        '-f:checkout branch even if already checked out in another worktree'
+        '--force:checkout branch even if already checked out in another worktree'
+        '-b:create a new branch'
+        '-B:create or reset a branch'
+        '--detach:detach HEAD at named commit'
+        '--no-checkout:suppress file checkout in new worktree'
+        '--lock:keep working tree locked after creation'
+    )
+
+    _describe -o -t worktree-add-options 'option' opts
+    return 0
+}
+
+_git_make_worktree "$@"
