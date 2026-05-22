@@ -167,6 +167,13 @@ automatically-unhide-macos-hidden-apps = false
     enter = 'mode main'
     esc = 'mode main'
 
+[[on-window-detected]]
+    # if.app-name = "Alacritty"
+    if.window-title-regex-substring = 'scratch'
+    # atm this cannot be resized
+    # https://github.com/nikitabobko/AeroSpace/issues/9
+    run = ["layout floating"]
+
 [workspace-to-monitor-force-assignment]
     9 = ['built-in', 'secondary']
     10 = 'ZOWIE XL'
