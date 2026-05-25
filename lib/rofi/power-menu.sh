@@ -35,7 +35,7 @@ case "$choice" in
     Reboot) systemctl reboot ;;
     Sleep) systemctl suspend ;;
     Hibernate) systemctl hibernate ;;
-    Lock) loginctl lock-session "${XDG_SESSION_ID-}" ;;
+    Lock) lock ;; # ~/sbin/lock
     Logout) i3-msg exit ;;
     'Reboot to BIOS') systemctl reboot --firmware-setup ;;
     'Reboot to Windows') systemctl reboot --boot-loader-entry=windows.conf ;;
