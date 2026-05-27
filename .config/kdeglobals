@@ -167,6 +167,9 @@ View Style=Detail
 EnableRemoteFolderThumbnail=true
 MaximumRemoteSize=10485758951424
 
+[Sounds]
+Enable=false
+
 [WM]
 activeBackground=39,44,49
 activeBlend=252,252,252
