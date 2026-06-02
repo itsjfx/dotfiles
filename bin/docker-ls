@@ -19,5 +19,5 @@ set -eu -o pipefail
 
 cmd="$( builtin command -v docker &>/dev/null && echo docker || echo podman )"
 "$cmd" ps -a --format=json \
-    | jq -sre '.[] | [ .ID, .Names, ( .Image | sub(":(?<sha>[0-9a-f]{40})$"; ":" + .sha[0:7] + "…") ), (.Status | sub("minutes"; "mins"; "g") ), ( .Ports | split(", ") | map(select( (test("\\[::\\]") | not) and (test("->")))) | join(" ") | sub("0.0.0.0"; "global"; "g") | sub("127.0.0.1"; "loopback"; "g") | sub ("/tcp"; ""; "g") ) ] | @tsv' \
+    | jq -sre '.[] | [ .ID, .Names, ( .Image | sub(":(?<sha>[0-9a-f]{40})$"; ":" + .sha[0:7]) ), (.Status | sub("minutes"; "mins"; "g") ), ( .Ports | split(", ") | map(select( (test("\\[::\\]") | not) and (test("->")))) | join(" ") | sub("0.0.0.0"; "global"; "g") | sub("127.0.0.1"; "loopback"; "g") | sub ("/tcp"; ""; "g") ) ] | @tsv' \
     | pretty --header id name image status ports

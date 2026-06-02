@@ -1,7 +1,10 @@
 #!/usr/bin/env bash
 
-if [[ "$1" == docker-cli-plugin-metadata ]]; then
-    cat << EOF
+cmd="$(builtin command -v docker &>/dev/null && echo docker || echo podman)"
+
+case "$1" in
+    docker-cli-plugin-metadata)
+        cat << EOF
 {
      "SchemaVersion": "0.1.0",
      "Vendor": "https://jfx.ac",
@@ -9,13 +12,22 @@ if [[ "$1" == docker-cli-plugin-metadata ]]; then
      "ShortDescription": "(custom) run a shell on container"
 }
 EOF
-    exit
-fi
+        exit
+        ;;
+    # impl cobra style completion
+    __complete)
+        "$cmd" ps --format '{{.Names}}'$'\t''{{.Image}}'
+        # NoFileComp
+        echo ":4"
+        exit
+        ;;
+esac
 
 set -eu -o pipefail
 
-cmd="$(basename "$0" | cut -f1 -d-)"
+cmd="$( builtin command -v docker &>/dev/null && echo docker || echo podman )"
 
-container="$1"
+container="$2"
 shift 2
-docker exec -it "$container" sh -c "[ -f /bin/bash ] && exec /bin/bash $@ || exec /bin/sh $@"
+
+"$cmd" exec -it "$container" sh -c "[ -f /bin/bash ] && exec /bin/bash $@ || exec /bin/sh $@"
