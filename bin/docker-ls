@@ -16,9 +16,56 @@ EOF
 fi
 
 set -eu -o pipefail
-shift
+shift || true
 
-cmd="$( builtin command -v docker &>/dev/null && echo docker || echo podman )"
-"$cmd" ps -a --format=json \
-    | jq -sre '.[] | [ .ID, .Names, ( .Image | sub(":(?<sha>[0-9a-f]{40})$"; ":" + .sha[0:7]) ), (.Status | sub("minutes"; "mins"; "g") ), ( .Ports | split(", ") | map(select( (test("\\[::\\]") | not) and (test("->")))) | join(" ") | sub("0.0.0.0"; "global"; "g") | sub("127.0.0.1"; "loopback"; "g") | sub ("/tcp"; ""; "g") ) ] | @tsv' \
-    | pretty --header id name image status ports "$@"
+cmd="$( builtin command -v podman &>/dev/null && echo podman || echo docker )"
+
+# podman emits a JSON array with .Ports as structured objects; docker emits
+# NDJSON with .Ports as a string ("0.0.0.0:8080->80/tcp, ...") so it gets -s.
+"$cmd" ps -a --format=json | {
+    case "$cmd" in
+        podman)
+            jq -re '
+                .[]
+                | [
+                    (.ID // .Id),
+                    (.Names | join(" ")),
+                    ( .Image | sub(":(?<sha>[0-9a-f]{40})$"; ":" + .sha[0:7]) ),
+                    (.Status | sub("minutes"; "mins"; "g")),
+                    ( .Ports // []
+                      | map(select(.host_port > 0 and ((.host_ip // "") | test(":") | not)))
+                      | map(
+                          ( if (.host_ip // "") == "" or .host_ip == "0.0.0.0" then "global"
+                            elif .host_ip == "127.0.0.1" then "loopback"
+                            else .host_ip end ) as $ip
+                          | (if .range > 1 then "\(.host_port)-\(.host_port + .range - 1)" else "\(.host_port)" end) as $h
+                          | (if .range > 1 then "\(.container_port)-\(.container_port + .range - 1)" else "\(.container_port)" end) as $c
+                          | (if .protocol == "tcp" then "" else "/\(.protocol)" end) as $p
+                          | "\($ip):\($h)->\($c)\($p)"
+                        )
+                      | join(" ")
+                    )
+                  ]
+                | @tsv'
+            ;;
+        docker)
+            jq -sre '
+                .[]
+                | [
+                    (.ID // .Id),
+                    .Names,
+                    ( .Image | sub(":(?<sha>[0-9a-f]{40})$"; ":" + .sha[0:7]) ),
+                    (.Status | sub("minutes"; "mins"; "g")),
+                    ( .Ports
+                      | split(", ")
+                      | map(select( (test("\\[::\\]") | not) and test("->")))
+                      | join(" ")
+                      | sub("0.0.0.0"; "global"; "g")
+                      | sub("127.0.0.1"; "loopback"; "g")
+                      | sub("/tcp"; ""; "g")
+                    )
+                  ]
+                | @tsv'
+            ;;
+    esac
+} | pretty --header id name image status ports "$@"
