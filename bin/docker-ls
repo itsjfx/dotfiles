@@ -16,6 +16,7 @@ EOF
 fi
 
 set -eu -o pipefail
+shift
 
 cmd="$( builtin command -v docker &>/dev/null && echo docker || echo podman )"
 "$cmd" ps -a --format=json \
