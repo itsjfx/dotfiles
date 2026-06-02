@@ -1,59 +1,107 @@
 #!/usr/bin/env python3
 
+import re
 import sys
 import colorsys
 import argparse
 from functools import cache
 
-RESET = b'\x1b[0m'
+RESET = '\x1b[0m'
 SPACES = '  '
 TAB = '\t'
 
 # https://github.com/lincheney/dsv/blob/2bb67d7fe6a598a28afa89d6b877bfb404e9272d/_dsv/_base.py#L350
 @cache
-def get_rgb(i, step=0.647, sat=0.3):  # cycle every 17 columns
-    r, g, b = colorsys.hsv_to_rgb(step * i % 1, sat, 1)
-    return b'\x1b[38;2;%i;%i;%im' % (r*255, g*255, b*255)
+def get_rgb(i, light=False, step=0.647):  # cycle every 17 columns
+    sat, val = (0.7, 0.55) if light else (0.3, 1)
+    r, g, b = colorsys.hsv_to_rgb(step * i % 1, sat, val)
+    return '\x1b[38;2;%i;%i;%im' % (r*255, g*255, b*255)
 
-def colorize_fields(fields):
-    return [get_rgb(i).decode('utf-8') + field + RESET.decode('utf-8') for i, field in enumerate(fields)]
+def colorize_fields(fields, light=False):
+    return [get_rgb(i, light=light) + field + RESET for i, field in enumerate(fields)]
+
+def remove_ansi_colour(value: str) -> str:
+    if '\x1b[' in value or '\x1b]' in value:
+        value = re.sub(r'\x1b\[[0-9;:]*[mK]|\x1b]8;;.*?\x1b\\', '', value)
+    return value
 
 def calculate_widths(rows):
-    """Calculate maximum width for each column"""
     num_cols = max(len(row) for row in rows)
     widths = [0] * num_cols
     for row in rows:
         for i, field in enumerate(row):
-            widths[i] = max(widths[i], len(field))
+            widths[i] = max(widths[i], len(remove_ansi_colour(field)))
     return widths
 
-def main(args):
-    use_colors = args.color == 'always' or (args.color == 'auto' and sys.stdout.isatty())
-    columnize = args.columnize == 'always' or (args.columnize == 'auto' and sys.stdout.isatty())
+def resolve_flag(value: str, isatty: bool) -> bool:
+    return value == 'always' or (value == 'auto' and isatty)
 
-    rows = [line.rstrip('\n\r').split(TAB) for line in sys.stdin]
-    if not rows:
+def format_header_row(row, light=False):
+    styled = []
+    bg = '\x1b[48;5;254m' if light else '\x1b[48;5;237m'
+    for j, field in enumerate(row):
+        text = field.rstrip(' ')
+        padding = field[len(text):]
+        rgb = get_rgb(j, light=light)
+        styled.append(rgb + '\x1b[1;4m' + bg + text + '\x1b[24m' + padding)
+    styled[-1] += RESET
+    return styled
+
+def columnize_row(row, widths):
+    return [field.ljust(widths[j]) for j, field in enumerate(row[:-1])] + row[-1:]
+
+def output_header(header, use_colors, sep, light=False):
+    if not header:
         return
 
+    if use_colors:
+        header = format_header_row(header, light=light)
+    print(*header, sep=sep)
+
+def read_stdin():
+    for line in sys.stdin:
+        yield line.rstrip('\n\r').split(TAB)
+
+
+def main(args):
+    isatty = sys.stdout.isatty()
+    use_colors = resolve_flag(args.color, isatty)
+    columnize = resolve_flag(args.columnize, isatty)
+    show_header = resolve_flag(args.show_header, isatty)
+    light = args.light
+
+    header = [f'{i} {h}' for i, h in enumerate(args.header, 1)] if show_header and args.header else []
+
+    rows = read_stdin()
     if columnize:
-        widths = calculate_widths(rows)
-        separator = SPACES
+        # slurp
+        rows = list(rows)
+        if not rows:
+            return
+
+        widths = calculate_widths([header] + rows if header else rows)
+        if header:
+            header = columnize_row(header, widths)
+        sep = SPACES
     else:
-        separator = TAB
+        sep = TAB
+
+    output_header(header, use_colors, sep, light=light)
 
     for row in rows:
         if columnize:
-            row = [field.ljust(widths[i]) for i, field in enumerate(row[:-1])] + row[-1:]
-
+            row = columnize_row(row, widths)
         if use_colors:
-            row = colorize_fields(row)
-
-        print(separator.join(row))
+            row = colorize_fields(row, light=light)
+        print(*row, sep=sep)
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='Pretty print TSV with colors')
     parser.add_argument('--color', choices=['never', 'always', 'auto'], default='auto', help='When to use colors (default: %(default)s)')
     parser.add_argument('--columnize', choices=['never', 'always', 'auto'], default='auto', help='Columnize output (default: %(default)s)')
+    parser.add_argument('--show-header', choices=['never', 'always', 'auto'], default='auto', help='Show header on output (default: %(default)s)')
+    parser.add_argument('--header', nargs='*', default=[])
+    parser.add_argument('--light', action='store_true', default=False, help='Use colors suitable for light terminal backgrounds')
     args = parser.parse_args()
 
     try:
