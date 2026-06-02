@@ -23,6 +23,10 @@ vnoremap <C-C> "+y
 
 nmap <C-f> :action EditorPageUp<CR>
 nmap <C-b> :action EditorPageUp<CR>
+map <M-h> :action PreviousTab<CR>
+map <C-l> <Action>(PreviousTab)
+map <D-l> <Action>(PreviousTab)
+map <M-l> <Action>(PreviousTab)
 
 " https://stackoverflow.com/a/78982421
 " let Ctrl+V paste from clipboard in insert mode
@@ -58,6 +62,7 @@ map <C-p> <Action>(GotoFile)
 map gh <Action>(QuickJavaDoc)
 map gra <Action>(ShowIntentionActions)
 map grd <Action>(GotoDeclaration)
+map gru <Action>(FindUsages)
 " there is no equivalent in intellj, this does both declaration and usages
 map grr <Action>(GotoDeclaration)
 map grn <Action>(RenameElement)
@@ -81,9 +86,9 @@ nmap <Leader>rt :action RunClass<CR>
 
 nmap <Leader>fb :action RecentFiles<CR>
 
-imap <C-n> <ESC>:action HippieCompletion<CR>a
-imap <C-p> <ESC>:action HippieBackwardCompletion<CR>a
-imap <C-y> <ESC>:action EditorChooseLookupItem<CR>a
+imap <C-n> <ESC>:action HippieCompletion<CR>
+imap <C-p> <ESC>:action HippieBackwardCompletion<CR>
+imap <C-y> <ESC>:action EditorChooseLookupItem<CR>
 
 " clear highlights on search when pressing enter
 nnoremap <Esc> :nohlsearch<CR>
