@@ -98,6 +98,7 @@ automatically-unhide-macos-hidden-apps = true
     alt-l = 'focus --boundaries-action wrap-around-the-workspace right'
 
     alt-z = 'exec-and-forget true'
+    # ctrl-h = 'exec-and-forget true'
 
     alt-shift-h = 'move left'
     alt-shift-j = 'move down'
