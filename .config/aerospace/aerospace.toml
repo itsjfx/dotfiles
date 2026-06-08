@@ -22,7 +22,6 @@ on-focused-monitor-changed = ['move-mouse monitor-lazy-center']
 # Available commands: https://nikitabobko.github.io/AeroSpace/commands
 after-startup-command = [
     'exec-and-forget sketchybar',
-    'exec-and-forget sleep 5; skhd',
 ]
 
 # You can use it to add commands that run after AeroSpace startup.
@@ -64,7 +63,7 @@ automatically-unhide-macos-hidden-apps = true
     preset = 'qwerty'
 
 [exec.env-vars]
-    PATH = '${HOME}/.nix-profile/bin:/opt/homebrew/bin:/usr/local/bin:${PATH}'
+    PATH = '${HOME}/.nix-profile/bin:/opt/homebrew/bin:${HOME}/bin:/usr/local/bin:${PATH}'
 
 # Gaps between windows (inner-*) and between monitor edges (outer-*).
 # Possible values:
@@ -83,13 +82,12 @@ automatically-unhide-macos-hidden-apps = true
     outer.right =      0
 
 [mode.main.binding]
-    # See: https://nikitabobko.github.io/AeroSpace/goodies#open-a-new-window-with-applescript
-    # alt-enter = '''exec-and-forget osascript -e '
-    # tell application "Alacritty"
-    #     do script
-    #     activate
-    # end tell'
-    # '''
+    alt-enter = 'exec-and-forget open -a Alacritty.app -n --args --config-file=$HOME/.config/alacritty/mac.toml'
+    alt-shift-enter = 'exec-and-forget open -a Alacritty.app -n --args --config-file=$HOME/.config/alacritty/mac.toml -e zsh'
+
+    alt-d = 'exec-and-forget $HOME/lib/choose/apps.sh'
+
+    alt-shift-q = 'close --quit-if-last-window'
 
     # i3 wraps focus by default
     alt-h =         'focus --boundaries-action wrap-around-the-workspace left'
