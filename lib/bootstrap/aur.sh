@@ -35,4 +35,5 @@ yay -S --needed \
     claude-code \
     sway-alttab-gui-bin \
     winbox \
+    brave-bin \
 

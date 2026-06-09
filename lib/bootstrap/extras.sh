@@ -125,6 +125,8 @@ pacman -S --noconfirm --needed \
     android-file-transfer \
     caligula \
     zoxide \
+    chafa \
+    yazi \
 
 
 # for troubleshooting hardware acceleration
