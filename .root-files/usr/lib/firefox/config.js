@@ -1,10 +1,10 @@
 // skip 1st line
 // see https://support.mozilla.org/en-US/kb/customizing-firefox-using-autoconfig
 
-function createElement(document, tag, props, isHTML = false){
+function createElement(document, tag, props, isHTML = false) {
     let el = isHTML ? document.createElement(tag) : document.createXULElement(tag);
     for (let prop of Object.keys(props)) {
-        el.setAttribute(prop, props[prop])
+        el.setAttribute(prop, props[prop]);
     }
     return el;
 }
@@ -12,21 +12,20 @@ function createElement(document, tag, props, isHTML = false){
 function removeExistingHotKeys(window, details) {
     const document = window.document;
 
-    // TO-DO: filter by type
-    // see if the ID matches
-    let id = document.getElementById(details.id);
-    if (id) {
-        id.remove();
+    // remove by id first
+    let byId = document.getElementById(details.id);
+    if (byId) {
+        byId.remove();
     }
 
     let modifiers = details.modifiers?.join() || [];
     let keys = document.querySelectorAll(`[key='${details.key}']`);
 
     // find keys with the same modifier and remove them if they exist too
-    [...keys]
-    .forEach((element) => {
-        if (modifiers.length && element.attributes.getNamedItem('modifiers').value == modifiers) {
-            window.console.log("removing", element);
+    [...keys].forEach((element) => {
+        let elModifiers = element.attributes.getNamedItem('modifiers')?.value;
+        if (modifiers.length && elModifiers == modifiers) {
+            window.console.log('removing', element);
             element.remove();
         } else if (!modifiers.length) {
             element.remove();
@@ -35,9 +34,9 @@ function removeExistingHotKeys(window, details) {
 }
 
 function applyCustomScriptToWindow(window) {
-    window.console.log('1');
     const document = window.document;
     const console = window.console;
+
     let keyChanges = [
         // DL
         {
@@ -49,34 +48,43 @@ function applyCustomScriptToWindow(window) {
         },
     ];
 
-    // CTRL + ALT keys
-    for (let i = 0; i < 10; i++) {
-        ['accel', 'alt'].forEach((mod) => {
+    // CTRL + ALT + number -> select tab 1..10
+    // (tap into the browser native tab handling)
+    // https://github.com/mozilla/gecko-dev/blob/7d73613454bfe426fdceb635b33cd3061a69def4/browser/base/content/browser-sets.js#L297-L311
+    ['accel', 'alt'].forEach((mod) => {
+        for (let i = 0; i < 10; i++) {
             let key = i + 1;
             keyChanges.push({
-                // tap into the browser native tab handling instead
-                // https://github.com/mozilla/gecko-dev/blob/7d73613454bfe426fdceb635b33cd3061a69def4/browser/base/content/browser-sets.js#L297-L311
-                id: `key_selectTab${key}`,
+                id: `uc_selectTab${key}${mod}`,
                 modifiers: [mod],
                 key: (key != 10 ? key : 0), // cater for pressing 0
-                // command: `gBrowser.selectTabAtIndex(${i}, event);`,
+                action: (win, ev) => win.gBrowser.selectTabAtIndex(i, ev),
                 reserved: true,
                 _keepExistingHotKey: true,
             });
-        });
-    }
-    // ALT Function keys
+        }
+    });
+    // ALT + function key -> select tab 11..22
     for (let i = 0; i < 12; i++) {
         let key = i + 1;
         keyChanges.push({
-            id: `key_selectTab${key}`,
+            id: `uc_selectTabF${key}`,
             modifiers: ['alt'],
-            keycode: 'VK_F'+key,
-            // oncommand: `gBrowser.selectTabAtIndex(${i+10}, event);`,
+            keycode: 'VK_F' + key,
+            action: (win, ev) => win.gBrowser.selectTabAtIndex(i + 10, ev),
             reserved: true,
             _keepExistingHotKey: true,
         });
     }
+
+    // Build keys into a fresh, detached keyset; inserting a fully-populated
+    // keyset is what makes Firefox register the keys in its live shortcut map.
+    // Any key that runs JS gets routed through a real <command> element: the
+    // chrome CSP blocks inline oncommand code added at runtime, but a <key>
+    // that points at a <command> (and a JS 'command' listener on that command)
+    // is allowed — same path the native Tools:Downloads key uses.
+    let ucKeys = createElement(document, 'keyset', { id: 'ucCustomKeys' });
+    let ucCmds = createElement(document, 'commandset', { id: 'ucCustomCommands' });
 
     keyChanges.forEach((details) => {
         if (details._keepExistingHotKey) {
@@ -84,54 +92,51 @@ function applyCustomScriptToWindow(window) {
         } else {
             removeExistingHotKeys(window, details);
         }
-        let el = createElement(document, "key", details);
 
-        el.addEventListener("command", (ev) => {
-            window.focus();
-            //func(ev.target.ownerGlobal, eToO(ev))
-        });
-        let keyset = document.getElementById("mainKeyset") || document.body.appendChild(createElement(document, "keyset", {id: "ucKeys"}));
-        keyset.insertBefore(el, keyset.firstChild);
+        // don't pass our internal fields through as DOM attributes
+        let { _keepExistingHotKey, action, ...attrs } = details;
+
+        if (action) {
+            let cmdId = `${attrs.id}_cmd`;
+            let cmd = createElement(document, 'command', { id: cmdId });
+            cmd.addEventListener('command', (ev) => action(window, ev));
+            ucCmds.appendChild(cmd);
+            attrs.command = cmdId; // key fires this command when pressed
+        }
+
+        ucKeys.appendChild(createElement(document, 'key', attrs));
     });
 
+    // mainKeyset is a direct child of <html:body> in browser.xhtml. Insert the
+    // commandset first so the commands exist when the keyset registers.
+    let mainKeyset = document.getElementById('mainKeyset');
+    if (mainKeyset) {
+        mainKeyset.parentNode.insertBefore(ucCmds, mainKeyset);
+        mainKeyset.parentNode.insertBefore(ucKeys, mainKeyset.nextSibling);
+    } else {
+        // not a real browser window — shouldn't happen with the hook below
+        console.warn('config.js: no mainKeyset, skipping', window.location.href);
+        return;
+    }
+
+    console.log('config.js: applied', ucKeys.childElementCount, 'custom keys');
 }
-/* Single function userChrome.js loader to run the above init function (no external scripts)
-    derived from https://www.reddit.com/r/firefox/comments/kilmm2/
+
+/* Run the init function once per real browser window.
+   "browser-delayed-startup-finished" fires with the top ChromeWindow as its
+   subject, after the window is ready, and never for inner <browser> frames or
+   privileged about: pages — so we always get browser.xhtml, never a stray doc.
 */
-// see also https://www.reddit.com/r/FirefoxCSS/comments/mica0g/how_to_add_bookmarks_to_my_about_autoconfig_script/gt4dhfc/
 try {
-    //const { Services } = Components.utils.import('resource://gre/modules/Services.jsm');
-
-    const ConfigJS = {
-        observe: function (subject) {
-            subject.addEventListener('DOMContentLoaded', this, {once: true});
-        },
-        handleEvent: function (event) {
-            let document = event.originalTarget;
-            let window = document.defaultView;
-            let location = window.location;
-
-            window.console.log(document, window, location, 'hi', location.href);
-
-            if (location.href === 'chrome://extensions/content/dummy.xhtml') {
-                window.console.log('Ignoring dummy');
-                return;
-            }
-
-            if (/^(chrome:(?!\/\/(global\/content\/commonDialog|browser\/content\/webext-panels)\.x?html)|about:(?!blank))/i.test(location.href)) {
-                //if (window._gBrowser) {
-                    window.console.log('Applying script');
-                    try {
-                        applyCustomScriptToWindow(window);
-                    } catch (ex) {
-                        window.console.error('Error', ex);
-                    }
-                //}
-            }
-        }
-    }
-
     if (!Services.appinfo.inSafeMode) {
-        Services.obs.addObserver(ConfigJS, 'chrome-document-global-created', false);
+        Services.obs.addObserver((window) => {
+            try {
+                applyCustomScriptToWindow(window);
+            } catch (ex) {
+                window.console.error('config.js error', ex);
+            }
+        }, 'browser-delayed-startup-finished');
     }
-} catch(ex) { Cu.reportError(ex); };
+} catch (ex) {
+    Cu.reportError(ex);
+}
