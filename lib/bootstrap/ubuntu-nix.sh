@@ -5,7 +5,8 @@
 
 nix profile install \
     nixpkgs#awscli2 \
-    nixpkgs#asdf-vm \
+    nixpkgs#mise \
+    nixpkgs#tree-sitter-cli \
     nixpkgs#bash \
     nixpkgs#bat \
     nixpkgs#bc \

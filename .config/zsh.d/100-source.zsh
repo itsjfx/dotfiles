@@ -63,3 +63,4 @@ if [[ -d /nix ]]; then
 fi
 
 eval "$(zoxide init zsh)"
+eval "$(mise activate zsh)"
