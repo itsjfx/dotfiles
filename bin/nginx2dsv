@@ -1,0 +1,68 @@
+#!/usr/bin/env python3
+'''Parse nginx access logs (log_format 'main') into tab-separated rows for dsv.'''
+
+import argparse
+import fileinput
+import logging
+import re
+import sys
+
+# log_format main: '$remote_addr - $remote_user [$time_local] "$request" '
+#                  '$status $body_bytes_sent "$http_referer" '
+#                  '"$http_user_agent" "$http_x_forwarded_for"';
+LINE = re.compile(
+    r'^(?P<remote_addr>\S+) '
+    r'- '
+    r'(?P<remote_user>\S+) '
+    r'\[(?P<time_local>[^\]]+)\] '
+    r'"(?P<request>[^"]*)" '
+    r'(?P<status>\d+) '
+    r'(?P<body_bytes_sent>\d+) '
+    r'"(?P<http_referer>[^"]*)" '
+    r'"(?P<http_user_agent>[^"]*)"'
+    r'(?: "(?P<http_x_forwarded_for>[^"]*)")?'
+)
+
+# request is split into method/path/protocol in place of the raw field
+COLUMNS = [c for f in LINE.groupindex for c in (('method', 'path', 'protocol') if f == 'request' else (f,))]
+
+
+def split_request(request):
+    parts = request.split(' ')
+    if len(parts) == 3:
+        return parts
+    return ['-', request or '-', '-']  # malformed request (e.g. bare '-')
+
+
+def parse_lines(lines):
+    for line in lines:
+        line = line.rstrip('\n')
+        if not line:
+            continue
+        if m := LINE.match(line):
+            fields = {c: m[c] or '-' for c in LINE.groupindex}
+            fields['method'], fields['path'], fields['protocol'] = split_request(fields.pop('request'))
+            yield [fields[c] for c in COLUMNS]
+        else:
+            logging.warning('unparsed: %s', line)
+
+
+def main():
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument('files', nargs='*', help='log files (default: stdin)')
+    args = parser.parse_args()
+    logging.basicConfig(level=logging.WARNING, format='%(levelname)s\t%(message)s')
+
+    out = sys.stdout
+    print('\t'.join(COLUMNS), file=out)
+    for row in parse_lines(fileinput.input(args.files)):
+        print('\t'.join(row), file=out)
+
+
+if __name__ == '__main__':
+    try:
+        sys.exit(main())
+    except KeyboardInterrupt:
+        sys.exit(130)
+    except BrokenPipeError:
+        sys.exit(0)
