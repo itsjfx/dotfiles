@@ -1381,6 +1381,14 @@ require('lazy').setup({
         -- give me back my old headings
         icons = { '# ', '## ', '### ', '#### ', '##### ', '###### ' },
       },
+      code = {
+        conceal_delimiters = false,
+      },
+      html = {
+        comment = {
+          conceal = false,
+        },
+      },
     },
   },
   {
