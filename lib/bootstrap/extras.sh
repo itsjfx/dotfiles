@@ -127,6 +127,7 @@ pacman -S --noconfirm --needed \
     zoxide \
     chafa \
     yazi \
+    curl-impersonate \
 
 
 # for troubleshooting hardware acceleration
