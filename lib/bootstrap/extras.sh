@@ -128,6 +128,7 @@ pacman -S --noconfirm --needed \
     chafa \
     yazi \
     curl-impersonate \
+    mise \
 
 
 # for troubleshooting hardware acceleration
