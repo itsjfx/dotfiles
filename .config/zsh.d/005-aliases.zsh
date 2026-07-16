@@ -192,3 +192,5 @@ alias uuidgen='uuidgen | tr "[:upper:]" "[:lower:]"'
 alias curl_safe='curl --silent --show-error --fail-with-body'
 
 portfor() { port="$1"; shift; lsof -i :"$port" "$@"; }
+
+alias lowercase="tr '[:upper:]' '[:lower:]'"
