@@ -275,6 +275,27 @@
                             "to": [{ "key_code": "left_command" }]
                         }
                     ]
+                },
+                {
+                    "identifiers": {
+                        "is_keyboard": true,
+                        "product_id": 16999,
+                        "vendor_id": 51984
+                    },
+                    "simple_modifications": [
+                        {
+                            "from": { "key_code": "left_control" },
+                            "to": [{ "key_code": "left_command" }]
+                        }
+                    ]
+                },
+                {
+                    "identifiers": {
+                        "is_consumer": true,
+                        "product_id": 16999,
+                        "vendor_id": 51984
+                    },
+                    "ignore": false
                 }
             ],
             "name": "Default profile",

@@ -51,6 +51,7 @@ nix profile install \
     nixpkgs#gnutar \
     nixpkgs#socat \
     nixpkgs#pstree \
+    nixpkgs#mise \
 
 # extras
 nix profile install \
@@ -78,8 +79,8 @@ nix profile install \
     nixpkgs#nerd-fonts.fantasque-sans-mono \
 
 # latest not in nix
-brew install asdf
-asdf completion zsh > "$HOME"/.completions/_asdf
+# brew install asdf
+# asdf completion zsh > "$HOME"/.completions/_asdf
 
 # not in nix
 brew install displayplacer
