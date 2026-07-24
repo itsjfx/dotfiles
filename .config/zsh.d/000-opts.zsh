@@ -25,6 +25,8 @@ for _ in ~/.zcompdump(N.mh+24); do
 done
 compinit -C
 autoload -U +X bashcompinit && bashcompinit
+autoload -z edit-command-line
+zle -N edit-command-line
 
 ## History command configuration
 setopt extended_history       # record timestamp of command in HISTFILE

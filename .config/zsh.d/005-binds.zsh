@@ -69,3 +69,8 @@ bindkey '^K' push-line
 # Ctrl + u
 # kill everything from start to cursor. like in bash
 bindkey '^U' backward-kill-line
+
+
+# vim edit
+bindkey '\ev' edit-command-line
+bindkey '^[v' edit-command-line

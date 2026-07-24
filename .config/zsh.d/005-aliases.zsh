@@ -161,10 +161,6 @@ alias noline="tr -d '\n'"
 secret() { unset HISTFILE; }
 nohist() { unset HISTFILE; }
 
-autoload -z edit-command-line
-zle -N edit-command-line
-bindkey "\ev" edit-command-line
-
 alias epoch='date +%s'
 alias epochms='date +%s%3N'
 
