@@ -24,14 +24,17 @@ PINNED=(
 #   -z search matches symbols from beginning (instead of from end by weird default)
 #   -a rank early matches higher
 
-# use awk to remove dupes *without* sorting
-{
-    printf '%s\n' "${PINNED[@]}"
-    (
-        fd '.app' '/Applications/' /System/Applications/ /System/Applications/Utilities/ /System/Library/CoreServices/ --type d -d 1 | \
-        sed 's|\.app/$||' | \
-        sed 's:.*/::'
-    )
-} | awk '!seen[$0]++' | \
-    choose -a -z -f "$FONT" -c "$GREEN" -b "$PINK" | \
+if [ -f "$TMPDIR/apps.txt" ]; then
+    cat "$TMPDIR/apps.txt"
+else
+    # use awk to remove dupes *without* sorting
+    {
+        printf '%s\n' "${PINNED[@]}"
+        (
+            fd '.app' '/Applications/' /System/Applications/ /System/Applications/Utilities/ /System/Library/CoreServices/ --type d -d 1 | \
+            sed 's|\.app/$||' | \
+            sed 's:.*/::'
+        )
+    } | awk '!seen[$0]++' | tee "$TMPDIR/apps.txt"
+fi | choose -a -z -f "$FONT" -c "$GREEN" -b "$PINK" | \
     xargs -I {} open -a "{}.app"
