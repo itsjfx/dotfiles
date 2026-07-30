@@ -97,5 +97,9 @@ nnoremap <Esc> :nohlsearch<CR>
 set nerdtree
 map \\ :NERDTreeToggle<CR>
 
+" go to changed hunks
+nnoremap ]c :action VcsShowNextChangeMarker<CR>
+nnoremap [c :action VcsShowPrevChangeMarker<CR>
+
 " make yank highlighted
 Plug 'machakann/vim-highlightedyank'
