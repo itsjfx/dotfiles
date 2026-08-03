@@ -101,5 +101,12 @@ map \\ :NERDTreeToggle<CR>
 nnoremap ]c :action VcsShowNextChangeMarker<CR>
 nnoremap [c :action VcsShowPrevChangeMarker<CR>
 
+map ]t <Action>(NextTab)
+map [t <Action>(PreviousTab)
+map ]q <Action>(GotoNextError)
+map [q <Action>(GotoPreviousError)
+map ]m <Action>(MethodDown)
+map [M <Action>(MethodUp)
+
 " make yank highlighted
 Plug 'machakann/vim-highlightedyank'
