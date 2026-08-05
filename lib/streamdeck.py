@@ -190,7 +190,7 @@ def pulse_sink_input_volume(process_name, increase=True):
     with pulsectl.Pulse('volume') as pulse:
         for sink in pulse.sink_input_list():
             # sometimes there are multiple sinks named after the app, so not returning early on purpose
-            if sink.__dict__['proplist']['application.process.binary'] == process_name:
+            if sink.__dict__['proplist'].get('application.process.binary') == process_name:
                 vol = pulse.volume_get_all_chans(sink)
                 if increase:
                     new_vol = min(1, vol + VOLUME_INCREMENT)

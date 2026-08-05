@@ -25,6 +25,7 @@ Write bash scripts following these conventions:
 - Prefer here-strings `<<<"$var"` over `echo "$var" | cmd`
 - Use `"$(...)"` for command substitution, never backticks
 - Multi-variable assignment from structured output: `read -r a b c < <(<<<"$json" jq -re '[...] | @tsv')`
+- For quoting strings which we don't want to expand for safety, use ANSI-C Quoting which is `$'some value'`
 
 ## Arguments & Options
 
