@@ -624,6 +624,10 @@ require('lazy').setup({
       -- layout
       vim.g.fzf_layout = { window = { width = 0.9, height = 0.8 } } -- default 0.6
 
+      -- Rg output is file:line:col:text, so match only from field 4 on.
+      -- Otherwise searching for a filename matches every line of that file.
+      vim.g.fzf_vim = { rg_options = { '--nth', '4..' } }
+
       -- fzf hotkeys
       -- Alt + f like in VS code
       vim.keymap.set('n', '<A-f>', ':Rg<CR>')
