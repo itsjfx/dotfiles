@@ -12,4 +12,9 @@ git log --format="$name%x09$email" "$@" \
     | uniq -c \
     | sort -rn \
     | sed -E 's/^ *([0-9]+) /\1\t/' \
+    | awk -F'\t' -v OFS='\t' '
+        { total[$3] += $1; names[$3] = ($3 in names ? names[$3] ", " $2 : $2) }
+        END { for (email in total) print total[email], names[email], email }
+      ' \
+    | sort -rn \
     | pretty --header commits author email
