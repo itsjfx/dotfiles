@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+
+set -eu -o pipefail
+
+name='%an' email='%ae'
+case "${1-}" in
+    --committer) name='%cn' email='%ce'; shift ;;
+esac
+
+git log --format="$name%x09$email" "$@" \
+    | sort \
+    | uniq -c \
+    | sort -rn \
+    | sed -E 's/^ *([0-9]+) /\1\t/' \
+    | pretty --header commits author email
