@@ -552,6 +552,18 @@ require('lazy').setup({
   -- after the plugin has been loaded:
   --  config = function() ... end
 
+  -- {
+  --   'sainnhe/edge',
+  --   lazy = false,
+  --   priority = 1000,
+  --   config = function()
+  --     -- Optionally configure and load the colorscheme
+  --     -- directly inside the plugin declaration.
+  --     vim.g.edge_enable_italic = true
+  --     vim.cmd.colorscheme 'edge'
+  --   end,
+  -- },
+
   { -- Useful plugin to show you pending keybinds.
     'folke/which-key.nvim',
     event = 'VimEnter', -- Sets the loading event to 'VimEnter'
@@ -1305,6 +1317,27 @@ require('lazy').setup({
         styles = {
           comments = { italic = false }, -- Disable italics in comments
         },
+        on_highlights = function(hl, c)
+          -- bold command-area prompts, like sainnhe/edge does
+          hl.MoreMsg = { fg = c.blue, bold = true } -- confirm dialogs ("N more files to edit ... quit anyway?")
+          hl.Question = { fg = c.blue, bold = true } -- hit-enter prompt and yes/no questions
+
+          -- barbar: purple background with dark text for the current buffer
+          local bg = '#D38AEA'
+          local fg = c.bg_dark
+          hl.BufferCurrent = { bg = bg, fg = fg }
+          hl.BufferCurrentIndex = { bg = bg, fg = fg }
+          hl.BufferCurrentMod = { bg = bg, fg = fg }
+          hl.BufferCurrentTarget = { bg = bg, fg = fg }
+          hl.BufferCurrentSign = { bg = bg, fg = bg }
+          hl.BufferCurrentADDED = { bg = bg, fg = fg }
+          hl.BufferCurrentCHANGED = { bg = bg, fg = fg }
+          hl.BufferCurrentDELETED = { bg = bg, fg = fg }
+          hl.BufferCurrentERROR = { bg = bg, fg = fg }
+          hl.BufferCurrentWARN = { bg = bg, fg = fg }
+          hl.BufferCurrentINFO = { bg = bg, fg = fg }
+          hl.BufferCurrentHINT = { bg = bg, fg = fg }
+        end,
       }
       -- Load the colorscheme here.
       -- Like many other themes, this one has different styles, and you could load
