@@ -1,0 +1,85 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+if ! git rev-parse --is-inside-work-tree >/dev/null 2>&1; then
+  printf "$(basename "$0"): not a git repository\n" >&2
+  exit 1
+fi
+
+if [[ -t 1 ]]; then
+  green=$'\033[32m'
+  red=$'\033[31m'
+  reset=$'\033[0m'
+else
+  green=''
+  red=''
+  reset=''
+fi
+
+label_for() {
+  case "$1" in
+    M) printf 'modified:  ' ;;
+    A) printf 'new file:  ' ;;
+    D) printf 'deleted:   ' ;;
+    R) printf 'renamed:   ' ;;
+    C) printf 'copied:    ' ;;
+    T) printf 'typechange:' ;;
+    U) printf 'unmerged:  ' ;;
+    *) printf '%s:         ' "$1" ;;
+  esac
+}
+
+print_section() {
+  local title="$1" colour="$2"
+  shift 2
+  (($#)) || return 0
+  printf '\n%s\n' "$title"
+  local line
+  for line in "$@"; do
+    printf '\t%s%s%s\n' "$colour" "$line" "$reset"
+  done
+}
+
+branch="$(git symbolic-ref --short -q HEAD || true)"
+if [[ -n "$branch" ]]; then
+  printf 'On branch %s\n' "$branch"
+else
+  printf 'HEAD detached at %s\n' "$(git rev-parse --short HEAD)"
+fi
+
+staged=()
+unstaged=()
+untracked=()
+
+while IFS= read -r -d '' entry; do
+  x="${entry:0:1}"
+  y="${entry:1:1}"
+  path="${entry:3}"
+
+  if [[ "$x" == '?' ]]; then
+    untracked+=("$path")
+    continue
+  fi
+
+  display="$path"
+  if [[ "$x" == 'R' || "$x" == 'C' ]]; then
+    IFS= read -r -d '' orig_path
+    display="$orig_path -> $path"
+  fi
+
+  if [[ "$x" != ' ' ]]; then
+    staged+=("$(label_for "$x") $display")
+  fi
+  if [[ "$y" != ' ' ]]; then
+    unstaged+=("$(label_for "$y") $path")
+  fi
+done < <(git status --porcelain=v1 -z)
+
+if ((${#staged[@]} + ${#unstaged[@]} + ${#untracked[@]} == 0)); then
+  printf 'nothing to commit, working tree clean\n'
+  exit 0
+fi
+
+print_section 'Changes to be committed:' "$green" "${staged[@]+"${staged[@]}"}"
+print_section 'Changes not staged for commit:' "$red" "${unstaged[@]+"${unstaged[@]}"}"
+print_section 'Untracked files:' "$red" "${untracked[@]+"${untracked[@]}"}"
