@@ -1,0 +1,35 @@
+#!/usr/bin/env -S uv run --script
+# vi: ft=python
+# /// script
+# dependencies = ["configupdater"]
+# ///
+
+import sys
+from configupdater import ConfigUpdater
+
+updater = ConfigUpdater()
+updater.read_string(sys.stdin.read())
+
+wanted = {
+    "Container": {
+        "AutoUpdate": "registry",
+    },
+    "Service": {
+        "Restart": "always",
+    },
+    "Install": {
+        "WantedBy": "multi-user.target default.target",
+    },
+}
+
+for section_name, values in wanted.items():
+    if section_name not in updater:
+        updater.add_section(section_name)
+
+    section = updater[section_name]
+
+    for key, value in values.items():
+        if key not in section:
+            section[key] = value
+
+sys.stdout.write(str(updater))
