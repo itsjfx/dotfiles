@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+
+set -eu -o pipefail
+
+# on each WiFi connection, I have a cloned random mac address on first connection by default in NetworkManager (see ~/.root-files/etc/NetworkManager/conf.d/wifi_mac.conf)
+# but sometimes I want a fresh one, but I don't want to turn on randomisation on *each* connection, just want to refresh my identity
+# so this script manually generates a new mac address for a connection and sets it
+
+# useful for testing ~/bin/captive-portal
+
+conn="$(nmcli -t -f NAME,TYPE con show --active | grep 802-11-wireless | cut -d: -f1)"
+echo "Found connection: $conn" >&2
+
+mac=$(printf '02:%02x:%02x:%02x:%02x:%02x' $((RANDOM%256)) $((RANDOM%256)) $((RANDOM%256)) $((RANDOM%256)) $((RANDOM%256)))
+echo "Setting new MAC=$mac and reconnecting" >&2
+nmcli con modify "$conn" wifi.cloned-mac-address "$mac"
+nmcli con down "$conn"
+nmcli con up "$conn"

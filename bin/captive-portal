@@ -1,0 +1,51 @@
+#!/usr/bin/env bash
+
+set -eu -o pipefail
+
+log() { echo "$*" >&2; }
+
+# this may not work on networks where Google is blocked, such as China
+probe=connectivitycheck.gstatic.com/generate_204
+
+detect_only=0
+[[ "${1-}" == --detect-only ]] && detect_only=1
+
+# most of the time Cloudflare DNS is OK, but _try_ get the routers DNS
+interface=$(nmcli -t -f DEVICE,TYPE,STATE dev | awk -F: '$2=="wifi" && $3=="connected" {print $1; exit}')
+dns=$(nmcli -f DHCP4 dev show "$interface" | grep -oP '\bdomain_name_servers = \K\S+' || {
+    log Could not find DNS, falling back to Cloudflare DNS
+    echo 1.1.1.1
+})
+log "Using DNS: $dns"
+
+tmpdir=$(mktemp -d)
+trap 'rm -rf "$tmpdir"' EXIT
+echo "nameserver $dns"> "$tmpdir/resolv.conf"
+# the cause of my previous frustration: this file tells glibc what order to resolve DNS entries
+# if systemd-resolved is running, it will be prioritised over /etc/resolv.conf
+sed 's/^hosts:.*/hosts: files dns/' /etc/nsswitch.conf > "$tmpdir/nsswitch.conf"
+wrap() {
+    bwrap --dev-bind / / \
+        --ro-bind "$tmpdir/resolv.conf" /etc/resolv.conf \
+        --ro-bind "$tmpdir/nsswitch.conf" /etc/nsswitch.conf \
+        "$@"
+}
+
+read -r code url < <(wrap curl --silent --show-error -o /dev/null --max-time 10 -w '%{http_code} %{redirect_url}\n' "http://$probe")
+case "$code" in
+    204) log "No captive portal detected; got back 204"; exit ;;
+    30?) log "Received code=$code and url=$url" ;;
+    *) log "Unhandled status code: $code"; exit 2 ;;
+esac
+dunstify -i internet-services -h string:x-dunst-stack-tag:captive-portal 'Captive portal detected' "URL: $url"
+
+(( detect_only)) && exit
+
+# thought about using Chromium for compatibility
+# see below for Firefox
+wrap chromium --user-data-dir="$tmpdir/profile" --no-first-run http://neverssl.com
+
+# force no DoH
+# mkdir -p "$tmpdir/profile"
+# echo 'user_pref("network.trr.mode", 5);' >"$tmpdir"/profile/user.js
+# wrap firefox --profile "$tmpdir/profile" --no-remote http://neverssl.com
