@@ -5,20 +5,9 @@ set -eu -o pipefail
 log() { echo "$*" >&2; }
 
 # this may not work on networks where Google is blocked, such as China
-probe=connectivitycheck.gstatic.com/generate_204
+PROBE=connectivitycheck.gstatic.com/generate_204
 
-detect_only=0
-[[ "${1-}" == --detect-only ]] && detect_only=1
-
-# most of the time Cloudflare DNS is OK, but _try_ get the routers DNS
-interface=$(nmcli -t -f DEVICE,TYPE,STATE dev | awk -F: '$2=="wifi" && $3=="connected" {print $1; exit}')
-dns=$(nmcli -f DHCP4 dev show "$interface" | grep -oP '\bdomain_name_servers = \K\S+' || {
-    log Could not find DNS, falling back to Cloudflare DNS
-    echo 1.1.1.1
-})
-log "Using DNS: $dns"
-
-tmpdir=$(mktemp -d)
+tmpdir="$(mktemp -d)"
 trap 'rm -rf "$tmpdir"' EXIT
 echo "nameserver $dns"> "$tmpdir/resolv.conf"
 # the cause of my previous frustration: this file tells glibc what order to resolve DNS entries
@@ -31,7 +20,18 @@ wrap() {
         "$@"
 }
 
-read -r code url < <(wrap curl --silent --show-error -o /dev/null --max-time 10 -w '%{http_code} %{redirect_url}\n' "http://$probe")
+detect_only=0
+[[ "${1-}" == --detect-only ]] && detect_only=1
+
+# most of the time Cloudflare DNS is OK, but _try_ get the routers DNS
+interface="$(nmcli -t -f DEVICE,TYPE,STATE dev | awk -F: '$2=="wifi" && $3=="connected" {print $1; exit}')"
+dns="$(nmcli -f DHCP4 dev show "$interface" | grep -oP '\bdomain_name_servers = \K\S+' || {
+    log Could not find DNS, falling back to Cloudflare DNS
+    echo 1.1.1.1
+})"
+log "Using DNS: $dns"
+
+read -r code url < <(wrap curl --silent --show-error -o /dev/null --max-time 10 -w '%{http_code} %{redirect_url}\n' "http://$PROBE")
 case "$code" in
     204) log "No captive portal detected; got back 204"; exit ;;
     30?) log "Received code=$code and url=$url" ;;
