@@ -1,0 +1,35 @@
+#!/usr/bin/env bash
+
+set -eu -o pipefail
+# man 8 NetworkManager-dispatcher
+# args: iface, action
+
+log() { /usr/bin/logger -s -t captive-portal "$@"; }
+PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+
+if [[ "$2" != connectivity-change ]]; then
+    exit
+fi
+log "dispatcher script triggered on connectivity change: $CONNECTIVITY_STATE"
+if [[ "$CONNECTIVITY_STATE" != PORTAL ]] && [[ "$CONNECTIVITY_STATE" != LIMITED ]]; then
+    exit
+fi
+
+sid="$(loginctl show-seat seat0 -p ActiveSession --value)"
+user="$(loginctl show-session "$sid" -p Name --value)"
+uid="$(id -u "$user")"
+
+if [ -z "$user" ]; then
+    log -p user.err "Failed to determine logged-in user"
+    exit 1
+fi
+
+log "Running script to detect captive portal as user: $user"
+sudo -u "$user" env DISPLAY=":0" \
+    DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/"$uid"/bus \
+    "/home/$user/bin/captive-portal" --detect-only \
+|| {
+    code="$?"
+    log -p user.err 'Failed detecting captive portal'
+    exit "$code"
+}
