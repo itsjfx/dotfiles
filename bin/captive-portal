@@ -9,7 +9,6 @@ PROBE=connectivitycheck.gstatic.com/generate_204
 
 tmpdir="$(mktemp -d)"
 trap 'rm -rf "$tmpdir"' EXIT
-echo "nameserver $dns"> "$tmpdir/resolv.conf"
 # the cause of my previous frustration: this file tells glibc what order to resolve DNS entries
 # if systemd-resolved is running, it will be prioritised over /etc/resolv.conf
 sed 's/^hosts:.*/hosts: files dns/' /etc/nsswitch.conf > "$tmpdir/nsswitch.conf"
@@ -25,11 +24,13 @@ detect_only=0
 
 # most of the time Cloudflare DNS is OK, but _try_ get the routers DNS
 interface="$(nmcli -t -f DEVICE,TYPE,STATE dev | awk -F: '$2=="wifi" && $3=="connected" {print $1; exit}')"
+# get first DNS server only (TODO: get more)
 dns="$(nmcli -f DHCP4 dev show "$interface" | grep -oP '\bdomain_name_servers = \K\S+' || {
     log Could not find DNS, falling back to Cloudflare DNS
     echo 1.1.1.1
 })"
 log "Using DNS: $dns"
+echo "nameserver $dns" >"$tmpdir/resolv.conf"
 
 read -r code url < <(wrap curl --silent --show-error -o /dev/null --max-time 10 -w '%{http_code} %{redirect_url}\n' "http://$PROBE")
 case "$code" in
